@@ -1,7 +1,7 @@
 Please go under edit and edit this file as needed for your project
 
-# Project Name - 
-# Batch - 
+# Project Name - Veterinary Clinic and Online Pet Accessory Shop Management System
+# Batch - Malabe
 ### Group Leader - IT20212232 - Mr. Asiri Gamage (asiriRepos)
 ### Member 2 - 
 ### Member 3 - 
