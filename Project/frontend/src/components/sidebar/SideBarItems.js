@@ -7,6 +7,7 @@ import {TbUserPlus} from "react-icons/tb"
 import {TbUser} from "react-icons/tb"
 import {FaPaw} from 'react-icons/fa'
 import {MdOutlineHomeRepairService} from 'react-icons/md'
+import {BsPalette2} from 'react-icons/bs'
 import {CiMedicalCross} from 'react-icons/ci'
 import {IoIosPeople} from 'react-icons/io'
 import {IoMdPerson} from 'react-icons/io'
@@ -36,7 +37,7 @@ const sidebarItems = [
     
     {
         id: 1000,
-        icon: <AiFillApi/>,
+        icon: <BsPalette2/>,
         text: "Inventory Management",
         nestedFunctions: [
         {

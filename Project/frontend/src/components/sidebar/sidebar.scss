@@ -18,19 +18,9 @@ $secondary-color-purple4: #E9E3FF;
     overflow-y: scroll;
 }
 
-// .sidebar-container::-webkit-scrollbar {
-//     display: none;
-// }
-
-.sidebar-container::-webkit-scrollbar-thumb {
-    background-color: $secondary-color-purple1;
-    border-radius: 15px;
+.sidebar-container::-webkit-scrollbar {
+    display: none;
 }
-
-.sidebar-container::-webkit-scrollbar{
-    width: 0.3em;
-}
-
 
 .brandName {
     height: 10%;
@@ -63,7 +53,7 @@ $secondary-color-purple4: #E9E3FF;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     margin-right: 10px;
     color: white;
 }
@@ -118,9 +108,21 @@ $secondary-color-purple4: #E9E3FF;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+.side-bar-item-container::-webkit-scrollbar-thumb {
+    background-color: $secondary-color-purple1;
+    border-radius: 15px;
+}
+
+.side-bar-item-container::-webkit-scrollbar {
+    width: 0.3em;
+}
+
 
 
 .side-bar-nested-item {
