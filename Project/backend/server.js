@@ -11,6 +11,8 @@ const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes');
 const checkoutRoutes = require('./routes/stripeRoutes')
 
+//Pet Management
+const petRegisterRoutes= require('./routes/petRegisterRoutes')
 
 const port = process.env.PORT || 4000
 
@@ -25,6 +27,10 @@ app.use('/api/products', productRoutes);
 app.use('/api/carts', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/checkout', checkoutRoutes);
+
+//Pet Management
+app.use('/api/pets', petRegisterRoutes);
+
 
 app.use(errorHandler);
 
