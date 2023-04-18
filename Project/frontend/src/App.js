@@ -14,7 +14,7 @@ function App() {
         <Route exact path='/component-3' element={<AddProduct />} />
 
 
-        <Route path='/products' element={<AddProduct />} />
+        <Route path='/addProduct' element={<AddProduct />} />
         <Route path='/orders' element={<Products />} />
         <Route path='/insights' element={<AddProduct />} />
 

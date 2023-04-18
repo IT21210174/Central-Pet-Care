@@ -103,6 +103,13 @@ const sidebarItems = [
                 nestedItemicon:<BsFillBoxSeamFill/>,
                 nestedItemtext:"Products"
             },
+        
+            {
+                id:101,
+                link:"/addProduct",
+                nestedItemicon:<MdLibraryAdd/>,
+                nestedItemtext:"Add new product"
+            },
 
             {
                 id:201,
@@ -195,7 +202,7 @@ const sidebarItems = [
     {
         id:6000,
         icon:<BiPlusMedical/>,
-        text:"Veterinary Management",
+        text:"Veterinaary Management",
         nestedFunctions: [
                 {
                     id:600,
@@ -258,7 +265,7 @@ const sidebarItems = [
         nestedFunctions: [
                 {
                     id:800,
-                    link:"/",
+                    link:"",
                     nestedItemicon:<MdSell/>,
                     nestedItemtext:"Order Management"
                 },
