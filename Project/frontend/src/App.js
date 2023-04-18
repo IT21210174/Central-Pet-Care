@@ -1,6 +1,6 @@
 import './App.css';
 import AdminLayout from './pages/Layouts/AdminLayout';
-import AddItem from './pages/Inventory/AddItem';
+import AddItem from './pages/Inventory/add-item-page/AddItem';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
