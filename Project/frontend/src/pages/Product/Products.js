@@ -1,13 +1,13 @@
 import React from 'react'
 import AdminLayout from '../Layouts/AdminLayout'
 
-function AddProduct() {
+function Products() {
   return (
     <AdminLayout>
-    <div>AddProduct</div>
+    <div>Products</div>
     </AdminLayout>
 
   )
 }
 
-export default AddProduct
+export default Products
