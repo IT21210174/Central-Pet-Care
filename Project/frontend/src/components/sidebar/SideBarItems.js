@@ -41,14 +41,14 @@ const sidebarItems = [
         nestedFunctions: [
         {
             id:100,
-            link:"/component-1",
+            link:"/inventory/overview",
             nestedItemicon:<MdContentPasteSearch/>,
             nestedItemtext:"Overview"
         },
 
         {
             id:101,
-            link:"/component-2",
+            link:"/inventory/add-item",
             nestedItemicon:<MdLibraryAdd/>,
             nestedItemtext:"Add new item"
         },
