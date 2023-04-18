@@ -63,7 +63,7 @@ const sidebarItems = [
 
         {   
             id:103,
-            link:"/component-4",
+            link:"/inventory/manage-inventory",
             nestedItemicon:<MdOutlineInventory2/>,
             nestedItemtext:"Manage inventory"
         },
