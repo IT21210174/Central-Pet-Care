@@ -258,7 +258,7 @@ const sidebarItems = [
         nestedFunctions: [
                 {
                     id:800,
-                    link:"",
+                    link:"/",
                     nestedItemicon:<MdSell/>,
                     nestedItemtext:"Order Management"
                 },

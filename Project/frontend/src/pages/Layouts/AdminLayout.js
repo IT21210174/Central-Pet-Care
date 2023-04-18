@@ -5,14 +5,10 @@ import Actionbar from '../../components/actionbar/Acionbar'
 import './adminLayout.scss'
 
 const AdminLayout = ({children}) => {
-  const [activeSidebarItem, setActiveSidebarItem] = useState(null)
 
-  const handleSidebarItemClick = (item) => {
-    setActiveSidebarItem(item)
-  }
   return (
     <div className='layoutWrapper'>
-        <Sidebar activeItem={activeSidebarItem} onItemClick={handleSidebarItemClick} />
+        <Sidebar />
         <div className='rightContainer'>
           <Actionbar />
           <div className='content'>
