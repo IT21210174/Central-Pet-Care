@@ -42,6 +42,4 @@ const petRegisterSchema = mongoose.Schema({
 })
 
 
-
-
 module.exports = mongoose.model('PetRegister', petRegisterSchema);

@@ -13,6 +13,7 @@ const checkoutRoutes = require('./routes/stripeRoutes')
 
 //Pet Management
 const petRegisterRoutes= require('./routes/petRegisterRoutes')
+const petTreatmentsRoutes= require('./routes/petTreatmentsRoutes')
 
 const port = process.env.PORT || 4000
 
@@ -30,7 +31,7 @@ app.use('/api/checkout', checkoutRoutes);
 
 //Pet Management
 app.use('/api/pets', petRegisterRoutes);
-
+app.use('/api/treatments', petTreatmentsRoutes);
 
 app.use(errorHandler);
 

@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 const Pet = require('../models/petRegisterModels')
 
 
-// @desc    Fetch all vets
-// @route   GET /api/vets
+// @desc    Fetch all pets
+// @route   GET /api/pets
 // @access  Private/Admin
 const getPets = asyncHandler(async (req, res) => {
 
@@ -14,22 +14,22 @@ const getPets = asyncHandler(async (req, res) => {
 
 })
   
-// @desc    Fetch logged in user vet
-// @route   GET /api/vets/:id
+// @desc    Fetch logged in pets
+// @route   GET /api/pets/:id
 // @access  Private
 const getPetByID = asyncHandler(async (req, res) => {
     const pet = await Pet.findOne({ petID: req.params.petID })
   
     if (pet) {
-        res.status(200).json(vet)
+        res.status(200).json(pet)
     } else {
         res.status(404)
         throw new Error('Pet not found')
     }
 })
   
-// @desc    Create vet
-// @route   POST /api/vets
+// @desc    Create pet
+// @route   POST /api/pets
 // @access  Private
 const createPet = asyncHandler(async (req, res) => {
     
@@ -51,8 +51,8 @@ const createPet = asyncHandler(async (req, res) => {
     res.status(200).json(savedPet); 
 })
   
-// @desc    Update vet
-// @route   PUT /api/vets/:id
+// @desc    Update pet
+// @route   PUT /api/pets/:id
 // @access  Private
 const updatePet = asyncHandler(async (req, res) => {
 
@@ -72,8 +72,8 @@ const updatePet = asyncHandler(async (req, res) => {
     }
   })
 
-// @desc    Delete vet
-// @route   DELETE /api/vetstv/:id
+// @desc    Delete pet
+// @route   DELETE /api/pets/:id
 // @access  Private
 const deletePet = asyncHandler(async (req, res) => {
     const pet = await Pet.findById(req.params.id)
