@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 const Vet = require('../models/vetModel')
 
 
-// @desc    Fetch all carts
-// @route   GET /api/carts
+// @desc    Fetch all vets
+// @route   GET /api/vets
 // @access  Private/Admin
 const getVets = asyncHandler(async (req, res) => {
 
@@ -14,8 +14,8 @@ const getVets = asyncHandler(async (req, res) => {
 
 })
   
-// @desc    Fetch logged in user cart
-// @route   GET /api/carts/:id
+// @desc    Fetch logged in user vet
+// @route   GET /api/vets/:id
 // @access  Private
 const getOneVet = asyncHandler(async (req, res) => {
     const vet = await Vet.findOne({ vcslId: req.params.vcslId })
@@ -28,20 +28,21 @@ const getOneVet = asyncHandler(async (req, res) => {
     }
 })
   
-// @desc    Create cart
-// @route   POST /api/carts
+// @desc    Create vet
+// @route   POST /api/vets
 // @access  Private
 const createVet = asyncHandler(async (req, res) => {
     
-    const { vcslId, vetName, telephone, email, experience, qualification } = req.body;
+    const { vcslId, vetName, telephone, email, experience, qualification, profilePicture } = req.body;
 
     const vet = new Vet({
-        vcslId: req.body.vcslId,
-        vetName: req.body.vetName,
-        telephone: req.body.telephone,
-        email: req.body.email,
-        experience: req.body.experience,
-        qualification: req.body.qualification,
+        vcslId: vcslId,
+        vetName: vetName,
+        telephone: telephone,
+        email: email,
+        experience: experience,
+        qualification: qualification,
+        profilePicture: profilePicture,
     })
 
     const savedVet = await vet.save();
@@ -49,8 +50,8 @@ const createVet = asyncHandler(async (req, res) => {
     res.status(200).json(savedVet); 
 })
   
-// @desc    Update cart
-// @route   PUT /api/carts/:id
+// @desc    Update vet
+// @route   PUT /api/vets/:id
 // @access  Private
 const updateVet = asyncHandler(async (req, res) => {
 
@@ -70,8 +71,8 @@ const updateVet = asyncHandler(async (req, res) => {
     }
   })
 
-// @desc    Delete cart
-// @route   DELETE /api/carts/:id
+// @desc    Delete vet
+// @route   DELETE /api/vetstv/:id
 // @access  Private
 const deleteVet = asyncHandler(async (req, res) => {
     const vet = await Vet.findById(req.params.id)

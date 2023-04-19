@@ -8,7 +8,7 @@ router.get('/', getPrescriptions)
 router.get('/:id', getOnePrescription)
 
 router.post('/', createPrescription)
-router.delete('/:id', updatePrescription)
-router.put('/:id', deletPrescription)
+router.put('/:id', updatePrescription)
+router.delete('/:id', deletPrescription)
 
 module.exports = router;

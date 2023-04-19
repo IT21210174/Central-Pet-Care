@@ -5,15 +5,12 @@ const medicineSchema = mongoose.Schema({
         type: String,
         unique: [true, 'Please add medicine name'],
     },
-    status: {
+    uses: {
         type: String,
         required: true,
     }
 }, {
     timestamps: true
 })
-
-
-
 
 module.exports = mongoose.model('Medicine', medicineSchema);

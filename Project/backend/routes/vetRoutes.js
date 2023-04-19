@@ -8,7 +8,7 @@ router.get('/', getVets)
 router.get('/:id', getOneVet)
 
 router.post('/', createVet)
-router.delete('/:id', updateVet)
-router.put('/:id', deleteVet)
+router.put('/:id', updateVet)
+router.delete('/:id', deleteVet)
 
 module.exports = router;

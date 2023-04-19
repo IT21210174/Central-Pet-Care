@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 const Medicine = require('../models/medicineModel')
 
 
-// @desc    Fetch all carts
-// @route   GET /api/carts
+// @desc    Fetch all medicines
+// @route   GET /api/medicines
 // @access  Private/Admin
 const getMedicines = asyncHandler(async (req, res) => {
 
@@ -14,8 +14,8 @@ const getMedicines = asyncHandler(async (req, res) => {
 
 })
   
-// @desc    Fetch logged in user cart
-// @route   GET /api/carts/:id
+// @desc    Fetch logged in user medicines
+// @route   GET /api/medicines/:id
 // @access  Private
 const getOneMedicine = asyncHandler(async (req, res) => {
     const medicine = await Medicine.findOne({ medId: req.params.medId })
@@ -28,16 +28,16 @@ const getOneMedicine = asyncHandler(async (req, res) => {
     }
 })
   
-// @desc    Create cart
-// @route   POST /api/carts
+// @desc    Create medicine
+// @route   POST /api/medicines
 // @access  Private
 const createMedicine = asyncHandler(async (req, res) => {
     
-    const { medicineName, status } = req.body;
+    const { medicineName, uses } = req.body;
 
     const medicine = new Medicine({
-        medicineName: req.body.medicineName,
-        status: req.body.status,
+        medicineName: medicineName,
+        uses: uses,
     })
 
     const savedMedicine = await medicine.save();
@@ -45,8 +45,8 @@ const createMedicine = asyncHandler(async (req, res) => {
     res.status(200).json(savedMedicine); 
 })
   
-// @desc    Update cart
-// @route   PUT /api/carts/:id
+// @desc    Update medicine
+// @route   PUT /api/medicines/:id
 // @access  Private
 const updateMedicine = asyncHandler(async (req, res) => {
 
@@ -66,8 +66,8 @@ const updateMedicine = asyncHandler(async (req, res) => {
     }
   })
 
-// @desc    Delete cart
-// @route   DELETE /api/carts/:id
+// @desc    Delete medicine
+// @route   DELETE /api/medicine/:id
 // @access  Private
 const deleteMedicine = asyncHandler(async (req, res) => {
     const medicine = await Medicine.findById(req.params.id)

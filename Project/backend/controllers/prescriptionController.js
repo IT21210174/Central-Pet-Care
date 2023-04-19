@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 const Prescription = require('../models/prescriptionModel')
 
 
-// @desc    Fetch all carts
-// @route   GET /api/carts
+// @desc    Fetch all prescriptions
+// @route   GET /api/prescriptions
 // @access  Private/Admin
 const getPrescriptions = asyncHandler(async (req, res) => {
 
@@ -14,8 +14,8 @@ const getPrescriptions = asyncHandler(async (req, res) => {
 
 })
   
-// @desc    Fetch logged in user cart
-// @route   GET /api/carts/:id
+// @desc    Fetch logged in user prescription
+// @route   GET /api/prescriptions/:id
 // @access  Private
 const getOnePrescription = asyncHandler(async (req, res) => {
     const prescription = await Prescription.findOne({ petId: req.params.petId })
@@ -28,19 +28,19 @@ const getOnePrescription = asyncHandler(async (req, res) => {
     }
 })
   
-// @desc    Create cart
-// @route   POST /api/carts
+// @desc    Create prescription
+// @route   POST /api/prescriptions
 // @access  Private
 const createPrescription = asyncHandler(async (req, res) => {
     
     const { petname, address, description, medicine, quantity } = req.body;
 
     const prescription = new Prescription({
-        petname: req.body.petname,
-        address: req.body.address,
-        description: req.body.description,
-        medicine: req.body.medicine,
-        quantity: req.body.quantity,
+        petname: petname,
+        address: address,
+        description: description,
+        medicine: medicine,
+        quantity: quantity,
     })
 
     const savedPrescription = await prescription.save();
@@ -48,8 +48,8 @@ const createPrescription = asyncHandler(async (req, res) => {
     res.status(200).json(savedPrescription); 
 })
   
-// @desc    Update cart
-// @route   PUT /api/carts/:id
+// @desc    Update prescription
+// @route   PUT /api/prescriptions/:id
 // @access  Private
 const updatePrescription = asyncHandler(async (req, res) => {
 
@@ -69,8 +69,8 @@ const updatePrescription = asyncHandler(async (req, res) => {
     }
   })
 
-// @desc    Delete cart
-// @route   DELETE /api/carts/:id
+// @desc    Delete prescriptions
+// @route   DELETE /api/prescription/:id
 // @access  Private
 const deletPrescription = asyncHandler(async (req, res) => {
     const prescription = await Prescription.findById(req.params.id)

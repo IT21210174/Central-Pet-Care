@@ -24,7 +24,11 @@ const vetSchema = mongoose.Schema({
     qualification: {
         type: String,
         required: [true, 'Please add qualification']
-    }
+    },
+    profilePicture: {
+        type: String,
+        required: [true, 'Please add profile picture']
+    },
 }, {
     timestamps: true
 })
