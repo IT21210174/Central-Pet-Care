@@ -99,9 +99,9 @@ const sidebarItems = [
         nestedFunctions: [
             {
                 id:200,
-                link:"/products",
+                link:"/manageProducts",
                 nestedItemicon:<BsFillBoxSeamFill/>,
-                nestedItemtext:"Products"
+                nestedItemtext:"Manage products"
             },
         
             {
