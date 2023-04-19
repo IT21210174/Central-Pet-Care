@@ -44,7 +44,7 @@ const uploadImage = async (file) => {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                //toast.success('Image uploaded successfully')
+                toast.success('Image uploaded successfully')
                 toast.dismiss(loadingToast);
                 loadingToast = null;
                 resolve(downloadURL);

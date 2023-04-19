@@ -1,29 +1,71 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
+import './addProduct.scss'
+import { userRequest } from '../../requestMethods'
+import uploadImage from '../../uploadImage';
+import { toast } from 'react-hot-toast';
 
 function AddProduct() {
 
-  const [selectedOptionsA, setSelectedOptionsA] = useState([]);
-  const [selectedOptionsB, setSelectedOptionsB] = useState([]);
-
   const categoryA = [
-    { value: 'dog', label: 'Dog' },
-    { value: 'cat', label: 'Cat' },
-    { value: 'fish', label: 'Fish' },
-    { value: 'rabbit', label: 'Rabbit' },
-    { value: 'bird', label: 'Bird' },
-    { value: 'cattle', label: 'Cattle' },
-    { value: 'pig', label: 'Pig' },
-    { value: 'hamster', label: 'Hamster' },
-    { value: 'other', label: 'Other' },
+    { value: 'Dog', label: 'Dog' },
+    { value: 'Cat', label: 'Cat' },
+    { value: 'Fish', label: 'Fish' },
+    { value: 'Rabbit', label: 'Rabbit' },
+    { value: 'Bird', label: 'Bird' },
+    { value: 'Cattle', label: 'Cattle' },
+    { value: 'Pig', label: 'Pig' },
+    { value: 'Hamster', label: 'Hamster' },
+    { value: 'Other', label: 'Other' },
   ];
 
   const categoryB = [
-    { value: 'food', label: 'Food' },
-    { value: 'accessory', label: 'Accessory' },
-    { value: 'toy', label: 'Toy' }
+    { value: 'Food', label: 'Food' },
+    { value: 'Accessory', label: 'Accessory' },
+    { value: 'Toy', label: 'Toy' }
   ]
+
+  const [selectedCategoryA, setSelectedCategoryA] = useState([])
+  const [selectedCategoryB, setSelectedCategoryB] = useState(null)
+
+  const [productName, setProductName] = useState('')
+  const [brand, setBrand] = useState('')
+  const [price, setPrice] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [description, setDescription] = useState('')
+  const [SKU, setSKU] = useState('')
+  const [file, setFile] = useState('')
+
+  const handleReset = () => {
+    setSelectedCategoryA([])
+    setSelectedCategoryB(null)
+    setProductName('')
+    setBrand('')
+    setPrice('')
+    setQuantity('')
+    setDescription('')
+    setSKU('')
+    setFile(null)
+    // Clear the value of the file input field
+    document.getElementById('file-input').value = '';
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    // Combine selected categories
+    const catA = selectedCategoryA.map(cat => cat.value);
+    const catB = selectedCategoryB.value;
+    const imageURL = await uploadImage(file);
+    userRequest.post("/products", { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: imageURL })
+    .then(res => {
+        toast.success('Product added')
+        handleReset()
+    }).catch(err => {
+        toast.error(err.message)
+    })
+  }  
+
 
   const customStyles = {
     control: (provided, state) => ({
@@ -39,7 +81,7 @@ function AddProduct() {
     menu: (provided, state) => ({
       ...provided,
       backgroundColor: 'white',
-      margin: '-10px 0 0 0'
+      margin: '-10px 0 0 0',
     }),
     option: (provided, state) => ({
       ...provided,
@@ -56,68 +98,83 @@ function AddProduct() {
     <AdminLayout>
       <div className="add-item-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit="">
+        <form className="add-item-form-container" onSubmit={handleSubmit}>
             <span className="tagline-add-item">Add product</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
               <div className="add-item-column">
+
                 <section className="input-container">
                   <span className="input-title">Product name</span>
-                  <input className="input-field"/>
+                  <input type='text' className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
                 </section>
+
                 <section className="input-container">
                   <span className="input-title">Price</span>
-                  <input className="input-field"/>
+                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
                 </section>
+
                 <section className="input-container">
                   <span className="input-title">Category A</span>
                   <Select
                     isMulti
                     options={categoryA}
-                    value={selectedOptionsA}
-                    onChange={setSelectedOptionsA}
+                    value={selectedCategoryA}
+                    onChange={setSelectedCategoryA}
                     styles={customStyles}
-                    isRequired={true}
+                    placeholder="Select category"
+                    required
                   />
                 </section>
+
                 <section className="input-container">
                         <span className="input-title">product description</span>
-                        <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
+                        <textarea className='input-textarea' id="" cols="30" rows="10" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
                 </section>
+
               </div>
+
               {/* column two */}
               <div className="add-item-column">
+
                     <section className="input-container">
                         <span className="input-title">Brand</span>
-                        <input className="input-field"/>
+                        <input type='text' className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
                     </section>
+
                     <section className="input-container">
                         <span className="input-title">Quantity</span>
-                        <input className="input-field"/>
+                        <input type='number' min="0" className="input-field" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
                     </section>
+
                     <section className="input-container">
                       <span className="input-title">Category B</span>
                       <Select
                         options={categoryB}
-                        value={selectedOptionsB}
-                        onChange={setSelectedOptionsB}
+                        value={selectedCategoryB}
+                        onChange={setSelectedCategoryB}
                         styles={customStyles}
-                        isRequired={true}
+                        placeholder="Select category"
+                        required
                       />
                     </section>
+
                     <section className="input-container">
                         <span className="input-title">SKU</span>
-                        <input className="input-field"/>
+                        <input type='text' className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
                     </section>
+
                     <section className="input-container">
                         <span className="input-title">Product image</span>
-                        <input type="file" name="" id="" className='input-field'/>
+                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
                     </section>
+
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
+
               </div>
             </div>
         </form>

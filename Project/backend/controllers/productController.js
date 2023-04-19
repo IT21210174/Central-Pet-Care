@@ -46,9 +46,9 @@ const getProductById = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const addProduct = asyncHandler(async (req, res) => {
 
-    const { productName, brand, categories, quantity, price, description, image } = req.body;
+    const { productName, brand, categories, quantity, price, description, SKU, image } = req.body;
   
-    const product = new Product({ productName, brand, categories, quantity, price, description, image });
+    const product = new Product({ productName, brand, categories, quantity, price, description, SKU, image });
 
     const savedProduct = await product.save();
 
@@ -71,7 +71,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         // product.brand = brand;
         // product.categories = categories;
         // product.quantity = quantity;
-        // product.rice = Price;
+        // product.price = Price;
         // product.description = description;
         // product.image = image;
     
