@@ -21,7 +21,7 @@ function AddProduct() {
 
   const categoryB = [
     { value: 'food', label: 'Food' },
-    { value: 'accessory', label: 'accessory' },
+    { value: 'accessory', label: 'Accessory' },
     { value: 'toy', label: 'Toy' }
   ]
 
@@ -43,7 +43,7 @@ function AddProduct() {
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? 'blue' : 'white',
+      backgroundColor: state.isSelected ? '#7D5FFF' : 'white',
       color: state.isSelected ? 'white' : 'black',
       '&:hover': {
         backgroundColor: 'lightgray',
@@ -100,7 +100,7 @@ function AddProduct() {
                       <span className="input-title">Category B</span>
                       <Select
                         options={categoryB}
-                        value={null}
+                        value={selectedOptionsB}
                         onChange={setSelectedOptionsB}
                         styles={customStyles}
                         isRequired={true}
