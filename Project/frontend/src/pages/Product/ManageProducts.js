@@ -19,7 +19,7 @@ function ManageProducts() {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const getProducts = () => {
-        userRequest.get("products")
+        userRequest.get("/products")
         .then(res => {
             setProducts(res.data)
         })
@@ -140,10 +140,10 @@ function ManageProducts() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/products/editProuduct/" + params.row._id}>
+                <Link to={"/admin/products/editProuduct/" + params.row._id}>
                   <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
