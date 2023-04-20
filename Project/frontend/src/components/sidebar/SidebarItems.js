@@ -163,14 +163,14 @@ const sidebarItems = [
         nestedFunctions: [
                 {
                     id:400,
-                    link:"",
+                    link:"/AddPet",
                     nestedItemicon:<GiArchiveRegister/>,
                     nestedItemtext:"Register"
                 },
 
                 {
                     id:401,
-                    link:"",
+                    link:"/AddTreatments",
                     nestedItemicon:<FaSyringe/>,
                     nestedItemtext:"Treatments"
                 },
