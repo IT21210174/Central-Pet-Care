@@ -21,7 +21,11 @@
 .customDataGrid .MuiDataGrid-main .MuiDataGrid-cell {
     border-bottom: none;
 }
-  
+
+.customDataGrid .MuiDataGrid-virtualScroller {
+    overflow-x: hidden;
+}
+
 /* Styles for the scrollbar in the data grid */
 .customDataGrid .MuiDataGrid-virtualScroller::-webkit-scrollbar {
     width: 8px;

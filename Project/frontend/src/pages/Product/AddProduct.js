@@ -60,7 +60,7 @@ function AddProduct() {
     userRequest.post("/products", { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: imageURL })
     .then(res => {
         toast.success('Product added')
-        // handleReset()
+        handleReset()
     }).catch(err => {
         toast.error(err.message)
     })
