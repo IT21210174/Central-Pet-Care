@@ -177,14 +177,14 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 500,
-				link: "/products/compo-1",
+				link: "/addService",
 				nestedItemicon: <MdMedicalServices />,
 				nestedItemtext: "Service Information",
 			},
 
 			{
 				id: 501,
-				link: "/products/compo-1",
+				link: "/addService",
 				nestedItemicon: <MdDesignServices />,
 				nestedItemtext: "Service Records",
 			},
