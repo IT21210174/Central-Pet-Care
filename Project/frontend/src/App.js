@@ -6,8 +6,8 @@ import AddItem from './pages/FormSample/AddItem';
 import AdminLayout from './pages/Layouts/AdminLayout';
 import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
-import UserList from './pages/Product/userList/UserList';
-import Users from './pages/Product/Users/Users';
+import EditProduct from './pages/Product/EditProduct';
+import ViewProduct from './pages/Product/ViewProduct';
 
 
 function App() {
@@ -21,10 +21,12 @@ function App() {
         <Route exact path='/component-3' element={<AddProduct />} />
 
 
-        <Route path='/manageProducts' element={< ManageProducts />} />
-        <Route path='/addProduct' element={<AddProduct />} />
-        <Route path='/orders' element={<UserList />} />
-        <Route path='/insights' element={<Users />} />
+        <Route path='/products/manageProducts' element={< ManageProducts />} />
+        <Route path='/products/addProduct' element={<AddProduct />} />
+        <Route path='/products/editProuduct/:id' element={<EditProduct />} />
+        <Route path='/products/viewProuduct/:id' element={<ViewProduct />} />
+        <Route path='/orders'  />
+        <Route path='/insights'  />
 
         
 

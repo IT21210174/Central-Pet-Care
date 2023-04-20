@@ -99,14 +99,14 @@ const sidebarItems = [
         nestedFunctions: [
             {
                 id:200,
-                link:"/manageProducts",
+                link:"/products/manageProducts",
                 nestedItemicon:<BsFillBoxSeamFill/>,
                 nestedItemtext:"Manage products"
             },
         
             {
                 id:101,
-                link:"/addProduct",
+                link:"/products/addProduct",
                 nestedItemicon:<MdLibraryAdd/>,
                 nestedItemtext:"Add new product"
             },

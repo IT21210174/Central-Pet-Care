@@ -14,18 +14,24 @@ const customTheme = createTheme({
     }
 });
 
-function CustomDataGrid({data, columns}) {
+function CustomDataGrid({data, columns, searchBar}) {
+
+  const getRowId = (row) => {
+    return row._id; // Return a unique identifier for each row
+  }
+
   return (
     <ThemeProvider theme={customTheme}>
         <DataGrid
             className="customDataGrid"
             rows={data}
             columns={columns}
+            getRowId={getRowId}
             pageSize={10}
             checkboxSelection
             components={{
                 Toolbar: (props) => (
-                    <CustomToolbar {...props} searchBar={<SearchBar />} />)
+                    <CustomToolbar {...props} searchBar={searchBar} />)
             }}
             getRowClassName={() => "grid-cell"}
         />
@@ -35,21 +41,3 @@ function CustomDataGrid({data, columns}) {
 
 export default CustomDataGrid
 
-const SearchBar = () => {
-
-    const [search, setSearch] = useState('')
-
-    console.log(search)
-
-    const handleSearch = (e) => {
-        e.preventDefault()
-        alert(search)
-    }
-
-    return(
-        <form>
-            <input type="text" value={search} placeholder="search" onChange={(e) => setSearch(e.target.value)}/>
-            <button onClick={handleSearch}>Search</button>
-        </form>
-    )
-}

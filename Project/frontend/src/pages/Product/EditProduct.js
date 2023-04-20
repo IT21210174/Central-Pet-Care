@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './addProduct.scss'
 import { userRequest } from '../../requestMethods'
 import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function AddProduct() {
+function EditProduct() {
+
+  const { id } = useParams()
+  const navigate = useNavigate()
 
   const categoryA = [
     { value: 'Dog', label: 'Dog' },
@@ -35,35 +39,51 @@ function AddProduct() {
   const [quantity, setQuantity] = useState('')
   const [description, setDescription] = useState('')
   const [SKU, setSKU] = useState('')
-  const [file, setFile] = useState('')
+  const [file, setFile] = useState(null)
+  const [imageURL, setImageURL] = useState('')
 
-  const handleReset = () => {
-    setSelectedCategoryA([])
-    setSelectedCategoryB(null)
-    setProductName('')
-    setBrand('')
-    setPrice('')
-    setQuantity('')
-    setDescription('')
-    setSKU('')
-    setFile(null)
-    // Clear the value of the file input field
-    document.getElementById('file-input').value = '';
-  }
+  useEffect(() => {
+    userRequest.get('/products/' + id)
+    .then(res => {
+        setProductName(res.data.productName)
+        setBrand(res.data.brand)
+        setPrice(res.data.price)
+        setQuantity(res.data.quantity)
+        setDescription(res.data.description)
+        setSKU(res.data.SKU)
+        setSelectedCategoryA(res.data.categories.categoryA.map(cat => ({ value: cat, label: cat })));
+        setSelectedCategoryB({ value: res.data.categories.categoryB, label: res.data.categories.categoryB });
+        setImageURL(res.data.image)
+    }).catch(err =>{
+        toast.error(err.message)
+    })
+  }, [id])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Combine selected categories
     const catA = selectedCategoryA.map(cat => cat.value);
     const catB = selectedCategoryB.value;
-    const imageURL = await uploadImage(file);
-    userRequest.post("/products", { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: imageURL })
-    .then(res => {
-        toast.success('Product added')
-        // handleReset()
-    }).catch(err => {
-        toast.error(err.message)
-    })
+    if(file ){
+      const URL = await uploadImage(file)
+      userRequest.put("/products/" + id, { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: URL })
+      .then(res => {
+          toast.success('Product updated')
+          navigate('/products/manageProducts')
+      }).catch(err => {
+          toast.error(err.message)
+      })
+    }
+    else {
+      userRequest.put("/products/" + id, { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: imageURL })
+      .then(res => {
+          toast.success('Product updated')
+          navigate('/products/manageProducts')
+      }).catch(err => {
+          toast.error(err.message)
+      })
+    }
   }  
 
 
@@ -99,7 +119,7 @@ function AddProduct() {
       <div className="add-item-container-main">
         {/* this is the form container */}
         <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Add product</span>
+            <span className="tagline-add-item">Edit product</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
@@ -167,12 +187,12 @@ function AddProduct() {
 
                     <section className="input-container">
                         <span className="input-title">Product image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
+                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
                     </section>
 
                     <div className="btn-container-add-item">
-                      <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
+                      <button type='submit' className="submit-btn">Update</button>
+                      <button type='reset' className="reset-btn">Reset</button>
                     </div>
 
               </div>
@@ -184,4 +204,4 @@ function AddProduct() {
   )
 }
 
-export default AddProduct
+export default EditProduct

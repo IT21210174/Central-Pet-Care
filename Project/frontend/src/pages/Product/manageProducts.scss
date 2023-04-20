@@ -1,92 +1,93 @@
-.productList{
-    flex: 4;
+
+.listContainer {
+    height: calc(90vh - 10px);
+    width: 80vw;
     padding: 5px 10px;
-    min-width: 500px; 
+    margin-top: 10px;
 }
 
-.productListItem{
+.listItemName {
     display: flex;
     align-items: center;
 }
-
-.productListImg {
+  
+.listItemImg {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
-  }
-
-.productListEdit{
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #3bb077;
-    color: white;
-    cursor: pointer;
-    margin-right: 20px;
 }
 
-.productListDelete{
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view {
+    font-size: 30px;
+    text-decoration: none;
+    color: grey;
+    margin-right: 10px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.edit {
+    font-size: 25px;
+    padding-top: 5px;
+    text-decoration: none;
+    color: green;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.delete {
+    font-size: 25px;
+    text-decoration: none;
     color: red;
     cursor: pointer;
 }
 
-.grid-cell {
+
+
+// search bar stylings
+.search-bar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 320px;
+}
+
+.search-field{
+    width: 250px;
+    border: transparent;
+    background-color: #eaeaea;
+    padding: 5px 0px 5px 10px;
+    border-radius: 5px 0 0 5px;
+    color: #2C2C54;
+    line-height: 1.2;
+    font-size: 18px;
+    outline: 2px solid #7D5FFF;
+}
+
+.search-btn{
+    border: none;
+    font-size: 18px;
+    color: white;
+    padding: 5px;
+    line-height: 1.4;
+    width: 60px;
+    border-radius: 0 5px 5px 0;
+    background-color: #7D5FFF;
+}
+
+.search {
+    padding-top: 2px;
     box-sizing: border-box;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
-    margin-top: 10px;
-    border: 0.2px solid lightgray;
-    width: calc(100% - 18px) !important;
-  }
-  
-  .customDataGrid {
-    border: none;
-    width: 100%;
-  }
-  
-  .customDataGrid .MuiDataGrid-main {
-    border: none;
-    border-top: 1px solid lightgrey;
-    padding: 0 5px;
-  }
+}
 
-  .customDataGrid .MuiDataGrid-columnHeaders {
-    color: #3bb077;
-  }
-
-  
-  .customDataGrid .MuiDataGrid-main .MuiDataGrid-cell {
-    border-bottom: none;
-  }
-  
-  /* Styles for the scrollbar in the data grid */
-  .customDataGrid .MuiDataGrid-virtualScroller::-webkit-scrollbar {
-    width: 8px;
-    height: 0px;
-  }
-  
-  /* Styles for the track of the scrollbar in the data grid */
-  .customDataGrid .MuiDataGrid-virtualScroller::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
-  
-  /* Styles for the thumb of the scrollbar in the data grid */
-  .customDataGrid .MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-  }
-  
-  /* Styles for the thumb of the scrollbar in the data grid on hover */
-  .customDataGrid .MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-  }
-  
-  
-  .customDataGrid .MuiDataGrid-cell:focus-within,
-  .customDataGrid .MuiDataGrid-columnHeader:focus-within {
-    outline: none !important;
-  }
-  
+.search-btn:hover{
+    cursor: pointer;
+}
