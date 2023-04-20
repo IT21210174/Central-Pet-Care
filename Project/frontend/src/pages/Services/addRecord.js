@@ -1,43 +1,44 @@
 import React from 'react'
-import './addService.scss'
+import './addRecord.scss'
 
 import AdminLayout from '../Layouts/AdminLayout'
 
-const AddService = () => {
+const AddRecord = () => {
   return (
     <AdminLayout>
-    <div className="add-service-container-main">
+    <div className="add-record-container-main">
         {/* this is the form container */}
-        <form className="add-service-form-container" onSubmit="">
-            <span className="tagline-add-item">Fill the form for add service</span>
+        <form className="add-record-form-container" onSubmit="">
+            <span className="tagline-add-item">Fill the form for add service record</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-service-column">
+              <div className="add-record-column">
                 <section className="input-container">
                   <span className="input-title">service id</span>
                   <input className="input-field"/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">service name</span>
+                  <span className="input-title">customer id</span>
                   <input className="input-field"/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">service type</span>
+                  <span className="input-title">vcsl id</span>
                   <input className="input-field"/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">service charge</span>
+                  <span className="input-title">pet id</span>
                   <input className="input-field"/>
                 </section>
                 <section className="input-container">
-                        <span className="input-title">service description</span>
+                        <span className="input-title">date</span>
                         <input className="input-field"/>
                     </section>
-                    <section className="input-container">
-                        <span className="input-title">image</span>
-                        <input type="file" name="" id="" className='input-field'/>
-                    </section>
+                <section className="input-container">
+                        <span className="input-title">service charge</span>
+                        <input className="input-field"/>
+                    </section>    
+                    
                     <div className="btn-container-add-service">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn">Reset</button>
@@ -52,4 +53,4 @@ const AddService = () => {
   )
 }
 
-export default AddService
+export default AddRecord

@@ -9,7 +9,7 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: 'Poppins', sans-serif;
 
-.add-service-container-main{
+.add-record-container-main{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@ $fontfam-1: 'Poppins', sans-serif;
 
 
 // form styles will go on here
-.add-service-form-container {
+.add-record-form-container {
     width: 550px;
     height: 650px;
     background-color: white;
@@ -61,7 +61,7 @@ $fontfam-1: 'Poppins', sans-serif;
     visibility: visible;
 }
 
-.tagline-add-service{
+.tagline-add-record{
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
@@ -76,7 +76,7 @@ $fontfam-1: 'Poppins', sans-serif;
     height: 530px;
 }
 
-.add-service-column{
+.add-record-column{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

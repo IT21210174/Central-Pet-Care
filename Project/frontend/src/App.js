@@ -8,7 +8,8 @@ import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
-import addService from './pages/Services/addService';
+import AddService from './pages/Services/addService';
+import AddRecord from './pages/Services/addRecord';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
         <Route path='/products/viewProuduct/:id' element={<ViewProduct />} />
         <Route path='/orders'  />
         <Route path='/insights'  />
-        <Route path='/addService' element={<addService />} />
+        <Route path='/AddService' element={<AddService />} />
+        <Route path='/AddRecord' element={<AddRecord />} />
         
 
       </Routes>
