@@ -206,23 +206,23 @@ const sidebarItems = [
         nestedFunctions: [
                 {
                     id:600,
-                    link:"",
+                    link:"/addVet",
                     nestedItemicon:<BsFillBoxSeamFill/>,
-                    nestedItemtext:"Products"
+                    nestedItemtext:"Veterinary Surgeons"
                 },
 
                 {
                     id:601,
-                    link:"",
+                    link:"/addPrescription",
                     nestedItemicon:<BsFillCartFill/>,
-                    nestedItemtext:"Orders"
+                    nestedItemtext:"Prescriptions"
                 },
 
                 {
                     id:602,
                     link:"",
                     nestedItemicon:<MdInsights/>,
-                    nestedItemtext:"Insights"
+                    nestedItemtext:"Medicine"
                 },
         ]
     },
