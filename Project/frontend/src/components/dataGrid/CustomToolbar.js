@@ -16,7 +16,7 @@ const CustomToolbar = ({searchBar}) => {
       <GridToolbarColumnsButton/>
       <GridToolbarFilterButton />
       <GridToolbarDensitySelector />
-      <GridToolbarExport />
+      <GridToolbarExport printOptions= {{ disableToolbarButton: true }} />
       </div>
       <div className="right">
         {searchBar}
