@@ -16,18 +16,22 @@ const AddPet = () => {
               <div className="add-item-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
-                  <input className="input-field"/>
+                  <input className="input-field" required/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">Pet Name</span>
-                  <input className="input-field"/>
+                  <input className="input-field" required/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">age</span>
-                  <input className="input-field"/>
+                  <span className="input-title">DOB</span>
+                  <input className="input-field" type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" required/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">category</span>
+                  <span className="input-title">Gender</span>
+                  <input className="input-field" required/>
+                </section>
+                <section className="input-container">
+                  <span className="input-title">Species</span>
                   <select className="input-field">
                       <option className='select-option' value="clinical-item">Dog</option>
                       <option className='select-option' value="store-item">Cat</option>
@@ -42,22 +46,22 @@ const AddPet = () => {
                   </section>
                 <section className="input-container">
                   <span className="input-title">breed</span>
-                  <input className="input-field"/>
+                  <input className="input-field" required/>
                 </section>
               </div>
               {/* column two */}
                <div className="add-item-column">
                    <section className="input-container">
                       <span className="input-title">customer ID</span>
-                      <input className="input-field"/>
+                      <input className="input-field" required/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">customer Name</span>
-                       <input className="input-field"/>
+                       <input className="input-field" required/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">Contact Number</span>
-                       <input className="input-field"/>
+                       <input className="input-field" pattern="[0-9]{10}" required/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">Medical History</span>

@@ -32,15 +32,14 @@ const getTreatmentByID = asyncHandler(async (req, res) => {
 // @access  Private
 const createTreatment = asyncHandler(async (req, res) => {
     
-    const { petID, petName, customerID, medicalHistory, vaccinationHistory, currentMedications,progressNotes} = req.body;
+    const { petID, petName, customerID,date, treat,progressNotes} = req.body;
 
     const treatment = new Treatments({
         petID: petID,
         petName: petName,
         customerID: customerID,
-        medicalHistory: medicalHistory,
-        vaccinationHistory:vaccinationHistory,
-        currentMedications: currentMedications,
+        date:date,
+        treat:treat,
         progressNotes:progressNotes,
         
     })

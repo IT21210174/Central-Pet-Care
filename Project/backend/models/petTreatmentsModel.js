@@ -16,20 +16,15 @@ const petTreatmentsSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add customerID']
     },
-    medicalHistory: {
-        type: String,
-        required: [true, 'Please add medicalHistory'],
-        default: false,
-    },
-    vaccinationHistory: {
-        type: String,
-        required: [true, 'Please add vaccinationHistory']
-    },
-    currentMedications: {
-        type: String,
-        required: [true, 'Please add currentMedications']
-    },
     
+    date: {
+        type: String,
+        required: [true, 'Please add date']
+    },
+    treat: {
+        type: String,
+        required: [true, 'Please add treatment']
+    },
     progressNotes:{
         type: String,
         required: [true, 'Please add progressNotes']

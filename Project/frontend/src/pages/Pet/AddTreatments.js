@@ -16,25 +16,25 @@ const AddTreatments = () => {
               <div className="add-item-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
-                  <input className="input-field"/>
+                  <input className="input-field" required/>
                 </section>
                 <section className="input-container"> 
                   <span className="input-title">Pet Name</span>
-                  <input className="input-field"/>
+                  <input className="input-field" required/>
                 </section>
                 <section className="input-container"> 
                   <span className="input-title">Customet ID</span>
-                  <input className="input-field"/>
+                  <input className="input-field" required/>
                 </section>
                
                 <section className="input-container">
                   <span className="input-title">Date</span>
-                  <input className="input-field" type="date" id="date" name="date"/>
+                  <input className="input-field" type="date" id="date" name="date" pattern="\d{1,2}/\d{1,2}/\d{4}" required/>
                 </section>
               
                <section className="input-container">
                   <span className="input-title">Treatments</span>
-                  <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
+                  <textarea className='input-textarea' id="" cols="30" rows="10" required></textarea>
                 </section>
                
                 <section className="input-container">

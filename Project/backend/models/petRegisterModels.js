@@ -12,7 +12,11 @@ const petRegisterSchema = mongoose.Schema({
         required: [true, 'Please add pet Name'],
         unique: true
     },
-    age: {
+    dob: {
+        type: String,
+        required: [true, 'Please add Age']
+    },
+    gender: {
         type: String,
         required: [true, 'Please add Age']
     },
