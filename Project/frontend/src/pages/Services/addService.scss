@@ -14,7 +14,7 @@ $fontfam-1: 'Poppins', sans-serif;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh; //change height accordingly
+    height: 110vh; //change height accordingly
     background: rgb(153, 128, 250);
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
 }
@@ -22,8 +22,8 @@ $fontfam-1: 'Poppins', sans-serif;
 
 // form styles will go on here
 .add-service-form-container {
-    width: 550px;
-    height: 650px;
+    width: 480px;
+    height: 680px;
     background-color: white;
     border-radius: 25px;
     box-shadow: 5px 5px 8px rgba($color: #000000, $alpha: .4),

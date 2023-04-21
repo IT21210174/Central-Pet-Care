@@ -14,6 +14,10 @@ const AddRecord = () => {
             <div className="column-container">
               {/* column one */}
               <div className="add-record-column">
+              <section className="input-container">
+                  <span className="input-title">record id</span>
+                  <input className="input-field"/>
+                </section>
                 <section className="input-container">
                   <span className="input-title">service id</span>
                   <input className="input-field"/>

@@ -23,16 +23,12 @@ const AddService = () => {
                   <input className="input-field"/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">service type</span>
-                  <input className="input-field"/>
-                </section>
-                <section className="input-container">
                   <span className="input-title">service charge</span>
                   <input className="input-field"/>
                 </section>
                 <section className="input-container">
                         <span className="input-title">service description</span>
-                        <input className="input-field"/>
+                        <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
                     </section>
                     <section className="input-container">
                         <span className="input-title">image</span>
