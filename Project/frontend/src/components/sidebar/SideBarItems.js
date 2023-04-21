@@ -73,7 +73,7 @@ const sidebarItems = [
 
 			{
 				id: 104,
-				link: "/component-5",
+				link: "",
 				nestedItemicon: <BiCategoryAlt />,
 				nestedItemtext: "Release items",
 			},
@@ -283,7 +283,7 @@ const sidebarItems = [
 
 			{
 				id: 804,
-				link: "",
+				link: "/delivery/manage-driver",
 				nestedItemicon: <FaUserEdit />,
 				nestedItemtext: "View Drivers",
 			},

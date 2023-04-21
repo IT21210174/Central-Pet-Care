@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import "./RegisterDriver.scss";
 import api from "../../../services/api";
+import swal from "sweetalert2";
 
 function RegisterDriver() {
 	const [driverDetails, setDriverDetails] = useState({
@@ -17,13 +18,31 @@ function RegisterDriver() {
 
 	const addDriverFormHandler = (event) => {
 		event.preventDefault();
-		console.log("form submitted");
-		console.log(driverDetails);
-		api.post("/", driverDetails).then((response) => {
-			console.log(response.data);
-			console.log("success bro");
-		});
-		ResetForm();
+		if (driverDetails.driverName !== "") {
+			console.log(driverDetails);
+			api.post("/", driverDetails).then((response) => {
+				console.log(response.data);
+				console.log("success bro");
+			});
+			ResetForm();
+			swal.fire({
+				icon: "success",
+				title: "Operation Successful",
+				text: "Driver added to the database",
+			});
+		} else {
+			console.log(driverDetails);
+			api.post("/", driverDetails).then((response) => {
+				console.log(response.data);
+				console.log("success bro");
+			});
+			ResetForm();
+			swal.fire({
+				icon: "error",
+				title: "Operation Unsuccessful",
+				text: "Please fill relevant fields",
+			});
+		}
 	};
 
 	const ResetForm = () => {
