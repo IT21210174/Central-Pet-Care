@@ -16,6 +16,11 @@ const petRegisterSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add Age']
     },
+    species:{
+        type: String,
+        required: [true, 'Please add species'],
+        default: false,
+    },
     breed: {
         type: String,
         required: [true, 'Please add Breed'],
@@ -32,6 +37,10 @@ const petRegisterSchema = mongoose.Schema({
     contactNumber: {
         type: Number,
         required: [true, 'Please add contactNumber']
+    },
+    medicalHistory: {
+        type: Number,
+        required: [true, 'Please add medicalHistory']
     },
     profilePicture:{
         type: String,

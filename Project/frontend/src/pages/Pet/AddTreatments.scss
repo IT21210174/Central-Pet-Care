@@ -9,21 +9,29 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: 'Poppins', sans-serif;
 
-.add-item-container-main{
+.add-treatment-container-main{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90vh; //change height accordingly
+    height: 110vh; //change height accordingly
     background: rgb(153, 128, 250);
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
-
 // form styles will go on here
-.add-item-form-container {
+.add-treatment-form-container {
+    width: 480px;
+    height: 840px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 5px 5px 8px rgba($color: #000000, $alpha: .4),
+    -5px -5px 8px rgba($color: #000000, $alpha: .4);
+    padding: 20px;
+}
+.add-pet-form-container {
     width: 950px;
-    height: 650px;
+    height: 580px;
     background-color: white;
     border-radius: 25px;
     box-shadow: 5px 5px 8px rgba($color: #000000, $alpha: .4),
@@ -61,10 +69,14 @@ $fontfam-1: 'Poppins', sans-serif;
     visibility: visible;
 }
 
-.tagline-add-item{
+.tagline-add-treatment{
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }
 // column container stylings
 

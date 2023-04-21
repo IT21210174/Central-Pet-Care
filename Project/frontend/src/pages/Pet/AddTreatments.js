@@ -6,41 +6,37 @@ import AdminLayout from '../Layouts/AdminLayout'
 const AddTreatments = () => {
   return (
     <AdminLayout>
-    <div className="add-item-container-main">
+    <div className="add-treatment-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit="">
-            <span className="tagline-add-item">Fill the form for add Treatments</span>
+        <form className="add-treatment-form-container" onSubmit="">
+            <span className="tagline-add-treatment">Add Treatment</span>
             {/* input field container */}
-            <div className="column-container">
+            
               {/* column one */}
               <div className="add-item-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field"/>
                 </section>
-                <section className="input-container">
+                <section className="input-container"> 
                   <span className="input-title">Pet Name</span>
                   <input className="input-field"/>
                 </section>
-                <section className="input-container">
-                  <span className="input-title">Customer ID</span>
+                <section className="input-container"> 
+                  <span className="input-title">Customet ID</span>
                   <input className="input-field"/>
                 </section>
+               
                 <section className="input-container">
-                  <span className="input-title">Medical History</span>
-                  <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
+                  <span className="input-title">Date</span>
+                  <input className="input-field" type="date" id="date" name="date"/>
                 </section>
-              </div>
-              {/* column two */}
-               <div className="add-item-column">
+              
                <section className="input-container">
-                  <span className="input-title">Current Medications</span>
+                  <span className="input-title">Treatments</span>
                   <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
                 </section>
-                <section className="input-container">
-                  <span className="input-title">Vaccination History</span>
-                  <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
-                </section>
+               
                 <section className="input-container">
                   <span className="input-title">Progress Notes</span>
                   <textarea className='input-textarea' id="" cols="30" rows="10"></textarea>
@@ -49,7 +45,7 @@ const AddTreatments = () => {
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>
-              </div>
+              
             </div>
         </form>
     </div>
