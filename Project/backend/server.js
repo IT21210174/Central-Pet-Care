@@ -11,6 +11,11 @@ const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes');
 const checkoutRoutes = require('./routes/stripeRoutes')
 
+//service management
+const manageserviceRoutes = require('./routes/manageserviceRoutes')
+
+//service records management
+const servicerecordsRoutes = require('./routes/servicerecordsRoutes')
 
 const port = process.env.PORT || 4000
 
@@ -25,6 +30,12 @@ app.use('/api/products', productRoutes);
 app.use('/api/carts', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/checkout', checkoutRoutes);
+
+//service management
+app.use('/api/mngservice', manageserviceRoutes);
+
+//service records management
+app.use('/api/servicerecord', servicerecordsRoutes);
 
 app.use(errorHandler);
 
