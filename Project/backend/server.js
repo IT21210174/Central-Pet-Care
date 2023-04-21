@@ -11,6 +11,12 @@ const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes');
 const checkoutRoutes = require('./routes/stripeRoutes')
 
+//staff management
+const staffRoutes = require('./routes/staffRoutes')
+//leave management
+const leaveRoutes = require('./routes/leaveRoutes')
+//payroll management
+const payrollRoutes = require('./routes/payrollRoutes')
 
 const port = process.env.PORT || 4000
 
@@ -25,6 +31,13 @@ app.use('/api/products', productRoutes);
 app.use('/api/carts', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/checkout', checkoutRoutes);
+
+//staff management
+app.use('/api/staff', staffRoutes);
+//leave management
+app.use('/api/leave', leaveRoutes);
+//payroll management
+app.use('/api/payroll', payrollRoutes);
 
 app.use(errorHandler);
 
