@@ -13,11 +13,11 @@ const getTreatments = asyncHandler(async (req, res) => {
 
 })
 
-// @desc    Fetch logged in treatment
+// @desc    Fetch a treatment
 // @route   GET /api/treatment/:id
 // @access  Private
 const getTreatmentByID = asyncHandler(async (req, res) => {
-    const treatment = await Treatments.findOne({ petID: req.params.petID })
+    const treatment = await Treatments.findById(req.params.id)
   
     if (treatment) {
         res.status(200).json(treatment)
@@ -32,19 +32,19 @@ const getTreatmentByID = asyncHandler(async (req, res) => {
 // @access  Private
 const createTreatment = asyncHandler(async (req, res) => {
     
-    const { petID, petName, customerID,date, treat,progressNotes} = req.body;
+    const { petID, petName, customerID,date, treatment,progressNotes} = req.body;
 
-    const treatment = new Treatments({
+    const petTreatment = new Treatments({
         petID: petID,
         petName: petName,
         customerID: customerID,
         date:date,
-        treat:treat,
+        treatment:treatment,
         progressNotes:progressNotes,
         
     })
 
-    const savedTreatments = await treatment.save();
+    const savedTreatments = await petTreatment.save();
 
     res.status(200).json(savedTreatments); 
 })
@@ -58,11 +58,11 @@ const updateTreatment = asyncHandler(async (req, res) => {
   
     if (treatment) {
   
-        const updatedTreatmnets = await Treatments.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
+        const updatedTreatmnet = await Treatments.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
             new: true,
         });
        
-        res.status(200).json(updatedTreatmnets)
+        res.status(200).json(updatedTreatmnet)
 
     } else {
         res.status(404)

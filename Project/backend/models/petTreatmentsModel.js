@@ -5,12 +5,10 @@ const petTreatmentsSchema = mongoose.Schema({
     petID: {
         type: String,
         required: [true, 'Please add petID'],
-        unique: true
     },
     petName: {
         type: String,
         required: [true, 'Please add pet Name'],
-        unique: true
     },
     customerID: {
         type: String,
@@ -21,7 +19,7 @@ const petTreatmentsSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add date']
     },
-    treat: {
+    treatment: {
         type: String,
         required: [true, 'Please add treatment']
     },

@@ -18,7 +18,7 @@ const getPets = asyncHandler(async (req, res) => {
 // @route   GET /api/pets/:id
 // @access  Private
 const getPetByID = asyncHandler(async (req, res) => {
-    const pet = await Pet.findOne({ petID: req.params.petID })
+    const pet = await Pet.findById((req.params.id))
   
     if (pet) {
         res.status(200).json(pet)
@@ -33,7 +33,7 @@ const getPetByID = asyncHandler(async (req, res) => {
 // @access  Private
 const createPet = asyncHandler(async (req, res) => {
     
-    const { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, profilePicture } = req.body;
+    const { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture } = req.body;
 
     const pet = new Pet({
         petID: petID,
@@ -46,7 +46,7 @@ const createPet = asyncHandler(async (req, res) => {
         customerName: customerName,
         contactNumber:contactNumber,
         medicalHistory:medicalHistory,
-        profilePicture: profilePicture,
+        picture: picture
     })
 
     const savedPet = await pet.save();

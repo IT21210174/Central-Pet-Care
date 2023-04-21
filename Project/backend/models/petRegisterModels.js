@@ -10,7 +10,6 @@ const petRegisterSchema = mongoose.Schema({
     petName: {
         type: String,
         required: [true, 'Please add pet Name'],
-        unique: true
     },
     dob: {
         type: String,
@@ -18,17 +17,15 @@ const petRegisterSchema = mongoose.Schema({
     },
     gender: {
         type: String,
-        required: [true, 'Please add Age']
+        required: [true, 'Please add Gender']
     },
     species:{
         type: String,
         required: [true, 'Please add species'],
-        default: false,
     },
     breed: {
         type: String,
         required: [true, 'Please add Breed'],
-        default: false,
     },
     customerID: {
         type: String,
@@ -43,10 +40,10 @@ const petRegisterSchema = mongoose.Schema({
         required: [true, 'Please add contactNumber']
     },
     medicalHistory: {
-        type: Number,
+        type: String,
         required: [true, 'Please add medicalHistory']
     },
-    profilePicture:{
+    picture:{
         type: String,
         required: [true, 'Please add Profile Photo']
    }

@@ -4,6 +4,25 @@ import './AddTreatments.scss'
 import AdminLayout from '../Layouts/AdminLayout'
 
 const AddTreatments = () => {
+
+  // const [petID, setPetID] = useState(null)
+  // const [petName, setPetName] = useState(null)
+  // const [customerID, setCustomerID] = useState(null)
+  // const [date, setDate] = useState(null)
+  // const [treatment, setTreatment] = useState(null)
+  // const [progressNotes, setProgressNotes] = useState(null)
+  
+
+
+
+
+
+
+
+
+
+
+
   return (
     <AdminLayout>
     <div className="add-treatment-container-main">
