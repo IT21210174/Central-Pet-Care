@@ -128,21 +128,21 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 300,
-				link: "/products/compo-1",
+				link: "/AddStaff",
 				nestedItemicon: <BsPeopleFill />,
 				nestedItemtext: "Manage Staff",
 			},
 
 			{
 				id: 301,
-				link: "/products/compo-1",
+				link: "/AddLeave",
 				nestedItemicon: <MdHolidayVillage />,
 				nestedItemtext: "Manage Leaves",
 			},
 
 			{
 				id: 302,
-				link: "/products/compo-1",
+				link: "/AddPayroll",
 				nestedItemicon: <GiTakeMyMoney />,
 				nestedItemtext: "Manage Payrolls",
 			},

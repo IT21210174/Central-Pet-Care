@@ -8,7 +8,9 @@ import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
-
+import AddStaff from './pages/Staff/AddStaff';
+import AddLeave from './pages/Leave/AddLeave';
+import AddPayroll from './pages/Payroll/AddPayroll';
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
         <Route path='/products/viewProuduct/:id' element={<ViewProduct />} />
         <Route path='/orders'  />
         <Route path='/insights'  />
-
+        <Route path='/AddStaff' element={<AddStaff />} />
+        <Route path='/AddLeave' element={<AddLeave />} />
+        <Route path='/AddPayroll' element={<AddPayroll />} />
         
 
       </Routes>
