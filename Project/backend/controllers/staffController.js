@@ -14,11 +14,11 @@ const getStaff = asyncHandler(async (req, res) => {
 
 })
   
-// @desc    Fetch logged in user staffmember
+// @desc    Fetch a staffmember
 // @route   GET /api/staffmembers/:id
 // @access  Private
 const getStaffById = asyncHandler(async (req, res) => {
-    const staff = await Staff.findOne({ staffId: req.params.staffId })
+    const staff = await Staff.findById( req.params.id )
   
     if (staff) {
         res.status(200).json(staff)
@@ -33,7 +33,7 @@ const getStaffById = asyncHandler(async (req, res) => {
 // @access  Private
 const addStaff = asyncHandler(async (req, res) => {
     
-    const { firstName, lastName, address, nic, contactNo, dob, email, staffId, department, joinedDate, salary, simage} = req.body;
+    const { firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage} = req.body;
 
     const staff = new Staff({
         firstName: req.body.firstName,
@@ -43,7 +43,6 @@ const addStaff = asyncHandler(async (req, res) => {
         contactNo: req.body.contactNo,
         dob: req.body.dob,
         email: req.body.email,
-        staffId: req.body.staffId,
         department: req.body.department,
         joinedDate: req.body.joinedDate,
         salary: req.body.salary,
@@ -81,15 +80,18 @@ const updateStaff = asyncHandler(async (req, res) => {
 // @route   DELETE /api/staffmembers/:id
 // @access  Private
 const deleteStaff = asyncHandler(async (req, res) => {
-    const staff = await Staff.findById(req.params.id)
+    console.log(req.params.id)
+    // const staff = await Staff.findById(req.params.id)
+
+    // console.log(staff)
   
-    if (staff) {
-        await staff.deleteOne();
-        res.status(200).json({message: 'Staff member removed'})
-    } else {
-        res.status(404)
-        throw new Error('Staff member not found')
-    }
+    // if (staff) {
+    //     await staff.deleteOne();
+    //     res.status(200).json({message: 'Staff member removed'})
+    // } else {
+    //     res.status(404)
+    //     throw new Error('Staff member not found')
+    // }
 })
 
 module.exports = {getStaff, getStaffById, addStaff, updateStaff, deleteStaff}

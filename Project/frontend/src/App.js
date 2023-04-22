@@ -8,7 +8,11 @@ import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
+
 import AddStaff from './pages/Staff/AddStaff';
+import ManageStaff from './pages/Staff/ManageStaff';
+import ViewStaff from './pages/Staff/ViewStaff';
+import EditStaff from './pages/Staff/EditStaff';
 import AddLeave from './pages/Leave/AddLeave';
 import AddPayroll from './pages/Payroll/AddPayroll';
 
@@ -33,6 +37,10 @@ function App() {
         <Route path='/AddLeave' element={<AddLeave />} />
         <Route path='/AddPayroll' element={<AddPayroll />} />
         
+        <Route path='/staff/manageStaff' element={< ManageStaff />} />
+        <Route path='/staff/addStaff' element={<AddStaff />} />
+        <Route path='/staff/editStaff/:id' element={<EditStaff />} />
+        <Route path='/staff/viewStaff/:id' element={<ViewStaff />} />
 
       </Routes>
     </Router>

@@ -7,6 +7,10 @@ const leaveSchema = mongoose.Schema({
         type: String,
         unique: true,
     },
+    leaveType: {
+        type: String,
+        required: [true, 'Please add leave type']
+    },
     reason: {
         type: String,
         required: [true, 'Please add reason']

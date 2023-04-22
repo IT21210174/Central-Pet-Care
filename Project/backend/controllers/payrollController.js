@@ -18,7 +18,7 @@ const getPayroll = asyncHandler(async (req, res) => {
 // @route   GET /api/payrolls/:id
 // @access  Private
 const getPayrollById = asyncHandler(async (req, res) => {
-    const payroll = await Payroll.findOne({ staffId: req.params.staffId })
+    const payroll = await Payroll.findById( req.params.id )
   
     if (payroll) {
         res.status(200).json(payroll)
@@ -78,7 +78,7 @@ const deletePayroll = asyncHandler(async (req, res) => {
     const payroll = await Payroll.findById(req.params.id)
   
     if (payroll) {
-        await staff.deleteOne();
+        await payroll.deleteOne();
         res.status(200).json({message: 'payroll details removed'})
     } else {
         res.status(404)

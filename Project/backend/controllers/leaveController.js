@@ -18,7 +18,7 @@ const getLeave = asyncHandler(async (req, res) => {
 // @route   GET /api/leaves/:id
 // @access  Private
 const getLeaveById = asyncHandler(async (req, res) => {
-    const leave = await Leave.findOne({ staffId: req.params.staffId })
+    const leave = await Leave.findById(  req.params.id )
   
     if (leave) {
         res.status(200).json(leave)
@@ -33,10 +33,11 @@ const getLeaveById = asyncHandler(async (req, res) => {
 // @access  Private
 const addLeave = asyncHandler(async (req, res) => {
     
-    const { staffId, reason, leaveFrom, leaveTo} = req.body;
+    const { staffId, leaveType, reason, leaveFrom, leaveTo} = req.body;
 
     const leave = new Leave({
         staffId: req.body.staffId,
+        leaveType: req.body.leaveType,
         reason: req.body.reason,
         leaveFrom: req.body.leaveFrom,
         leaveTo: req.body.leaveTo,
@@ -76,7 +77,7 @@ const deleteLeave = asyncHandler(async (req, res) => {
     const leave = await Leave.findById(req.params.id)
   
     if (leave) {
-        await staff.deleteOne();
+        await leave.deleteOne();
         res.status(200).json({message: 'Leave member removed'})
     } else {
         res.status(404)

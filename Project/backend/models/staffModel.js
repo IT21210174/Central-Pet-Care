@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Counter = require('./counterModel');
 
 const staffSchema = mongoose.Schema({
     firstName: {
