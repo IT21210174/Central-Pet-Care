@@ -5,7 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
 export default function ItemSearchResultsContainer(props) {
-	const { inventory } = props;
+	const { inventory , setFunc} = props;
 
 	const deleteItem = (deletingID) => {
 		const swalWithBootstrapButtons = Swal.mixin({
@@ -41,6 +41,17 @@ export default function ItemSearchResultsContainer(props) {
 						.catch((error) => {
 							console.log(error);
 						});
+					
+					const newSet = inventory.filter((object)=>{
+
+						const {_id}  = object
+
+						return _id !== deletingID
+					})
+					
+					console.log(newSet);
+					setFunc(newSet)
+
 				} else if (
 					/* Read more about handling dismissals below */
 					result.dismiss === Swal.DismissReason.cancel

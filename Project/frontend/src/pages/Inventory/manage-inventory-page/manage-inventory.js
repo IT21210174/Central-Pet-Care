@@ -16,6 +16,11 @@ function ManageInventoryComponent() {
 			setInventory(response.data);
 		});
 	}, []);
+	
+
+	const filteringDeleted = (data) => {
+		setInventory(data)
+	}
 
 	const searchFieldHandler = (e) => {
 		setSearchPrompt(e.target.value);
@@ -96,7 +101,7 @@ function ManageInventoryComponent() {
 						{inventory.length === 0 ? (
 							<NoItemsDisplayer />
 						) : (
-							<ResultContainer inventory={inventory} />
+							<ResultContainer inventory={inventory} setFunc={filteringDeleted}/>
 						)}
 					</div>
 				</div>
