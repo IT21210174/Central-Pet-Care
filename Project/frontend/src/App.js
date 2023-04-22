@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
-
 import AddItem from './pages/FormSample/AddItem';
 import AdminLayout from './pages/Layouts/AdminLayout';
 import AddProduct from './pages/Product/AddProduct';
@@ -23,7 +22,7 @@ function App() {
         <Route path='/addProduct' element={<AddProduct />} />
         <Route path='/orders' element={<Products />} />
         <Route path='/insights' element={<AddProduct />} />
-        <Route path='/AddPet' element={<AddPet />} />
+        <Route path='/admin/petregisters/addPet' element={<AddPet />} />
         <Route path='/AddTreatments' element={<AddTreatments />} />
 
       </Routes>

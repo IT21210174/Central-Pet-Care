@@ -1,43 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import AdminLayout from '../Layouts/AdminLayout'
 import './AddPet.scss'
 import { userRequest } from '../../requestMethods'
+import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
-import uploadImage from '../../uploadImage'
 
 
-import AdminLayout from '../Layouts/AdminLayout'
+function AddPet() {
 
-const AddPet = () => {
-
-  const [petID, setPetID] = useState(null)
-  const [petName, setPetName] = useState(null)
-  const [dob, setPetDob] = useState(null)
-  const [gender, setPetGender] = useState(null)
-  const [species, setPetSpecies] = useState(null)
-  const [breed, setPetBreed] = useState(null)
-  const [customerID, setCustomerID] = useState(null)
-  const [customerName, setCustomerName] = useState(null)
-  const [contactNumber, setContactNumber] = useState(null)
-  const [medicalHistory, setMedicalHistory] = useState(null)
+  const [petID, setPetID] = useState("")
+  const [petName, setPetName] = useState("")
+  const [dob, setPetDob] = useState("")
+  const [gender, setPetGender] = useState("")
+  const [species, setPetSpecies] = useState("")
+  const [breed, setPetBreed] = useState("")
+  const [customerID, setCustomerID] = useState("")
+  const [customerName, setCustomerName] = useState("")
+  const [contactNumber, setContactNumber] = useState("")
+  const [medicalHistory, setMedicalHistory] = useState("")
   const [file, setFile] = useState(null)
+  const [imageURL, setImageURL] = useState('')
+  console.log(1)
 
-  userRequest.get("http://localhost:4000/api/pets")
-  .then(res => {
-    console.log(res.data)
-  })
+  const handleReset = () => {
+        setPetID('')
+        setPetName('')
+        setPetDob('')
+        setPetGender('')
+        setPetSpecies('')
+        setPetBreed('')
+        setCustomerID('')
+        setCustomerName('')
+        setContactNumber('')
+        setMedicalHistory('')
+        setFile(null)
+        console.log(1)
+    // Clear the value of the file input field
+    document.getElementById('file-input').value = '';
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+   
     const imageURL = await uploadImage(file);
-    userRequest.post("/pets", {petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL})
+  
+    userRequest.post("/pets", {petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL })
     .then(res => {
-        toast.success('Product added')
+        toast.success('Pet added')
+        handleReset()
     }).catch(err => {
         toast.error(err.message)
     })
   }  
-  
-  console.log(species)
+
 
   return (
     <AdminLayout>
@@ -118,4 +133,4 @@ const AddPet = () => {
   )
 }
 
-export default AddPet      
+export default AddPet
