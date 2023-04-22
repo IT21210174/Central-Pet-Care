@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
+import {AiOutlineEye} from 'react-icons/ai'
+import {AiOutlineDelete} from 'react-icons/ai'
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
 export default function ItemSearchResultsContainer(props) {
@@ -91,13 +93,16 @@ export default function ItemSearchResultsContainer(props) {
 							</span>
 							<span className="item-field-manage-inventory">
 								<button className="action-btns-manage-inventory">
+									<AiOutlineEye />
+								</button>
+								<button className="action-btns-manage-inventory">
 									<BiEdit />
 								</button>
 								<button
 									className="action-btns-manage-inventory"
 									onClick={() => deleteItem(_id)}
 								>
-									<AiFillDelete />
+									<AiOutlineDelete />
 								</button>
 							</span>
 						</div>

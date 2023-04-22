@@ -6,6 +6,7 @@ import AdminLayout from "../../Layouts/AdminLayout";
 import "./manage-inventory.scss";
 import api from "../../../services/api";
 
+
 function ManageInventoryComponent() {
 	const [inventory, setInventory] = useState([]);
 

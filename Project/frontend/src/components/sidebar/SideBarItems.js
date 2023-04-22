@@ -21,7 +21,7 @@ import { MdDesignServices } from "react-icons/md";
 import { MdSell } from "react-icons/md";
 import { MdDeliveryDining } from "react-icons/md";
 import { SiGoogleanalytics } from "react-icons/si";
-
+import {TbReportAnalytics} from "react-icons/tb"
 import { BsPeopleFill } from "react-icons/bs";
 import { MdHolidayVillage } from "react-icons/md";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -52,13 +52,6 @@ const sidebarItems = [
 			},
 
 			{
-				id: 102,
-				link: "/component-3",
-				nestedItemicon: <ImSearch />,
-				nestedItemtext: "Search inventory",
-			},
-
-			{
 				id: 103,
 				link: "/inventory/manage-inventory",
 				nestedItemicon: <MdOutlineInventory2 />,
@@ -84,6 +77,13 @@ const sidebarItems = [
 				link: "/component-7",
 				nestedItemicon: <TbUser />,
 				nestedItemtext: "Manage suppliers",
+			},
+
+			{
+				id: 107,
+				link: "/component-3",
+				nestedItemicon: <TbReportAnalytics />,
+				nestedItemtext: "Generate reports",
 			},
 		],
 	},
