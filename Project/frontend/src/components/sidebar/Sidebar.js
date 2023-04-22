@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBarItems from "./SideBarItems";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./sidebar.scss";
 
 import { IoIosArrowForward } from "react-icons/io";
 
 function SideBar() {
-	const [selected, setSelected] = useState(0);
+	const [selected, setSelected] = useState(null);
 	const [selectedMain, setMain] = useState(0);
+
+	useEffect(() => {
+		eventTransformer(selectedMain);
+	}, []);
 
 	const eventTransformer = (num) => {
 		setMain(num);
@@ -37,6 +41,7 @@ function SideBar() {
 											className="mainFuncItemName"
 											onClick={() => {
 												eventTransformer(index);
+												console.log(index);
 											}}
 										>
 											{text}

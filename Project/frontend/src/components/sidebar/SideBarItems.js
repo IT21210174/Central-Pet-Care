@@ -74,7 +74,7 @@ const sidebarItems = [
 
 			{
 				id: 105,
-				link: "/component-6",
+				link: "/inventory/supplier-registration",
 				nestedItemicon: <TbUserPlus />,
 				nestedItemtext: "Add supplier",
 			},
@@ -221,21 +221,21 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 700,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <BsFillBoxSeamFill />,
 				nestedItemtext: "Products",
 			},
 
 			{
 				id: 701,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <BsFillCartFill />,
 				nestedItemtext: "Orders",
 			},
 
 			{
 				id: 702,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <MdInsights />,
 				nestedItemtext: "Insights",
 			},
@@ -249,21 +249,21 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 800,
-				link: "",
+				link: "/dummy/dummy-compo",
 				nestedItemicon: <MdSell />,
 				nestedItemtext: "Order Management",
 			},
 
 			{
 				id: 801,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <MdDeliveryDining />,
 				nestedItemtext: "Driver Management",
 			},
 
 			{
 				id: 802,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <SiGoogleanalytics />,
 				nestedItemtext: "Analytics",
 			},
