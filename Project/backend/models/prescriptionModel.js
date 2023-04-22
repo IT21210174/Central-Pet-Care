@@ -17,9 +17,9 @@ const prescriptionSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add email medicine']
     },
-    quantity: {
+    dosage: {
         type: String,
-        required: [true, 'Please add quantity']
+        required: [true, 'Please add dosage']
     }
 }, {
     timestamps: true

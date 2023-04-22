@@ -9,8 +9,7 @@ const Prescription = require('../models/prescriptionModel')
 const getPrescriptions = asyncHandler(async (req, res) => {
 
     const prescriptions = await Prescription.find();
-    
-    res.status(200).json(prescriptions);
+        res.status(200).json(prescriptions);
 
 })
   
@@ -18,7 +17,7 @@ const getPrescriptions = asyncHandler(async (req, res) => {
 // @route   GET /api/prescriptions/:id
 // @access  Private
 const getOnePrescription = asyncHandler(async (req, res) => {
-    const prescription = await Prescription.findOne({ petId: req.params.petId })
+    const prescription = await Prescription.findById(req.params.id)
   
     if (prescription) {
         res.status(200).json(prescription)
@@ -33,14 +32,14 @@ const getOnePrescription = asyncHandler(async (req, res) => {
 // @access  Private
 const createPrescription = asyncHandler(async (req, res) => {
     
-    const { petname, address, description, medicine, quantity } = req.body;
+    const { petname, address, description, medicine, dosage } = req.body;
 
     const prescription = new Prescription({
         petname: petname,
         address: address,
         description: description,
         medicine: medicine,
-        quantity: quantity,
+        dosage: dosage,
     })
 
     const savedPrescription = await prescription.save();

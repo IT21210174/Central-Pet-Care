@@ -18,7 +18,7 @@ const getVets = asyncHandler(async (req, res) => {
 // @route   GET /api/vets/:id
 // @access  Private
 const getOneVet = asyncHandler(async (req, res) => {
-    const vet = await Vet.findOne({ vcslId: req.params.vcslId })
+    const vet = await Vet.findById(req.params.id)
   
     if (vet) {
         res.status(200).json(vet)

@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
-import './AddPrescription.scss'
+import './EditPrescription.scss'
 import { userRequest } from '../../requestMethods'
 import { toast } from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function AddPrescription() {
+function EditPrescription() {
+
+  const { id } = useParams()
+  const navigate = useNavigate()
+
 
   const[petname , setPetName] = useState("")
   const[address, setAddress] = useState("")
@@ -12,33 +18,41 @@ function AddPrescription() {
   const[medicine, setMedicine] = useState("")
   const[dosage, setDosage] = useState("")
 
-  const handleReset = () => {
-    setPetName('')
-        setAddress('')
-        setDescription('')
-        setMedicine('')
-        setDosage('')
-    }
+
+  useEffect(() => {
+    userRequest.get('/prescriptions/' + id)
+    .then(res => {
+        setPetName(res.data.petname)
+        setAddress(res.data.address)
+        setDescription(res.data.description)
+        setMedicine(res.data.medicine)
+        setDosage(res.data.dosage)
+    }).catch(err =>{
+        toast.error(err.message)
+    })
+  }, [id])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-   
-    userRequest.post("/prescriptions", { petname, address, description, medicine, dosage })
-    .then(res => {
-        toast.success('Prescription added')
-        handleReset()
-    }).catch(err => {
-        toast.error(err.message)
-    })
+    
+      userRequest.put("/prescriptions/" + id, { petname, address, description, medicine, dosage })
+      .then(res => {
+          toast.success('Prescription updated')
+          navigate('/prescriptions/ManageaPrescription')
+      }).catch(err => {
+          toast.error(err.message)
+      })
+    
   }  
 
 
   return (
     <AdminLayout>
-     <div className="add-item-container-main">
+      <div className="add-item-container-main">
         {/* this is the form container */}
         <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Add New Prescription</span>
+            <span className="tagline-add-item">Edit Prescription</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
@@ -55,6 +69,7 @@ function AddPrescription() {
                         <span className="input-title">description</span>
                         <textarea type="text" className='input-textarea' id="" cols="30" rows="10" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                     </section>
+               
               </div>
               {/* column two */}
               <div className="add-item-column">
@@ -79,4 +94,4 @@ function AddPrescription() {
   )
 }
 
-export default AddPrescription
+export default EditPrescription
