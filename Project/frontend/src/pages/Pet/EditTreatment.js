@@ -1,45 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminLayout from '../Layouts/AdminLayout'
-import './AddTreatments.scss'
+import './EditTreatment.scss'
 import { userRequest } from '../../requestMethods'
 import { toast } from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const AddTreatments = () => {
+function EditTreatment() {
 
-   const [petID, setPetID] = useState('')
-   const [petName, setPetName] = useState('')
-   const [customerID, setCustomerID] = useState('')
-   const [date, setDate] = useState('')
-   const [treatment, setTreatment] = useState('')
-   const [progressNotes, setProgressNotes] = useState('')
+  const { id } = useParams()
+  const navigate = useNavigate()
 
-   const handleReset = () => {
-    setPetID('')
-    setPetName('')
-    setCustomerID('')
-    setDate('')
-    setTreatment('')
-    setProgressNotes('')
+  const [petID, setPetID] = useState('')
+  const [petName, setPetName] = useState('')
+  const [customerID, setCustomerID] = useState('')
+  const [date, setDate] = useState('')
+  const [treatment, setTreatment] = useState('')
+  const [progressNotes, setProgressNotes] = useState('')
+   
+  useEffect(() => {
+    userRequest.get('/treatments/' + id)
+    .then(res => {
+        setPetID(res.data.petID)
+        setPetName(res.data.petName)
+        setCustomerID(res.data.customerID)
+        setDate(res.data.date)
+        setTreatment(res.data.treatment)
+        setProgressNotes(res.data.progressNotes)
+   
 
-}
-const handleSubmit = async (e) => {
-  e.preventDefault()
- 
-  userRequest.post("/treatments", { petID, petName, customerID,date, treatment,progressNotes })
-  .then(res => {
-      toast.success('Treatment added')
-      handleReset()
-  }).catch(err => {
-      toast.error(err.message)
-  })
-}  
-  
+    }).catch(err =>{
+        toast.error(err.message)
+    })
+  }, [id])
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    
+      userRequest.put("/treatments/" + id, {petID, petName, customerID,date, treatment,progressNotes })
+      .then(res => {
+          toast.success('Treatment updated')
+          navigate('/treatments/ManageTreatments')
+      }).catch(err => {
+          toast.error(err.message)
+      })
+    
+  }  
+
   return (
     <AdminLayout>
-    <div className="add-treatment-container-main">
+      <div className="add-treatment-container-main">
         {/* this is the form container */}
         <form className="add-treatment-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-treatment">Add Treatment</span>
+            <span className="tagline-add-item">Edit Treatment</span>
             {/* input field container */}
             
               {/* column one */}
@@ -80,7 +93,8 @@ const handleSubmit = async (e) => {
         </form>
     </div>
     </AdminLayout>
+
   )
 }
 
-export default AddTreatments
+export default EditTreatment

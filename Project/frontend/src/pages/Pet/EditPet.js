@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
-import './AddPet.scss'
+import './EditPet.scss'
 import { userRequest } from '../../requestMethods'
 import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 
+function EditPet() {
 
-function AddPet() {
+  const { id } = useParams()
+  const navigate = useNavigate()
 
   const [petID, setPetID] = useState("")
   const [petName, setPetName] = useState("")
@@ -20,45 +24,58 @@ function AddPet() {
   const [medicalHistory, setMedicalHistory] = useState("")
   const [file, setFile] = useState(null)
   const [imageURL, setImageURL] = useState('')
- 
-  const handleReset = () => {
-        setPetID('')
-        setPetName('')
-        setPetDob('')
-        setPetGender('')
-        setPetSpecies('')
-        setPetBreed('')
-        setCustomerID('')
-        setCustomerName('')
-        setContactNumber('')
-        setMedicalHistory('')
-        setFile(null)
-       
-    // Clear the value of the file input field
-    document.getElementById('file-input').value = '';
-  }
+
+  useEffect(() => {
+    userRequest.get('/pets/' + id)
+    .then(res => {
+        setPetID(res.data.petID)
+        setPetName(res.data.petName)
+        setPetDob(res.data.dob)
+        setPetGender(res.data.gender)
+        setPetSpecies(res.data.species)
+        setPetBreed(res.data.breed)
+        setCustomerID(res.data.customerID)
+        setCustomerName(res.data.customerName)
+        setContactNumber(res.data.contactNumber)
+        setMedicalHistory(res.data.medicalHistory)
+        setImageURL(res.data.picture)
+
+    }).catch(err =>{
+        toast.error(err.message)
+    })
+  }, [id])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-   
-    const imageURL = await uploadImage(file);
-  
-    userRequest.post("/pets", {petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL })
-    .then(res => {
-        toast.success('Pet added')
-        handleReset()
-    }).catch(err => {
-        toast.error(err.message)
-    })
+    
+    if(file ){
+      const URL = await uploadImage(file)
+      userRequest.put("/pets/" + id, { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL  })
+      .then(res => {
+          toast.success('Pet updated')
+          navigate('/pets/ManagePet')
+      }).catch(err => {
+          toast.error(err.message)
+      })
+    }
+    else {
+      userRequest.put("/pets/" + id, { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL })
+      .then(res => {
+          toast.success('Pet updated')
+          navigate('/pets/ManagePet')
+      }).catch(err => {
+          toast.error(err.message)
+      })
+    }
   }  
-
 
   return (
     <AdminLayout>
-    <div className="add-pet-container-main">
+      <div className="add-item-container-main">
         {/* this is the form container */}
         <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Add Pet</span>
+            <span className="tagline-add-item">Edit Pet</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
@@ -86,7 +103,7 @@ function AddPet() {
                 <section className="input-container">
                   <span className="input-title">Species</span>
                   <select className="input-field" value={species} onChange={(e) => setPetSpecies(e.target.value)}>
-                      <option className='select-option'>select</option>
+                      <option className='select-option' >select </option>
                       <option className='select-option' >Dog</option>
                       <option className='select-option' >Cat</option>
                       <option className='select-option' >Bird</option>
@@ -134,7 +151,8 @@ function AddPet() {
         </form>
     </div>
     </AdminLayout>
+
   )
 }
 
-export default AddPet
+export default EditPet
