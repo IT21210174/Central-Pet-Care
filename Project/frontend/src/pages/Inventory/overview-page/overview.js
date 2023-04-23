@@ -12,6 +12,7 @@ import supplier from '../imgs/PrototypeResources/insight-cards/supplier.png'
 // This is the overview component. all the things related to this component goes here
 function OverviewComponent() {
 
+
   // hooks and other data reading logics
   const [inventory , setInventory] = useState([])
 

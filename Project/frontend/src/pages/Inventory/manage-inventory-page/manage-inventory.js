@@ -8,6 +8,7 @@ import api from "../../../services/api";
 
 
 function ManageInventoryComponent() {
+
 	const [inventory, setInventory] = useState([]);
 
 	const [searchPrompt, setSearchPrompt] = useState("");

@@ -7,7 +7,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 function SideBar() {
 	const [selected, setSelected] = useState(null);
-	const [selectedMain, setMain] = useState(0);
+	const [selectedMain, setMain] = useState(null);
 
 	useEffect(() => {
 		eventTransformer(selectedMain);
@@ -72,7 +72,7 @@ function SideBar() {
 												} = nestedFunction;
 
 												return (
-													<NavLink
+													<NavLink key={index}
 														to={link}
 														className={({
 															isActive,

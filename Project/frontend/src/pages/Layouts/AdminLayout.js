@@ -5,12 +5,15 @@ import ActionBar from "../../components/actionbar/ActionBar";
 import "./adminLayout.scss";
 
 const AdminLayout = ({ children }) => {
+
 	return (
 		<div className="layoutWrapper">
-			<Sidebar />
+			<Sidebar/>
 			<div className="rightContainer">
 				<ActionBar />
-				<div className="content" >{children}</div>
+				<div className="content">
+					{children}
+				</div>
 			</div>
 		</div>
 	);

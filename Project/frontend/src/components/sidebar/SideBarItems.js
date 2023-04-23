@@ -81,7 +81,7 @@ const sidebarItems = [
 
 			{
 				id: 107,
-				link: "/component-3",
+				link: "/cpt/home",
 				nestedItemicon: <TbReportAnalytics />,
 				nestedItemtext: "Generate reports",
 			},

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import swal from "sweetalert2";
 import AdminLayout from "../../Layouts/AdminLayout";
 import api from "../../../services/api";
 import "./supplier-register.scss";
 
 function SupplierRegistration() {
+	
 	const [formData, setFormData] = useState({
 		companyName: "",
 		businessType: "",

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import swal from "sweetalert2";
 import AdminLayout from "../../Layouts/AdminLayout";
 import api from "../../../services/api";
 import "./addItem.scss";
 
 const AddItem = () => {
+
 	const [formData, setFormData] = useState({
 		sku: "",
 		itemName: "",
