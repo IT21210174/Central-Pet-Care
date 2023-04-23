@@ -91,10 +91,10 @@ const updateDriverDetails = asyncHandler(async (req, res) => {
 const deleteDriver = asyncHandler(async (req, res) => {
 	const deletingID = req.params.id;
 
-	const searchedDriver = await Driver.find({ nicNumber: deletingID });
+	const searchedDriver = await Driver.findOne({ nicNumber: deletingID });
 
 	if (searchedDriver.length !== 0) {
-		await Driver.deleteOne({ nicNumber: deletingID });
+		await Driver.deleteOne({ _id: searchedDriver._id });
 		res.status(201).json({ message: "driver deleted" });
 	} else {
 		res.status(404).json({ message: "driver not found" });
@@ -106,5 +106,5 @@ module.exports = {
 	createNewDriver,
 	getSingleDriver,
 	deleteDriver,
-    updateDriverDetails
+	updateDriverDetails,
 };
