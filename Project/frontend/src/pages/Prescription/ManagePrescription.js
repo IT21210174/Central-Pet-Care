@@ -90,7 +90,7 @@ function ManagePrescription() {
           headerName: "Pet Name",
           headerAlign: "center",
           align: "center",
-          flex: 5,
+          flex: 2,
         },
         {
           field: "address",
@@ -98,7 +98,7 @@ function ManagePrescription() {
           headerAlign: "center",
           align: "center",
           type: "text",
-          flex: 2,
+          flex: 3,
         },
         {
           field: "description",
@@ -106,11 +106,11 @@ function ManagePrescription() {
           headerAlign: "center",
           align: "center",
           type: "text",
-          flex: 2,
+          flex: 4,
         },
         {
             field: "medicine",
-            headerName: "Medicien",
+            headerName: "Medicine",
             headerAlign: "center",
             align: "center",
             flex: 2,

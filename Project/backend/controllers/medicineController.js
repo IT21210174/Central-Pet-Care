@@ -18,7 +18,7 @@ const getMedicines = asyncHandler(async (req, res) => {
 // @route   GET /api/medicines/:id
 // @access  Private
 const getOneMedicine = asyncHandler(async (req, res) => {
-    const medicine = await Medicine.findOne({ medId: req.params.medId })
+    const medicine = await Medicine.findById(req.params.id)
   
     if (medicine) {
         res.status(200).json(medicine)

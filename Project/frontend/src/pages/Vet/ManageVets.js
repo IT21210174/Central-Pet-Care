@@ -85,18 +85,18 @@ function ManageVets() {
 
     const columns = [
         { 
-          field: "_id",
-          headerName: "ID",
+          field: "vcslId",
+          headerName: "VCSL ID",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 2,
         },
         {
           field: "vetName",
           headerName: "Vet.Name",
           headerAlign: "center",
           align: "center",
-          flex: 5,
+          flex: 4,
           renderCell: (params) => {
             return (
               <div className="listItemName">
@@ -119,21 +119,21 @@ function ManageVets() {
           headerName: "Email",
           headerAlign: "center",
           align: "center",
-          flex: 2,
+          flex: 3,
         },
         {
             field: "experience",
             headerName: "Experience",
             headerAlign: "center",
             align: "center",
-            flex: 2,
+            flex: 4,
         },
         {
           field: "qualification",
           headerName: "Qualification",
           headerAlign: "center",
           align: "center",
-          flex: 2,
+          flex: 4,
       },
         {
           field: "action",

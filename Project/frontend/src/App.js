@@ -22,6 +22,10 @@ import ViewVet from './pages/Vet/ViewVet';
 import AddPrescription from './pages/Prescription/AddPrescription';
 import ManagePrescription from './pages/Prescription/ManagePrescription';
 import EditPrescription from './pages/Prescription/EditPrescription';
+import ViewPrescription from './pages/Prescription/ViewPrescription';
+
+//medicine
+import Medicine from './pages/Medicine/Medicine';
 
 function App() {
   return (
@@ -53,7 +57,9 @@ function App() {
         <Route path='/admin/prescriptions/addPrescription' element={<AddPrescription />} />
         <Route path='/admin/prescriptions/managePrescription' element={<ManagePrescription />} />
         <Route path='/admin/prescriptions/editPrescription/:id' element={<EditPrescription />} />
-        <Route path='/admin/prescriptions/viewPrescription/:id' element={<ViewVet />} />
+        <Route path='/admin/prescriptions/viewPrescription/:id' element={<ViewPrescription />} />
+
+        <Route path='/admin/medicines/manageMedicines' element={<Medicine />} />
 
       </Routes>
     </Router>

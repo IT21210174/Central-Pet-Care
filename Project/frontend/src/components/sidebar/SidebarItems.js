@@ -31,6 +31,10 @@ import { BiStoreAlt } from "react-icons/bi";
 import { BiPlusMedical } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 
+// vet management
+
+import { RiNurseFill } from "react-icons/ri"
+
 const SidebarItems = [
 	{
 		id: 1000,
@@ -199,7 +203,7 @@ const SidebarItems = [
             {
                 id:600,
                 link:"/admin/vets/addVet",
-                nestedItemicon:<BsFillBoxSeamFill/>,
+                nestedItemicon:<RiNurseFill/>,
                 nestedItemtext:"Veterinary Surgeons"
             },
 
@@ -226,7 +230,7 @@ const SidebarItems = [
 
             {
                 id:602,
-                link:"",
+                link:"/admin/medicines/manageMedicines",
                 nestedItemicon:<MdInsights/>,
                 nestedItemtext:"Medicine"
             },
