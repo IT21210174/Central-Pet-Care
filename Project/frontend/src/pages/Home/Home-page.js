@@ -6,6 +6,7 @@ import logo from "../../pages/Inventory/imgs/hero-sec-image/logo-v2.png";
 import homeImg2 from "../../pages/Inventory/imgs/hero-sec-image/row-1-pic.jpg";
 import ServiceBack from "../../pages/Inventory/imgs/hero-sec-image/services.png";
 import LastPic from "../../pages/Inventory/imgs/hero-sec-image/last-pic.jpg";
+import Footer from "../../components/footer/footer"
 // component importings
 import Header from "../../components/header/header";
 
@@ -119,7 +120,14 @@ function HomePage() {
 				</div>
 			</div>
 
+			{/* make inquiry form */}
+			<div className="inquiry-form-container">
+				<div className="left-side"></div>
+				<div className="right-side"></div>
+			</div>
+
 			{/* footer section */}
+			<Footer/>
 		</div>
 	);
 }

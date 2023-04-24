@@ -9,6 +9,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function UpdateItem() {
 
+	const navigate = useNavigate()
+
     const location = useLocation()
     const {id} = location.state
     
@@ -62,7 +64,7 @@ function UpdateItem() {
                 console.log(error);
         })
 
-		
+		navigate("/inventory/manage-inventory")
     }
 
 	const updateItemInputHandler = (event) => {

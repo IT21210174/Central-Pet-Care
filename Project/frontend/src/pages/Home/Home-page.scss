@@ -241,11 +241,12 @@ $font-fam-1: "Poppins", sans-serif;
 	display: grid;
 	grid-template-columns: repeat(1fr, 3);
 	height: 100%;
-	background: linear-gradient(
-		90deg,
-		rgba(95, 39, 205, 0.9585084033613446) 5%,
-		rgba(153, 128, 250, 0.8324579831932774) 100%
-	);
+	// background: linear-gradient(
+	// 	90deg,
+	// 	rgba(95, 39, 205, 0.9585084033613446) 5%,
+	// 	rgba(153, 128, 250, 0.8324579831932774) 100%
+	// );
+	background-color: $primary-col;
 	opacity: 0.8;
 	background-attachment: fixed;
 }
