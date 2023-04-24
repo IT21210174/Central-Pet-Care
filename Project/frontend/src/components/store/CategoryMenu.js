@@ -51,7 +51,9 @@ const CategoryMenu = () => {
               isSelected={category === selectedCategory} 
               onClick={() => handleCategoryClick(category)}
             >
-              <Link to={`/products/${category}`} style={{textDecoration: 'none', color: 'inherit'}}>
+              <Link 
+                to={category === "All Products" ? "/store" : `/store?category=${category}`}
+                style={{textDecoration: 'none', color: 'inherit'}}>
                 {category}
               </Link>
 

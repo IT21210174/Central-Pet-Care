@@ -2,38 +2,137 @@ import styled from "styled-components";
 import Product from "./Product";
 import { useEffect, useState } from "react";
 import { publicRequest } from '../../requestMethods'
+import { useContext } from "react";
+import { ProductsContext } from "../../contexts/ProductsContext";
+import { useLocation } from 'react-router-dom';
+import noProductsImg from '../../assets/noProducts.png'
 
-const Container = styled.div`
+const ProductsContainer = styled.div`
     padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
 
-  console.log(products)
+  button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
 
-  const getProducts = () => {
-      publicRequest.get("/products")
-      .then(res => {
-          setProducts(res.data)
-      })
-      .catch(err => {
-          console.log(err)
-      })
+    &:hover {
+      background-color: #333;
+      color: #f0f0f0;
     }
 
+    &:disabled {
+      background-color: #f0f0f0;
+      color: #333;
+      cursor: default;
+      opacity: 0.5;
+    }
+  }
+`;
+
+const NoProducts = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #999;
+  margin-top: 20px;
+  padding: 80px;
+
+  img {
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+`
+
+const Products = () => {
+
+  const { products, setProducts } = useContext(ProductsContext);
+
+  const location = useLocation();
+  const search = new URLSearchParams(location.search).get("search");
+  const category = new URLSearchParams(location.search).get("category");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(12);  
+
   useEffect(() => {
-    getProducts()
-  }, []);
+      let url = "/products";
+
+      if (search) {
+        url = `/products?search=${search}`;
+      } else if (category) {
+        url = `/products?category=${category}`;
+      }
+
+    publicRequest.get(url)
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+    });
+  }, [search, category])
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  function nextPage() {
+    setCurrentPage(currentPage + 1);
+  }
+
+  function prevPage() {
+    setCurrentPage(currentPage - 1);
+  }
+
 
   return (
-    <Container>
-      {products.map((item) => (
-        <Product item={item} key={item._id} />
-      ))}
-    </Container>
+    <div>
+      {currentProducts.length === 0 ? (
+        <NoProducts>
+          <img src={noProductsImg} height='200px' />
+          <p>Oops, We couldn't find any matches!</p>
+        </NoProducts>
+      ) : (
+        <>
+          <ProductsContainer>
+            {currentProducts.map((item) => (
+              <Product item={item} key={item._id} />
+            ))}
+          </ProductsContainer>
+          <PaginationContainer>
+            <button onClick={prevPage} disabled={currentPage === 1}>Prev</button>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button key={i} onClick={() => setCurrentPage(i + 1)}>{i + 1}</button>
+            ))}
+            <button onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
+          </PaginationContainer>
+        </>
+      )}
+    </div>
   );
 };
 

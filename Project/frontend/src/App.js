@@ -19,7 +19,7 @@ function App() {
       <Toaster />
       
       <Routes>
-        <Route path='/' element={<ProductCatalog />} />
+        <Route path='/store' element={<ProductCatalog />} />
         <Route exact path='/component-2' element={<AddItem />} />
         <Route exact path='/component-3' element={<AddProduct />} />
 

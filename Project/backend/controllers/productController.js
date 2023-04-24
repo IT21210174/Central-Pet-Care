@@ -18,7 +18,7 @@ const getProducts = asyncHandler(async (req, res) => {
         products = await Product.find().sort({ createdAt: -1 }).limit(5);
     } else if (qCategory) {
         products = await Product.find({
-            categories: { $in: [qCategory] }
+            'categories.categoryA': qCategory
         })
     } else if (qSearch) {
         products = await Product.find({
