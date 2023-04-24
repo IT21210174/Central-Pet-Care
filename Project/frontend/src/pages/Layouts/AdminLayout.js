@@ -3,6 +3,7 @@ import { useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ActionBar from "../../components/actionbar/ActionBar";
 import "./adminLayout.scss";
+import { AppProvider } from "../../context/AppContext";
 
 const AdminLayout = ({ children }) => {
 

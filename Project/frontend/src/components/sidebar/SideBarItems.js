@@ -81,7 +81,7 @@ const sidebarItems = [
 
 			{
 				id: 107,
-				link: "/cpt/home",
+				link: "/inventory/generate-reports",
 				nestedItemicon: <TbReportAnalytics />,
 				nestedItemtext: "Generate reports",
 			},
@@ -151,7 +151,7 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 400,
-				link: "/products/compo-1",
+				link: "/inventory/add-item",
 				nestedItemicon: <GiArchiveRegister />,
 				nestedItemtext: "Register",
 			},
@@ -249,7 +249,7 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 800,
-				link: "/dummy/dummy-compo",
+				link: "/inventory/test-comp",
 				nestedItemicon: <MdSell />,
 				nestedItemtext: "Order Management",
 			},

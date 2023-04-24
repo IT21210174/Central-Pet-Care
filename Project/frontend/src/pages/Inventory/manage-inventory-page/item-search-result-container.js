@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
 import {AiOutlineEye} from 'react-icons/ai'
 import {AiOutlineDelete} from 'react-icons/ai'
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
+import { useNavigate} from "react-router-dom";
+
 export default function ItemSearchResultsContainer(props) {
 	const { inventory , setFunc} = props;
+	const navigate = useNavigate()
 
+	// update function
+	const updateItem = (id) => {
+		navigate(`/inventory/update-item`, {state:{id}})
+		console.log(id);
+	}
+
+	// delete function
 	const deleteItem = (deletingID) => {
 		const swalWithBootstrapButtons = Swal.mixin({
 			customClass: {
@@ -70,8 +79,9 @@ export default function ItemSearchResultsContainer(props) {
 	return (
 		<div>
 			{inventory.reverse().map((singleItem) => {
-				const { _id, itemName, sku, category, manufacturer, quantity } =
-					singleItem;
+				const { _id, itemName, sku, category, manufacturer, quantity } = singleItem;
+
+				const inventoryPassBucket = { _id, itemName, sku, category, manufacturer, quantity }
 
 				if (inventory.length > 0) {
 					return (
@@ -92,12 +102,17 @@ export default function ItemSearchResultsContainer(props) {
 								{quantity}
 							</span>
 							<span className="item-field-manage-inventory">
+								{/* view button */}
 								<button className="action-btns-manage-inventory">
 									<AiOutlineEye />
 								</button>
-								<button className="action-btns-manage-inventory">
+
+								{/* update button */}
+								<button className="action-btns-manage-inventory" onClick={() => updateItem(_id)}>
 									<BiEdit />
 								</button>
+
+								{/* delete button */}
 								<button
 									className="action-btns-manage-inventory"
 									onClick={() => deleteItem(_id)}

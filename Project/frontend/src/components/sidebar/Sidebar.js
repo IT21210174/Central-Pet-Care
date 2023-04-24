@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import SideBarItems from "./SideBarItems";
 import { NavLink } from "react-router-dom";
 import "./sidebar.scss";
@@ -6,15 +8,17 @@ import "./sidebar.scss";
 import { IoIosArrowForward } from "react-icons/io";
 
 function SideBar() {
+
+	const {stateTrack , setStateTrack} = useContext(AppContext)
 	const [selected, setSelected] = useState(null);
-	const [selectedMain, setMain] = useState(null);
+	// const [selectedMain, setMain] = useState(0);
 
 	useEffect(() => {
-		eventTransformer(selectedMain);
+		eventTransformer(stateTrack);
 	}, []);
 
 	const eventTransformer = (num) => {
-		setMain(num);
+		setStateTrack(num);
 		setSelected(0);
 	};
 
@@ -48,7 +52,7 @@ function SideBar() {
 										</span>
 										<span
 											className={`scrollFuncIcon ${
-												index === selectedMain &&
+												index === stateTrack &&
 												"scroll-function-show"
 											}`}
 										>
@@ -58,7 +62,7 @@ function SideBar() {
 
 									<div
 										className={`nested-function-container${
-											index === selectedMain
+											index === stateTrack
 												? "cont-show"
 												: ""
 										}`}

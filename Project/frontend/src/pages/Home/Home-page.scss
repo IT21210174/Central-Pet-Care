@@ -225,6 +225,7 @@ $font-fam-1: "Poppins", sans-serif;
 	height: 600px;
 	margin-top: 20px;
 	margin-bottom: 60px;
+	background-attachment: fixed;
 }
 
 .service-background {
@@ -233,6 +234,7 @@ $font-fam-1: "Poppins", sans-serif;
 	height: 100%;
 	width: 100vw;
 	position: absolute;
+	background-attachment: fixed;
 }
 
 .service-overlay {
@@ -244,7 +246,8 @@ $font-fam-1: "Poppins", sans-serif;
 		rgba(95, 39, 205, 0.9585084033613446) 5%,
 		rgba(153, 128, 250, 0.8324579831932774) 100%
 	);
-	opacity: 0.6;
+	opacity: 0.8;
+	background-attachment: fixed;
 }
 
 .text-section-last {

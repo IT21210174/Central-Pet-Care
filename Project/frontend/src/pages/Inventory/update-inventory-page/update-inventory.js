@@ -1,13 +1,26 @@
-import React, { useContext , useEffect, useState } from "react";
-import { AppContext } from "../../../context/AppContext";
-import swal from "sweetalert2";
-import AdminLayout from "../../Layouts/AdminLayout";
-import api from "../../../services/api";
-import "./addItem.scss";
+import React , {useEffect, useState} from 'react'
+import AdminLayout from '../../Layouts/AdminLayout'
+import swal from 'sweetalert2';
+import api from '../../../services/api';
+import './update-inventory.scss'
+import Swal from 'sweetalert2';
 
-const AddItem = () => {
+import { useLocation, useNavigate } from 'react-router-dom';
 
-	const [formData, setFormData] = useState({
+function UpdateItem() {
+
+    const location = useLocation()
+    const {id} = location.state
+    
+    useEffect(()=>{
+        api.get(`/mongo/${id}`).then((response)=>{
+            setUpdateFormData(response.data)
+            console.log(response.data);
+        })
+    },[])
+
+    const [updateFormData, setUpdateFormData] = useState({
+        _id:"",
 		sku: "",
 		itemName: "",
 		category: "",
@@ -19,61 +32,50 @@ const AddItem = () => {
 		productImage: "",
 	});
 
-	const addItemFormHandler = (event) => {
-		event.preventDefault();
-		console.log(formData);
 
-		if (formData.sku !== "" && formData.category !== "") {
-			api.post("/", formData)
-				.then((response) => {
-					console.log(response);
-					swal.fire({
-						icon: "success",
-						iconColor: "#7D5FFF",
-						title: "Operation Success",
-						text: "Item added to the inventory!",
-					});
-					console.log(response);
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+    const updateFormHandler = (event) => {
 
-			setFormData({
-				sku: "",
-				itemName: "",
-				category: "",
-				price: "",
-				rackNo: "",
-				quantity: "",
-				manufacturer: "",
-				productDescription: "",
-				productImage: "",
-			});
-		} else {
-			swal.fire({
-				icon: "error",
-				iconColor: "#e74c3c",
-				title: "Operation Not Success",
-				text: "fill the relevant fields first",
-			});
-		}
+		event.preventDefault()
+
+        api.put(`/${id}` , updateFormData).then((response)=>{
+            if(response){
+                Swal.fire(
+                    {
+                        icon: "success",
+				        iconColor: "#7d5fff",
+				        title: "Inventory Updated",
+				        text: "Changes are made to the item!",
+                    }
+                )
+            }
+        })
+
+        .catch((error)=>{
+                Swal.fire(
+                    {
+                        icon: "error",
+				        iconColor: "#e74c3c",
+				        title: "Operation Unsuccessful",
+				        text: "Please check again!",
+                    }
+                )
+                console.log(error);
+        })
+
+		
+    }
+
+	const updateItemInputHandler = (event) => {
+		setUpdateFormData({ ...updateFormData, [event.target.name]: event.target.value });
 	};
 
-	const addItemInputHandler = (event) => {
-		setFormData({ ...formData, [event.target.name]: event.target.value });
-	};
-
-	return (
-		<AdminLayout>
+  return (
+        <AdminLayout>
 			<div className="add-item-container-main">
 				{/* this is the form container */}
-				<form
-					className="add-item-form-container"
-					onSubmit={addItemFormHandler}
-				>
+				<form className="add-item-form-container" onSubmit={updateFormHandler}>
 					<span className="tagline-add-item">
-						Fill the form for add item
+						Update Item Details
 					</span>
 					{/* input field container */}
 					<div className="column-container">
@@ -83,9 +85,9 @@ const AddItem = () => {
 								<span className="input-title">item name</span>
 								<input
 									className="input-field"
-									value={formData.itemName}
+									value={updateFormData.itemName}
 									name="itemName"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -94,9 +96,9 @@ const AddItem = () => {
 								</span>
 								<input
 									className="input-field"
-									value={formData.sku}
+									value={updateFormData.sku}
 									name="sku"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -104,8 +106,8 @@ const AddItem = () => {
 								<select
 									className="input-field"
 									name="category"
-									value={formData.category}
-									onChange={addItemInputHandler}
+									value={updateFormData.category}
+									onChange={updateItemInputHandler}
 								>
 									<option
 										className="select-option"
@@ -129,18 +131,18 @@ const AddItem = () => {
 								<span className="input-title">unit price</span>
 								<input
 									className="input-field"
-									value={formData.price}
+									value={updateFormData.price}
 									name="price"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 							<section className="input-container">
 								<span className="input-title">rack number</span>
 								<input
 									className="input-field"
-									value={formData.rackNo}
+									value={updateFormData.rackNo}
 									name="rackNo"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 						</div>
@@ -150,9 +152,9 @@ const AddItem = () => {
 								<span className="input-title">quantity</span>
 								<input
 									className="input-field"
-									value={formData.quantity}
+									value={updateFormData.quantity}
 									name="quantity"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -161,9 +163,9 @@ const AddItem = () => {
 								</span>
 								<input
 									className="input-field"
-									value={formData.manufacturer}
+									value={updateFormData.manufacturer}
 									name="manufacturer"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -172,12 +174,12 @@ const AddItem = () => {
 								</span>
 								<textarea
 									className="input-textarea"
-									value={formData.productDescription}
+									value={updateFormData.productDescription}
 									id=""
 									cols="30"
 									rows="10"
 									name="productDescription"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								></textarea>
 							</section>
 							<section className="input-container">
@@ -187,18 +189,18 @@ const AddItem = () => {
 								<input
 									type="file"
 									name="productImage"
-									value={formData.productImage}
+									value={updateFormData.productImage}
 									id=""
 									className="input-field"
-									onChange={addItemInputHandler}
+									onChange={updateItemInputHandler}
 								/>
 							</section>
 							<div className="btn-container-add-item">
 								<button type="submit" className="submit-btn">
-									Submit
+									Update
 								</button>
 								<button type="reset" className="reset-btn">
-									Reset
+									Back
 								</button>
 							</div>
 						</div>
@@ -206,7 +208,7 @@ const AddItem = () => {
 				</form>
 			</div>
 		</AdminLayout>
-	);
-};
+  )
+}
 
-export default AddItem;
+export default UpdateItem
