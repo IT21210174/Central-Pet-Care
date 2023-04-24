@@ -27,42 +27,45 @@ import ViewPrescription from './pages/Prescription/ViewPrescription';
 //medicine
 import Medicine from './pages/Medicine/Medicine';
 
+import VetCard from './pages/Vet/VetCard';
+
 function App() {
   return (
-    <Router>
-      <Toaster />
+   
+     <Router>
+       <Toaster />
       
-      <Routes>
-        <Route path='/' element={<AdminLayout />} />
-        <Route exact path='/component-2' element={<AddItem />} />
-        <Route exact path='/component-3' element={<AddProduct />} />
+       <Routes>
+         <Route path='/' element={<AdminLayout />} />
+         <Route exact path='/component-2' element={<AddItem />} />
+         <Route exact path='/component-3' element={<AddProduct />} />
 
 
-        <Route path='/admin/products/manageProducts' element={< ManageProducts />} />
-        <Route path='/admin/products/addProduct' element={<AddProduct />} />
-        <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
-        <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
-        <Route path='/admin/orders'  />
-        <Route path='/admin/insights'  />
+         <Route path='/admin/products/manageProducts' element={< ManageProducts />} />
+         <Route path='/admin/products/addProduct' element={<AddProduct />} />
+         <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
+         <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
+         <Route path='/admin/orders'  />
+         <Route path='/admin/insights'  />
 
-        <Route path='/products' element={<ProductCatalog />} />
-        <Route path='/products/:id' element={<Product />} />
-        <Route path='/cart' element={<Cart />} />
+         <Route path='/products' element={<ProductCatalog />} />
+         <Route path='/products/:id' element={<Product />} />
+         <Route path='/cart' element={<Cart />} />
         
-        <Route path='/admin/vets/addVet' element={<Addvet />} />
-        <Route path='/admin/vets/manageVet' element={<ManageVets />} />
-        <Route path='/admin/vets/editVet/:id' element={<EditVet />} />
-        <Route path='/admin/vets/viewVet/:id' element={<ViewVet />} />
+         <Route path='/admin/vets/addVet' element={<Addvet />} />
+         <Route path='/admin/vets/manageVet' element={<ManageVets />} />
+         <Route path='/admin/vets/editVet/:id' element={<EditVet />} />
+         <Route path='/admin/vets/viewVet/:id' element={<ViewVet />} />
 
-        <Route path='/admin/prescriptions/addPrescription' element={<AddPrescription />} />
-        <Route path='/admin/prescriptions/managePrescription' element={<ManagePrescription />} />
-        <Route path='/admin/prescriptions/editPrescription/:id' element={<EditPrescription />} />
-        <Route path='/admin/prescriptions/viewPrescription/:id' element={<ViewPrescription />} />
+         <Route path='/admin/prescriptions/addPrescription' element={<AddPrescription />} />
+         <Route path='/admin/prescriptions/managePrescription' element={<ManagePrescription />} />
+         <Route path='/admin/prescriptions/editPrescription/:id' element={<EditPrescription />} />
+         <Route path='/admin/prescriptions/viewPrescription/:id' element={<ViewPrescription />} />
 
-        <Route path='/admin/medicines/manageMedicines' element={<Medicine />} />
+         <Route path='/admin/medicines/manageMedicines' element={<Medicine />} />
 
-      </Routes>
-    </Router>
+       </Routes>
+     </Router>
   )
 }
 

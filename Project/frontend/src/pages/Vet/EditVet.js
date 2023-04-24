@@ -47,7 +47,7 @@ function EditVet() {
       userRequest.put("/vets/" + id, { vcslId, vetName, telephone, email, experience, qualification, profilePicture: imageURL })
       .then(res => {
           toast.success('Vet updated')
-          navigate('/vets/manageVets')
+          navigate('/admin/vets/manageVet')
       }).catch(err => {
           toast.error(err.message)
       })
@@ -56,39 +56,12 @@ function EditVet() {
       userRequest.put("/vets/" + id, { vcslId, vetName, telephone, email, experience, qualification, profilePicture: imageURL })
       .then(res => {
           toast.success('Vet updated')
-          navigate('/vets/manageVets')
+          navigate('/admin/vets/manageVet')
       }).catch(err => {
           toast.error(err.message)
       })
     }
   }  
-
-
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      width: '400px',
-      margin: '10px 0 15px 0',
-      border: '2px solid $primary-color-navyBlue',
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      borderColor: state.isFocused ? '#7D5FFF' : '#2C2C54',
-      boxShadow: state.isFocused ? '0 0 0 1px #7D5FFF' : '0 0 0 1px #2C2C54',
-    }),
-    menu: (provided, state) => ({
-      ...provided,
-      backgroundColor: 'white',
-      margin: '-10px 0 0 0',
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? '#7D5FFF' : 'white',
-      color: state.isSelected ? 'white' : 'black',
-      '&:hover': {
-        backgroundColor: 'lightgray',
-      },
-    }),
-  };
 
 
   return (
@@ -133,7 +106,7 @@ function EditVet() {
                         <input type="file" name="" id="" className='input-field'/>
                     </section>
                     <div className="btn-container-add-item">
-                      <button type='submit' className="submit-btn">Submit</button>
+                      <button type='submit' className="submit-btn">Update</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>
               </div>

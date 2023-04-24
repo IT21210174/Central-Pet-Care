@@ -1,88 +1,39 @@
-import { useState } from "react"
+import React, { useEffect } from 'react'
+import AdminLayout from '../Layouts/AdminLayout'
+import { useState } from 'react';
+import { userRequest } from '../../requestMethods'
+import CustomDataGrid from '../../components/dataGrid/CustomDataGrid';
+import { Link } from 'react-router-dom';
+import { FiEdit } from 'react-icons/fi';
+import { MdOutlineDelete } from 'react-icons/md';
+import { AiOutlineEye } from 'react-icons/ai';
+import { toast } from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import {ImSearch} from 'react-icons/im'
+
 import './VetCard.scss'
 
 
-function VetCard(){
+function VetCard(props){
 
-    const[food , setFood] = useState("")
-    const[status, setStatus] = useState("")
-    const[price , setPrice] = useState("")
-    const[image, setImage] = useState("")
-
-    function foodInputHandler(e){
-        setFood(e.target.value)
-    }
-
-    const statusInputHandler = (e) => {
-        setStatus(e.target.value)
-    }
-
-    const priceInputhandler = (e) => {
-        setPrice(e.target.value)
-    }
-
-    const imageInputhandler = (e) => {
-        setImage(e.target.value)
-    }
-
-    const formhandler = (e) => {
-        e.preventDefault()
-
-        const myObject = {
-            food,
-            status,
-            price,
-            image,
-        }
-
-        console.log(myObject);
-       // setOrders([...orders, myObject]) //parana ewa gnnw
-
-        setFood("")
-        setStatus("")
-        setPrice("")
-        setImage("")
-    }
+    const vet = props.vet;
 
     return (
-        <>
-            <form className="form_container" onSubmit={formhandler}>
-                <div>
-                    <label className="inputContainer">Food Name</label>
-                    <input type="text" className="textFields" value={food} onChange={foodInputHandler}/>
-                </div>
-                <div>
-                    <label className="inputContainer">Status</label>
-                    <input type="text" className="textFields" value={status} onChange={statusInputHandler}/>
-                </div>
-                <div>
-                    <label className="inputContainer">Price</label>
-                    <input type="text" className="textFields" value={price} onChange={priceInputhandler}/>
-                </div>
-                <div>
-                    <label className="inputContainer">Image</label>
-                    <input type="text" className="textFields" value={image} onChange={imageInputhandler}/>
-                </div>
-                <button className="submitbtn" type="submit">Place Order</button>
-            </form>
-
-
-            {/* <div className="container">
-                    {orders.map((singleOrder, index)=>{
-                        return(
-                            <div className="orderCard" key={index}>  
-                                <img className="food_image" src={singleOrder.image} alt="img" width="100px" height="100px"/>
-                                <div className="foodTextContainer">
-                                <span>{singleOrder.food}</span>
-                                <span>{singleOrder.status}</span>
-                                <span>{singleOrder.price}</span>
-                                </div>
-                            </div>
-                        )
-                    })}
-            </div> */}
-        </>
-    )
+      <div className='card-container'>
+        <img
+          src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
+          alt='Books'
+          height={200}
+        />
+        <div className='desc'>
+          <h2>
+            <Link to={`/show-book/${vet.id}`}>{vet.vetName}</Link>
+          </h2>
+          <h3>{vet.email}</h3>
+          <p>{vet.experience}</p>
+        </div>
+      </div>
+    );
 }
 
 export default VetCard

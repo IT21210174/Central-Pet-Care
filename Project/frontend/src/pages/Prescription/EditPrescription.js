@@ -39,7 +39,7 @@ function EditPrescription() {
       userRequest.put("/prescriptions/" + id, { petname, address, description, medicine, dosage })
       .then(res => {
           toast.success('Prescription updated')
-          navigate('/prescriptions/ManageaPrescription')
+          navigate('/admin/prescriptions/managePrescription')
       }).catch(err => {
           toast.error(err.message)
       })
@@ -82,7 +82,7 @@ function EditPrescription() {
                   <input type="text" className="input-field" value={dosage} onChange={(e) => setDosage(e.target.value)}/>
                 </section>
                     <div className="btn-container-add-item">
-                      <button type='submit' className="submit-btn">Submit</button>
+                      <button type='submit' className="submit-btn">Update</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>
               </div>
