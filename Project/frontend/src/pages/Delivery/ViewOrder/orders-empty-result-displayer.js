@@ -5,7 +5,7 @@ function NoItemsDisplayer() {
 	return (
 		<div className="operation-unsuccess-container">
 			<img src={EmptyResult} alt="" className="imgblock" />
-			<span className="message-box">No results, Try a different driver NIC.</span>
+			<span className="message-box">No results, Try a different order ID.</span>
 		</div>
 	);
 }

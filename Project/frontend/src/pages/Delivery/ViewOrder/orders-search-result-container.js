@@ -6,10 +6,10 @@ import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
-export default function ItemSearchResultsContainer(props) {
-	const { driver } = props;
+export default function OrderSearchResultsContainer(props) {
+	const { order } = props;
 
-	const deleteItem = (deletingID) => {
+	const deleteOrder = (deletingID) => {
 		const swalWithBootstrapButtons = Swal.mixin({
 			customClass: {
 				confirmButton: "btn-success",
@@ -44,7 +44,7 @@ export default function ItemSearchResultsContainer(props) {
 							console.log(error);
 						});
 
-					const newSet = driver.filter((object) => {
+					const newSet = order.filter((object) => {
 						const { _id } = object;
 
 						return _id !== deletingID;
@@ -67,7 +67,7 @@ export default function ItemSearchResultsContainer(props) {
 
 	return (
 		<div>
-			{driver.reverse().map((singleItem) => {
+			{order.reverse().map((singleItem) => {
 				const {
 					_id,
 					driverName,
@@ -108,7 +108,7 @@ export default function ItemSearchResultsContainer(props) {
 								</button>
 								<button
 									className="action-btns-manage-driver"
-									onClick={() => deleteItem(nicNumber)}
+									onClick={() => deleteOrder(nicNumber)}
 								>
 									<AiOutlineDelete />
 								</button>
