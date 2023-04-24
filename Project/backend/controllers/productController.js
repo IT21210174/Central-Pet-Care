@@ -10,6 +10,7 @@ const getProducts = asyncHandler(async (req, res) => {
 
     const qNew = req.query.new;
     const qCategory = req.query.category;
+    const qSearch = req.query.search;
  
     let products;
 
@@ -19,6 +20,10 @@ const getProducts = asyncHandler(async (req, res) => {
         products = await Product.find({
             categories: { $in: [qCategory] }
         })
+    } else if (qSearch) {
+        products = await Product.find({
+            $text: { $search: qSearch }
+        });
     } else {
         products = await Product.find();
     }

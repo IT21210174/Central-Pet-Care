@@ -63,11 +63,16 @@ function ManageProducts() {
 
       const [search, setSearch] = useState('')
     
-      console.log(search)
-    
       const handleSearch = (e) => {
-          e.preventDefault()
-          alert(search)
+        e.preventDefault()
+        userRequest.get(`/products?search=${search}`)
+        .then(res => {
+            setProducts(res.data);
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
       }
     
       return(
