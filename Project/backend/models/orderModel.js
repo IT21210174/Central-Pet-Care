@@ -69,6 +69,10 @@ const orderSchema = mongoose.Schema({
     timestamps: true
 })
 
+orderSchema.index({
+    orderId: 'text',
+});
+
 // Before saving the order, check if it has a orderId, if not, generate one
 orderSchema.pre('save', async function (next) {
 

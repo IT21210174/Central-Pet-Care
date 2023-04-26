@@ -75,7 +75,19 @@ const getMyOrders = asyncHandler(async (req, res) => {
 // @route   GET /api/orders
 // @access  Private/Admin
 const getOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({}).populate('user', 'id username')
+
+    const qSearch = req.query.search;
+
+    let orders;
+
+    if (qSearch) {
+        orders = await Order.find({
+            $text: { $search: qSearch }
+        }).populate('user', 'id username');
+    } else {
+        orders = await Order.find({}).populate('user', 'id username');
+    }
+
     res.status(200).json(orders)
 })
   
