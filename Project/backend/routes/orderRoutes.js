@@ -19,6 +19,7 @@ router.get('/myorders', protect, getMyOrders)
 
 router.get('/', protect, admin, getOrders)
 router.put('/:id', protect, admin, updateOrder)
+router.delete('/:id', protect, admin, deleteOrder)
 router.get('/income', protect, admin, getMonthlyIncome)
 
 

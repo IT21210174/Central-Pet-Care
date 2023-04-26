@@ -70,7 +70,7 @@ function EditProduct() {
       userRequest.put("/products/" + id, { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: URL })
       .then(res => {
           toast.success('Product updated')
-          navigate('/products/manageProducts')
+          navigate('/admin/products/manageProducts')
       }).catch(err => {
           toast.error(err.message)
       })
@@ -79,7 +79,7 @@ function EditProduct() {
       userRequest.put("/products/" + id, { productName, brand, categories: { categoryA: catA, categoryB: catB }, quantity, price, description, SKU, image: imageURL })
       .then(res => {
           toast.success('Product updated')
-          navigate('/products/manageProducts')
+          navigate('/admin/products/manageProducts')
       }).catch(err => {
           toast.error(err.message)
       })

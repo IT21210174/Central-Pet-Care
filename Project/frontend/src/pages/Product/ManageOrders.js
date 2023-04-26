@@ -12,16 +12,18 @@ import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
 
 import './manageProducts.scss'
+import './manageOrders.scss'
 
-function ManageProducts() {
+function ManageOrders() {
 
-    const [products, setProducts] = useState([])
+    const [orders, setOrders] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const getProducts = () => {
-        userRequest.get("/products")
+    const getOrders = () => {
+        userRequest.get("/orders")
         .then(res => {
-            setProducts(res.data)
+            console.log(res.data)
+            setOrders(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -29,7 +31,7 @@ function ManageProducts() {
     }
 
     useEffect(() => {
-        getProducts()
+        getOrders()
     }, [isSubmitted])
 
     
@@ -45,10 +47,10 @@ function ManageProducts() {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          userRequest.delete('/products/' + id)
+          userRequest.delete('/orders/' + id)
           .then(res => {
               setIsSubmitted(!isSubmitted)
-              toast.success('Product deleted')
+              toast.success('Order deleted')
           })
           .catch(err => {
             alert(err)
@@ -65,9 +67,9 @@ function ManageProducts() {
     
       const handleSearch = (e) => {
         e.preventDefault()
-        userRequest.get(`/products?search=${search}`)
+        userRequest.get(`/orders?search=${search}`)
         .then(res => {
-            setProducts(res.data);
+            setOrders(res.data);
             console.log(res.data)
         })
         .catch(err => {
@@ -90,49 +92,73 @@ function ManageProducts() {
 
     const columns = [
         { 
-          field: "_id",
-          headerName: "ID",
+          field: "orderId",
+          headerName: "Order ID",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 1,
         },
         {
-          field: "productName",
-          headerName: "Product",
-          headerAlign: "center",
-          flex: 7.5,
-          renderCell: (params) => {
-            return (
-              <div className="listItemName">
-                <img className="listItemImg" src={params.row.image} alt="" />
-                {params.row.productName}
-              </div>
-            );
-          },
-        },
-        {
-          field: "quantity",
-          headerName: "Quantity",
+          field: "total",
+          headerName: "Amount",
           headerAlign: "center",
           align: "center",
           type: "number",
-          flex: 2,
-        },
-        {
-          field: "price",
-          headerName: "Price",
-          headerAlign: "center",
-          align: "center",
-          type: "number",
-          flex: 2,
+          flex: 1,
           valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
         },
         {
-            field: "SKU",
-            headerName: "SKU",
+            field: 'createdAt',
+            headerName: 'Date',
+            headerAlign: 'center',
+            align: 'center',
+            type: 'date',
+            flex: 1,
+            valueGetter: ({ value }) => value && new Date(value),
+            valueFormatter: ({ value }) => value ? new Date(value).toLocaleString() : '',
+        },
+        {
+            field: "paymentStatus",
+            headerName: "Payment Status",
             headerAlign: "center",
             align: "center",
-            flex: 2,
+            flex: 1,
+            renderCell: (params) => {
+              const status = params.value.toLowerCase();
+              return status === "succeeded" ? (
+                <span className='successful'>Successful</span>
+              ) : (
+                <span className='pending'>Pending</span>
+              );
+            },
+        },
+        {
+            field: "deliveryStatus",
+            headerName: "Delivery Status",
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+            renderCell: (params) => {
+              const status = params.value;
+              const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
+              let statusStyle = '';
+              switch (status) {
+                case 'delivered':
+                  statusStyle = 'successful';
+                  break;
+                case 'pending':
+                  statusStyle = 'pending';
+                  break;
+                case 'processing':
+                  statusStyle = 'processing';
+                  break;
+                // Add more cases for additional delivery statuses here
+                default:
+                  statusStyle = 'default';
+                  break;
+              }
+              return <span className={statusStyle}>{capitalizedStatus}</span>;
+            },
         },
         {
           field: "action",
@@ -141,15 +167,12 @@ function ManageProducts() {
           align: "center",
           sortable: false,
           filterable: false,
-          flex: 3,
+          flex: 1,
           renderCell: (params) => {
             return (
               <div className='action'>
                 <Link to={"/admin/products/viewProuduct/" + params.row._id}>
                   <AiOutlineEye className='view' />
-                </Link>
-                <Link to={"/admin/products/editProuduct/" + params.row._id}>
-                  <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
               </div>
@@ -160,11 +183,12 @@ function ManageProducts() {
 
     return (
         <AdminLayout>
+        
             <div className='listContainer'>
-            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={orders} columns={columns} searchBar={<SearchBar />} /> 
             </div>
         </AdminLayout>
     )
 }
 
-export default ManageProducts
+export default ManageOrders
