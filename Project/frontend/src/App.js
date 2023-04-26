@@ -11,6 +11,7 @@ import ViewProduct from './pages/Product/ViewProduct';
 import ProductCatalog from './pages/Store/ProductCatalog';
 import Product from './pages/Store/Product';
 import Cart from './pages/Store/Cart';
+import ManageOrders from './pages/Product/ManageOrders';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Toaster />
       
       <Routes>
-        <Route path='/store' element={<ProductCatalog />} />
+        <Route path='/' element={<ProductCatalog />} />
         <Route exact path='/component-2' element={<AddItem />} />
         <Route exact path='/component-3' element={<AddProduct />} />
 
@@ -28,11 +29,11 @@ function App() {
         <Route path='/admin/products/addProduct' element={<AddProduct />} />
         <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
         <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
-        <Route path='/admin/orders'  />
+        <Route path='/admin/orders' element={<ManageOrders />} />
         <Route path='/admin/insights'  />
 
-        <Route path='/products' element={<ProductCatalog />} />
-        <Route path='/products/:id' element={<Product />} />
+        <Route path='/store' element={<ProductCatalog />} />
+        <Route path='/store/:id' element={<Product />} />
         <Route path='/cart' element={<Cart />} />
         
 

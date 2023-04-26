@@ -17,6 +17,9 @@ const Catalog = styled.div`
 const CategoryList = styled.div`
   flex: 1;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 25px 10px;
 `
 const ProductList = styled.div`
   flex: 5;

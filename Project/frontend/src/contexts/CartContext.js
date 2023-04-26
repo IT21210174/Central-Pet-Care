@@ -36,7 +36,38 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (productId, quantity = 1) => {
+    const existingItemIndex = cart.items.findIndex((cartItem) => cartItem.product._id === productId);
+    if (existingItemIndex === -1) {
+      // item is not in cart, nothing to remove
+      return;
+    }
+  
+    const updatedItems = [...cart.items];
+    const item = updatedItems[existingItemIndex];
+  
+    if (quantity >= item.cartQuantity) {
+      // remove the entire item from cart
+      updatedItems.splice(existingItemIndex, 1);
+      setCart({
+        ...cart,
+        items: updatedItems,
+        quantity: cart.quantity - item.cartQuantity,
+        total: cart.total - item.product.price * item.cartQuantity,
+      });
+    } else {
+      // remove specified quantity from item in cart
+      item.cartQuantity -= quantity;
+      setCart({
+        ...cart,
+        items: updatedItems,
+        quantity: cart.quantity - quantity,
+        total: cart.total - item.product.price * quantity,
+      });
+    }
+  };
+
+  const removeProduct = (productId) => {
     const updatedItems = cart.items.filter((cartItem) => cartItem.product._id !== productId);
     const removedItem = cart.items.find((cartItem) => cartItem.product._id === productId);
   
@@ -59,7 +90,7 @@ const CartContextProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, removeProduct, clearCart }}>
       {children}
     </CartContext.Provider>
   );

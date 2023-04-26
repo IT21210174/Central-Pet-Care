@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from '../../requestMethods';
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import { toast } from 'react-hot-toast';
 
 const Container = styled.div``;
 
@@ -44,8 +45,10 @@ const InfoContainer = styled.div`
 
 const Title = styled.h1`
   display: flex;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 30px;
+  text-align: left;
+  text-transform: none;
 `;
 
 
@@ -74,46 +77,68 @@ const AddContainer = styled.div`
   align-items: center;
 `;
 
-const AmountContainer = styled.div`
+const QtyContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   font-weight: 700;
 `;
 
-const Amount = styled.span`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid #5F27CD;
-  display: flex;
+const Quantity = styled.span`
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 2px solid #5F27CD;
   margin: 0px 5px;
   padding: 8px;
+  font-weight: 500;
+  font-size: 1.2rem;
 `;
 
 const QtyButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px;
   border: none;
-  border-radius: 50%;
-  background-color: #4f318b;
+  border-radius: 4px;
+  background-color: rgba(95, 39, 205, 0.8);
   color: white;
   cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  outline: none;
+
+  &:hover {
+    background-color: #5F27CD;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
-const Button = styled.button`
+const AddButton = styled.button`
   flex: 1;
   margin-left: 5px;
   padding: 15px;
   border: 2px solid #5F27CD;
   background-color: white;
-  cursor: pointer;
   font-weight: 600;
-  &:hover{
-      background-color: #f8f4f4;
+  color: #5F27CD;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: #5F27CD;
+    color: white;
   }
 `;
+
 
 const ServiceContainer = styled.div`
   margin-top: 10%;
@@ -186,6 +211,7 @@ const Product = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getProduct();
   }, [id]);
 
@@ -199,6 +225,7 @@ const Product = () => {
 
   const handleClick = () => {
     addToCart(product, quantity);
+    toast.success('Product added to cart');
   }
 
   return (
@@ -214,14 +241,14 @@ const Product = () => {
           <Title>{product.productName}</Title>
           <Sku>SKU: {product.SKU}</Sku>
           <Availability>{product.inStock === true ? "In Stock" : "Out of Stock"}</Availability>
-          <Price>Rs. {product.price}</Price>
+          <Price>Rs. {product.price?.toFixed(2)}</Price>
           <AddContainer>
-            <AmountContainer>
+            <QtyContainer>
               <QtyButton onClick={() => handleQuantity("dec")}><AiOutlineMinus size="1.5rem" /></QtyButton>
-              <Amount>{quantity}</Amount>
+              <Quantity>{quantity}</Quantity>
               <QtyButton onClick={() => handleQuantity("inc")}><AiOutlinePlus size="1.5rem" /></QtyButton>
-            </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            </QtyContainer>
+            <AddButton onClick={handleClick}>ADD TO CART</AddButton>
           </AddContainer>
           <ServiceContainer>
             <Service>
@@ -233,8 +260,8 @@ const Product = () => {
               <ServiceName>Fast Delivery</ServiceName>
             </Service>
             <Service>
-              <ServiceImage src="https://cdn-icons-png.flaticon.com/512/2717/2717928.png" />
-              <ServiceName>Cash on Delivery</ServiceName>
+              <ServiceImage src="https://cdn-icons-png.flaticon.com/512/3760/3760135.png" />
+              <ServiceName>Secure Payment</ServiceName>
             </Service>
           </ServiceContainer>
         </InfoContainer>

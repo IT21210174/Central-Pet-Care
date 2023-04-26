@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { useLocation } from 'react-router-dom';
 import noProductsImg from '../../assets/noProducts.png'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 
 const ProductsContainer = styled.div`
     padding: 20px;
@@ -21,10 +23,14 @@ const PaginationContainer = styled.div`
   margin-bottom: 40px;
 
   button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 5px;
-    padding: 5px 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     background-color: #f0f0f0;
     color: #333;
     font-size: 16px;
@@ -40,6 +46,11 @@ const PaginationContainer = styled.div`
       color: #333;
       cursor: default;
       opacity: 0.5;
+    }
+
+    &.active {
+      background-color: #333;
+      color: #f0f0f0;
     }
   }
 `;
@@ -114,7 +125,7 @@ const Products = () => {
       {currentProducts.length === 0 ? (
         <NoProducts>
           <img src={noProductsImg} height='200px' />
-          <p>Oops, We couldn't find any matches!</p>
+          <p>Oops, we couldn't find any matches!</p>
         </NoProducts>
       ) : (
         <>
@@ -124,11 +135,16 @@ const Products = () => {
             ))}
           </ProductsContainer>
           <PaginationContainer>
-            <button onClick={prevPage} disabled={currentPage === 1}>Prev</button>
+            <button onClick={prevPage} disabled={currentPage === 1}><MdOutlineKeyboardArrowLeft size="2rem" /></button>
             {Array.from({ length: totalPages }, (_, i) => (
-              <button key={i} onClick={() => setCurrentPage(i + 1)}>{i + 1}</button>
+              <button 
+                key={i} 
+                onClick={() => setCurrentPage(i + 1)}
+                className={currentPage === i + 1 ? 'active' : ''} >
+                  {i + 1}
+              </button>
             ))}
-            <button onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
+            <button onClick={nextPage} disabled={currentPage === totalPages}><MdOutlineKeyboardArrowRight size="2rem" /></button>
           </PaginationContainer>
         </>
       )}
