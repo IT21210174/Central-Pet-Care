@@ -27,7 +27,7 @@ const Category = styled.li`
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        color: purple;
+        color: #5F27CD;
         font-weight: 600;
     }
 `

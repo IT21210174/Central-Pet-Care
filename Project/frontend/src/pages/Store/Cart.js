@@ -9,6 +9,7 @@ import { useEffect, useState, useContext } from 'react';
 import { CartContext } from "../../contexts/CartContext";
 import { publicRequest } from '../../requestMethods';
 import EmptyCart from '../../components/store/EmptyCart';
+import StoreSearch from '../../components/store/StoreSearch';
 
 
 const Container = styled.div``;
@@ -18,9 +19,11 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
+  color: #2C2C54;
   text-transform: uppercase;
+  font-family: 'PT Sans', sans-serif;
 `;
 
 const Top = styled.div`
@@ -128,7 +131,7 @@ const QtyButton = styled.button`
   padding: 8px;
   border: none;
   border-radius: 4px;
-  background-color: rgba(95, 39, 205, 0.8);
+  background-color: rgba(95, 39, 205, 0.9);
   color: white;
   cursor: pointer;
   font-size: 1.2rem;
@@ -193,7 +196,7 @@ const SummaryItemPrice = styled.span``;
 const Checkout = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: rgba(95, 39, 205, 0.8);
+  background-color: rgba(95, 39, 205, 0.9);
   color: white;
   text-transform: uppercase;
   font-weight: 600;
@@ -239,6 +242,7 @@ const Cart = () => {
   return (
     <Container>
       <Navbar />
+      <StoreSearch />
       <Wrapper>
         <Title>My Cart</Title>
         {cart.items.length === 0 ? (

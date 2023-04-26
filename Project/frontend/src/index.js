@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import CartContextProvider from './contexts/CartContext';
 import ProductsContextProvider from './contexts/ProductsContext';
+import WishlistContextProvider from './contexts/WishlistContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <ProductsContextProvider>
       <CartContextProvider>
-        <App />
+        <WishlistContextProvider>
+          <App />
+        </WishlistContextProvider>
       </CartContextProvider>
     </ProductsContextProvider>
   </React.StrictMode>,

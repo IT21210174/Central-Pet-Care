@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from 'react';
 import { CartContext } from "../../contexts/CartContext";
+import { WishlistContext } from "../../contexts/WishlistContext";
 import { toast } from 'react-hot-toast';
 
 const Container = styled.div`
@@ -92,10 +93,15 @@ const Price = styled.div`
 const Product = ({ item }) => {
 
     const { addToCart } = useContext(CartContext);
+    const { wishlist, addToWishlist, isItemInWishlist } = useContext(WishlistContext);
 
     const addProductToCart = () => {
       addToCart(item)
       toast.success('Product added to cart');
+    }
+
+    const addProductToWishlist = () => {
+      addToWishlist(item)
     }
 
     return (
@@ -103,7 +109,7 @@ const Product = ({ item }) => {
         <ImageContainer>
         <Image src={item.image} />
           <Action>
-            <Icon>
+            <Icon onClick={addProductToWishlist} disabled={isItemInWishlist(item._id)}>
               <FiHeart size="1.5rem" />
             </Icon>
             <Icon onClick={addProductToCart}>
@@ -122,4 +128,3 @@ const Product = ({ item }) => {
 };
   
 export default Product;
-  

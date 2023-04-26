@@ -1,19 +1,18 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
-import { ProductsContext } from "../../contexts/ProductsContext";
+import { WishlistContext } from "../../contexts/WishlistContext";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaRegHeart } from 'react-icons/fa';
 import { GrCart } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { publicRequest } from '../../requestMethods';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './storesearch.css';
 
 const StoreSearch = () => {
 
   const { cart } = useContext(CartContext)
-  const { setProducts } = useContext(ProductsContext);
+  const { wishlist } = useContext(WishlistContext)
 
   const [search, setSearch] = useState('')
   const navigate = useNavigate()
@@ -33,8 +32,10 @@ const StoreSearch = () => {
       </form>
       <div className="Right">
         <div className="MenuItem">
+          <Link to='../wishlist' style={{textDecoration: 'none', color: 'black'}}>
             <FaRegHeart size="1.5rem" />
-            <div className="MenuItemBadge">2</div>
+            <div className="MenuItemBadge">{wishlist.length}</div>
+          </Link>
         </div>
         <div className="MenuItem">
             <Link to='../cart' style={{textDecoration: 'none', color: 'black'}}>

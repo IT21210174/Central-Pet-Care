@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { publicRequest } from '../../requestMethods';
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import { WishlistContext } from "../../contexts/WishlistContext";
+import { FaRegHeart } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 
 const Container = styled.div``;
@@ -71,7 +73,7 @@ const Price = styled.span`
 `;
 
 const AddContainer = styled.div`
-  width: 60%;
+  width: 70%;
   margin-top: 50px;
   display: flex;
   align-items: center;
@@ -88,8 +90,8 @@ const Quantity = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 4px;
   border: 2px solid #5F27CD;
   margin: 0px 5px;
@@ -102,10 +104,10 @@ const QtyButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: rgba(95, 39, 205, 0.8);
+  background-color: rgba(95, 39, 205, 0.9);
   color: white;
   cursor: pointer;
   font-size: 1.2rem;
@@ -121,17 +123,19 @@ const QtyButton = styled.button`
   }
 `;
 
-const AddButton = styled.button`
+const AddCart = styled.button`
   flex: 1;
   margin-left: 5px;
   padding: 15px;
-  border: 2px solid #5F27CD;
-  background-color: white;
+  border: none;
+  background-color: rgba(95, 39, 205, 0.9);
   font-weight: 600;
-  color: #5F27CD;
+  text-transform: uppercase;
+  color: white;
   border-radius: 5px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  cursor: pointer;
   
   &:hover {
     background-color: #5F27CD;
@@ -139,10 +143,30 @@ const AddButton = styled.button`
   }
 `;
 
+const AddWishlist = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  color: #5F27CD;
+  border: 2px solid #5F27CD;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #5F27CD;
+    color: white;
+  }
+`;
 
 const ServiceContainer = styled.div`
   margin-top: 10%;
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -199,6 +223,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useContext(CartContext);
+  const { wishlist, addToWishlist, isItemInWishlist } = useContext(WishlistContext);
 
   const getProduct = async () => {
     publicRequest.get("/products/" + id)
@@ -248,7 +273,8 @@ const Product = () => {
               <Quantity>{quantity}</Quantity>
               <QtyButton onClick={() => handleQuantity("inc")}><AiOutlinePlus size="1.5rem" /></QtyButton>
             </QtyContainer>
-            <AddButton onClick={handleClick}>ADD TO CART</AddButton>
+            <AddCart onClick={handleClick}>ADD TO CART</AddCart>
+            <AddWishlist onClick={() => addToWishlist(product)}><FaRegHeart size="1.5rem" /></AddWishlist>
           </AddContainer>
           <ServiceContainer>
             <Service>

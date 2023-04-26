@@ -12,6 +12,8 @@ import ProductCatalog from './pages/Store/ProductCatalog';
 import Product from './pages/Store/Product';
 import Cart from './pages/Store/Cart';
 import ManageOrders from './pages/Product/ManageOrders';
+import Success from './pages/Store/Success';
+import Wishlist from './pages/Store/Wishlist';
 
 
 function App() {
@@ -34,8 +36,9 @@ function App() {
 
         <Route path='/store' element={<ProductCatalog />} />
         <Route path='/store/:id' element={<Product />} />
+        <Route path='/success' element={<Success />} />
         <Route path='/cart' element={<Cart />} />
-        
+        <Route path='/wishlist' element={<Wishlist />} />
 
       </Routes>
     </Router>
