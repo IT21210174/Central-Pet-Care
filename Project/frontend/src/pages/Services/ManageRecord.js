@@ -11,17 +11,17 @@ import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
 
-import './manageProducts.scss'
+import './ManageRecord.scss'
 
-function ManageProducts() {
+function ManageRecord() {
 
-    const [products, setProducts] = useState([])
+    const [records, setRecords] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const getProducts = () => {
-        userRequest.get("products")
-        .then(res => {
-            setProducts(res.data)
+    const getRecords = () => {
+        userRequest.get("/servicerecords")
+        .then(res => {         
+            setRecords(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -29,7 +29,7 @@ function ManageProducts() {
     }
 
     useEffect(() => {
-        getProducts()
+        getRecords()
     }, [isSubmitted])
 
     
@@ -45,10 +45,10 @@ function ManageProducts() {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          userRequest.delete('/products/' + id)
+          userRequest.delete('/servicerecords/' + id)
           .then(res => {
               setIsSubmitted(!isSubmitted)
-              toast.success('Product deleted')
+              toast.success('Record deleted')
           })
           .catch(err => {
             alert(err)
@@ -84,51 +84,65 @@ function ManageProducts() {
     }
 
     const columns = [
+        
         { 
-          field: "_id",
-          headerName: "ID",
-          headerAlign: "center",
-          align: "center",
-          flex: 4,
-        },
-        {
-          field: "productName",
-          headerName: "Product",
-          headerAlign: "center",
-          flex: 7.5,
-          renderCell: (params) => {
-            return (
-              <div className="listItemName">
-                <img className="listItemImg" src={params.row.image} alt="" />
-                {params.row.productName}
-              </div>
-            );
-          },
-        },
-        {
-          field: "quantity",
-          headerName: "Quantity",
-          headerAlign: "center",
-          align: "center",
-          type: "number",
-          flex: 2,
-        },
-        {
-          field: "price",
-          headerName: "Price",
-          headerAlign: "center",
-          align: "center",
-          type: "number",
-          flex: 2,
-          valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
-        },
-        {
-            field: "SKU",
-            headerName: "SKU",
+            field: "recordId",
+            headerName: "Record ID",
             headerAlign: "center",
             align: "center",
             flex: 2,
         },
+
+        { 
+            field: "serviceId",
+            headerName: "Service ID",
+            headerAlign: "center",
+            align: "center",
+            flex: 2,
+          },
+
+        { 
+            field: "customerId",
+            headerName: "Customer ID",
+            headerAlign: "center",
+            align: "center",
+            flex: 2,
+        },
+        
+        { 
+            field: "vcslId",
+            headerName: "VCSL ID",
+            headerAlign: "center",
+            align: "center",
+            flex: 2,
+          },
+
+          { 
+            field: "petId",
+            headerName: "Pet ID",
+            headerAlign: "center",
+            align: "center",
+            flex: 2,
+          },
+
+          { 
+            field: "date",
+            headerName: "Service Date",
+            headerAlign: "center",
+            align: "center",
+            flex: 2,
+          },
+        
+        {
+          field: "serviceCharge",
+          headerName: "Charge",
+          headerAlign: "center",
+          align: "center",
+          type: "number",
+          flex: 2,
+          valueFormatter: ({ value }) => `Rs. ${value?.toFixed(2)}`,
+        },
+    
         {
           field: "action",
           headerName: "Action",
@@ -140,10 +154,10 @@ function ManageProducts() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/service/ViewRecord/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/admin/products/editProuduct/" + params.row._id}>
+                <Link to={"/admin/service/EditRecord/" + params.row._id}>
                   <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
@@ -156,10 +170,10 @@ function ManageProducts() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={records} columns={columns} searchBar={<SearchBar />} /> 
             </div>
         </AdminLayout>
     )
 }
 
-export default ManageProducts
+export default ManageRecord

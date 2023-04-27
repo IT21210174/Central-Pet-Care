@@ -1,14 +1,14 @@
 const asyncHandler = require('express-async-handler');
 
-const MngService = require('../models/manageserviceModel')
+const Service = require('../models/serviceModel')
 
 
 // @desc    Fetch all records
-// @route   GET /api/records
+// @route   GET /api/services
 // @access  Private/Admin
-const getmngServices = asyncHandler(async (req, res) => {
+const getServices = asyncHandler(async (req, res) => {
 
-    const services = await MngService.find();
+    const services = await Service.find();
     
     res.status(200).json(services);
 
@@ -16,9 +16,9 @@ const getmngServices = asyncHandler(async (req, res) => {
   
 // @desc    Fetch logged in user record
 // @route   GET /api/records/:id
-// @access  Private
+// @access  Private/Admin
 const getServiceById = asyncHandler(async (req, res) => {
-    const service = await MngService.findOne({ serviceId: req.params.serviceId })
+    const service = await Service.findById(req.params.id)
   
     if (service) {
         res.status(200).json(service)
@@ -33,12 +33,11 @@ const getServiceById = asyncHandler(async (req, res) => {
 // @access  Private
 const addService = asyncHandler(async (req, res) => {
     
-    const {serviceId,serviceName, serviceType, serviceCharge,serviceDescription,serviceImage} = req.body;
+    const {serviceId,serviceName,serviceCharge,serviceDescription,serviceImage} = req.body;
 
-    const service = new MngService({
+    const service = new Service({
         serviceId: req.body.serviceId,
         serviceName: req.body.serviceName,
-        serviceType: req.body.serviceType,
         serviceCharge:req.body.serviceCharge,
         serviceDescription: req.body.serviceDescription,
         serviceImage: req.body.serviceImage,
@@ -54,11 +53,11 @@ const addService = asyncHandler(async (req, res) => {
 // @access  Private
 const updateService = asyncHandler(async (req, res) => {
 
-    const service = await MngService.findById(req.params.id)
+    const service = await Service.findById(req.params.id)
   
     if (service) {
   
-        const updatedService = await MngService.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
+        const updatedService = await Service.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
             new: true,
         });
        
@@ -74,7 +73,7 @@ const updateService = asyncHandler(async (req, res) => {
 // @route   DELETE /api/records/:id
 // @access  Private
 const deleteService = asyncHandler(async (req, res) => {
-    const service = await MngService.findById(req.params.id)
+    const service = await Service.findById(req.params.id)
   
     if (service) {
         await service.deleteOne();
@@ -85,4 +84,4 @@ const deleteService = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {getmngServices, getServiceById, addService, updateService, deleteService}
+module.exports = {getServices, getServiceById, addService, updateService, deleteService}

@@ -8,8 +8,17 @@ import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
-import AddService from './pages/Services/addService';
-import AddRecord from './pages/Services/addRecord';
+import Product from './pages/Store/Product'
+
+//service management
+import AddRecord from './pages/Services/AddRecord';
+import AddService from './pages/Services/AddService';
+import EditRecord from './pages/Services/EditRecord';
+import ViewRecord from './pages/Services/ViewRecord';
+import ManageService from './pages/Services/ManageService';
+import ManageRecord from './pages/Services/ManageRecord';
+import EditService from './pages/Services/EditService';
+import ViewService from './pages/Services/ViewService';
 
 function App() {
   return (
@@ -28,10 +37,20 @@ function App() {
         <Route path='/products/viewProuduct/:id' element={<ViewProduct />} />
         <Route path='/orders'  />
         <Route path='/insights'  />
-        <Route path='/AddService' element={<AddService />} />
-        <Route path='/AddRecord' element={<AddRecord />} />
-        
 
+        <Route path='/admin/service/AddService' element={< AddService />} />
+        <Route path='/admin/service/ManageServices' element={< ManageService />} />
+        <Route path='/admin/service/EditService/:id' element={<EditService />} />
+        <Route path='/admin/service/ViewService/:id' element={<ViewService />} />
+
+
+
+        <Route path='/admin/service/AddRecord' element={< AddRecord />} />
+        <Route path='/admin/service/ManageRecords' element={< ManageRecord />} />
+        <Route path='/admin/service/EditRecord/:id' element={<EditRecord />} />
+        <Route path='/admin/service/ViewRecord/:id' element={<ViewRecord />} />
+
+        
       </Routes>
     </Router>
   )

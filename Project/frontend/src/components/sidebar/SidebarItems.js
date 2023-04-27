@@ -95,26 +95,26 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 200,
-				link: "/products/manageProducts",
+				link: "/admin/products/manageProducts",
 				nestedItemicon: <BsFillBoxSeamFill />,
 				nestedItemtext: "Manage products",
 			},
 			{
 				id: 201,
-				link: "/products/addProduct",
+				link: "/admin/products/addProduct",
 				nestedItemicon: <MdLibraryAdd />,
 				nestedItemtext: "Add new item",
 			},
 			{
 				id: 202,
-				link: "/orders",
+				link: "/admin/orders",
 				nestedItemicon: <BsFillCartFill />,
 				nestedItemtext: "Orders",
 			},
 
 			{
 				id: 203,
-				link: "/insights",
+				link: "/admin/insights",
 				nestedItemicon: <MdInsights />,
 				nestedItemtext: "Insights",
 			},
@@ -177,16 +177,29 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 500,
-				link: "/AddService",
+				link: "/admin/service/ManageServices",
 				nestedItemicon: <MdMedicalServices />,
-				nestedItemtext: "Service Information",
+				nestedItemtext: "Manage Services",
 			},
 
 			{
 				id: 501,
-				link: "/AddRecord",
+				link: "/admin/service/AddService",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add Service",
+			},
+			{
+				id: 502,
+				link: "/admin/service/ManageRecords",
 				nestedItemicon: <MdDesignServices />,
-				nestedItemtext: "Service Records",
+				nestedItemtext: "Manage Records",
+			},
+
+			{
+				id: 503,
+				link: "/admin/service/AddRecord",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add Record",
 			},
 		],
 	},

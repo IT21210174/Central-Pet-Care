@@ -11,17 +11,17 @@ import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
 
-import './manageProducts.scss'
+import './ManageService.scss'
 
-function ManageProducts() {
+function ManageService() {
 
-    const [products, setProducts] = useState([])
+    const [services, setServices] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const getProducts = () => {
-        userRequest.get("products")
+    const getServices = () => {
+        userRequest.get("/services")
         .then(res => {
-            setProducts(res.data)
+          setServices(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -29,7 +29,7 @@ function ManageProducts() {
     }
 
     useEffect(() => {
-        getProducts()
+        getServices()
     }, [isSubmitted])
 
     
@@ -45,10 +45,10 @@ function ManageProducts() {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          userRequest.delete('/products/' + id)
+          userRequest.delete('/services/' + id)
           .then(res => {
               setIsSubmitted(!isSubmitted)
-              toast.success('Product deleted')
+              toast.success('Service deleted')
           })
           .catch(err => {
             alert(err)
@@ -83,52 +83,44 @@ function ManageProducts() {
       )
     }
 
-    const columns = [
+    const columns = [    
         { 
-          field: "_id",
-          headerName: "ID",
+          field: "serviceId",
+          headerName: "Service ID",
           headerAlign: "center",
           align: "center",
           flex: 4,
         },
-        {
-          field: "productName",
-          headerName: "Product",
-          headerAlign: "center",
-          flex: 7.5,
-          renderCell: (params) => {
-            return (
-              <div className="listItemName">
-                <img className="listItemImg" src={params.row.image} alt="" />
-                {params.row.productName}
-              </div>
-            );
-          },
-        },
-        {
-          field: "quantity",
-          headerName: "Quantity",
+        { 
+          field: "serviceName",
+          headerName: "Service Name",
           headerAlign: "center",
           align: "center",
-          type: "number",
-          flex: 2,
+          flex: 4,
         },
-        {
-          field: "price",
-          headerName: "Price",
-          headerAlign: "center",
-          align: "center",
-          type: "number",
-          flex: 2,
-          valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
-        },
-        {
-            field: "SKU",
-            headerName: "SKU",
+        { 
+            field: "serviceImage",
+            headerName: "Service Image",
             headerAlign: "center",
             align: "center",
-            flex: 2,
+            flex: 4,
+            renderCell: (params) => {
+              return (
+                <div className="listItemName">
+                  <img className="listItemImg" src={params.row.serviceImage} alt="" />
+                </div>
+              );
+            },
         },
+
+        { 
+            field: "serviceCharge",
+            headerName: "Service Charge",
+            headerAlign: "center",
+            align: "center",
+            flex: 4,
+        },  
+
         {
           field: "action",
           headerName: "Action",
@@ -140,10 +132,10 @@ function ManageProducts() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/service/viewService/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/admin/products/editProuduct/" + params.row._id}>
+                <Link to={"/admin/service/editService/" + params.row._id}>
                   <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
@@ -156,10 +148,10 @@ function ManageProducts() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={services} columns={columns} searchBar={<SearchBar />} /> 
             </div>
         </AdminLayout>
     )
 }
 
-export default ManageProducts
+export default ManageService

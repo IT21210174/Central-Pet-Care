@@ -12,7 +12,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const checkoutRoutes = require('./routes/stripeRoutes')
 
 //service management
-const manageserviceRoutes = require('./routes/manageserviceRoutes')
+const serviceRoutes = require('./routes/serviceRoutes')
 
 //service records management
 const servicerecordsRoutes = require('./routes/servicerecordsRoutes')
@@ -32,10 +32,10 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/checkout', checkoutRoutes);
 
 //service management
-app.use('/api/mngservice', manageserviceRoutes);
+app.use('/api/services', serviceRoutes);
 
 //service records management
-app.use('/api/servicerecord', servicerecordsRoutes);
+app.use('/api/servicerecords', servicerecordsRoutes);
 
 app.use(errorHandler);
 

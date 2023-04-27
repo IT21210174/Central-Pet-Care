@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const {getservicerecords, getServiceRecordById, addServiceRecord, updateServiceRecord, deleteServiceRecord} = require('../controllers/servicerecordsController')
+const {getServiceRecords, getServiceRecordById, addServiceRecord, updateServiceRecord, deleteServiceRecord} = require('../controllers/servicerecordsController')
 
 
-router.get('/', getservicerecords)
+router.get('/', getServiceRecords)
 router.get('/:id', getServiceRecordById)
 
 router.post('/',addServiceRecord)

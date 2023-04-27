@@ -1,14 +1,14 @@
 const asyncHandler = require('express-async-handler');
 
-const ServiceRecords = require('../models/servicerecordsModel')
+const ServiceRecord = require('../models/servicerecordsModel')
 
 
 // @desc    Fetch all records
 // @route   GET /api/records
 // @access  Private/Admin
-const getservicerecords = asyncHandler(async (req, res) => {
+const getServiceRecords = asyncHandler(async (req, res) => {
 
-    const servicerecords = await ServiceRecords.find();
+    const servicerecords = await ServiceRecord.find();
     
     res.status(200).json(servicerecords);
 
@@ -18,7 +18,7 @@ const getservicerecords = asyncHandler(async (req, res) => {
 // @route   GET /api/records/:id
 // @access  Private
 const getServiceRecordById = asyncHandler(async (req, res) => {
-    const servicerecord = await ServiceRecords.findOne({ recordId: req.params.recordId })
+    const servicerecord = await ServiceRecord.findById(req.params.id)
   
     if (servicerecord) {
         res.status(200).json(servicerecord)
@@ -35,7 +35,7 @@ const addServiceRecord = asyncHandler(async (req, res) => {
     
     const {recordId,serviceId,customerId,vcslId,petId,date,serviceCharge} = req.body;
 
-    const servicerecord = new ServiceRecords({
+    const servicerecord = new ServiceRecord({
         recordId: req.body.recordId,
         serviceId: req.body.serviceId,
         customerId: req.body.customerId,
@@ -55,11 +55,11 @@ const addServiceRecord = asyncHandler(async (req, res) => {
 // @access  Private
 const updateServiceRecord = asyncHandler(async (req, res) => {
 
-    const servicerecord = await ServiceRecords.findById(req.params.id)
+    const servicerecord = await ServiceRecord.findById(req.params.id)
   
     if (servicerecord) {
   
-        const updatedServiceRecord = await ServiceRecords.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
+        const updatedServiceRecord = await ServiceRecord.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
             new: true,
         });
        
@@ -75,7 +75,7 @@ const updateServiceRecord = asyncHandler(async (req, res) => {
 // @route   DELETE /api/record/:id
 // @access  Private
 const deleteServiceRecord = asyncHandler(async (req, res) => {
-    const servicerecord = await ServiceRecords.findById(req.params.id)
+    const servicerecord = await ServiceRecord.findById(req.params.id)
   
     if (servicerecord) {
         await servicerecord.deleteOne();
@@ -86,4 +86,4 @@ const deleteServiceRecord = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {getservicerecords, getServiceRecordById, addServiceRecord, updateServiceRecord, deleteServiceRecord}
+module.exports = {getServiceRecords, getServiceRecordById, addServiceRecord, updateServiceRecord, deleteServiceRecord}
