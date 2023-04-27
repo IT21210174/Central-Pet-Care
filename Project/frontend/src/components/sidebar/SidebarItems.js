@@ -33,7 +33,10 @@ import { TbTruckDelivery } from "react-icons/tb";
 
 // vet management
 
-import { RiNurseFill } from "react-icons/ri"
+import { BsPersonLinesFill } from "react-icons/bs"
+import { BiNotepad } from "react-icons/bi"
+import { MdEditNote } from "react-icons/md"
+import { GiMedicines } from "react-icons/gi"
 
 const SidebarItems = [
 	{
@@ -203,35 +206,35 @@ const SidebarItems = [
             {
                 id:600,
                 link:"/admin/vets/addVet",
-                nestedItemicon:<RiNurseFill/>,
-                nestedItemtext:"Veterinary Surgeons"
+                nestedItemicon:<TbUserPlus/>,
+                nestedItemtext:"Add Veterinary Surgeons"
             },
 
 			{
                 id:603,
                 link:"/admin/vets/manageVet",
-                nestedItemicon:<BsFillCartFill/>,
+                nestedItemicon:<BsPersonLinesFill/>,
                 nestedItemtext:"Manage Vet"
             },
 
             {
                 id:601,
                 link:"/admin/prescriptions/addPrescription",
-                nestedItemicon:<BsFillCartFill/>,
+                nestedItemicon:<BiNotepad/>,
                 nestedItemtext:"Prescriptions"
             },
 
 			{
                 id:603,
                 link:"/admin/prescriptions/managePrescription",
-                nestedItemicon:<BsFillCartFill/>,
+                nestedItemicon:<MdEditNote/>,
                 nestedItemtext:"Manage Prescription"
             },
 
             {
                 id:602,
                 link:"/admin/medicines/manageMedicines",
-                nestedItemicon:<MdInsights/>,
+                nestedItemicon:<GiMedicines/>,
                 nestedItemtext:"Medicine"
             },
     ]

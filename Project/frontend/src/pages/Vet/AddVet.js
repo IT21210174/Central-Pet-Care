@@ -62,11 +62,11 @@ function AddVet() {
                 </section>
                 <section className="input-container">
                   <span className="input-title">telephone</span>
-                  <input type="text" className="input-field" value={telephone} onChange={(e) => setTelephone(e.target.value)}/>
+                  <input type="text" className="input-field" value={telephone} onChange={(e) => setTelephone(e.target.value)} pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="0123456789"/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">email</span>
-                  <input type="text" className="input-field" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                  <input type="email" className="input-field" value={email} onChange={(e) => setEmail(e.target.value)} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
                 </section>
               </div>
               {/* column two */}

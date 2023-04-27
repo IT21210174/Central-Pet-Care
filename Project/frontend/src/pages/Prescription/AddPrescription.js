@@ -8,24 +8,24 @@ import axios from 'axios';
 
 function AddPrescription() {
 
-  const [data, setData] = useState([]);
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
+ // const [data, setData] = useState([]);
+ // const [name, setName] = useState('');
+  //const [age, setAge] = useState('');
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    const result = await axios('/api/data');
-    setData(result.data);
-  };
+  // const fetchData = async () => {
+  //   const result = await axios('/api/data');
+  //   setData(result.data);
+  // };
 
-  const addData = async () => {
-    const newData = { name, age: parseInt(age) };
-    await axios.post('/api/data', newData);
-    fetchData();
-  };
+  // const addData = async () => {
+  //   const newData = { name, age: parseInt(age) };
+  //   await axios.post('/api/data', newData);
+  //   fetchData();
+  // };
 
 
   const[petname , setPetName] = useState("")
@@ -89,39 +89,7 @@ function AddPrescription() {
                   <input type="text" className="input-field" value={dosage} onChange={(e) => setDosage(e.target.value)}/>
                 </section>
 
-                <section className="input-container">
-               
-                <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.age}</td>
-            </tr>
-          ))}
-          <tr>
-            <td>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-            </td>
-            <td>
-              <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
-            </td>
-            <td>
-              <button onClick={addData}>Add Row</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-                </section>
+             
 
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>

@@ -136,9 +136,9 @@ function ManagePrescription() {
                 <Link to={"/admin/prescriptions/ViewPrescription/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/admin/prescriptions/EditPrescription/" + params.row._id}>
+                {/* <Link to={"/admin/prescriptions/EditPrescription/" + params.row._id}>
                   <FiEdit className='edit' />
-                </Link>
+                </Link> */}
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
               </div>
             );

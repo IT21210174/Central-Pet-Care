@@ -36,8 +36,8 @@ function ViewVet() {
 
     return (
         <AdminLayout>
-            <div className='product'>
-            <table>
+            <div className='vet'>
+            {/* <table>
                 <tr>
                     <td colSpan='2' className='imageContainer'>
                         <img src={imageURL} className='image' height='120px' />
@@ -61,14 +61,40 @@ function ViewVet() {
                 </tr>
                 <tr>
                     <td>Experience</td>
-                    <td>{experience}</td>
+                    <td style={{whiteSpace: 'pre-wrap'}}>{experience}</td>
                 </tr>
                 <tr>
                     <td>Qualification</td>
                     <td>{qualification}</td>
                 </tr>
-            </table>
+            </table> */}
+
+            <div className='vet-record-container'>
+                    <div className = "vet-pic-container">
+                        <img src={imageURL} className='vet-img'></img>
+                    </div>
+                    <div className = "vet-details-container">
+                        <div className="vet-prompts">
+                            <span className='vet-line-info'>VCSLID</span>
+                            <span className='vet-line-info'>Vet Name</span>
+                            <span className='vet-line-info'>Telephone </span>
+                            <span className='vet-line-info'>Email</span>
+                            <span className='vet-line-info'>Experience </span>
+                            <span className='vet-line-info'>Qualification</span>
+                        </div>
+                        <div className="vet-values">
+                            <span className='vet-line-info-values'>{vcslId}</span>
+                            <span className='vet-line-info-values'>{vetName}</span>
+                            <span className='vet-line-info-values'>{telephone}</span>
+                            <span className='vet-line-info-values'>{email}</span>
+                            <span className='vet-line-info-values'>{experience}</span>
+                            <span className='vet-line-info-values'>{qualification}</span>
+                        </div>
+                    </div> 
+                </div>
+
             </div>
+            
         </AdminLayout>
     )
 }
