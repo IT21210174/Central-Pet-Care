@@ -1,12 +1,13 @@
 import React from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
+import UnderDevComp from '../under-development/under-development'
 
-function TestComp() {
+function ReleaseItems() {
   return (
     <AdminLayout>
-        <div>Hi this is working</div>
+       <UnderDevComp/>
     </AdminLayout>
   )
 }
 
-export default TestComp
+export default ReleaseItems

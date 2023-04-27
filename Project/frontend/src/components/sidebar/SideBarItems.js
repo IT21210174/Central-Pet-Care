@@ -60,7 +60,7 @@ const sidebarItems = [
 
 			{
 				id: 104,
-				link: "/component-5",
+				link: "/inventory/release-items",
 				nestedItemicon: <BiCategoryAlt />,
 				nestedItemtext: "Release items",
 			},

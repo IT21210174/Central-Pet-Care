@@ -3,10 +3,13 @@ import { AppContext } from "../../../context/AppContext";
 import swal from "sweetalert2";
 import AdminLayout from "../../Layouts/AdminLayout";
 import api from "../../../services/api";
+// import uploadImage from './uploadImage'
+// import './firebase'
 import "./addItem.scss";
 
 const AddItem = () => {
 
+	const [file , setFile] = useState('')
 	const [formData, setFormData] = useState({
 		sku: "",
 		itemName: "",
@@ -19,12 +22,16 @@ const AddItem = () => {
 		productImage: "",
 	});
 
-	const addItemFormHandler = (event) => {
+	const addItemFormHandler = async(event) => {
 		event.preventDefault();
 		console.log(formData);
 
 		if (formData.sku !== "" && formData.category !== "") {
-			api.post("/", formData)
+
+			// const imageURL = await uploadImage(file);
+			// productImage: imageURL
+
+			api.post("/", {...formData})
 				.then((response) => {
 					console.log(response);
 					swal.fire({
@@ -187,10 +194,10 @@ const AddItem = () => {
 								<input
 									type="file"
 									name="productImage"
-									value={formData.productImage}
-									id=""
+									id="file-input"
+									accept='.png, .jpeg, .jpg, .webp'
 									className="input-field"
-									onChange={addItemInputHandler}
+									onChange={(e) => setFile(e.target.files[0])}
 								/>
 							</section>
 							<div className="btn-container-add-item">

@@ -1,5 +1,6 @@
 import React, { useState ,useEffect } from 'react'
 import api from '../../../services/api'
+import supplierApi from '../../../services/supplierAPI'
 import PrLvMed from '../../../components/inventory-signals/PrLvlMedium'
 import PrLvHigh from '../../../components/inventory-signals/PrLvlHigh'
 import AdminLayout from '../../Layouts/AdminLayout'
@@ -16,9 +17,15 @@ function OverviewComponent() {
   // hooks and other data reading logics
   const [inventory , setInventory] = useState([])
 
+  const [supplierCount , setSupplierCount] = useState([])
+
   useEffect(()=>{
     api.get("/").then((response)=>{setInventory(response.data)})
     console.log(inventory);
+
+    supplierApi.get("/").then((response)=>{setSupplierCount(response.data)})
+    console.log(supplierCount);
+
   },[])
 
   let pharmCount = 0
@@ -59,7 +66,7 @@ function OverviewComponent() {
             <div className="insight-card">
                 <img src={supplier} alt="" className="insight-card-pic" />
                 <div className="insight-card-details">
-                  <span className="item-count-displayer">00</span>
+                  <span className="item-count-displayer">{supplierCount.length < 10 ? `0${supplierCount.length}` : supplierCount.length}</span>
                   <span className="insight-card-title">Suppliers</span>
                 </div>
             </div>
