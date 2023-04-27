@@ -81,17 +81,17 @@ const updateStaff = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteStaff = asyncHandler(async (req, res) => {
     console.log(req.params.id)
-    // const staff = await Staff.findById(req.params.id)
+     const staff = await Staff.findById(req.params.id)
 
-    // console.log(staff)
+    console.log(staff)
   
-    // if (staff) {
-    //     await staff.deleteOne();
-    //     res.status(200).json({message: 'Staff member removed'})
-    // } else {
-    //     res.status(404)
-    //     throw new Error('Staff member not found')
-    // }
+     if (staff) {
+         await staff.deleteOne();
+         res.status(200).json({message: 'Staff member removed'})
+     } else {
+         res.status(404)
+         throw new Error('Staff member not found')
+     }
 })
 
 module.exports = {getStaff, getStaffById, addStaff, updateStaff, deleteStaff}

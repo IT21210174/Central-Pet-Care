@@ -8,11 +8,11 @@ const payrollSchema = mongoose.Schema({
         unique: true,
     },
     otHours:{
-        type: String,
+        type: Number,
         required: [true, 'Please add OT hours']
     },
     salary: {
-        type: String,
+        type: Number,
         required: [true, 'Please add salary']
     },
     paymentStatus: {

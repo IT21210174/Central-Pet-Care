@@ -11,18 +11,17 @@ import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
 
-import './ManageStaff.scss'
+import './ManagePayroll.scss'
 
+function ManagePayroll() {
 
-function ManageStaff() {
-
-    const [staff, setStaff] = useState([])
+    const [payroll, setpayroll] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const getSatff = () => {
-        userRequest.get("staff")
+    const getpayroll = () => {
+        userRequest.get("payroll")
         .then(res => {
-            setStaff(res.data)
+            setpayroll(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -30,7 +29,7 @@ function ManageStaff() {
     }
 
     useEffect(() => {
-        getSatff()
+        getpayroll()
     }, [isSubmitted])
 
     
@@ -46,10 +45,10 @@ function ManageStaff() {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          userRequest.delete('/staff/' + id)
+          userRequest.delete('/payroll/' + id)
           .then(res => {
               setIsSubmitted(!isSubmitted)
-              toast.success('Staff Member deleted')
+              toast.success('Payroll details deleted')
           })
           .catch(err => {
             alert(err)
@@ -92,85 +91,37 @@ function ManageStaff() {
           align: "center",
           flex: 2,
         },
+        
         {
-          field: "firstName",
-          headerName: "First Name",
-          headerAlign: "center",
-          flex: 2,
-          renderCell: (params) => {
-            return (
-              <div className="listItemName">
-                <img className="listItemImg" src={params.row.simage} alt="" />
-                {params.row.firstName}
-              </div>
-            );
-          },
-        },
-        {
-          field: "lastName",
-          headerName: "Last Name",
+          field: "otHours",
+          headerName: "OT Hours",
           headerAlign: "center",
           align: "center",
           flex: 2,
         },
         {
-          field: "address",
-          headerName: "Address",
+          field: "salary",
+          headerName: "Salary",
           headerAlign: "center",
           align: "center",
           flex: 2,
+          valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
         },
         {
-            field: "nic",
-            headerName: "NIC",
+            field: "paymentStatus",
+            headerName: "Payment Status",
             headerAlign: "center",
             align: "center",
             flex: 2,
         },
         {
-          field: "contactNo",
-          headerName: "Contact No",
+          field: "date",
+          headerName: "Date",
           headerAlign: "center",
           align: "center",
           flex: 2,
       },
-      {
-        field: "dob",
-        headerName: "DOB",
-        headerAlign: "center",
-        align: "center",
-        flex: 2,
-      },
-      {
-        field: "email",
-        headerName: "Email",
-        headerAlign: "center",
-        align: "center",
-        flex: 2,
-  },
-  {
-    field: "department",
-    headerName: "Department",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-},
-{
-  field: "joinedDate",
-  headerName: "Joined Date",
-  headerAlign: "center",
-  align: "center",
-  flex: 2,
-},
-{
-  field: "salary",
-  headerName: "Salary",
-  headerAlign: "center",
-  align: "center",
-  flex: 2,
-  valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
-},
-
+     
         {
           field: "action",
           headerName: "Action",
@@ -182,10 +133,10 @@ function ManageStaff() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/staff/ViewStaff/" + params.row._id}>
+                <Link to={"/admin/payroll/ViewPayroll/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/admin/staff/EditSatff/" + params.row._id}>
+                <Link to={"/admin/payroll/EditPayroll/" + params.row._id}>
                   <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
@@ -198,10 +149,10 @@ function ManageStaff() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={staff} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={payroll} columns={columns} searchBar={<SearchBar />} /> 
             </div>
         </AdminLayout>
     )
 }
 
-export default ManageStaff
+export default ManagePayroll

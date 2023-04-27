@@ -31,6 +31,12 @@ import { BiStoreAlt } from "react-icons/bi";
 import { BiPlusMedical } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 
+//staff
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { FaWpforms } from "react-icons/fa";
+import { GiReceiveMoney } from "react-icons/gi";
+
+
 const SidebarItems = [
 	{
 		id: 1000,
@@ -128,22 +134,43 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 300,
-				link: "/AddStaff",
+				link: "/admin/staff/AddStaff",
+				nestedItemicon: <AiOutlineUserAdd />,
+				nestedItemtext: "Add Staff",
+			},
+
+			{
+				id: 301,
+				link: "/admin/leave/AddLeave",
+				nestedItemicon: <FaWpforms />,
+				nestedItemtext: "Add Leaves",
+			},
+
+			{
+				id: 302,
+				link: "/admin/payroll/AddPayroll",
+				nestedItemicon: <GiTakeMyMoney />,
+				nestedItemtext: "Add Payrolls",
+			},
+
+			{
+				id: 303,
+				link: "/admin/staff/ManageStaff",
 				nestedItemicon: <BsPeopleFill />,
 				nestedItemtext: "Manage Staff",
 			},
 
 			{
-				id: 301,
-				link: "/AddLeave",
+				id: 304,
+				link: "/admin/leave/ManageLeave",
 				nestedItemicon: <MdHolidayVillage />,
 				nestedItemtext: "Manage Leaves",
 			},
 
 			{
-				id: 302,
-				link: "/AddPayroll",
-				nestedItemicon: <GiTakeMyMoney />,
+				id: 305,
+				link: "/admin/payroll/ManagePayroll",
+				nestedItemicon: <GiReceiveMoney />,
 				nestedItemtext: "Manage Payrolls",
 			},
 		],

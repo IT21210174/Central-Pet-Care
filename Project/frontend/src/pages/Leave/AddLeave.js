@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import './AddLeave.scss'
-import axios from 'axios'
+import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
+import './AddLeave.scss'
+import { userRequest } from '../../requestMethods'
+import { toast } from 'react-hot-toast';
+
 
 
 const AddLeave = () => {
@@ -11,22 +14,31 @@ const AddLeave = () => {
   const [leaveFrom,setleaveFrom] = useState("")
   const [leaveTo,setleaveTo] = useState("")
 
-const staffLeaveHandler = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault()
-  const leaveObj = {staffId,leaveType,reason,leaveFrom,leaveTo}
-  console.log(leaveObj);
+  userRequest.post("/leave", {staffId,leaveType,reason,leaveFrom,leaveTo})
+  .then(res => {
+    toast.success('Leave details added')
+    handleReset()
+}).catch(err => {
+    toast.error(err.message)
+})
+}
 
-  axios.post("http://localhost:4000/api/leave/",leaveObj)
-  .then((response)=>console.log(response))
-  .catch((error)=>console.log(error))
-
-  console.log("form submitted");
+const handleReset = () => {
+  setStaffID('')
+  setleaveType('')
+  setreason('')
+  setleaveFrom('')
+  setleaveTo('')
+  
+  //document.getElementById('file-input').value = '';
 }
   return (
     <AdminLayout>
     <div className="add-item-container-main">
         {/* this is the form container */}
-        <form className="add-leave-form-container" onSubmit={staffLeaveHandler}>
+        <form className="add-leave-form-container" onSubmit={handleSubmit}>
             <span className="tagline-add-item"> Leave Request Form</span>
             {/* input field container */}
             <div className="column-container">
@@ -60,7 +72,7 @@ const staffLeaveHandler = (e) => {
                 </section>
                 <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                 </div>
             </div>
                

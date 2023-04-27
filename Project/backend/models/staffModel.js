@@ -43,7 +43,7 @@ const staffSchema = mongoose.Schema({
         required: [true, 'Please add joined date']
     },
     salary: {
-        type: String,
+        type: Number,
         required: [true, 'Please add salary']
     },
     simage: {

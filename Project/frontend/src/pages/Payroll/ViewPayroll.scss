@@ -1,4 +1,4 @@
-.staff {
+.payroll {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,9 +23,9 @@ table tr td {
     padding: 5px 10px;
 }
 
-.staff-record-container{
-    width: 1000px;
-    height: 500px;
+.payroll-record-container{
+    width: 500px;
+    height: 350px;
     background-color: white;
     border-radius: 10px;
     display: flex;
@@ -34,16 +34,16 @@ table tr td {
     padding: 20px;
 }
 
-.staff-pic-container{
-    width: 350px;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+// .payroll-pic-container{
+//     width: 350px;
+//     height: 90%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 
-.staff-details-container{
-    padding-top: 50px;
+.payroll-details-container{
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,12 +51,12 @@ table tr td {
     height: 90%;
 }
 
-.staff-img{
-    height: 400px;
-    border-radius: 20px;
-}
+// .payroll-img{
+//     height: 400px;
+//     border-radius: 20px;
+// }
 
-.staff-prompts{
+.payroll-prompts{
     font-size: 1.2em;
     display: flex;
     justify-content: flex-start;
@@ -66,7 +66,7 @@ table tr td {
     height: 100%;
 }
 
-.staff-values{
+.payroll-values{
     font-size: 1.2em;
     display: flex;
     justify-content: flex-start;
@@ -76,24 +76,24 @@ table tr td {
     height: 100%;
 }
 
-.staff-line-info{
+.payroll-line-info{
     padding: 5px 10px;
     margin-top: 10px;
     font-weight: 700;
 }
 
-.staff-line-info-values{
+.payroll-line-info-values{
     width: 90%;
     padding: 5px 10px;
     margin-top: 10px;
     border-radius: 5px;
 }
 
-.staff-line-info-values:nth-child(4){
-    padding: 5px 10px;
-    margin-top: 20px;
-    height: 130px;
-    border-radius: 5px;
-    text-align: justify;
-    text-justify: inter-word;
-}
+// .payroll-line-info-values{
+//     padding: 5px 10px;
+//     margin-top: 20px;
+//     height: 130px;
+//     border-radius: 5px;
+//     text-align: justify;
+//     text-justify: inter-word;
+// }

@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
-import './AddStaff.scss'
-import axios from 'axios'
+import React,{useEffect,useState} from 'react';
+import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
+import './AddStaff.scss'
+import { userRequest } from '../../requestMethods'
+import uploadImage from '../../uploadImage';
+import { toast } from 'react-hot-toast';
 
 const AddStaff = () => {
   const [firstName,setfirstName] = useState("")
@@ -11,30 +14,54 @@ const AddStaff = () => {
   const [contactNo,setcontactNo] = useState("")
   const [dob,setdob] = useState("")
   const [email,setemail] = useState("")
-  const [staffId,setstaffId] = useState("")
+ // const [staffId,setstaffId] = useState("")
   const [department,setdepartment] = useState("")
   const [joinedDate,setjoinedDate] = useState("")
   const [salary,setsalary] = useState("")
   const [simage,setsimage] = useState("")
+  const [file, setFile] = useState('')
 
-  const staffHandler = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const staffObj = {firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage}
-    console.log(staffObj);
-
-    axios.post("http://localhost:4000/api/staff/",staffObj)
-    .then((response)=>console.log(response))
-    .catch((error)=>console.log(error))
-
-    console.log("form submitted");
+    const imageURL = await uploadImage(file);
+    userRequest.post("/staff",  {firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage: imageURL})
+    .then(res => {
+      toast.success('Staff added')
+      handleReset()
+  }).catch(err => {
+      toast.error(err.message)
+  })
   }
+
+  const handleReset = () => {
+    setfirstName('')
+    setlastName('')
+    setaddress('')
+    setnic('')
+    setcontactNo('')
+    setdob('')
+    setemail('')
+   // setstaffId('')
+    setdepartment('')
+    setjoinedDate('')
+    setsalary('')
+    setFile(null)
+
+    document.getElementById('file-input').value = '';
+  }
+  const [maxDate, setMaxDate] = useState(null)
+
+  useEffect(() => {
+    const date = new Date();
+    setMaxDate(date.toISOString() .split("T")[0])
+  }, [])
   
 
   return (
     <AdminLayout>
     <div className="add-item-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={staffHandler}>
+        <form className="add-item-form-container" onSubmit={handleSubmit}>
             <span className="tagline-add-item"> Add Staff Member</span>
             {/* input field container */}
             <div className="column-container">
@@ -62,7 +89,7 @@ const AddStaff = () => {
                 </section>
                 <section className="input-container">
                   <span className="input-title">Salary</span>
-                  <input className="input-field" value={salary} onChange={(e) => setsalary(e.target.value)} type="text" pattern="[0-9]*[.]?[0-9]{0,2}" required/>
+                  <input className="input-field" value={salary} onChange={(e) => setsalary(e.target.value)} type="text" pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)'required/>
                 </section>
               </div>
               {/* column two */}
@@ -77,23 +104,23 @@ const AddStaff = () => {
                     </section>
                     <section className="input-container">
                         <span className="input-title">Date Of Birth</span>
-                        <input className="input-field" value={dob} onChange={(e) => setdob(e.target.value)} type="date" required/>
+                        <input className="input-field" value={dob} onChange={(e) => setdob(e.target.value)} type="date" max={maxDate} required/>
                     </section>
-                    <section className="input-container">
+                    {/* <section className="input-container">
                         <span className="input-title">Staff ID</span>
                         <input className="input-field" value={staffId} onChange={(e) => setstaffId(e.target.value)} required/>
-                    </section>
+                    </section> */}
                     <section className="input-container">
                         <span className="input-title">Joined Date</span>
                         <input className="input-field" value={joinedDate} onChange={(e) => setjoinedDate(e.target.value)} type="date" required/>
                     </section>
                     <section className="input-container">
                         <span className="input-title">Staff Member Image</span>
-                        <input type="file" value={simage} onChange={(e) => setsimage(e.target.value)} name="" id="" className='input-field'required/>
+                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
                     </section>
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
               </div>
             </div>

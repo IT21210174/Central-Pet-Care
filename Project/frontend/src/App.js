@@ -9,12 +9,28 @@ import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
 
-import AddStaff from './pages/Staff/AddStaff';
-import ManageStaff from './pages/Staff/ManageStaff';
-import ViewStaff from './pages/Staff/ViewStaff';
-import EditStaff from './pages/Staff/EditStaff';
-import AddLeave from './pages/Leave/AddLeave';
+//payroll management
+
 import AddPayroll from './pages/Payroll/AddPayroll';
+import ManagePayroll from './pages/Payroll/ManagePayroll';
+import EditPayroll from './pages/Payroll/EditPayroll';
+import ViewPayroll from './pages/Payroll/ViewPayroll';
+
+
+//staff management
+
+import AddStaff from './pages/Staff/AddStaff'
+import ManageStaff from './pages/Staff/ManageStaff';
+import EditStaff from './pages/Staff/EditStaff';
+import ViewStaff from './pages/Staff/ViewStaff';
+
+//leave management
+import AddLeave from './pages/Leave/AddLeave';
+import ManageLeave from './pages/Leave/ManageLeave'
+import EditLeave from './pages/Leave/EditLeave'
+import ViewLeave from './pages/Leave/ViewLeave';
+
+
 
 function App() {
   return (
@@ -33,14 +49,25 @@ function App() {
         <Route path='/products/viewProuduct/:id' element={<ViewProduct />} />
         <Route path='/orders'  />
         <Route path='/insights'  />
-        <Route path='/AddStaff' element={<AddStaff />} />
-        <Route path='/AddLeave' element={<AddLeave />} />
-        <Route path='/AddPayroll' element={<AddPayroll />} />
         
-        <Route path='/staff/manageStaff' element={< ManageStaff />} />
-        <Route path='/staff/addStaff' element={<AddStaff />} />
-        <Route path='/staff/editStaff/:id' element={<EditStaff />} />
-        <Route path='/staff/viewStaff/:id' element={<ViewStaff />} />
+        {/*staff*/ }
+        <Route path='/admin/staff/AddStaff' element={< AddStaff />} />
+        <Route path='/admin/staff/ManageStaff' element={<ManageStaff />} />
+        <Route path='/admin/staff/EditSatff/:id' element={<EditStaff />} />
+        <Route path='/admin/staff/ViewStaff/:id' element={<ViewStaff />} />
+
+        <Route path='/admin/payroll/AddPayroll' element={< AddPayroll />} />
+        <Route path='/admin/payroll/ManagePayroll' element={< ManagePayroll />} />
+        <Route path='/admin/payroll/EditPayroll/:id' element={<EditPayroll />} />
+        <Route path='/admin/payroll/ViewPayroll/:id' element={<ViewPayroll/>} />
+        
+        <Route path='/admin/leave/AddLeave' element={< AddLeave />} />
+        <Route path='/admin/leave/ManageLeave' element={< ManageLeave />} />
+        <Route path='/admin/leave/EditLeave/:id' element={<EditLeave />} />
+        <Route path='/admin/leave/ViewLeave/:id' element={<ViewLeave/>} />
+        
+      
+
 
       </Routes>
     </Router>

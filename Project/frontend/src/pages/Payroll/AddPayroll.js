@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import './AddPayroll.scss'
-import axios from 'axios'
+import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
+import './AddPayroll.scss'
+import { userRequest } from '../../requestMethods'
+import { toast } from 'react-hot-toast';
 
 
 const AddPayroll = () => {
@@ -12,16 +14,23 @@ const AddPayroll = () => {
   const[paymentStatus,setpaymentStatus] =  useState("")
   const[date,setdate] =  useState("")
 
-  const staffPayrollHandler =(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const payrollObj = {staffId,otHours,salary,paymentStatus,date}
-    console.log(payrollObj);
+    userRequest.post("/payroll", {staffId,otHours,salary,paymentStatus,date}) 
+    .then(res => {
+      toast.success('Payroll details added')
+      handleReset()
+  }).catch(err => {
+      toast.error(err.message)
+  })
+  }
 
-    axios.post("http://localhost:4000/api/payroll/",payrollObj)
-    .then((response)=>console.log(response))
-    .catch((error)=>console.log(error))
-
-    console.log("form submitted");
+  const handleReset = () => {
+    setstaffId('')
+    setotHours('')
+    setsalary('')
+    setpaymentStatus('')
+    setdate('')
   }
 
   const [maxDate, setMaxDate] = useState(null)
@@ -40,7 +49,7 @@ const AddPayroll = () => {
     <AdminLayout>
     <div className="add-item-container-main">
         {/* this is the form container */}
-        <form className="add-payroll-form-container" onSubmit={staffPayrollHandler}>
+        <form className="add-payroll-form-container" onSubmit={handleSubmit}>
             <span className="tagline-add-item"> Add Payroll Details</span>
             {/* input field container */} 
             <div className="column-container">
@@ -56,14 +65,14 @@ const AddPayroll = () => {
                 </section>
                 <section className="input-container">
                   <span className="input-title">Salary</span>
-                  <input className="input-field" value={salary} onChange={(e) => setsalary(e.target.salary)}type="text" required/>
+                  <input className="input-field" value={salary} onChange={(e) => setsalary(e.target.value)}type="text" title='Enter price with up to 2 decimals (e.g. 59.99)' required/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">Payment Status</span>
                   <select className="input-field" value={paymentStatus} onChange={(e) => setpaymentStatus(e.target.value)} required>
-                      <option className='select-option' value="">Select paymentstatus</option>
-                      <option className='select-option' value="payed">Payed</option>
-                      <option className='select-option' value="unpayed">Un payed</option>
+                      <option className='select-option' value="">Select payment status</option>
+                      <option className='select-option' value="Paid">Paid</option>
+                      <option className='select-option' value="Unpaid">Unpaid</option>
                   </select>
                 </section>
                 <section className="input-container">
@@ -72,7 +81,7 @@ const AddPayroll = () => {
                 </section>
                 <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                 </div>
                
               </div>
