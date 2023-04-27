@@ -33,7 +33,13 @@ const vetSchema = mongoose.Schema({
     timestamps: true
 })
 
-
-
+vetSchema.index({
+    vcslId: 'text',
+    vetName: 'text',
+    telephone: 'text',
+    email: 'text',
+    experience: 'text',
+    qualification: 'text',
+})
 
 module.exports = mongoose.model('Vets', vetSchema);

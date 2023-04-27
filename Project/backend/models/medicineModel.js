@@ -13,4 +13,9 @@ const medicineSchema = mongoose.Schema({
     timestamps: true
 })
 
+medicineSchema.index({
+    medicineName: 'text',
+    uses: 'text'
+})
+
 module.exports = mongoose.model('Medicine', medicineSchema);

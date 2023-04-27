@@ -67,7 +67,13 @@ function ManagePrescription() {
     
       const handleSearch = (e) => {
           e.preventDefault()
-          alert(search)
+          userRequest.get(`prescriptions?search=${search}`)
+          .then(res => {
+            setPrescription(res.data)
+          })
+          .catch(err => {
+              console.log(err)
+          })
       }
     
       return(

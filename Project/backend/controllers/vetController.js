@@ -8,7 +8,21 @@ const Vet = require('../models/vetModel')
 // @access  Private/Admin
 const getVets = asyncHandler(async (req, res) => {
 
-    const vets = await Vet.find();
+    const vSearch = req.query.search
+    //testing
+    console.log(vSearch)
+    let vets
+
+    if(vSearch){
+        vets = await Vet.find(
+            {
+                $text: { $search: vSearch }
+            }
+        )
+    }
+    else{
+         vets = await Vet.find();
+    }
     
     res.status(200).json(vets);
 

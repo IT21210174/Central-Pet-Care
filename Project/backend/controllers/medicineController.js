@@ -8,7 +8,23 @@ const Medicine = require('../models/medicineModel')
 // @access  Private/Admin
 const getMedicines = asyncHandler(async (req, res) => {
 
-    const medicines = await Medicine.find();
+    
+    const qSearch = req.query.search
+    //testing
+    console.log(qSearch)
+    let medicines
+
+    if(qSearch){
+        medicines = await Medicine.find(
+            {
+                $text: { $search: qSearch }
+            }
+        )
+    }
+    else{
+         medicines = await Medicine.find();
+    }
+
     
     res.status(200).json(medicines);
 

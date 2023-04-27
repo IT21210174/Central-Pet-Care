@@ -25,7 +25,15 @@ const prescriptionSchema = mongoose.Schema({
     timestamps: true
 })
 
+prescriptionSchema.index({
 
+    petname: 'text',
+    address: 'text',
+    description: 'text',
+    medicine: 'text',
+    dosage: 'text',
+
+})
 
 
 module.exports = mongoose.model('Prescription', prescriptionSchema);

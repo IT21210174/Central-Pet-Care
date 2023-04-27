@@ -31,10 +31,17 @@ function Medicine() {
       const [search, setSearch] = useState('')
     
       console.log(search)
+    //  userRequest.get(`medicines?search=${search}`)
     
       const handleSearch = (e) => {
           e.preventDefault()
-          alert(search)
+          userRequest.get(`medicines?search=${search}`)
+          .then(res => {
+              setMedicines(res.data)
+          })
+          .catch(err => {
+              console.log(err)
+          })
       }
     
       return(
