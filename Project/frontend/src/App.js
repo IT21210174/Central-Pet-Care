@@ -11,6 +11,9 @@ import ViewProduct from './pages/Product/ViewProduct';
 import ProductCatalog from './pages/Store/ProductCatalog';
 import Product from './pages/Store/Product';
 import Cart from './pages/Store/Cart';
+import ManageOrders from './pages/Product/ManageOrders';
+import Success from './pages/Store/Success';
+import Wishlist from './pages/Store/Wishlist';
 
 //vet management
 import Addvet from './pages/Vet/AddVet';
@@ -45,14 +48,14 @@ function App() {
          <Route path='/admin/products/addProduct' element={<AddProduct />} />
          <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
          <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
-         <Route path='/admin/orders'  />
+         <Route path='/admin/orders' element={<ManageOrders />} />
          <Route path='/admin/insights'  />
 
-         <Route path='/products' element={<ProductCatalog />} />
-         <Route path='/products/:id' element={<Product />} />
-         <Route path='/cart' element={<Cart />} />
-        
-         <Route path='/admin/vets/addVet' element={<Addvet />} />
+        <Route path='/products' element={<ProductCatalog />} />
+        <Route path='/products/:id' element={<Product />} />
+        <Route path='/cart' element={<Cart />} />
+
+        <Route path='/admin/vets/addVet' element={<Addvet />} />
          <Route path='/admin/vets/manageVet' element={<ManageVets />} />
          <Route path='/admin/vets/editVet/:id' element={<EditVet />} />
          <Route path='/admin/vets/viewVet/:id' element={<ViewVet />} />
@@ -63,9 +66,10 @@ function App() {
          <Route path='/admin/prescriptions/viewPrescription/:id' element={<ViewPrescription />} />
 
          <Route path='/admin/medicines/manageMedicines' element={<Medicine />} />
+        
 
-       </Routes>
-     </Router>
+      </Routes>
+    </Router>
   )
 }
 

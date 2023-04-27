@@ -1,17 +1,16 @@
 
 import{ MdOutlineArrowBackIos } from 'react-icons/md';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineMinus, AiOutlineClose } from 'react-icons/ai';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Footer from '../../components/store/Footer'
 import Navbar from '../../components/store/Navbar'
-import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from 'react';
 import { CartContext } from "../../contexts/CartContext";
 import { publicRequest } from '../../requestMethods';
+import EmptyCart from '../../components/store/EmptyCart';
+import StoreSearch from '../../components/store/StoreSearch';
 
-const KEY = process.env.REACT_APP_STRIPE
 
 const Container = styled.div``;
 
@@ -20,28 +19,42 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
+  color: #2C2C54;
+  text-transform: uppercase;
+  font-family: 'PT Sans', sans-serif;
 `;
 
 const Top = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
 `;
 
 const TopButton = styled.button`
-  padding: 10px;
-  font-weight: 500;
-  text-align: center;
   display: flex;
+  justify-content: center;
   align-items: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  color: #333;
+  background-color: white;
+  transition: all 0.3s ease;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+
+  &:hover {
+    background-color: #333;
+    color: white;;
+  }
+
+  svg {
+    margin-right: 3px;
+  }
 `;
 
 const Bottom = styled.div`
@@ -51,90 +64,114 @@ const Bottom = styled.div`
 
 const Info = styled.div`
   flex: 3;
+  padding: 5px 25px 5px 15px;
 `;
 
+const CartInfo = styled.table`
+  width: 100%;
+  text-align: center;
+  border: 2px solid lightgray;
+  border-collapse: collapse;
+
+  th {
+    padding: 20px 0;
+  }
+
+  td {
+    border: none;
+  }
+
+  tbody tr{
+    border: 1px solid lightgrey;
+  }
+`
 const Product = styled.div`
   display: flex;
-  justify-content: space-between;
-`;
+  justify-content: flex-start;
+  align-items: center;
 
-const ProductDetail = styled.div`
-  flex: 2;
+  img {
+    margin: 5px 30px 5px 5px;
+    height: 80px;
+    width: 80px;
+  }
+`
+const ProductName = styled.span`
+  text-align: left;
+
+  &:hover {
+    color: #5F27CD;
+  }
+`
+
+const QtyContainer = styled.div`
   display: flex;
-`;
-
-const Image = styled.img`
-  width: 200px;
-`;
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const ProductName = styled.span``;
-
-const ProductId = styled.span``;
-
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const ProductAmountContainer = styled.div`
-  display: flex;
+const Quantity = styled.span`
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  border: 2px solid #5F27CD;
+  margin: 0px 2px;
+  padding: 8px;
 `;
 
 const QtyButton = styled.button`
-  padding: 8px;
-  border: none;
-  border-radius: 50%;
-  background-color: #4f318b;
-  color: white;
-  cursor: pointer;
-`;
-
-const ProductAmount = styled.div`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid #5F27CD;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0px 5px;
+  width: 38px;
+  height: 38px;
   padding: 8px;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-`;
-
-const Hr = styled.hr`
-  background-color: #eee;
   border: none;
-  height: 1px;
+  border-radius: 4px;
+  background-color: rgba(95, 39, 205, 0.9);
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  outline: none;
+
+  &:hover {
+    background-color: #5F27CD;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
+
+const RemoveButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5F27CD;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+`
 
 const Summary = styled.div`
   flex: 1;
-  border: 0.5px solid lightgray;
+  border: 2px solid lightgray;
+  margin-top: 8px;
   border-radius: 10px;
   padding: 20px;
-  height: 50vh;
+  height: auto;
 `;
 
 const SummaryTitle = styled.h1`
   font-weight: 200;
+  display: flex;
+  justify-content: center;
 `;
 
 const SummaryItem = styled.div`
@@ -143,30 +180,54 @@ const SummaryItem = styled.div`
   justify-content: space-between;
   font-weight: ${(props) => props.type === "total" && "500"};
   font-size: ${(props) => props.type === "total" && "24px"};
+  border-top: ${(props) => props.type === "total" && "2px solid #ccc"};
+  padding-top: ${(props) => props.type === "total" && "10px"};
+
+  &:last-child {
+    margin-top: 20px;
+    font-weight: bold;
+  }
 `;
 
 const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-const Button = styled.button`
+const Checkout = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: #5F27CD;
+  background-color: rgba(95, 39, 205, 0.9);
   color: white;
+  text-transform: uppercase;
   font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #5F27CD;
+  }
 `;
 
 const Cart = () => {
   
-  const { cart } = useContext(CartContext);
+  const { cart, addToCart, removeFromCart, removeProduct, clearCart } = useContext(CartContext);
 
-  console.log(cart.items)
-  console.log(cart.quantity)
-  console.log(cart.total)
+  const [subTotal, setSubTotal] = useState(cart.total)
+  const [taxes, setTaxes] = useState(0)
+  const [shippingDiscount, setShippingDiscount] = useState(0)
+
+  useEffect(() => {
+    // Recalculate summary variables whenever cart is updated
+    setSubTotal(cart.total);
+    // setTaxes(cart.total * 0.01);
+    setShippingDiscount(cart.total > 2000 ? 600 : 0);
+  }, [cart]);
+
 
   const handleCheckout = async () => {
-    console.log(cart.products)
     try{
       const res = await publicRequest.post("/checkout/create-checkout-session", {
         cartItems: cart.items,
@@ -178,47 +239,63 @@ const Cart = () => {
     }
   }
 
-
   return (
     <Container>
       <Navbar />
+      <StoreSearch />
       <Wrapper>
-        <Title>MY CART</Title>
+        <Title>My Cart</Title>
+        {cart.items.length === 0 ? (
+          <EmptyCart />
+        ) : (
+        <>
         <Top>
-          <Link to="/" style={{textDecoration: "none", color: "black"}}>
-          <TopButton>
-              <MdOutlineArrowBackIos size="1.5rem" />
-              CONTINUE SHOPPING
-          </TopButton>
+          <Link to="../store" style={{textDecoration: "none", color: "black"}}>
+            <TopButton>
+                <MdOutlineArrowBackIos size="1.5rem" />
+                Continue Shopping
+            </TopButton>
           </Link>
         </Top>
         <Bottom>
           <Info>
-          {cart.items.map(item => (
-            <Product>
-              <ProductDetail>
-                <Image src={item.product.image} />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> {item.product.productName}
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> {item.product.productId}
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                <QtyButton><AiOutlineMinus size="1.5rem" /></QtyButton>
-                  <ProductAmount>{item.cartQuantity}</ProductAmount>
-                <QtyButton><AiOutlinePlus size="1.5rem" /></QtyButton>
-                </ProductAmountContainer>
-                <ProductPrice>Rs {item.product.price * item.product.quantity}</ProductPrice>
-              </PriceDetail>
-            </Product>
-            ))}
-            <Hr />
-
+            <CartInfo>
+              <thead>
+                <tr>
+                  <th style={{width: '10px'}}>Product</th>
+                  <th style={{width: '10px'}}>Price</th>
+                  <th style={{width: '10px'}}>Quantity</th>
+                  <th style={{width: '10px'}}>Subtotal</th>
+                  <th style={{width: '5px'}}></th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.items.map(item => (
+                  <tr>
+                    <td>
+                      <Product>
+                        <img src={item.product.image} alt={item.product.productName} />
+                        <Link to={`/store/${item.product._id}`} style={{textDecoration: 'none', color: 'black', textAlign: 'left'}}>
+                          <ProductName>{item.product.productName}</ProductName>
+                        </Link>
+                      </Product>
+                    </td>
+                    <td>
+                      Rs. {item.product.price.toFixed(2)}
+                    </td>
+                    <td>
+                      <QtyContainer>
+                        <QtyButton onClick={() => removeFromCart(item.product._id)}><AiOutlineMinus size="1.5rem" /></QtyButton>
+                        <Quantity>{item.cartQuantity}</Quantity>
+                        <QtyButton onClick={() => addToCart(item.product)}><AiOutlinePlus size="1.5rem" /></QtyButton>
+                      </QtyContainer>
+                    </td>
+                    <td>Rs. {(item.product.price * item.cartQuantity).toFixed(2)}</td>
+                    <td onClick={() => removeProduct(item.product._id)}><RemoveButton ><AiOutlineClose /></RemoveButton></td>
+                  </tr>
+                ))}
+              </tbody>
+            </CartInfo>
           </Info>
 
 
@@ -226,23 +303,25 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>Rs {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>Rs. {subTotal?.toFixed(2)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>Rs 400.00</SummaryItemPrice>
+              <SummaryItemText>Taxes</SummaryItemText>
+              <SummaryItemPrice>Rs. {taxes?.toFixed(2)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>- Rs 0.00</SummaryItemPrice>
+              <SummaryItemPrice>- Rs. {shippingDiscount?.toFixed(2)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>Rs 2600.00</SummaryItemPrice>
+              <SummaryItemPrice>Rs. {(subTotal + taxes - shippingDiscount)?.toFixed(2)}</SummaryItemPrice>
             </SummaryItem>         
-            <Button onClick={handleCheckout}>CHECKOUT NOW</Button>
+            <Checkout onClick={handleCheckout}>Checkout</Checkout>
           </Summary>
         </Bottom>
+        </>
+        )}
       </Wrapper>
       <Footer />
     </Container>
