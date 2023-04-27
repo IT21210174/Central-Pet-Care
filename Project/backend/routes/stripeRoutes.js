@@ -134,6 +134,7 @@ router.get("/create-order", async (req, res) => {
         }
 
    } catch (err) {
+        console.log(err)
         res.redirect(`${process.env.CLIENT_URL}/cart`)
    }
 

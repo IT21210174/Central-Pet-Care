@@ -2,6 +2,10 @@ import { FiHeart } from 'react-icons/fi';
 import { GrCart } from 'react-icons/gr';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useContext } from 'react';
+import { CartContext } from "../../contexts/CartContext";
+import { WishlistContext } from "../../contexts/WishlistContext";
+import { toast } from 'react-hot-toast';
 
 const Container = styled.div`
     margin: 5px;
@@ -37,7 +41,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 350px;
   &:hover ${Action} {
     opacity: 1;
   }
@@ -87,28 +91,40 @@ const Price = styled.div`
 `
   
 const Product = ({ item }) => {
+
+    const { addToCart } = useContext(CartContext);
+    const { wishlist, addToWishlist, isItemInWishlist } = useContext(WishlistContext);
+
+    const addProductToCart = () => {
+      addToCart(item)
+      toast.success('Product added to cart');
+    }
+
+    const addProductToWishlist = () => {
+      addToWishlist(item)
+    }
+
     return (
       <Container>
         <ImageContainer>
         <Image src={item.image} />
           <Action>
-            <Icon>
+            <Icon onClick={addProductToWishlist} disabled={isItemInWishlist(item._id)}>
               <FiHeart size="1.5rem" />
             </Icon>
-            <Icon>
+            <Icon onClick={addProductToCart}>
               <GrCart size="1.5rem" />
             </Icon>
           </Action>
         </ImageContainer>
         <InfoContainer> 
-            <Link to={`/products/${item._id}`} style={{textDecoration: 'none', color: 'black'}}>
-            <Name> {item.productName.length > 75 ? item.productName.slice(0, 75) + "..." : item.productName}</Name>
+            <Link to={`/store/${item._id}`} style={{textDecoration: 'none', color: 'black'}}>
+            <Name> {item.productName.length > 75 ? item.productName?.slice(0, 75) + "..." : item.productName}</Name>
             </Link>
-            <Price>Rs. {item.price.toFixed(2)}</Price>
+            <Price>Rs. {item.price?.toFixed(2)}</Price>
         </InfoContainer>
       </Container>
     );
 };
   
 export default Product;
-  

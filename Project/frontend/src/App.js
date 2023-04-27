@@ -9,6 +9,9 @@ import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
 import Product from './pages/Store/Product'
+import ManageOrders from './pages/Product/ManageOrders';
+import Success from './pages/Store/Success';
+import Wishlist from './pages/Store/Wishlist';
 
 //service management
 import AddRecord from './pages/Services/AddRecord';
@@ -31,12 +34,16 @@ function App() {
         <Route exact path='/component-3' element={<AddProduct />} />
 
 
-        <Route path='/products/manageProducts' element={< ManageProducts />} />
-        <Route path='/products/addProduct' element={<AddProduct />} />
-        <Route path='/products/editProuduct/:id' element={<EditProduct />} />
-        <Route path='/products/viewProuduct/:id' element={<ViewProduct />} />
-        <Route path='/orders'  />
-        <Route path='/insights'  />
+        <Route path='/admin/products/manageProducts' element={< ManageProducts />} />
+        <Route path='/admin/products/addProduct' element={<AddProduct />} />
+        <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
+        <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
+        <Route path='/admin/orders'  />
+        <Route path='/admin/insights'  />
+
+        <Route path='/products' element={<ProductCatalog />} />
+        <Route path='/products/:id' element={<Product />} />
+        <Route path='/cart' element={<Cart />} />
 
         <Route path='/admin/service/AddService' element={< AddService />} />
         <Route path='/admin/service/ManageServices' element={< ManageService />} />
@@ -51,6 +58,7 @@ function App() {
         <Route path='/admin/service/ViewRecord/:id' element={<ViewRecord />} />
 
         
+
       </Routes>
     </Router>
   )
