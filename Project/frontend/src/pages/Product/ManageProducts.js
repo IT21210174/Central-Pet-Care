@@ -9,7 +9,8 @@ import { MdOutlineDelete } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import {ImSearch} from 'react-icons/im'
+import {ImSearch} from 'react-icons/im';
+import ProductsReport from './ProductsReport';
 
 import './manageProducts.scss'
 
@@ -161,7 +162,7 @@ function ManageProducts() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} report={<ProductsReport data={products} />} /> 
             </div>
         </AdminLayout>
     )

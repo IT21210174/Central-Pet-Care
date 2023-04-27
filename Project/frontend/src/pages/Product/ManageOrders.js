@@ -14,6 +14,8 @@ import {ImSearch} from 'react-icons/im'
 import './manageProducts.scss'
 import './manageOrders.scss'
 
+import OrdersReport from './OrdersReport'
+
 function ManageOrders() {
 
     const [orders, setOrders] = useState([])
@@ -183,9 +185,8 @@ function ManageOrders() {
 
     return (
         <AdminLayout>
-        
             <div className='listContainer'>
-            <CustomDataGrid data={orders} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={orders} columns={columns} searchBar={<SearchBar />} report={<OrdersReport data = {orders} />} /> 
             </div>
         </AdminLayout>
     )

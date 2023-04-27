@@ -14,7 +14,7 @@ const customTheme = createTheme({
     }
 });
 
-function CustomDataGrid({data, columns, searchBar}) {
+function CustomDataGrid({data, columns, searchBar, report}) {
 
   const getRowId = (row) => {
     return row._id; // Return a unique identifier for each row
@@ -31,7 +31,7 @@ function CustomDataGrid({data, columns, searchBar}) {
             checkboxSelection
             components={{
                 Toolbar: (props) => (
-                    <CustomToolbar {...props} searchBar={searchBar} />)
+                    <CustomToolbar {...props} searchBar={searchBar} report={report} />)
             }}
             getRowClassName={() => "grid-cell"}
         />

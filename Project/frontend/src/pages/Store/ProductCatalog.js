@@ -7,6 +7,7 @@ import Navbar from '../../components/store/Navbar'
 import Newsletter from '../../components/store/Newsletter'
 import Products from '../../components/store/Products'
 import StoreSearch from '../../components/store/StoreSearch'
+import Header from '../../components/store/Header/Header'
 
 const Catalog = styled.div`
   width: 100%;
@@ -28,7 +29,7 @@ const ProductList = styled.div`
 const ProductCatalog = () => {
   return (
     <div>
-        <Navbar />
+        <Header />
         <Annoucement />
         <StoreSearch />
 
