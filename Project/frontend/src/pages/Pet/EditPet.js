@@ -54,7 +54,7 @@ function EditPet() {
       userRequest.put("/pets/" + id, { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL  })
       .then(res => {
           toast.success('Pet updated')
-          navigate('/pets/ManagePet')
+          navigate('/admin/pets/managePet')
       }).catch(err => {
           toast.error(err.message)
       })

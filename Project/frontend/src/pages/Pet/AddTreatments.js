@@ -4,6 +4,7 @@ import './AddTreatments.scss'
 import { userRequest } from '../../requestMethods'
 import { toast } from 'react-hot-toast';
 
+
 const AddTreatments = () => {
 
    const [petID, setPetID] = useState('')
@@ -36,6 +37,7 @@ const handleSubmit = async (e) => {
   
   return (
     <AdminLayout>
+      
     <div className="add-treatment-container-main">
         {/* this is the form container */}
         <form className="add-treatment-form-container" onSubmit={handleSubmit}>
@@ -79,6 +81,7 @@ const handleSubmit = async (e) => {
             </div>
         </form>
     </div>
+   
     </AdminLayout>
   )
 }

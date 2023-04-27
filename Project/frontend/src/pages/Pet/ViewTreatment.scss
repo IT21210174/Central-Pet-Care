@@ -10,15 +10,17 @@
 .imageContainer {
     text-align: center;
     vertical-align: middle;
+ 
 }
 
 table {
     margin: 5px;
     border: 2px solid gray;
+    box-shadow: rgb(19, 74, 122) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 table tr td {
     align-items: center;
     border: 1px solid lightgray;
-    padding: 5px 10px;
+    padding: 10px 30px;
 }

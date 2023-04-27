@@ -89,42 +89,38 @@ function ManageTreatment(){
           headerName: "Pet ID",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 1,
         },
         {
           field: "petName",
           headerName: "Pet Name",
-          headerAlign: "left",
-          flex: 4,
+          headerAlign: "center",
+          align:"center",
+          flex: 1,
           
         },
         {
             field: "customerID",
             headerName: "Customer ID",
-            headerAlign: "left",
-            flex: 4,
+            headerAlign: "center",
+            align:"center",
+            flex: 1,
             
         },
-        {
-            field: "date",
-            headerName: "Date",
-            headerAlign: "center",
-            align: "center",
-            flex: 4,
-        },
+
         {
             field: "treatment",
             headerName: "Treatment",
             headerAlign: "center",
             align: "center",
-            flex: 4,
+            flex: 1,
         },
         {
             field: "progressNotes",
             headerName: "Progress Notes",
             headerAlign: "center",
             align: "center",
-            flex: 4,
+            flex: 1,
         },
         {
           field: "action",
@@ -133,7 +129,7 @@ function ManageTreatment(){
           align: "center",
           sortable: false,
           filterable: false,
-          flex: 4,
+          flex: 1,
           renderCell: (params) => {
             return (
               <div className='action'>

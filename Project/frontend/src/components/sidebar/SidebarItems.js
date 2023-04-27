@@ -185,6 +185,7 @@ const SidebarItems = [
                     nestedItemicon:<FaNotesMedical/>,
                     nestedItemtext:"Manage Treatments"
                 },
+				
 
         ]
     },

@@ -95,7 +95,7 @@ function ManagePet() {
         {
           field: "petName",
           headerName: "Pet Name",
-          headerAlign: "left",
+          headerAlign: "center",
           flex: 2,
           renderCell: (params) => {
             return (
@@ -109,33 +109,12 @@ function ManagePet() {
         {
             field: "dob",
             headerName: "DOB",
-            headerAlign: "left",
-            align: "left",
-            flex: 2,
-        },
-        {
-          field: "gender",
-          headerName: "Gender",
-          headerAlign: "left",
-          align: "left",
-          type: "number",
-          flex: 2,
-        },
-        {
-          field: "species",
-          headerName: "Species",
-          headerAlign: "center",
-          align: "center",
-          type: "number",
-          flex: 2,
-        },
-        {
-            field: "breed",
-            headerName: "Breed",
             headerAlign: "center",
             align: "center",
             flex: 2,
         },
+
+
         {
             field: "customerID",
             headerName: "Customer ID",
@@ -150,19 +129,14 @@ function ManagePet() {
             align: "center",
             flex: 2,
         },
-        {
-            field: "contactNumber",
-            headerName: "Contact Number",
-            headerAlign: "center",
-            align: "center",
-            flex: 2,
-        },
+
+        
         {
             field: "medicalHistory",
             headerName: "Medical History",
             headerAlign: "center",
             align: "center",
-            flex: 4,
+            flex: 2,
         },
         {
           field: "action",
@@ -171,7 +145,7 @@ function ManagePet() {
           align: "center",
           sortable: false,
           filterable: false,
-          flex: 3,
+          flex: 2,
           renderCell: (params) => {
             return (
               <div className='action'>

@@ -4,7 +4,10 @@ import './AddPet.scss'
 import { userRequest } from '../../requestMethods'
 import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
+import styled from 'styled-components';
 
+const wrapper=styled.section
+;
 
 function AddPet() {
 
@@ -55,6 +58,7 @@ function AddPet() {
 
   return (
     <AdminLayout>
+      <wrapper>
     <div className="add-pet-container-main">
         {/* this is the form container */}
         <form className="add-item-form-container" onSubmit={handleSubmit}>
@@ -123,7 +127,7 @@ function AddPet() {
                     </section>
                     <section className="input-container">
                         <span className="input-title">Upload Image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])}/>
+                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' required onChange={(e) => setFile(e.target.files[0])}/>
                     </section>
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
@@ -133,6 +137,7 @@ function AddPet() {
             </div>
         </form>
     </div>
+    </wrapper>
     </AdminLayout>
   )
 }

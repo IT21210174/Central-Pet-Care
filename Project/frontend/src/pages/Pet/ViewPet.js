@@ -43,56 +43,65 @@ function ViewPet() {
 
     return (
         <AdminLayout>
-            <div className='product'>
-            <table>
+             <div className='service'>
+            {/* <table>
                 <tr>
                     <td colSpan='2' className='imageContainer'>
                         <img src={imageURL} className='image' height='120px' />
                     </td>
                 </tr>
-
                 <tr>
-                    <td>Pet ID</td>
-                    <td>{petID}</td>
+                    <td>Service ID</td>
+                    <td>{serviceId}</td>
                 </tr>
                 <tr>
-                    <td>Pet Name</td>
-                    <td>{petName}</td>
+                    <td>Service Name</td>
+                    <td>{serviceName}</td>
                 </tr>
                 <tr>
-                    <td>DOB</td>
-                    <td>{dob}</td>
+                    <td>Service Charge</td>
+                    <td>{serviceCharge}</td>
                 </tr>
                 <tr>
-                    <td>Gender</td>
-                    <td>{gender}</td>
-                </tr>
-                <tr>
-                    <td>Species</td>
-                    <td>{species}</td>
-                </tr>
-                <tr>
-                    <td>Breed</td>
-                    <td>{breed}</td>
-                </tr>
-                <tr>
-                    <td>Customer ID</td>
-                    <td>{customerID}</td>
-                </tr>
-                <tr>
-                    <td>Customer Name</td>
-                    <td>{customerName}</td>
-                </tr>
-                <tr>
-                    <td>Contact Number</td>
-                    <td>{contactNumber}</td>
-                </tr>
-                <tr>
-                    <td>Medical History</td>
-                    <td>{medicalHistory}</td>
+                    <td>Service Description</td>
+                    <td style={{whiteSpace: 'pre-wrap'}}>{serviceDescription}</td>
                 </tr>
                 
-            </table>
+            </table> */}
+
+                <div className='service-record-container'>
+                    <div className = "service-pic-container">
+                        <img src={imageURL} className='service-img'></img>
+                    </div>
+                    <div className = "service-details-container">
+                        <div className="service-prompts">
+                            <span className='service-line-info'>Pet ID</span>
+                            <span className='service-line-info'>Pet Name</span>
+                            <span className='service-line-info'>DOB</span>
+                            <span className='service-line-info'>Gender</span>
+                            <span className='service-line-info'>Species</span>
+                            <span className='service-line-info'>Breed</span>
+                            <span className='service-line-info'>Customer ID</span>
+                            <span className='service-line-info'>Customer Name</span>
+                            <span className='service-line-info'>Contact Number</span>
+                            <span className='service-line-info'>Medical History</span>
+                            
+                        </div>
+                        <div className="service-values">
+                            <span className='service-line-info-values'>{petID}</span>
+                            <span className='service-line-info-values'>{petName}</span>
+                            <span className='service-line-info-values'>{dob}</span>
+                            <span className='service-line-info-values'>{gender}</span>
+                            <span className='service-line-info-values'>{species}</span>
+                            <span className='service-line-info-values'>{breed}</span>
+                            <span className='service-line-info-values'>{customerID}</span>
+                            <span className='service-line-info-values'>{customerName}</span>
+                            <span className='service-line-info-values'>{contactNumber}</span>
+                            <span className='service-line-info-values'>{medicalHistory}</span>
+                        </div>
+                    </div> 
+                </div>
+
             </div>
         </AdminLayout>
     )
