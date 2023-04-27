@@ -36,7 +36,7 @@ function AddRecord() {
     e.preventDefault()
     // Combine selected categories
     console.log({ serviceId,customerId,vcslId,petId,date,serviceCharge});
-    userRequest.post("/", { serviceId,customerId,vcslId,petId,date,serviceCharge})
+    userRequest.post("/servicerecords", { serviceId,customerId,vcslId,petId,date,serviceCharge})
     .then(res => {
         toast.success('Record added')
         handleReset()

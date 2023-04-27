@@ -31,6 +31,12 @@ import { BiStoreAlt } from "react-icons/bi";
 import { BiPlusMedical } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 
+//service management
+//import { MdOutlineMedicalServices } from "react-icons/md";add
+//import { MdOutlineManageHistory } from "react-icons/md";manage
+//import { AiOutlineFileAdd } from "react-icons/ai";add record
+//import { AiOutlineFileDone } from "react-icons/ai";manage record
+
 const SidebarItems = [
 	{
 		id: 1000,

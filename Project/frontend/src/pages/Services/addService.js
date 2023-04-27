@@ -34,7 +34,7 @@ function AddService() {
     e.preventDefault()
     // Combine selected categories
     const imageURL = await uploadImage(file);
-    userRequest.post("/mngservice", { serviceId,serviceName,serviceCharge,serviceDescription,serviceImage: imageURL })
+    userRequest.post("/services", { serviceId,serviceName,serviceCharge,serviceDescription,serviceImage: imageURL })
     .then(res => {
         toast.success('Service added')
         handleReset()

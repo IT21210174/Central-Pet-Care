@@ -37,7 +37,8 @@ function ViewRecord() {
     return (
         <AdminLayout>
             <div className='record'>
-            <table>
+                
+            {/* <table>
                 <tr>
                     <td>Service ID</td>
                     <td>{serviceId}</td>
@@ -62,7 +63,31 @@ function ViewRecord() {
                     <td>Service Charge</td>
                     <td>{serviceCharge}</td>
                 </tr>
-            </table>
+            </table> */}
+             <div className='record-container'>
+                    
+                    <div className = "record-details-container">
+                        <div className="record-prompts">
+                            <span className='record-line-info'>Service ID</span>
+                            <span className='record-line-info'>Customer ID</span>
+                            <span className='record-line-info'>VCSL ID</span>
+                            <span className='record-line-info'>Pet ID</span>
+                            <span className='record-line-info'>Date</span>
+                            <span className='record-line-info'>Service Charge</span>
+                            
+
+                        </div>
+                        <div className="record-values">
+                            <span className='record-line-info-values'>{serviceId}</span>
+                            <span className='record-line-info-values'>{customerId}</span>
+                            <span className='record-line-info-values'>{vcslId}</span>
+                            <span className='record-line-info-values'>{petId}</span>
+                            <span className='record-line-info-values'>{date}</span>
+                            <span className='record-line-info-values'>{serviceCharge}</span>
+                           
+                        </div>
+                    </div> 
+                </div>
             </div>
         </AdminLayout>
     )
