@@ -5,9 +5,9 @@ import PrLvHigh from '../../../components/inventory-signals/PrLvlHigh'
 import AdminLayout from '../../Layouts/AdminLayout'
 import './overview.scss'
 
-import clinicEquipment from '../imgs/PrototypeResources/insight-cards/pharmaceutical.png'
-import storeEquipment from '../imgs/PrototypeResources/insight-cards/pet-food.png'
-import supplier from '../imgs/PrototypeResources/insight-cards/supplier.png'
+import clinicEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pharmaceutical.png'
+import storeEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pet-food.png'
+import supplier from '../../../assets/imgs/PrototypeResources/insight-cards/supplier.png'
 
 // This is the overview component. all the things related to this component goes here
 function OverviewComponent() {

@@ -74,7 +74,7 @@ const sidebarItems = [
 
 			{
 				id: 106,
-				link: "/component-7",
+				link: "/inventory/manage-suppliers",
 				nestedItemicon: <TbUser />,
 				nestedItemtext: "Manage suppliers",
 			},

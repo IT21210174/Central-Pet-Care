@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React , {useState , useEffect} from 'react'
+import AdminLayout from '../../Layouts/AdminLayout'
+import api from '../../../services/supplierAPI';
 import { ImSearch } from "react-icons/im";
-import ResultContainer from "./item-search-result-container";
-import NoItemsDisplayer from "./item-empty-result-diplayer";
-import AdminLayout from "../../Layouts/AdminLayout";
-import "./manage-inventory.scss";
-import api from "../../../services/api";
+import ResultContainer from "./supplier-search-result-container";
+import NoSuppliersDisplayer from "./supplier-empty-result-displayer";
 
 
-function ManageInventoryComponent() {
-
-	const [inventory, setInventory] = useState([]);
-
+function ManageSupplierWindow() {
+  	const [suppliers, setSuppliers] = useState([]);
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
 		api.get("/").then((response) => {
-			setInventory(response.data);
+			setSuppliers(response.data);
+            console.log(suppliers);
 		});
 	}, []);
 	
 
 	const filteringDeleted = (data) => {
-		setInventory(data)
+		setSuppliers(data)
 	}
 
 	const searchFieldHandler = (e) => {
@@ -33,15 +31,15 @@ function ManageInventoryComponent() {
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);
-					setInventory(response.data);
+					setSuppliers(response.data);
 				} else {
 					console.log("no such item");
-					setInventory([]);
+					setSuppliers([]);
 				}
 			})
 			.catch((error) => {
 				console.log("there is an error");
-				setInventory([]);
+				setSuppliers([]);
 				console.log(error);
 			});
 	};
@@ -62,7 +60,7 @@ function ManageInventoryComponent() {
 					<input
 						type="text"
 						className="search-field"
-						placeholder="Search by SKU ID"
+						placeholder="Search by Agent ID"
 						value={searchPrompt}
 						onChange={searchFieldHandler}
 					/>
@@ -79,19 +77,19 @@ function ManageInventoryComponent() {
 					{/* table headings */}
 					<div className="inventory-info-item-head">
 						<span className="item-field-head-manage-inventory">
-							Item Name
+							Company
 						</span>
 						<span className="item-field-head-manage-inventory">
-							SKU ID
+							Agent Name
 						</span>
 						<span className="item-field-head-manage-inventory">
-							Category
+							Agent ID
 						</span>
 						<span className="item-field-head-manage-inventory">
-							Manufacturer
+							Supp. Category
 						</span>
 						<span className="item-field-head-manage-inventory">
-							Quantity
+							Supplying Item
 						</span>
 						<span className="item-field-head-manage-inventory">
 							Actions
@@ -100,10 +98,10 @@ function ManageInventoryComponent() {
 					{/* scrollable section */}
 					<div className="search-results-container">
 						{/* display the results */}
-						{inventory.length === 0 ? (
-							<NoItemsDisplayer />
+						{suppliers.length === 0 ? (
+							<NoSuppliersDisplayer />
 						) : (
-							<ResultContainer inventory={inventory} setFunc={filteringDeleted}/>
+							<ResultContainer suppliers={suppliers} setFunc={filteringDeleted}/>
 						)}
 					</div>
 				</div>
@@ -112,4 +110,4 @@ function ManageInventoryComponent() {
 	);
 }
 
-export default ManageInventoryComponent;
+export default ManageSupplierWindow

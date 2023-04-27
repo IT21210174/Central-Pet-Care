@@ -11,7 +11,7 @@ const Footer = () => {
 				</div>
 				<hr className="divider" />
 				<span className="copyrights">
-					Developed and Maintained by namak gamak danne na habai manussayek!
+					Developed and Maintained cental pet care
 				</span>
 			</div>
 		</React.Fragment>

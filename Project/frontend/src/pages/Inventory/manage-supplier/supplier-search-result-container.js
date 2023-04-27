@@ -3,22 +3,22 @@ import Swal from "sweetalert2";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
-import api from "../../../services/api";
+import api from "../../../services/supplierAPI";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
 
-export default function ItemSearchResultsContainer(props) {
-	const { inventory, setFunc } = props;
+export default function SupplierSearchResultsContainer(props) {
+	const { suppliers, setFunc } = props;
 	const navigate = useNavigate();
 
 	// view function
 	const viewItem = (id) => {
-		navigate("/inventory/view-item", { state: { id } });
+		navigate("/supplier/view-supplier-details", { state: { id } });
 	};
 
 	// update function
 	const updateItem = (id) => {
-		navigate(`/inventory/update-item`, { state: { id } });
+		navigate(`/supplier/update-supplier-details`, { state: { id } });
 		console.log(id);
 	};
 
@@ -49,7 +49,7 @@ export default function ItemSearchResultsContainer(props) {
 							console.log(error);
 						});
 
-					const newSet = inventory.filter((object) => {
+					const newSet = suppliers.filter((object) => {
 						const { _id } = object;
 
 						return _id !== deletingID;
@@ -72,36 +72,36 @@ export default function ItemSearchResultsContainer(props) {
 
 	return (
 		<div>
-			{inventory.reverse().map((singleItem) => {
-				const { _id, itemName, sku, category, manufacturer, quantity } =
+			{suppliers.reverse().map((singleItem) => {
+				const { _id, companyName, agentName, agentID, supplierCategory, supplyingItem } =
 					singleItem;
 
-				const inventoryPassBucket = {
-					_id,
-					itemName,
-					sku,
-					category,
-					manufacturer,
-					quantity,
-				};
+				// const supplierPassBucket = {
+				// 	_id,
+				// 	itemName,
+				// 	sku,
+				// 	category,
+				// 	manufacturer,
+				// 	quantity,
+				// };
 
-				if (inventory.length > 0) {
+				if (suppliers.length > 0) {
 					return (
 						<div className="running-short-item" key={_id}>
 							<span className="item-field-manage-inventory">
-								{itemName}
+								{companyName}
 							</span>
 							<span className="item-field-manage-inventory">
-								{sku}
+								{agentName}
 							</span>
 							<span className="item-field-manage-inventory">
-								{category}
+								{agentID}
 							</span>
 							<span className="item-field-manage-inventory">
-								{manufacturer}
+								{supplierCategory}
 							</span>
 							<span className="item-field-manage-inventory">
-								{quantity}
+								{supplyingItem}
 							</span>
 							<span className="item-field-manage-inventory">
 								{/* view button */}

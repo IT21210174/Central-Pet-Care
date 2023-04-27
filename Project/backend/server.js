@@ -10,8 +10,9 @@ const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes');
 const checkoutRoutes = require('./routes/stripeRoutes')
-const inventoryRoutes = require('./routes/inventoryRoutes')
 
+const inventoryRoutes = require('./routes/inventoryRoutes')
+const supplierRoutes = require('./routes/supplierRoutes')
 
 const port = process.env.PORT || 4000
 
@@ -26,7 +27,9 @@ app.use('/api/products', productRoutes);
 app.use('/api/carts', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/checkout', checkoutRoutes);
+
 app.use('/api/inventory', inventoryRoutes)
+app.use('/api/suppliers', supplierRoutes)
 
 app.use(errorHandler);
 

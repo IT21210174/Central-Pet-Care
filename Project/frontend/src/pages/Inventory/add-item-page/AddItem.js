@@ -109,8 +109,8 @@ const AddItem = () => {
 								>
 									<option
 										className="select-option"
-										value="undefined"
-									></option>
+										value=""
+									>Select Category ---</option>
 									<option
 										className="select-option"
 										value="clinical-item"

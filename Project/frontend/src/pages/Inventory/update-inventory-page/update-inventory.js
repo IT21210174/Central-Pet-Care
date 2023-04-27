@@ -71,6 +71,10 @@ function UpdateItem() {
 		setUpdateFormData({ ...updateFormData, [event.target.name]: event.target.value });
 	};
 
+	const backBtn = () => {
+		navigate("/inventory/manage-inventory")
+	}
+
   return (
         <AdminLayout>
 			<div className="add-item-container-main">
@@ -201,7 +205,7 @@ function UpdateItem() {
 								<button type="submit" className="submit-btn">
 									Update
 								</button>
-								<button type="reset" className="reset-btn">
+								<button type="reset" className="reset-btn" onClick={()=>{backBtn()}}>
 									Back
 								</button>
 							</div>

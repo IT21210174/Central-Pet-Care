@@ -1,45 +1,29 @@
-import React, { useState , useEffect} from "react";
-import swal from "sweetalert2";
-import AdminLayout from "../../Layouts/AdminLayout";
-import api from "../../../services/supplierAPI";
-import "./supplier-register.scss";
+import React , {useEffect, useState} from 'react'
+import AdminLayout from '../../Layouts/AdminLayout'
+import swal from 'sweetalert2';
+import api from '../../../services/supplierAPI';
+import './update-supplier.scss'
+import Swal from 'sweetalert2';
 
-function SupplierRegistration() {
-	
-	const [formData, setFormData] = useState({
-		companyName: "",
-		businessType: "",
-		agentName: "",
-		agentID: "",
-		supplierCategory: "",
-		supplyingItem: "",
-		email: "",
-		phone: "",
-		companyAddress: "",
-	});
+import { useLocation, useNavigate } from 'react-router-dom';
 
-	const addSupplierFormHandler = (event) => {
-		event.preventDefault();
-		console.log(formData);
+function UpdateSupplierDetails() {
 
-		if (formData.agentID !== "" && formData.businessType !== "" && formData.supplierCategory !== "" && formData.phone !== "" && formData.email)  {
-			api.post("/", formData)
-				.then((response) => {
-					console.log(response);
-					swal.fire({
-						icon: "success",
-						iconColor: "#7D5FFF",
-						title: "Operation Success",
-						text: "Item added to the inventory!",
-					});
-					console.log(response);
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+	const navigate = useNavigate()
 
-			setFormData({
-				companyName: "",
+    const location = useLocation()
+    const {id} = location.state
+    
+    useEffect(()=>{
+        api.get(`/mongo/${id}`).then((response)=>{
+            setUpdateSupplierFormData(response.data)
+            console.log(response.data);
+        })
+    },[])
+
+    const [updateSupplierFormData, setUpdateSupplierFormData] = useState({
+        _id: "",
+        companyName: "",
 				businessType: "",
 				agentName: "",
 				agentID: "",
@@ -48,28 +32,56 @@ function SupplierRegistration() {
 				email: "",
 				phone: "",
 				companyAddress: "",
-			});
-		} else {
-			swal.fire({
-				icon: "error",
-				iconColor: "#e74c3c",
-				title: "Operation Not Success",
-				text: "fill the relevant fields first",
-			});
-		}
+	});
+
+
+    const updateSupplierFormHandler = (event) => {
+
+		event.preventDefault()
+
+        api.put(`/${id}` , updateSupplierFormData).then((response)=>{
+            if(response){
+                Swal.fire(
+                    {
+                        icon: "success",
+				                iconColor: "#7d5fff",
+				                title: "Supplier Details Updated",
+				                text: "Changes are made to the supplier!",
+                    }
+                )
+            }
+        })
+
+        .catch((error)=>{
+                Swal.fire(
+                    {
+                        icon: "error",
+				                iconColor: "#e74c3c",
+				                title: "Operation Unsuccessful",
+				                text: "Please check again!",
+                    }
+                )
+                console.log(error);
+        })
+
+		navigate("/inventory/manage-suppliers")
+    }
+
+	const updateSupplierInputHandler = (event) => {
+		setUpdateSupplierFormData({ ...updateSupplierFormData, [event.target.name]: event.target.value });
 	};
 
-	const addSupplierInputHandler = (event) => {
-		setFormData({ ...formData, [event.target.name]: event.target.value });
-	};
+	const backBtn = () => {
+		navigate("/inventory/manage-inventory")
+	}
 
-	return (
-		<AdminLayout>
+  return (
+       <AdminLayout>
 			<div className="add-supplier-container-main">
 				{/* this is the form container */}
 				<form
 					className="add-supplier-form-container"
-					onSubmit={addSupplierFormHandler}
+					onSubmit={updateSupplierFormHandler}
 				>
 					<span className="tagline-add-supplier">
 						Fill the form for supplier registration
@@ -84,27 +96,27 @@ function SupplierRegistration() {
 								</span>
 								<input
 									className="input-field"
-									value={formData.companyName}
+									value={updateSupplierFormData.companyName}
 									name="companyName"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<section className="input-container">
 								<span className="input-title">Agent Name</span>
 								<input
 									className="input-field"
-									value={formData.agentName}
+									value={updateSupplierFormData.agentName}
 									name="agentName"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<section className="input-container">
 								<span className="input-title">Agent ID</span>
 								<input
 									className="input-field"
-									value={formData.agentID}
+									value={updateSupplierFormData.agentID}
 									name="agentID"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -114,8 +126,8 @@ function SupplierRegistration() {
 								<select
 									className="input-field"
 									name="businessType"
-									value={formData.businessType}
-									onChange={addSupplierInputHandler}
+									value={updateSupplierFormData.businessType}
+									onChange={updateSupplierInputHandler}
 								>
 									<option
 										className="select-option"
@@ -145,9 +157,9 @@ function SupplierRegistration() {
 								<span className="input-title">supplier category</span>
 								<select
 									className="input-field"
-									value={formData.supplierCategory}
+									value={updateSupplierFormData.supplierCategory}
 									name="supplierCategory"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								>
 									<option
 										className="select-option"
@@ -178,9 +190,9 @@ function SupplierRegistration() {
 								</span>
 								<input
 									className="input-field"
-									value={formData.supplyingItem}
+									value={updateSupplierFormData.supplyingItem}
 									name="supplyingItem"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -188,9 +200,9 @@ function SupplierRegistration() {
 								<input
 									type="email"
 									className="input-field"
-									value={formData.email}
+									value={updateSupplierFormData.email}
 									name="email"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -198,9 +210,9 @@ function SupplierRegistration() {
 								<input
 									type="text"
 									name="phone"
-									value={formData.phone}
+									value={updateSupplierFormData.phone}
 									className="input-field"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<section className="input-container">
@@ -210,17 +222,17 @@ function SupplierRegistration() {
 								<input
 									type="text"
 									name="companyAddress"
-									value={formData.companyAddress}
+									value={updateSupplierFormData.companyAddress}
 									className="input-field"
-									onChange={addSupplierInputHandler}
+									onChange={updateSupplierInputHandler}
 								/>
 							</section>
 							<div className="btn-container-add-item">
 								<button type="submit" className="submit-btn">
-									Register
+									Update
 								</button>
-								<button type="reset" className="reset-btn">
-									Clear
+								<button type="reset" className="reset-btn" onClick={()=>{navigate("/inventory/manage-suppliers")}}>
+									Back
 								</button>
 							</div>
 						</div>
@@ -228,7 +240,7 @@ function SupplierRegistration() {
 				</form>
 			</div>
 		</AdminLayout>
-	);
+  )
 }
 
-export default SupplierRegistration;
+export default UpdateSupplierDetails
