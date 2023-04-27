@@ -11,6 +11,9 @@ import ViewProduct from './pages/Product/ViewProduct';
 import ProductCatalog from './pages/Store/ProductCatalog';
 import Product from './pages/Store/Product';
 import Cart from './pages/Store/Cart';
+import ManageOrders from './pages/Product/ManageOrders';
+import Success from './pages/Store/Success';
+import Wishlist from './pages/Store/Wishlist';
 
 
 function App() {
@@ -28,13 +31,14 @@ function App() {
         <Route path='/admin/products/addProduct' element={<AddProduct />} />
         <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
         <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
-        <Route path='/admin/orders'  />
+        <Route path='/admin/orders' element={<ManageOrders />} />
         <Route path='/admin/insights'  />
 
-        <Route path='/products' element={<ProductCatalog />} />
-        <Route path='/products/:id' element={<Product />} />
+        <Route path='/store' element={<ProductCatalog />} />
+        <Route path='/store/:id' element={<Product />} />
+        <Route path='/success' element={<Success />} />
         <Route path='/cart' element={<Cart />} />
-        
+        <Route path='/wishlist' element={<Wishlist />} />
 
       </Routes>
     </Router>
