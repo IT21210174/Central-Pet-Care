@@ -9,6 +9,10 @@ import './viewProduct.scss'
 function ViewProduct() {
 
     const { id } = useParams()
+
+    const [categoryA, setCategoryA] = useState([])
+    const [categoryB, setCategoryB] = useState(null)
+
     const [productName, setProductName] = useState('')
     const [brand, setBrand] = useState('')
     const [price, setPrice] = useState('')

@@ -51,5 +51,9 @@ const petRegisterSchema = mongoose.Schema({
     timestamps: true
 })
 
-
+petRegisterSchema.index({
+    petID:'text',
+    petName:'text',
+ 
+})
 module.exports = mongoose.model('PetRegister', petRegisterSchema);

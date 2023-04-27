@@ -6,9 +6,20 @@ const Treatments = require('../models/petTreatmentsModel')
 // @route   GET /api/treatment
 // @access  Private/Admin
 const getTreatments = asyncHandler(async (req, res) => {
+    const qSearch=req.query.search
+    console.log(qSearch)
+     
+     let treatments
 
-    const treatments = await Treatments.find();
-    
+     if(qSearch){
+         treatments=await Treatments.find(
+            {
+                $text:{$search: qSearch}
+            }
+         )
+     }else{
+         treatments = await Treatments.find();
+     }
     res.status(200).json(treatments);
 
 })

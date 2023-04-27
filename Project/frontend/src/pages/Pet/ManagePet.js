@@ -10,6 +10,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
+import PetReport from './PetReport'
 
 import './ManagePet.scss'
 
@@ -67,7 +68,13 @@ function ManagePet() {
     
       const handleSearch = (e) => {
           e.preventDefault()
-          alert(search)
+          userRequest.get(`pets?search=${search}`)
+          .then(res => {
+            setPet(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
       }
     
       return(
@@ -165,7 +172,7 @@ function ManagePet() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={pets} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={pets} columns={columns} searchBar={<SearchBar />} report={<PetReport data={pets}/>} /> 
             </div>
         </AdminLayout>
     )

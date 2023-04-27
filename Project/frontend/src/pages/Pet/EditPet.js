@@ -63,7 +63,7 @@ function EditPet() {
       userRequest.put("/pets/" + id, { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL })
       .then(res => {
           toast.success('Pet updated')
-          navigate('/pets/ManagePet')
+          navigate('/admin/pets/managePet')
       }).catch(err => {
           toast.error(err.message)
       })
@@ -132,7 +132,7 @@ function EditPet() {
                     </section>
                     <section className="input-container">
                        <span className="input-title">Contact Number</span>
-                       <input className="input-field" pattern="[0-9]{10}" value={contactNumber} required onChange={(e) => setContactNumber(e.target.value)}/>
+                       <input className="input-field" type="tel" pattern="^\+94\d{9}$" value={contactNumber} required onChange={(e) => setContactNumber(e.target.value)}/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">Medical History</span>

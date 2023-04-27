@@ -39,6 +39,7 @@ table tr td {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex:1;
 }
 
 .service-details-container{
@@ -48,6 +49,7 @@ table tr td {
   align-items: center;
   width: 625px;
   height: 90%;
+  flex:1;
 }
 
 .service-img{

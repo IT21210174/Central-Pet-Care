@@ -33,8 +33,8 @@ function ViewTreatment() {
 
     return (
         <AdminLayout>
-            <div className='product'>
-            <table>
+            <div className='service'>
+            {/* <table>
                 <tr>
                     <td>Pet ID</td>
                     <td>{petID}</td>
@@ -61,7 +61,32 @@ function ViewTreatment() {
                 </tr>
                 
             </table>
-            </div>
+            </div> */} 
+            <div className='service-record-container'>
+
+                    <div className = "service-details-container">
+                        <div className="service-prompts">
+                            <span className='service-line-info'>Pet ID</span>
+                            <span className='service-line-info'>Pet Name</span>
+                            <span className='service-line-info'>Customer ID</span>
+                            <span className='service-line-info'>Date</span>
+                            <span className='service-line-info'>Treatment</span>
+                            <span className='service-line-info'>Progress Notes</span>
+
+                            
+                        </div>
+                        <div className="service-values">
+                            <span className='service-line-info-values'>{petID}</span>
+                            <span className='service-line-info-values'>{petName}</span>
+                            <span className='service-line-info-values'>{customerID}</span>
+                            <span className='service-line-info-values'>{date}</span>
+                            <span className='service-line-info-values'>{treatment}</span>
+                            <span className='service-line-info-values'>{progressNotes}</span>
+
+                        </div>
+                    </div> 
+                </div>
+        </div>
         </AdminLayout>
     )
 }

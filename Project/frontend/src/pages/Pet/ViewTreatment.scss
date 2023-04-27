@@ -1,26 +1,82 @@
-.product {
+.service {
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
-    height: auto;
-    min-height: 90vh;
-}
-
-.imageContainer {
-    text-align: center;
-    vertical-align: middle;
- 
-}
-
-table {
+    height: 625px;
+  }
+  
+  
+  table {
     margin: 5px;
     border: 2px solid gray;
-    box-shadow: rgb(19, 74, 122) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-}
-
-table tr td {
+  }
+  
+  table tr td {
     align-items: center;
     border: 1px solid lightgray;
-    padding: 10px 30px;
-}
+    padding: 5px 10px;
+  }
+  
+  .service-record-container{
+    width: 700px;
+    height: 580px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+ 
+  
+  .service-details-container{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 650px;
+    height: 90%;
+    flex:1;
+  }
+  
+  
+  
+  .service-prompts{
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    width: 54%;
+   
+  
+  }
+  
+  .service-values{
+    font-size: 1.2em;
+    display: flex;
+ 
+    flex-direction: column;
+    width: 54%;
+  
+  }
+  
+  .service-line-info{
+    padding: 5px 10px;
+    margin-top: 10px;
+    font-weight: 700;
+  }
+  
+  .service-line-info-values{
+    width: 110%;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .service-line-info-values:nth-child(4){
+    padding: 5px 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: justify;
+    text-justify: inter-word;
+  }

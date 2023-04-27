@@ -6,7 +6,7 @@ const Container = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
 `;
 
 const Title = styled.div`
@@ -27,7 +27,7 @@ const Category = styled.li`
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        color: purple;
+        color: #5F27CD;
         font-weight: 600;
     }
 `
@@ -46,16 +46,17 @@ const CategoryMenu = () => {
         <Title>Shop by Category</Title>
         <CategoryList>
           {categories.map((category) => (
-            <Category 
-              key={category} 
-              isSelected={category === selectedCategory} 
-              onClick={() => handleCategoryClick(category)}
-            >
-              <Link to={`/products/${category}`} style={{textDecoration: 'none', color: 'inherit'}}>
-                {category}
-              </Link>
-
-            </Category>
+            <Link 
+            to={category === "All Products" ? "/store" : `/store?category=${category}`}
+            style={{textDecoration: 'none', color: 'inherit'}}>
+              <Category
+                key={category} 
+                isSelected={category === selectedCategory} 
+                onClick={() => handleCategoryClick(category)}
+              >
+                  {category}
+              </Category>
+            </Link>
           ))}
         </CategoryList>
     </Container>

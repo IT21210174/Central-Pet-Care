@@ -31,5 +31,11 @@ const petTreatmentsSchema = mongoose.Schema({
     timestamps: true
 })
 
+petTreatmentsSchema.index({
+    
+    petID:'text',
+    petName:'text',
+  
+})
 
 module.exports = mongoose.model('PetTreatments', petTreatmentsSchema);

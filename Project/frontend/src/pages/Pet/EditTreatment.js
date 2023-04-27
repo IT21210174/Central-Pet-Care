@@ -40,7 +40,7 @@ function EditTreatment() {
       userRequest.put("/treatments/" + id, {petID, petName, customerID,date, treatment,progressNotes })
       .then(res => {
           toast.success('Treatment updated')
-          navigate('/treatments/ManageTreatments')
+          navigate('/admin/treatments/ManageTreatments')
       }).catch(err => {
           toast.error(err.message)
       })
@@ -49,14 +49,14 @@ function EditTreatment() {
 
   return (
     <AdminLayout>
-      <div className="add-treatment-container-main">
+      <div className="add-treat-container-main">
         {/* this is the form container */}
-        <form className="add-treatment-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Edit Treatment</span>
+        <form className="add-treat-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-add-treat">Edit Treatment</span>
             {/* input field container */}
             
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-traet-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field" value={petID} required onChange={(e) => setPetID(e.target.value)}/>

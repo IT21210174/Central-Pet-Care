@@ -4,10 +4,8 @@ import './AddPet.scss'
 import { userRequest } from '../../requestMethods'
 import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
-import styled from 'styled-components';
 
-const wrapper=styled.section
-;
+
 
 function AddPet() {
 
@@ -58,7 +56,7 @@ function AddPet() {
 
   return (
     <AdminLayout>
-      <wrapper>
+      
     <div className="add-pet-container-main">
         {/* this is the form container */}
         <form className="add-item-form-container" onSubmit={handleSubmit}>
@@ -66,7 +64,7 @@ function AddPet() {
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-pet-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field" value={petID} required onChange={(e) => setPetID(e.target.value)}/>
@@ -119,7 +117,7 @@ function AddPet() {
                     </section>
                     <section className="input-container">
                        <span className="input-title">Contact Number</span>
-                       <input className="input-field" pattern="[0-9]{10}" value={contactNumber} required onChange={(e) => setContactNumber(e.target.value)}/>
+                       <input className="input-field" type="tel" pattern="^\+94\d{9}$"  value={contactNumber} required onChange={(e) => setContactNumber(e.target.value)}/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">Medical History</span>
@@ -137,7 +135,7 @@ function AddPet() {
             </div>
         </form>
     </div>
-    </wrapper>
+   
     </AdminLayout>
   )
 }

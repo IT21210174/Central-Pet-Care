@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import { publicRequest } from '../../requestMethods';
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import { WishlistContext } from "../../contexts/WishlistContext";
+import { FaRegHeart } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
 const Container = styled.div``;
 
@@ -44,8 +47,10 @@ const InfoContainer = styled.div`
 
 const Title = styled.h1`
   display: flex;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 30px;
+  text-align: left;
+  text-transform: none;
 `;
 
 
@@ -68,56 +73,100 @@ const Price = styled.span`
 `;
 
 const AddContainer = styled.div`
-  width: 60%;
+  width: 70%;
   margin-top: 50px;
   display: flex;
   align-items: center;
 `;
 
-const AmountContainer = styled.div`
+const QtyContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   font-weight: 700;
 `;
 
-const Amount = styled.span`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid #5F27CD;
-  display: flex;
+const Quantity = styled.span`
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  border: 2px solid #5F27CD;
   margin: 0px 5px;
   padding: 8px;
+  font-weight: 500;
+  font-size: 1.2rem;
 `;
 
 const QtyButton = styled.button`
-  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
   border: none;
-  border-radius: 50%;
-  background-color: #4f318b;
+  border-radius: 4px;
+  background-color: rgba(95, 39, 205, 0.9);
   color: white;
   cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  outline: none;
+
+  &:hover {
+    background-color: #5F27CD;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
-const Button = styled.button`
+const AddCart = styled.button`
   flex: 1;
   margin-left: 5px;
   padding: 15px;
-  border: 2px solid #5F27CD;
-  background-color: white;
-  cursor: pointer;
+  border: none;
+  background-color: rgba(95, 39, 205, 0.9);
   font-weight: 600;
-  &:hover{
-      background-color: #f8f4f4;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #5F27CD;
+    color: white;
+  }
+`;
+
+const AddWishlist = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  color: #5F27CD;
+  border: 2px solid #5F27CD;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #5F27CD;
+    color: white;
   }
 `;
 
 const ServiceContainer = styled.div`
   margin-top: 10%;
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -174,6 +223,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useContext(CartContext);
+  const { wishlist, addToWishlist, isItemInWishlist } = useContext(WishlistContext);
 
   const getProduct = async () => {
     publicRequest.get("/products/" + id)
@@ -186,6 +236,7 @@ const Product = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getProduct();
   }, [id]);
 
@@ -199,6 +250,7 @@ const Product = () => {
 
   const handleClick = () => {
     addToCart(product, quantity);
+    toast.success('Product added to cart');
   }
 
   return (
@@ -214,14 +266,15 @@ const Product = () => {
           <Title>{product.productName}</Title>
           <Sku>SKU: {product.SKU}</Sku>
           <Availability>{product.inStock === true ? "In Stock" : "Out of Stock"}</Availability>
-          <Price>Rs. {product.price}</Price>
+          <Price>Rs. {product.price?.toFixed(2)}</Price>
           <AddContainer>
-            <AmountContainer>
+            <QtyContainer>
               <QtyButton onClick={() => handleQuantity("dec")}><AiOutlineMinus size="1.5rem" /></QtyButton>
-              <Amount>{quantity}</Amount>
+              <Quantity>{quantity}</Quantity>
               <QtyButton onClick={() => handleQuantity("inc")}><AiOutlinePlus size="1.5rem" /></QtyButton>
-            </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            </QtyContainer>
+            <AddCart onClick={handleClick}>ADD TO CART</AddCart>
+            <AddWishlist onClick={() => addToWishlist(product)}><FaRegHeart size="1.5rem" /></AddWishlist>
           </AddContainer>
           <ServiceContainer>
             <Service>
@@ -233,8 +286,8 @@ const Product = () => {
               <ServiceName>Fast Delivery</ServiceName>
             </Service>
             <Service>
-              <ServiceImage src="https://cdn-icons-png.flaticon.com/512/2717/2717928.png" />
-              <ServiceName>Cash on Delivery</ServiceName>
+              <ServiceImage src="https://cdn-icons-png.flaticon.com/512/3760/3760135.png" />
+              <ServiceName>Secure Payment</ServiceName>
             </Service>
           </ServiceContainer>
         </InfoContainer>

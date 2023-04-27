@@ -7,6 +7,7 @@ import Navbar from '../../components/store/Navbar'
 import Newsletter from '../../components/store/Newsletter'
 import Products from '../../components/store/Products'
 import StoreSearch from '../../components/store/StoreSearch'
+import Header from '../../components/store/Header/Header'
 
 const Catalog = styled.div`
   width: 100%;
@@ -17,6 +18,9 @@ const Catalog = styled.div`
 const CategoryList = styled.div`
   flex: 1;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 25px 10px;
 `
 const ProductList = styled.div`
   flex: 5;
@@ -25,7 +29,7 @@ const ProductList = styled.div`
 const ProductCatalog = () => {
   return (
     <div>
-        <Navbar />
+        <Header />
         <Annoucement />
         <StoreSearch />
 

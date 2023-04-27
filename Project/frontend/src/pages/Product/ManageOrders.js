@@ -10,18 +10,22 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
-import TreatmentReport from './TreatmentReport';
 
+import './manageProducts.scss'
+import './manageOrders.scss'
 
-function ManageTreatment(){
+import OrdersReport from './OrdersReport'
 
-    const [treatments, setTreatment] = useState([])
+function ManageOrders() {
+
+    const [orders, setOrders] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const getTreatments = () => {
-        userRequest.get("/treatments")
+    const getOrders = () => {
+        userRequest.get("/orders")
         .then(res => {
-          setTreatment(res.data)
+            console.log(res.data)
+            setOrders(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -29,7 +33,7 @@ function ManageTreatment(){
     }
 
     useEffect(() => {
-        getTreatments()
+        getOrders()
     }, [isSubmitted])
 
     
@@ -45,10 +49,10 @@ function ManageTreatment(){
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          userRequest.delete('/treatments/' + id)
+          userRequest.delete('/orders/' + id)
           .then(res => {
               setIsSubmitted(!isSubmitted)
-              toast.success('Treatment deleted')
+              toast.success('Order deleted')
           })
           .catch(err => {
             alert(err)
@@ -63,17 +67,16 @@ function ManageTreatment(){
 
       const [search, setSearch] = useState('')
     
-      console.log(search)
-    
       const handleSearch = (e) => {
-          e.preventDefault()
-          userRequest.get(`treatments?search=${search}`)
-          .then(res => {
-            setTreatment(res.data)
+        e.preventDefault()
+        userRequest.get(`/orders?search=${search}`)
+        .then(res => {
+            setOrders(res.data);
+            console.log(res.data)
         })
         .catch(err => {
-            console.log(err)
-        })
+            console.log(err);
+        });
       }
     
       return(
@@ -90,44 +93,74 @@ function ManageTreatment(){
     }
 
     const columns = [
-       
-        {
-          field: "petID",
-          headerName: "Pet ID",
+        { 
+          field: "orderId",
+          headerName: "Order ID",
           headerAlign: "center",
           align: "center",
           flex: 1,
         },
         {
-          field: "petName",
-          headerName: "Pet Name",
+          field: "total",
+          headerName: "Amount",
           headerAlign: "center",
-          align:"center",
+          align: "center",
+          type: "number",
           flex: 1,
-          
+          valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
         },
         {
-            field: "customerID",
-            headerName: "Customer ID",
-            headerAlign: "center",
-            align:"center",
+            field: 'createdAt',
+            headerName: 'Date',
+            headerAlign: 'center',
+            align: 'center',
+            type: 'date',
             flex: 1,
-            
-        },
-
-        {
-            field: "treatment",
-            headerName: "Treatment",
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
+            valueGetter: ({ value }) => value && new Date(value),
+            valueFormatter: ({ value }) => value ? new Date(value).toLocaleString() : '',
         },
         {
-            field: "progressNotes",
-            headerName: "Progress Notes",
+            field: "paymentStatus",
+            headerName: "Payment Status",
             headerAlign: "center",
             align: "center",
             flex: 1,
+            renderCell: (params) => {
+              const status = params.value.toLowerCase();
+              return status === "succeeded" ? (
+                <span className='successful'>Successful</span>
+              ) : (
+                <span className='pending'>Pending</span>
+              );
+            },
+        },
+        {
+            field: "deliveryStatus",
+            headerName: "Delivery Status",
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+            renderCell: (params) => {
+              const status = params.value;
+              const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
+              let statusStyle = '';
+              switch (status) {
+                case 'delivered':
+                  statusStyle = 'successful';
+                  break;
+                case 'pending':
+                  statusStyle = 'pending';
+                  break;
+                case 'processing':
+                  statusStyle = 'processing';
+                  break;
+                // Add more cases for additional delivery statuses here
+                default:
+                  statusStyle = 'default';
+                  break;
+              }
+              return <span className={statusStyle}>{capitalizedStatus}</span>;
+            },
         },
         {
           field: "action",
@@ -140,11 +173,8 @@ function ManageTreatment(){
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/treatments/ViewTreatment/" + params.row._id}>
+                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
                   <AiOutlineEye className='view' />
-                </Link>
-                <Link to={"/admin/treatments/EditTreatment/" + params.row._id}>
-                  <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
               </div>
@@ -156,10 +186,10 @@ function ManageTreatment(){
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={treatments} columns={columns} searchBar={<SearchBar />} report={<TreatmentReport data={treatments}/>}/> 
+            <CustomDataGrid data={orders} columns={columns} searchBar={<SearchBar />} report={<OrdersReport data = {orders} />} /> 
             </div>
         </AdminLayout>
     )
 }
 
-export default ManageTreatment
+export default ManageOrders

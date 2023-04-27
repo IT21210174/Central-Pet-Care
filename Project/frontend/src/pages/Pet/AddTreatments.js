@@ -37,15 +37,15 @@ const handleSubmit = async (e) => {
   
   return (
     <AdminLayout>
-      
-    <div className="add-treatment-container-main">
+
+    <div className="add-treat-container-main">
         {/* this is the form container */}
-        <form className="add-treatment-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-treatment">Add Treatment</span>
+        <form className="add-treat-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-add-treat">Add Treatment</span>
             {/* input field container */}
             
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-treat-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field" value={petID} required onChange={(e) => setPetID(e.target.value)}/>
@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
             </div>
         </form>
     </div>
-   
+
     </AdminLayout>
   )
 }

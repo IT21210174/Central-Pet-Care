@@ -8,8 +8,21 @@ const Pet = require('../models/petRegisterModels')
 // @access  Private/Admin
 const getPets = asyncHandler(async (req, res) => {
 
-    const pets = await Pet.find();
-    
+    const qSearch = req.query.search
+    console.log(qSearch)
+     
+     let pets
+
+     if(qSearch){
+         pets = await Pet.find(
+            {
+                $text:{$search: qSearch}
+            }
+         )
+     }else{
+         pets = await Pet.find();
+     }
+
     res.status(200).json(pets);
 
 })
