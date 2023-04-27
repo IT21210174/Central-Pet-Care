@@ -12,7 +12,8 @@ const retrieveOrders = asyncHandler(
 const retrieveSpecificOrder = asyncHandler(
     async(req,res) => {
         const orderID = req.params.id;
-        const selectedOrder = await Order.find({ orderId: orderID });
+        const selectedOrder = await Order.findOne({ orderId: orderID });
+        // const selectedOrder = await Order.findById();
 
         if (selectedOrder.length !== 0) {
             res.status(200).json(selectedOrder);

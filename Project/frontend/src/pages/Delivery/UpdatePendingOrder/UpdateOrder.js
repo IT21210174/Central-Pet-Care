@@ -1,11 +1,13 @@
 import React , {useEffect, useState} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
 import swal from 'sweetalert2';
-import api from '../../../services/api';
+import api from '../../../services/order-api';
 import './UpdateOrder.scss'
 import Swal from 'sweetalert2';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 function UpdateOrder() {
 
@@ -15,13 +17,33 @@ function UpdateOrder() {
     const {id} = location.state
     console.log(id);
 
-
     useEffect(()=>{
-        api.get(`/mongo/${id}`).then((response)=>{
-            setOrderDetails(response.data)
-            console.log(orderDetails);
-        })
+       const fetcher = async() => {
+			await axios.get(`http://localhost:4000/api/deliver-orders/${id}`)
+			.then((response)=>{
+				console.log(response.data)
+				setOrderDetails(response.data)
+				console.log(orderDetails);
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+		}
+
+		fetcher()
+		// api.get("/").then((response) => {
+		// 	setDrivers(response.data);
+		// });
+
+
     },[])
+
+	// const [drivers , setDrivers] = useState([])
+
+	// const availableDrivers = drivers.filter((driver)=>{
+	// 	return driver.driverStatus === "Available"
+	// })
+
 
     const [orderDetails, setOrderDetails] = useState({
 		orderId: "",
@@ -30,23 +52,21 @@ function UpdateOrder() {
 			address:{
 				line1:"", 
 				line2:"", 
-				city:"" ,
-				country:""},
+				city:"" },
 			phone:""},
 		deliveryStatus:"",
 		shippingAmount:"",
 		total:"",
-		deliveryStatus:"",
-		//driver should be added as well			
+		//assignedDriver:""		
 	});
 
-	const addDriverFormHandler = (event) => {
+	const updateOrderFormHandler = (event) => {
 		event.preventDefault();
-		if (driverDetails.driverName !== "") {
-			console.log(driverDetails);
-			api.put(`/mongo/${id}`, driverDetails).then((response) => {
+		if (orderDetails.orderId !== "") {
+			console.log(orderDetails);
+			api.put(`/mongo/${id}`, orderDetails).then((response) => {
 				console.log(response.data);
-				console.log("success bro");
+				console.log("success");
 			});
 			swal.fire({
 				icon: "success",
@@ -56,10 +76,10 @@ function UpdateOrder() {
 
             navigateBackBtn()
 		} else {
-			console.log(driverDetails);
-			api.post("/", driverDetails).then((response) => {
+			console.log(orderDetails);
+			api.post("/", orderDetails).then((response) => {
 				console.log(response.data);
-				console.log("success bro");
+				console.log("success");
 			});
 			swal.fire({
 				icon: "error",
@@ -70,137 +90,138 @@ function UpdateOrder() {
 	};
 
 	const navigateBackBtn = () => {
-        navigate(`/delivery/manage-driver`);
+        navigate(`/delivery/view-order`);
     }
 
-	const addDriverFormInputHandler = (event) => {
-		setDriverDetails({
-			...driverDetails,
+	const updateOrderFormInputHandler = (event) => {
+		setOrderDetails({
+			...orderDetails,
 			[event.target.name]: event.target.value,
 		});
 	};
 
     return (
 		<AdminLayout>
-			<div className="add-driver-container">
+			<div className="update-order-container">
 				<form
 					className="form-container"
-					onSubmit={addDriverFormHandler}
+					onSubmit={updateOrderFormHandler}
 				>
 					{/* column lane one */}
-					<div className="add-driver-column">
+					<div className="update-order-column">
 						<section className="input-container">
-							<span className="input-title">driver name</span>
+							<span className="input-title">Order ID</span>
 							<input
 								className="input-field"
-								value={driverDetails.driverName}
-								onChange={addDriverFormInputHandler}
-								name="driverName"
+								value={orderDetails.orderId}
+								onChange={updateOrderFormInputHandler}
+								name="orderId"
 							/>
 						</section>
 						<section className="input-container">
-							<span className="input-title">NIC number</span>
+							<span className="input-title">Customer Name</span>
 							<input
 								className="input-field"
-								value={driverDetails.nicNumber}
-								onChange={addDriverFormInputHandler}
-								name="nicNumber"
+								value={orderDetails.shipping.name}
+								onChange={updateOrderFormInputHandler}
+								name="cusName"
 							/>
 						</section>
 						<section className="input-container">
-							<span className="input-title">
-								permanent address
-							</span>
-							<textarea
-								className="input-textarea"
-								id=""
-								cols="30"
-								rows="10"
-								value={driverDetails.permAddress}
-								onChange={addDriverFormInputHandler}
-								name="permAddress"
-							></textarea>
-						</section>
-						<section className="input-container">
-							<span className="input-title">
-								telephone number
-							</span>
+							<span className="input-title">Address Line 1</span>
 							<input
 								className="input-field"
-								value={driverDetails.phoneNum}
-								onChange={addDriverFormInputHandler}
-								name="phoneNum"
+								value={orderDetails.shipping.address.line1}
+								onChange={updateOrderFormInputHandler}
+								name="adLine1"
+							/>
+						</section>
+						<section className="input-container">
+							<span className="input-title">Address Line 2</span>
+							<input
+								className="input-field"
+								value={orderDetails.shipping.address.line2}
+								onChange={updateOrderFormInputHandler}
+								name="adLine2"
+							/>
+						</section>
+						<section className="input-container">
+							<span className="input-title">City</span>
+							<input
+								className="input-field"
+								value={orderDetails.shipping.address.city}
+								onChange={updateOrderFormInputHandler}
+								name="adCity"
 							/>
 						</section>
 					</div>
 					{/* column lane two */}
-					<div className="add-driver-column">
+					<div className="update-order-column">
 						<section className="input-container">
 							<span className="input-title">
-								driver's liscene number
+								Telephone Number
 							</span>
 							<input
 								className="input-field"
-								value={driverDetails.driversLicenceNo}
-								onChange={addDriverFormInputHandler}
-								name="driversLicenceNo"
+								value={orderDetails.shipping.phone}
+								onChange={updateOrderFormInputHandler}
+								name="phoneNum"
 							/>
 						</section>
 						<section className="input-container">
 							<span className="input-title">
-								vehicle registration number
+								Shipping Amount(Rs.)
 							</span>
 							<input
 								className="input-field"
-								value={driverDetails.vehicleRegNo}
-								onChange={addDriverFormInputHandler}
-								name="vehicleRegNo"
+								value={orderDetails.shippingAmount}
+								onChange={updateOrderFormInputHandler}
+								name="shippingFee"
 							/>
 						</section>
 						<section className="input-container">
-							<span className="input-title">vehicle type</span>
+							<span className="input-title">
+								Total Amount(Rs.)
+							</span>
+							<input
+								className="input-field"
+								value={orderDetails.total}
+								onChange={updateOrderFormInputHandler}
+								name="totalFee"
+							/>
+						</section>
+						<section className="input-container">
+							<span className="input-title">Delivery Status</span>
 							<select
 								className="input-field"
-								value={driverDetails.vehicleType}
-								onChange={addDriverFormInputHandler}
-								name="vehicleType"
+								value={orderDetails.deliveryStatus}
+								onChange={updateOrderFormInputHandler}
+								name="deliveyStatus"
 							>
 								{" "}
 								<option className="select-option" value="">
 									Select Type
 								</option>
-								<option className="select-option" value="bike">
-									Motorcycle
+								<option className="select-option" value="Processing">
+									Processing
 								</option>
-								<option className="select-option" value="car">
-									Car
-								</option>
-								<option className="select-option" value="lorry">
-									Lorry
-								</option>
-								<option className="select-option" value="van">
-									Van
+								<option className="select-option" value="Completed">
+									Completed
 								</option>
 							</select>
 						</section>
                         <section className="input-container">
-							<span className="input-title">Select Status</span>
-							<select
+							<span className="input-title">
+								Enter Driver ID
+							</span>
+							<input
 								className="input-field"
-								value={driverDetails.driverStatus}
-								onChange={addDriverFormInputHandler}
-								name="driverStatus"
-							>
-								{" "}
-								<option className="select-option" value="Available">
-									Available
-								</option>
-								<option className="select-option" value="Unavailable">
-									Unavailable
-								</option>
-							</select>
+								value={orderDetails.assignedDriver}
+								onChange={updateOrderFormInputHandler}
+								name="assignedDriver"
+							/>
 						</section>
-						<div className="btn-container-add-driver">
+						<div className="btn-container-update-order">
 							<button
 								onClick={() => {
 									navigateBackBtn()
@@ -220,4 +241,4 @@ function UpdateOrder() {
 	);  
 }
 
-export default UpdateDriver
+export default UpdateOrder

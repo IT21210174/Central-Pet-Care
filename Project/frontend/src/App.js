@@ -6,6 +6,8 @@ import AddDriver from "./pages/Delivery/RegisterDriver/RegisterDriver";
 import ManageDriver from "./pages/Delivery/ManageDriver/ManageDriver";
 import ViewOrder from "./pages/Delivery/ViewOrder/ViewOrder";
 import UpdateDriver from "./pages/Delivery/updateDriver/update-driver";
+import UpdateOrder from "./pages/Delivery/UpdatePendingOrder/UpdateOrder";
+
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -19,6 +21,7 @@ function App() {
 				<Route path="/delivery/manage-driver" element={<ManageDriver />} />
 				<Route path="/delivery/view-order" element={<ViewOrder />} />
 				<Route path="/delivery/update-driver" element={<UpdateDriver/>}/> 
+				<Route path="/delivery/update-order" element={<UpdateOrder/>}/> 
 			</Routes>
 		</Router>
 	);

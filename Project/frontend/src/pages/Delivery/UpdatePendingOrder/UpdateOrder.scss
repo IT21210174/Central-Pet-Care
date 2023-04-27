@@ -9,7 +9,7 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: "Poppins", sans-serif;
 
-.add-driver-container {
+.update-order-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -34,7 +34,7 @@ $fontfam-1: "Poppins", sans-serif;
 	box-shadow: 8px 8px 10px rgba($color: #000000, $alpha: 0.5);
 }
 
-.add-driver-column {
+.update-order-column {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -92,7 +92,7 @@ $fontfam-1: "Poppins", sans-serif;
 	border: none;
 }
 
-.btn-container-add-driver {
+.btn-container-update-order {
 	margin-top: 35px;
 	display: flex;
 	justify-content: space-evenly;

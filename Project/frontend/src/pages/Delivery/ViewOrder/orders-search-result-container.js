@@ -5,8 +5,19 @@ import { AiFillDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import "sweetalert2/src/sweetalert2.scss";
+import { useNavigate } from "react-router-dom";
+
 export default function OrderSearchResultsContainer(props) {
 	const { order } = props;
+
+
+	const navigate = useNavigate()
+
+	const updateItem = (id) => {
+		navigate(`/delivery/update-order`, { state: { id } });
+		console.log(id);
+	};
+
 
 	return (
 		<div>
@@ -37,7 +48,7 @@ export default function OrderSearchResultsContainer(props) {
 								{deliveryStatus}
 							</span>
 							<span className="item-field-view-order">
-								<button className="action-btns-view-order">
+								<button className="action-btns-view-order" onClick={()=>{updateItem(orderId)}}>
 									<BiEdit />
 								</button>
 							</span>
