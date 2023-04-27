@@ -6,8 +6,17 @@ import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
+import { useNavigate } from "react-router-dom";
+
 export default function ItemSearchResultsContainer(props) {
 	const { driver } = props;
+	const navigate = useNavigate();
+
+	// update function
+	const updateItem = (id) => {
+		navigate(`/delivery/update-driver`, { state: { id } });
+		console.log(id);
+	};
 
 	const deleteItem = (deletingID) => {
 		const swalWithBootstrapButtons = Swal.mixin({
@@ -103,7 +112,9 @@ export default function ItemSearchResultsContainer(props) {
 								<button className="action-btns-manage-driver">
 									<AiOutlineEye />
 								</button>
-								<button className="action-btns-manage-driver">
+								<button 
+									className="action-btns-manage-driver"
+									onClick={() => updateItem(_id)}>
 									<BiEdit />
 								</button>
 								<button

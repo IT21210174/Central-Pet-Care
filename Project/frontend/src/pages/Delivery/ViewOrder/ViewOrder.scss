@@ -64,7 +64,7 @@ $secondary-color-purple4: #e9e3ff;
 	border-bottom: 1px solid #888;
 }
 
-.driver-info {
+.order-info {
 	border-radius: 12px;
 	width: 100%;
 	padding: 10px 20px;
@@ -82,7 +82,7 @@ $secondary-color-purple4: #e9e3ff;
 	font-weight: 600;
 }
 
-.item-field-manage-driver {
+.item-field-view-order {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -90,10 +90,6 @@ $secondary-color-purple4: #e9e3ff;
 	text-align: center;
 	color: #2c2c54;
 	font-size: 16px;
-}
-
-.item-field-manage-driver:nth-child(6) {
-	padding-left: 20px;
 }
 
 .search-results-section {
@@ -125,7 +121,7 @@ $secondary-color-purple4: #e9e3ff;
 	border-radius: 0.5em;
 }
 
-.action-btns-manage-driver {
+.action-btns-view-order {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -139,20 +135,9 @@ $secondary-color-purple4: #e9e3ff;
 	border-radius: 5px;
 	transition: 0.2s;
 	background: transparent;
-}
-
-.action-btns-manage-driver:hover {
-	cursor: pointer;
-}
-
-.action-btns-manage-driver:nth-child(1) {
-	color: $primary-color-navyBlue;
-}
-
-.action-btns-manage-driver:nth-child(2) {
 	color: green;
 }
 
-.action-btns-manage-driver:nth-child(3) {
-	color: crimson;
+.action-btns-view-order:hover {
+	cursor: pointer;
 }

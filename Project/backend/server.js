@@ -11,7 +11,9 @@ const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const checkoutRoutes = require("./routes/stripeRoutes");
 
+
 const driverRoutes = require("./routes/driverRoutes");
+const deliverRoutes = require('./routes/deliverRoutes')
 
 const port = process.env.PORT || 4000;
 
@@ -28,6 +30,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/checkout", checkoutRoutes);
 
 app.use("/api/drivers", driverRoutes);
+app.use("/api/deliver-orders", deliverRoutes);
 
 app.use(errorHandler);
 

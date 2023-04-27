@@ -87,6 +87,36 @@ const updateDriverDetails = asyncHandler(async (req, res) => {
 	}
 });
 
+
+// update method
+const UpdateDriverDetailsUsingMongo = asyncHandler(async (req, res) => {
+	const id = req.params.id;
+
+	const selectedDriver = await Driver.findByIdAndUpdate(id ,{ $set: req.body },{ new: true });
+
+	if (selectedDriver) {
+		res.status(201).json(selectedDriver);
+	} else {
+		res.status(404).json({ message: "Driver not found" });
+	}
+});
+
+
+// find by mongo id method
+const FindDriverDetailsUsingMongo = asyncHandler(async (req, res) => {
+	const id = req.params.id;
+
+	const selectedDriver = await Driver.findById(id);
+
+	if (selectedDriver) {
+		res.status(201).json(selectedDriver);
+	} else {
+		res.status(404).json({ message: "Driver not found" });
+	}
+});
+
+
+
 // delete method
 const deleteDriver = asyncHandler(async (req, res) => {
 	const deletingID = req.params.id;
@@ -107,4 +137,5 @@ module.exports = {
 	getSingleDriver,
 	deleteDriver,
 	updateDriverDetails,
+	UpdateDriverDetailsUsingMongo,FindDriverDetailsUsingMongo
 };

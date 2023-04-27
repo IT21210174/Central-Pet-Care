@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { ImSearch } from "react-icons/im";
 import AdminLayout from "../../Layouts/AdminLayout";
-// import ResultContainer from "./drivers-search-result-container";
-// import NoItemsDisplayer from "./drivers-empty-result-diplayer";
+import ResultContainer from "./orders-search-result-container";
+import NoItemsDisplayer from "./orders-empty-result-displayer";
 import "./ViewOrder.scss";
-import api from "../../../services/api";
+import orderApi from '../../../services/order-api'
 
 function ViewOrderComponent() {
 	const [orders, setOrders] = useState([]);
-
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
-		api.get("/").then((response) => {
+		orderApi.get("/").then((response) => {
 			setOrders(response.data);
+			console.log(orders);
 		});
 	}, []);
 
@@ -22,7 +22,7 @@ function ViewOrderComponent() {
 	};
 
 	const searchFunction = () => {
-		api.get(`/${searchPrompt}`)
+		orderApi.get(`/${searchPrompt}`)
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);
@@ -35,6 +35,7 @@ function ViewOrderComponent() {
 			.catch((error) => {
 				console.log("no such item");
 				console.log(error);
+				setOrders([])
 			});
 	};
 
@@ -71,22 +72,19 @@ function ViewOrderComponent() {
 					{/* table headings */}
 					<div className="order-info-item-head">
 						<span className="item-field-head-view-order">
-							Driver Name
+							Order ID
 						</span>
 						<span className="item-field-head-view-order">
-							NIC No
+							Customer Name
 						</span>
 						<span className="item-field-head-view-order">
-							Phone No
+							Customer Phone
 						</span>
 						<span className="item-field-head-view-order">
-							Vehicle No
+							Delivery Location
 						</span>
 						<span className="item-field-head-view-order">
-							Vehicle Type
-						</span>
-						<span className="item-field-head-view-order">
-							Status
+							Delivery Status
 						</span>
 						<span className="item-field-head-view-order"></span>
 					</div>
@@ -94,7 +92,7 @@ function ViewOrderComponent() {
 
 					<div className="search-results-container">
 						{/* display the results */}
-						{drivers.length === 0 ? (
+						{orders.length === 0 ? (
 							<NoItemsDisplayer />
 						) : (
 							<ResultContainer order={orders} />

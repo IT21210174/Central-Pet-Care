@@ -4,113 +4,41 @@ import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
-import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
 export default function OrderSearchResultsContainer(props) {
 	const { order } = props;
 
-	const deleteOrder = (deletingID) => {
-		const swalWithBootstrapButtons = Swal.mixin({
-			customClass: {
-				confirmButton: "btn-success",
-				cancelButton: "btn-danger",
-			},
-			buttonsStyling: false,
-		});
-
-		swalWithBootstrapButtons
-			.fire({
-				title: "Are you sure?",
-				text: "You won't be able to revert this!",
-				icon: "warning",
-				showCancelButton: true,
-				confirmButtonText: "Yes, delete it!",
-				cancelButtonText: "No, cancel!",
-				reverseButtons: true,
-			})
-			.then((result) => {
-				if (result.isConfirmed) {
-					swalWithBootstrapButtons.fire(
-						"Deleted!",
-						"Your file has been deleted.",
-						"success"
-					);
-
-					api.delete(`/${deletingID}`)
-						.then((response) => {
-							console.log(response);
-						})
-						.catch((error) => {
-							console.log(error);
-						});
-
-					const newSet = order.filter((object) => {
-						const { _id } = object;
-
-						return _id !== deletingID;
-					});
-
-					// console.log(newSet);
-					// setFunc(newSet);
-				} else if (
-					/* Read more about handling dismissals below */
-					result.dismiss === Swal.DismissReason.cancel
-				) {
-					swalWithBootstrapButtons.fire(
-						"Cancelled",
-						"Your file is safe",
-						"error"
-					);
-				}
-			});
-	};
-
 	return (
 		<div>
 			{order.reverse().map((singleItem) => {
-				const {
-					_id,
-					driverName,
-					nicNumber,
-					phoneNum,
-					vehicleRegNo,
-					vehicleType,
-					driverStatus,
-				} = singleItem;
+				
+				console.log(singleItem)
 
-				if (driver.length > 0) {
+				const {deliveryStatus , orderId , shipping , _id} = singleItem
+				const {address , name , phone} = shipping
+				const {city} = address
+
+				if (order.length > 0) {
 					return (
-						<div className="driver-info" key={_id}>
-							<span className="item-field-manage-driver">
-								{driverName}
+						<div className="order-info" key={_id}>
+							<span className="item-field-view-order">
+								{orderId}
 							</span>
-							<span className="item-field-manage-driver">
-								{nicNumber}
+							<span className="item-field-view-order">
+								{name}
 							</span>
-							<span className="item-field-manage-driver">
-								{phoneNum}
+							<span className="item-field-view-order">
+								{phone}
 							</span>
-							<span className="item-field-manage-driver">
-								{vehicleRegNo}
+							<span className="item-field-view-order">
+								{city}
 							</span>
-							<span className="item-field-manage-driver">
-								{vehicleType}
+							<span className="item-field-view-order">
+								{deliveryStatus}
 							</span>
-							<span className="item-field-manage-driver">
-								{driverStatus}
-							</span>
-							<span className="item-field-manage-driver">
-								<button className="action-btns-manage-driver">
-									<AiOutlineEye />
-								</button>
-								<button className="action-btns-manage-driver">
+							<span className="item-field-view-order">
+								<button className="action-btns-view-order">
 									<BiEdit />
-								</button>
-								<button
-									className="action-btns-manage-driver"
-									onClick={() => deleteOrder(nicNumber)}
-								>
-									<AiOutlineDelete />
 								</button>
 							</span>
 						</div>

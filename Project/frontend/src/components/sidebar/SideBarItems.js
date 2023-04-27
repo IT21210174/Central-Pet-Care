@@ -255,7 +255,7 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 800,
-				link: "",
+				link: "/delivery/view-order",
 				nestedItemicon: <TbPackageExport />,
 				nestedItemtext: "Assign Driver",
 			},
