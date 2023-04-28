@@ -101,10 +101,10 @@ function EditVet() {
                         <span className="input-title">qualification</span>
                         <textarea type="text" className='input-textarea' id="" cols="30" rows="10" value={qualification} onChange={(e) => setQualification(e.target.value)}></textarea>
                     </section>
-                    <section className="input-container">
+                    {/* <section className="input-container">
                         <span className="input-title">profile picture</span>
                         <input type="file" name="" id="" className='input-field'/>
-                    </section>
+                    </section> */}
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Update</button>
                       <button type='reset' className="reset-btn">Reset</button>

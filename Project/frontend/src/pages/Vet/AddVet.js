@@ -62,7 +62,7 @@ function AddVet() {
                 </section>
                 <section className="input-container">
                   <span className="input-title">telephone</span>
-                  <input type="text" className="input-field" value={telephone} onChange={(e) => setTelephone(e.target.value)} pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="0123456789"/>
+                  <input type="text" className="input-field" value={telephone} onChange={(e) => setTelephone(e.target.value)} pattern="[0-9]{10}" placeholder="0123456789"/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">email</span>

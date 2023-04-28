@@ -118,7 +118,7 @@ function ManageVets() {
           headerName: "Telephone",
           headerAlign: "center",
           align: "center",
-          type: "number",
+         // type: "number",
           flex: 2,
         },
         {
