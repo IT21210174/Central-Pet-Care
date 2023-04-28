@@ -77,10 +77,8 @@ function AddPrescription() {
                         <span className="input-title">description</span>
                         <textarea type="text" className='input-textarea' id="" cols="30" rows="10" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                     </section>
-              </div>
-              {/* column two */}
-              <div className="add-item-column">
-              <section className="input-container">
+
+                    <section className="input-container">
                   <span className="input-title">medicine</span>
                   <input type="text" className="input-field" value={medicine} onChange={(e) => setMedicine(e.target.value)}/>
                 </section>
@@ -96,6 +94,8 @@ function AddPrescription() {
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>
               </div>
+              {/* column two */}
+            
             </div>
         </form>
     </div>
