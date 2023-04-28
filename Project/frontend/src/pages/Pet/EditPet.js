@@ -69,6 +69,12 @@ function EditPet() {
       })
     }
   }  
+  const [maxDate, setMaxDate] = useState(null)
+
+  useEffect(() => {
+    const date = new Date();
+    setMaxDate(date.toISOString() .split("T")[0])
+  }, [])
 
   return (
     <AdminLayout>
@@ -90,7 +96,7 @@ function EditPet() {
                 </section>
                 <section className="input-container">
                   <span className="input-title">DOB</span>
-                  <input className="input-field" type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" value={dob} required onChange={(e) => setPetDob(e.target.value)}/>
+                  <input className="input-field" type="date" max={maxDate} value={dob} required onChange={(e) => setPetDob(e.target.value)}/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">Gender</span>

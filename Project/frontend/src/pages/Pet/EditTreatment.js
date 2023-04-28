@@ -46,6 +46,12 @@ function EditTreatment() {
       })
     
   }  
+  const [maxDate, setMaxDate] = useState(null)
+
+  useEffect(() => {
+    const date = new Date();
+    setMaxDate(date.toISOString() .split("T")[0])
+  }, [])
 
   return (
     <AdminLayout>
@@ -72,7 +78,7 @@ function EditTreatment() {
                
                 <section className="input-container">
                   <span className="input-title">Date</span>
-                  <input className="input-field" type="date" id="date" name="date" pattern="\d{1,2}/\d{1,2}/\d{4}" value={date} required onChange={(e) => setDate(e.target.value)}/>
+                  <input className="input-field" type="date" id="date" name="date" max={maxDate} value={date} required onChange={(e) => setDate(e.target.value)}/>
                 </section>
               
                <section className="input-container">

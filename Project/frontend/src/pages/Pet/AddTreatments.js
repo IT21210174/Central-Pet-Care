@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect,useState } from 'react';
 import AdminLayout from '../Layouts/AdminLayout'
 import './AddTreatments.scss'
 import { userRequest } from '../../requestMethods'
@@ -34,7 +34,13 @@ const handleSubmit = async (e) => {
       toast.error(err.message)
   })
 }  
-  
+const [maxDate, setMaxDate] = useState(null)
+
+useEffect(() => {
+  const date = new Date();
+  setMaxDate(date.toISOString() .split("T")[0])
+}, [])
+
   return (
     <AdminLayout>
 
@@ -61,7 +67,7 @@ const handleSubmit = async (e) => {
                
                 <section className="input-container">
                   <span className="input-title">Date</span>
-                  <input className="input-field" type="date" id="date" name="date" pattern="\d{1,2}/\d{1,2}/\d{4}" value={date} required onChange={(e) => setDate(e.target.value)}/>
+                  <input className="input-field" type="date" id="date" name="date" max={maxDate} value={date} required onChange={(e) => setDate(e.target.value)}/>
                 </section>
               
                <section className="input-container">
