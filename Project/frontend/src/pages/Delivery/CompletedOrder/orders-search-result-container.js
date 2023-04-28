@@ -64,9 +64,9 @@ export default function OrderSearchResultsContainer(props) {
 								{deliveryStatus}
 							</span>
 							<span className="item-field-view-order">
-								<button className="action-btns-view-order" onClick={()=>{updateItem(orderId)}}>
+								{/* <button className="action-btns-view-order" onClick={()=>{updateItem(orderId)}}>
 									<BiEdit />
-								</button>
+								</button> */}
 								<button
 									className="action-btns-view-order"
 									onClick={() => deleteItem(_id)}
