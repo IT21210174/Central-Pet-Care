@@ -107,14 +107,14 @@ const SidebarItems = [
 			},
 			{
 				id: 202,
-				link: "/admin/orders",
+				link: "/admin/products/manageOrders",
 				nestedItemicon: <BsFillCartFill />,
 				nestedItemtext: "Orders",
 			},
 
 			{
 				id: 203,
-				link: "/admin/insights",
+				link: "/admin/products/insights",
 				nestedItemicon: <MdInsights />,
 				nestedItemtext: "Insights",
 			},

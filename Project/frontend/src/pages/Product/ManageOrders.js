@@ -173,7 +173,7 @@ function ManageOrders() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/products/viewOrder/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
