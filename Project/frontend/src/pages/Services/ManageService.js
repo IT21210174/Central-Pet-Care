@@ -21,6 +21,7 @@ function ManageService() {
     const getServices = () => {
         userRequest.get("/services")
         .then(res => {
+          console.log(res.data)
           setServices(res.data)
         })
         .catch(err => {

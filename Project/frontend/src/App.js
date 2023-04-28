@@ -17,7 +17,7 @@ import Wishlist from './pages/Store/Wishlist';
 
 //service management
 import AddRecord from './pages/Services/AddRecord';
-import AddService from './pages/Services/AddService';
+import AddService from './pages/Services/AddService'
 import EditRecord from './pages/Services/EditRecord';
 import ViewRecord from './pages/Services/ViewRecord';
 import ManageService from './pages/Services/ManageService';

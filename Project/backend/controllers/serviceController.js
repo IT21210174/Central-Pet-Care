@@ -31,9 +31,9 @@ const getServices = asyncHandler(async (req, res) => {
 // @route   GET /api/records/:id
 // @access  Private/Admin
 const getServiceById = asyncHandler(async (req, res) => {
-    const services = await Service.findById(req.params.id)
+    const service = await Service.findById(req.params.id)
   
-    if (services) {
+    if (service) {
         res.status(200).json(service)
     } else {
         res.status(404)
