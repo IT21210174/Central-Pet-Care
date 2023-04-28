@@ -11,6 +11,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { WishlistContext } from "../../contexts/WishlistContext";
 import { FaRegHeart } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
+import Header from '../../components/store/Header/Header';
 
 const Container = styled.div``;
 
@@ -255,7 +256,7 @@ const Product = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Header />
       <StoreSearch />
       <Wrapper>
         <Top>
