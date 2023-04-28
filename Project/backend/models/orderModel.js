@@ -56,6 +56,10 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true,
         default: "pending"
+    },
+    assignedDriver: {
+        type: String,
+        default: ""
     }
 }, {
     timestamps: true

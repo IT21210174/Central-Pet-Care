@@ -17,7 +17,7 @@ router.get("/:id", protect, getOrderById);
 router.get("/myorders", protect, getMyOrders);
 
 router.get("/", protect, admin, getOrders);
-router.put("/:id", protect, admin, updateOrder);
+router.put("/:id", updateOrder);
 router.get("/income", protect, admin, getMonthlyIncome);
 
 module.exports = router;

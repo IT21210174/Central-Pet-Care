@@ -254,27 +254,6 @@ const sidebarItems = [
 		text: "Delivery Management",
 		nestedFunctions: [
 			{
-				id: 800,
-				link: "/delivery/view-order",
-				nestedItemicon: <TbPackageExport />,
-				nestedItemtext: "Assign Driver",
-			},
-
-			{
-				id: 801,
-				link: "",
-				nestedItemicon: <BiTimer />,
-				nestedItemtext: "Processing Orders",
-			},
-
-			{
-				id: 802,
-				link: "",
-				nestedItemicon: <AiOutlineFileDone />,
-				nestedItemtext: "Completed Orders",
-			},
-
-			{
 				id: 803,
 				link: "/delivery/add-driver",
 				nestedItemicon: <FaUserPlus />,
@@ -286,6 +265,28 @@ const sidebarItems = [
 				link: "/delivery/manage-driver",
 				nestedItemicon: <FaUserEdit />,
 				nestedItemtext: "View Drivers",
+			},
+
+
+			{
+				id: 800,
+				link: "/delivery/view-order",
+				nestedItemicon: <TbPackageExport />,
+				nestedItemtext: "Assign Driver",
+			},
+
+			{
+				id: 801,
+				link: "/delivery/processing-order",
+				nestedItemicon: <BiTimer />,
+				nestedItemtext: "Processing Orders",
+			},
+
+			{
+				id: 802,
+				link: "/delivery/completed-order",
+				nestedItemicon: <AiOutlineFileDone />,
+				nestedItemtext: "Completed Orders",
 			},
 
 			{

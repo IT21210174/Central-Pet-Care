@@ -24,4 +24,21 @@ const retrieveSpecificOrder = asyncHandler(
 )
 
 
-module.exports = {retrieveOrders ,retrieveSpecificOrder}
+const updateOrder = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+  
+    if (order) {
+        const updatedProduct = await Order.findByIdAndUpdate(order._id, { $set: req.body },{ 
+            new: true, 
+        });
+    
+        res.status(200).json(updatedProduct)
+    } else {
+        res.status(404)
+        throw new Error('Order not found')
+    }
+})
+
+
+
+module.exports = {retrieveOrders ,retrieveSpecificOrder, updateOrder}

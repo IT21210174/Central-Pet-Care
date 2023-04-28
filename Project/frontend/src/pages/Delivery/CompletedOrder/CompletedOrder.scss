@@ -135,9 +135,16 @@ $secondary-color-purple4: #e9e3ff;
 	border-radius: 5px;
 	transition: 0.2s;
 	background: transparent;
-	color: green;
 }
 
 .action-btns-view-order:hover {
 	cursor: pointer;
+}
+
+.action-btns-view-order:nth-child(1){
+	color: green;
+}
+
+.action-btns-view-order:nth-child(2){
+	color: red;
 }

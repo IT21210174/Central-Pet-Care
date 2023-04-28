@@ -3,10 +3,10 @@ import { ImSearch } from "react-icons/im";
 import AdminLayout from "../../Layouts/AdminLayout";
 import ResultContainer from "./orders-search-result-container";
 import NoItemsDisplayer from "./orders-empty-result-displayer";
-import "./ProcessingOrder.scss";
+import "./CompletedOrder.scss";
 import orderApi from '../../../services/order-api'
 
-function ViewProcessingOrderComponent() {
+function ViewCompletedOrderComponent() {
 	const [orders, setOrders] = useState([]);
 	const [searchPrompt, setSearchPrompt] = useState("");
 
@@ -109,4 +109,4 @@ function ViewProcessingOrderComponent() {
 	);
 }
 
-export default ViewProcessingOrderComponent;
+export default ViewCompletedOrderComponent;

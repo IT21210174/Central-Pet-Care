@@ -17,6 +17,24 @@ function UpdateOrder() {
     const {id} = location.state
     console.log(id);
 
+
+	const [orderDetails, setOrderDetails] = useState({
+		_id: "",
+		orderId: "",
+		shipping:{
+			name: "", 
+			address:{
+				line1:"", 
+				line2:"", 
+				city:"" },
+			phone:""},
+		deliveryStatus:"",
+		shippingAmount:"",
+		total:"",
+		assignedDriver:""		
+	});
+
+
     useEffect(()=>{
        const fetcher = async() => {
 			await axios.get(`http://localhost:4000/api/deliver-orders/${id}`)
@@ -31,11 +49,7 @@ function UpdateOrder() {
 		}
 
 		fetcher()
-		// api.get("/").then((response) => {
-		// 	setDrivers(response.data);
-		// });
-
-
+		
     },[])
 
 	// const [drivers , setDrivers] = useState([])
@@ -45,26 +59,13 @@ function UpdateOrder() {
 	// })
 
 
-    const [orderDetails, setOrderDetails] = useState({
-		orderId: "",
-		shipping:{
-			name: "", 
-			address:{
-				line1:"", 
-				line2:"", 
-				city:"" },
-			phone:""},
-		deliveryStatus:"",
-		shippingAmount:"",
-		total:"",
-		//assignedDriver:""		
-	});
+    
 
 	const updateOrderFormHandler = (event) => {
 		event.preventDefault();
 		if (orderDetails.orderId !== "") {
-			console.log(orderDetails);
-			api.put(`/mongo/${id}`, orderDetails).then((response) => {
+			console.log(orderDetails._id);
+			axios.put(`http://localhost:4000/api/deliver-orders/${orderDetails._id}`, orderDetails).then((response) => {
 				console.log(response.data);
 				console.log("success");
 			});
@@ -194,11 +195,10 @@ function UpdateOrder() {
 							<span className="input-title">Delivery Status</span>
 							<select
 								className="input-field"
-								value={orderDetails.deliveryStatus}
+								// value={orderDetails.deliveryStatus}
 								onChange={updateOrderFormInputHandler}
 								name="deliveyStatus"
 							>
-								{" "}
 								<option className="select-option" value="">
 									Select Type
 								</option>
@@ -212,7 +212,7 @@ function UpdateOrder() {
 						</section>
                         <section className="input-container">
 							<span className="input-title">
-								Enter Driver ID
+								Enter Assigned Vehicle No
 							</span>
 							<input
 								className="input-field"
