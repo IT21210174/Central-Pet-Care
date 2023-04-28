@@ -38,7 +38,7 @@ function ViewStaff() {
             setjoinedDate(res.data.joinedDate)
             setsalary(res.data.salary)
            
-            setImageURL(res.data.image)
+            setImageURL(res.data.simage)
         }).catch(err =>{
             toast.error(err.message)
         })
@@ -101,34 +101,38 @@ function ViewStaff() {
                 
                
             </table> */}
-            <div className='payroll-record-container'>
+            <div className='staff-record-container'>
+                <div classNmae = 'staff-pic-container'>
+                    <img src = {imageURL} className='staff-img'></img>
+                </div>
                     
-                    <div className = "payroll-details-container">
-                        <div className="payroll-prompts">
-                            <span className='payroll-line-info'>First Name</span>
-                            <span className='payroll-line-info'>Last Name</span>
-                            <span className='payroll-line-info'>Address</span>
-                            <span className='payroll-line-info'>NIC</span>
-                            <span className='payroll-line-info'>Contact No</span>
-                            <span className='payroll-line-info'>Date of Birth</span>
-                            <span className='payroll-line-info'>Email</span>
-                            <span className='payroll-line-info'>Staff Id</span>
-                            <span className='payroll-line-info'>Department</span>
-                            <span className='payroll-line-info'>Joined Date</span>
-                            <span className='payroll-line-info'>Salary</span>
+                    <div className = "staff-details-container">
+                        <div className="staff-prompts">
+                            <span className='staff-line-info'>First Name</span>
+                            <span className='staff-line-info'>Last Name</span>
+                            <span className='staff-line-info'>Address</span>
+                        
+                            <span className='staff-line-info'>NIC</span>
+                            <span className='staff-line-info'>Contact No</span>
+                            <span className='staff-line-info'>Date of Birth</span>
+                            <span className='staff-line-info'>Email</span>
+                            <span className='staff-line-info'>Staff Id</span>
+                            <span className='staff-line-info'>Department</span>
+                            <span className='staff-line-info'>Joined Date</span>
+                            <span className='staff-line-info'>Salary</span>
                         </div>
-                        <div className="payroll-values">
-                            <span className='payroll-line-info-values'>{firstName}</span>
-                            <span className='payroll-line-info-values'>{lastName}</span>
-                            <span className='payroll-line-info-values'>{address}</span>
-                            <span className='payroll-line-info-values'>{nic}</span>
-                            <span className='payroll-line-info-values'>{contactNo}</span>
-                            <span className='payroll-line-info-values'>{dob}</span>
-                            <span className='payroll-line-info-values'>{email}</span>
-                            <span className='payroll-line-info-values'>{staffId}</span>
-                            <span className='payroll-line-info-values'>{department}</span>
-                            <span className='payroll-line-info-values'>{joinedDate}</span>
-                            <span className='payroll-line-info-values'>{salary}</span>
+                        <div className="staff-values">
+                            <span className='staff-line-info-values'>{firstName}</span>
+                            <span className='staff-line-info-values'>{lastName}</span>
+                            <span className='staff-line-info-values'>{address}</span>
+                            <span className='staff-line-info-values'>{nic}</span>
+                            <span className='staff-line-info-values'>{contactNo}</span>
+                            <span className='staff-line-info-values'>{dob}</span>
+                            <span className='staff-line-info-values'>{email}</span>
+                            <span className='staff-line-info-values'>{staffId}</span>
+                            <span className='staff-line-info-values'>{department}</span>
+                            <span className='staff-line-info-values'>{joinedDate}</span>
+                            <span className='staff-line-info-values'>{salary}</span>
                             {/* <span className='payroll-line-info-values'>{staffId}</span> */}
                         </div>
                     </div> 
