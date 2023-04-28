@@ -8,9 +8,24 @@ const ServiceRecord = require('../models/servicerecordsModel')
 // @access  Private/Admin
 const getServiceRecords = asyncHandler(async (req, res) => {
 
-    const servicerecords = await ServiceRecord.find();
+    const qSearch=req.query.search
+    //testing
+    console.log(qSearch)
+    let servicerecord
+
+    if(qSearch){
+        servicerecord = await ServiceRecord.find(
+            {
+                $text: {$search: qSearch}
+            }
+        )
+    }
+    else{
+        servicerecord=await ServiceRecord.find();
+    }
+
     
-    res.status(200).json(servicerecords);
+    res.status(200).json(servicerecord);
 
 })
   

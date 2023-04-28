@@ -10,6 +10,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
+import RecordReport from './RecordReport';
 
 import './ManageRecord.scss'
 
@@ -64,10 +65,17 @@ function ManageRecord() {
       const [search, setSearch] = useState('')
     
       console.log(search)
+      //userRequest.get(`servicerecords?search=${search}`)
     
       const handleSearch = (e) => {
           e.preventDefault()
-          alert(search)
+          userRequest.get(`servicerecords?search=${search}`)
+          .then(res=>{
+            setRecords(res.data)
+          })
+          .catch(err=>{
+            console.log(err)
+          })
       }
     
       return(
@@ -170,7 +178,7 @@ function ManageRecord() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={records} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={records} columns={columns} searchBar={<SearchBar />} report={ <RecordReport data={records}/> }/>
             </div>
         </AdminLayout>
     )

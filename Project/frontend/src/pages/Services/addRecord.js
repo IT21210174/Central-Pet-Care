@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminLayout from '../Layouts/AdminLayout'
 import './AddRecord.scss'
 import { userRequest } from '../../requestMethods'
@@ -43,10 +43,14 @@ function AddRecord() {
     }).catch(err => {
         toast.error(err.message)
     })
-  }  
+  }
+  const[maxDate,setMaxDate]=useState(null)
+  
+  useEffect(()=>{
+    const date = new Date();
+    setMaxDate(date.toISOString() .split("T")[0])
+  },[])
 
-
- 
 
 
   return (
@@ -90,7 +94,7 @@ function AddRecord() {
 
                 <section className="input-container">
                   <span className="input-title">Date</span>
-                  <input type='date' className="input-field" value={date} onChange={(e) => setdate(e.target.value)} required/>
+                  <input className="input-field" value={date} onChange={(e) => setdate(e.target.value)} type="date" max={maxDate} required/>
                 </section>
 
                 <section className="input-container">

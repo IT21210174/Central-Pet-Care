@@ -7,8 +7,21 @@ const Service = require('../models/serviceModel')
 // @route   GET /api/services
 // @access  Private/Admin
 const getServices = asyncHandler(async (req, res) => {
+    const qSearch=req.query.search
+    //testing
+    console.log(qSearch)
+    let services
 
-    const services = await Service.find();
+    if(qSearch){
+        services = await Service.find(
+            {
+                $text: {$search: qSearch}
+            }
+        )
+    }
+    else{
+        services=await Service.find();
+    }
     
     res.status(200).json(services);
 
@@ -18,9 +31,9 @@ const getServices = asyncHandler(async (req, res) => {
 // @route   GET /api/records/:id
 // @access  Private/Admin
 const getServiceById = asyncHandler(async (req, res) => {
-    const service = await Service.findById(req.params.id)
+    const services = await Service.findById(req.params.id)
   
-    if (service) {
+    if (services) {
         res.status(200).json(service)
     } else {
         res.status(404)
@@ -35,7 +48,7 @@ const addService = asyncHandler(async (req, res) => {
     
     const {serviceId,serviceName,serviceCharge,serviceDescription,serviceImage} = req.body;
 
-    const service = new Service({
+    const services = new Service({
         serviceId: req.body.serviceId,
         serviceName: req.body.serviceName,
         serviceCharge:req.body.serviceCharge,
@@ -43,7 +56,7 @@ const addService = asyncHandler(async (req, res) => {
         serviceImage: req.body.serviceImage,
     })
 
-    const savedService = await service.save();
+    const savedService = await services.save();
 
     res.status(200).json(savedService); 
 })
@@ -53,9 +66,9 @@ const addService = asyncHandler(async (req, res) => {
 // @access  Private
 const updateService = asyncHandler(async (req, res) => {
 
-    const service = await Service.findById(req.params.id)
+    const services = await Service.findById(req.params.id)
   
-    if (service) {
+    if (services) {
   
         const updatedService = await Service.findByIdAndUpdate(req.params.id, { $set: req.body },{ 
             new: true,
@@ -73,10 +86,10 @@ const updateService = asyncHandler(async (req, res) => {
 // @route   DELETE /api/records/:id
 // @access  Private
 const deleteService = asyncHandler(async (req, res) => {
-    const service = await Service.findById(req.params.id)
+    const services = await Service.findById(req.params.id)
   
-    if (service) {
-        await service.deleteOne();
+    if (services) {
+        await services.deleteOne();
         res.status(200).json({message: 'Service removed'})
     } else {
         res.status(404)

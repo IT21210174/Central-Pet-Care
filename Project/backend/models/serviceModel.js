@@ -27,6 +27,10 @@ const serviceSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
+serviceSchema.index({
+    serviceId:'text',
+    serviceName:'text'
+})
 
 
 

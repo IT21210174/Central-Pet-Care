@@ -66,7 +66,7 @@ function AddService() {
 
                 <section className="input-container">
                   <span className="input-title">Service Name</span>
-                  <input type='text' className="input-field" value={serviceName} onChange={(e) => setservicetName(e.target.value)} required/>
+                  <input className="input-field" value={serviceName} onChange={(e) => setservicetName(e.target.value)} pattern="[a-zA-Z]+" required/>
                 </section>
 
                 <section className="input-container">

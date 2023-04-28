@@ -10,6 +10,8 @@ import EditProduct from './pages/Product/EditProduct';
 import ViewProduct from './pages/Product/ViewProduct';
 import Product from './pages/Store/Product'
 import ManageOrders from './pages/Product/ManageOrders';
+import ProductCatalog from './pages/Store/ProductCatalog';
+import Cart from './pages/Store/Cart';
 import Success from './pages/Store/Success';
 import Wishlist from './pages/Store/Wishlist';
 

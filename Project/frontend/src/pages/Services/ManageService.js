@@ -64,11 +64,21 @@ function ManageService() {
       const [search, setSearch] = useState('')
     
       console.log(search)
+
+      //userRequest.get(`services?search=${search}`)
     
       const handleSearch = (e) => {
-          e.preventDefault()
-          alert(search)
-      }
+        e.preventDefault()
+        userRequest.get(`services?search=${search}`)
+        .then(res=>{
+          setServices(res.data)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    }
+    
+    
     
       return(
 

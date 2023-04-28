@@ -37,6 +37,11 @@ const serviceRecordSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
+serviceRecordSchema.index({
+    serviceId:'text',
+    petId:'text'
+})
+
 // // Before saving the product, check if it has a productId, if not, generate one
 serviceRecordSchema.pre('save', async function (next) {
 
