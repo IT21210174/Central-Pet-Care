@@ -7,10 +7,22 @@ const Leave = require('../models/leaveModel')
 // @route   GET /api/leaves
 // @access  Private/Admin
 const getLeave = asyncHandler(async (req, res) => {
+    //const leaves = await Leave.find();
+    const qSearch = req.query.search
 
-    const leaves = await Leave.find();
+    let leaves
+    if(qSearch){
+        leaves= await Leave.find(
+            {
+                $text:{$search:qSearch}
+            }
+        )
+    }
+    else{
+        leaves = await Leave.find();
+    }
     
-    res.status(200).json(leaves);
+     res.status(200).json(leaves);
 
 })
   

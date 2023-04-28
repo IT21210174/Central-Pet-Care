@@ -10,6 +10,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
+import StaffReport from './StaffReport';
 
 import './ManageStaff.scss'
 
@@ -68,7 +69,14 @@ function ManageStaff() {
     
       const handleSearch = (e) => {
           e.preventDefault()
-          alert(search)
+          userRequest.get(`staff?search=${search}`)
+          .then(res => {
+            setStaff(res.data)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+         
       }
     
       return(
@@ -113,20 +121,20 @@ function ManageStaff() {
           align: "center",
           flex: 2,
         },
-        {
-          field: "address",
-          headerName: "Address",
-          headerAlign: "center",
-          align: "center",
-          flex: 2,
-        },
-        {
-            field: "nic",
-            headerName: "NIC",
-            headerAlign: "center",
-            align: "center",
-            flex: 2,
-        },
+        // {
+        //   field: "address",
+        //   headerName: "Address",
+        //   headerAlign: "center",
+        //   align: "center",
+        //   flex: 2,
+        // },
+        // {
+        //     field: "nic",
+        //     headerName: "NIC",
+        //     headerAlign: "center",
+        //     align: "center",
+        //     flex: 2,
+        // },
         {
           field: "contactNo",
           headerName: "Contact No",
@@ -134,13 +142,13 @@ function ManageStaff() {
           align: "center",
           flex: 2,
       },
-      {
-        field: "dob",
-        headerName: "DOB",
-        headerAlign: "center",
-        align: "center",
-        flex: 2,
-      },
+      // {
+      //   field: "dob",
+      //   headerName: "DOB",
+      //   headerAlign: "center",
+      //   align: "center",
+      //   flex: 2,
+      // },
       {
         field: "email",
         headerName: "Email",
@@ -162,14 +170,14 @@ function ManageStaff() {
   align: "center",
   flex: 2,
 },
-{
-  field: "salary",
-  headerName: "Salary",
-  headerAlign: "center",
-  align: "center",
-  flex: 2,
-  valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
-},
+// {
+//   field: "salary",
+//   headerName: "Salary",
+//   headerAlign: "center",
+//   align: "center",
+//   flex: 2,
+//   valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
+// },
 
         {
           field: "action",
@@ -198,7 +206,7 @@ function ManageStaff() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={staff} columns={columns} searchBar={<SearchBar />} /> 
+                <CustomDataGrid data={staff} columns={columns} searchBar={<SearchBar />} report={<StaffReport data={staff}/>}/> 
             </div>
         </AdminLayout>
     )

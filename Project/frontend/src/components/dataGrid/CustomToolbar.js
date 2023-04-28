@@ -7,16 +7,17 @@ import {
   } from "@mui/x-data-grid";
 
 
-const CustomToolbar = ({searchBar}) => {
+const CustomToolbar = ({searchBar, report}) => {
 
 
   return (
     <div className="customToolbarRoot" style={{height: '50px', padding: '0 15px', display: "flex", justifyContent: 'space-between', alignItems: 'center'}}>
-      <div className="left">
+      <div className="left" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <GridToolbarColumnsButton/>
       <GridToolbarFilterButton />
       <GridToolbarDensitySelector />
       <GridToolbarExport printOptions= {{ disableToolbarButton: true }} />
+      {report}
       </div>
       <div className="right">
         {searchBar}

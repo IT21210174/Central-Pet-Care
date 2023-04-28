@@ -10,6 +10,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import {ImSearch} from 'react-icons/im'
+import PayrollReport from './PayrollReport';
 
 import './ManagePayroll.scss'
 
@@ -67,7 +68,14 @@ function ManagePayroll() {
     
       const handleSearch = (e) => {
           e.preventDefault()
-          alert(search)
+          userRequest.get(`payroll?search=${search}`)
+          .then(res => {
+            setpayroll(res.data)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          
       }
     
       return(
@@ -149,7 +157,7 @@ function ManagePayroll() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={payroll} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={payroll} columns={columns} searchBar={<SearchBar />} report={<PayrollReport data={payroll}/> }/>
             </div>
         </AdminLayout>
     )

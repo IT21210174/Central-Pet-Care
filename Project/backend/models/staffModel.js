@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Counter = require('./counterModel');
+const { text } = require("stream/consumers");
 
 const staffSchema = mongoose.Schema({
     firstName: {
@@ -78,6 +79,18 @@ staffSchema.pre('save', async function (next) {
         return next(err); // Pass any errors to the error handler middleware
     }
 });
+
+staffSchema.index({
+    firstName: 'text',
+    lastName: 'text',
+    address: 'text',
+    nic: 'text',
+    email: 'text',
+    staffId: 'text',
+    department: 'text',
+
+})
+
 
 
 module.exports = mongoose.model('Staff', staffSchema);

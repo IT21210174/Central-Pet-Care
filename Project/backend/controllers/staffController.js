@@ -3,13 +3,26 @@ const asyncHandler = require('express-async-handler');
 const Staff = require('../models/staffModel')
 
 
+
+
 // @desc    Fetch all staffmembers
 // @route   GET /api/staffmembers
 // @access  Private/Admin
 const getStaff = asyncHandler(async (req, res) => {
+    const qSearch = req.query.search
 
-    const staffs = await Staff.find();
-    
+    let staffs
+    if(qSearch){
+        staffs= await Staff.find(
+            {
+                $text:{$search:qSearch}
+            }
+        )
+    }
+    else{
+        staffs = await Staff.find();
+    }
+        
     res.status(200).json(staffs);
 
 })
@@ -18,8 +31,8 @@ const getStaff = asyncHandler(async (req, res) => {
 // @route   GET /api/staffmembers/:id
 // @access  Private
 const getStaffById = asyncHandler(async (req, res) => {
+    
     const staff = await Staff.findById( req.params.id )
-  
     if (staff) {
         res.status(200).json(staff)
     } else {

@@ -9,7 +9,8 @@ import { MdOutlineDelete } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import {ImSearch} from 'react-icons/im'
+import {ImSearch} from 'react-icons/im';
+import ProductsReport from './ProductsReport';
 
 import './manageProducts.scss'
 
@@ -19,7 +20,7 @@ function ManageProducts() {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const getProducts = () => {
-        userRequest.get("products")
+        userRequest.get("/products")
         .then(res => {
             setProducts(res.data)
         })
@@ -63,11 +64,16 @@ function ManageProducts() {
 
       const [search, setSearch] = useState('')
     
-      console.log(search)
-    
       const handleSearch = (e) => {
-          e.preventDefault()
-          alert(search)
+        e.preventDefault()
+        userRequest.get(`/products?search=${search}`)
+        .then(res => {
+            setProducts(res.data);
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
       }
     
       return(
@@ -140,10 +146,10 @@ function ManageProducts() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/products/editProuduct/" + params.row._id}>
+                <Link to={"/admin/products/editProuduct/" + params.row._id}>
                   <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
@@ -156,7 +162,7 @@ function ManageProducts() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} /> 
+            <CustomDataGrid data={products} columns={columns} searchBar={<SearchBar />} report={<ProductsReport data={products} />} /> 
             </div>
         </AdminLayout>
     )

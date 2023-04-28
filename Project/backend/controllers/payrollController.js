@@ -7,8 +7,20 @@ const Payroll = require('../models/payrollModel')
 // @route   GET /api/payrolls
 // @access  Private/Admin
 const getPayroll = asyncHandler(async (req, res) => {
+    const qSearch = req.query.search
+    let payrolls
+    if(qSearch){
+        payrolls= await Payroll.find(
+            {
+                $text:{$search:qSearch}
+            }
+        )
+    }
+    else{
+        payrolls = await Payroll.find();
+    }
 
-    const payrolls = await Payroll.find();
+    
     
     res.status(200).json(payrolls);
 

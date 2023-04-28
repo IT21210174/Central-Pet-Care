@@ -112,7 +112,7 @@ const AddStaff = () => {
                     </section> */}
                     <section className="input-container">
                         <span className="input-title">Joined Date</span>
-                        <input className="input-field" value={joinedDate} onChange={(e) => setjoinedDate(e.target.value)} type="date" required/>
+                        <input className="input-field" value={joinedDate} onChange={(e) => setjoinedDate(e.target.value)} type="date" max={maxDate} required/>
                     </section>
                     <section className="input-container">
                         <span className="input-title">Staff Member Image</span>

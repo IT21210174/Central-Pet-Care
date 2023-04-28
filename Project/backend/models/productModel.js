@@ -48,6 +48,12 @@ const productSchema = mongoose.Schema({
     timestamps: true
 })
 
+productSchema.index({
+    productName: 'text',
+    brand: 'text',
+    categories: 'text',
+    description: 'text'
+});
 
 // // Before saving the product, check if it has a productId, if not, generate one
 // productSchema.pre('save', async function (next) {

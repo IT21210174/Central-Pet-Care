@@ -28,5 +28,12 @@ const leaveSchema = mongoose.Schema({
     timestamps: true
 })
 
+leaveSchema.index({
+    staffId: 'text',
+    leaveType: 'text',
+    reason: 'text',
+    leaveFrom: 'text',
+    leaveTo: 'text'
+})
 
 module.exports = mongoose.model('Leave', leaveSchema);

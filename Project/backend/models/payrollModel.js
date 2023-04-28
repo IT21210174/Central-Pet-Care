@@ -28,6 +28,11 @@ const payrollSchema = mongoose.Schema({
     timestamps: true
 })
 
+payrollSchema.index({
+    staffId: 'text',
+    paymentStatus: 'text',
+    date: 'text'
+})
 
 
 

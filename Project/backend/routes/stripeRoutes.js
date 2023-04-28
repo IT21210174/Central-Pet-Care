@@ -1,23 +1,8 @@
-const express = require("express")
+const express = require("express");
+const Order = require("../models/orderModel");
+const Product = require("../models/productModel");
 const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-
-router.post("/payment", (req, res) => {
-    stripe.charges.create(
-        {
-            source: req.body.tokenId,
-            amount: req.body.amount,
-            currency: "lkr",
-        },
-        (stripeErr, stripeRes) => {
-            if (stripeErr) {
-                res.status(500).json(stripeErr);
-            } else {
-                res.status(200).json(stripeRes);
-            }
-        }
-    );
-});
 
 router.post('/create-checkout-session', async (req, res) => {
 
@@ -34,11 +19,11 @@ router.post('/create-checkout-session', async (req, res) => {
                 },
                 unit_amount: item.product.price * 100,
             },
-            quantity: item.quantity,
+            quantity: item.cartQuantity,
         }
     })
 
-    const email = 'mathura@gmail.com'
+    const email = ''
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -58,7 +43,7 @@ router.post('/create-checkout-session', async (req, res) => {
             {
             shipping_rate_data: {
                 type: 'fixed_amount',
-                fixed_amount: {amount: 1500, currency: 'lkr'},
+                fixed_amount: {amount: 60000, currency: 'lkr'},
                 display_name: 'Next day air',
                 delivery_estimate: {
                 minimum: {unit: 'business_day', value: 1},
@@ -70,18 +55,89 @@ router.post('/create-checkout-session', async (req, res) => {
         phone_number_collection: {
             enabled: true
         },
-        customer_email: email,
+        customer_email: email ? email : undefined, // Include email only if it is not an empty string
         line_items,
         mode: 'payment',
-        success_url: `${process.env.CLIENT_URL}/success`,
+        success_url: `${process.env.SERVER_URL}/api/checkout/create-order?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.CLIENT_URL}/cart`,
+        expand: ['line_items'],
+        metadata: {
+            user: '642e790648b9f700fd416671'
+        }
     });
 
     // send the session id to the client
     res.send({ url: session.url });
 
-    console.log(session)
 });
 
+
+router.get("/create-order", async (req, res) => {
+
+   const { session_id } = req.query;
+
+   try {
+        // Retrieve the session object
+        const session = await stripe.checkout.sessions.retrieve(
+            session_id,
+            { expand: ['line_items.data.price.product'] }
+        );
+
+        const lineItems = session.line_items.data;
+
+        const orderItems = lineItems.map(lineItem => {
+            return {
+                productId: lineItem.price.product.metadata.id,
+                productName: lineItem.description,
+                image: lineItem.price.product.images[0],
+                unitPrice: lineItem.price.unit_amount / 100,
+                quantity: lineItem.quantity,
+                productTotal: (lineItem.quantity * lineItem.price.unit_amount) / 100
+            }
+        });
+
+        const shipping = { name: session.shipping_details.name, address: session.shipping_details.address, phone: session.customer_details.phone }
+
+        const subTotal = session.amount_subtotal / 100;
+        const shippingAmount = session.total_details.amount_shipping / 100;
+        const total = session.amount_total / 100;
+
+        const user = session.metadata.user;
+
+        // Retrieve the payment intent object
+        const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
+
+
+        if (paymentIntent.status === 'succeeded') {
+            
+            // Create a new order
+            const newOrder = new Order({
+                ...(user && { user }), // Include the user field only if a user object is available
+                orderItems,
+                shipping,
+                subTotal,
+                shippingAmount,
+                total,
+                paymentStatus: paymentIntent.status
+            });
+            
+            await newOrder.save()
+
+            // Update product quantity
+            for (let i = 0; i < orderItems.length; i++) {
+                const productId = orderItems[i].productId;
+                const quantity = orderItems[i].quantity;
+                await Product.findByIdAndUpdate(productId, { $inc: { quantity: -quantity } });
+            }
+
+            res.redirect(`${process.env.CLIENT_URL}/success`);
+        }
+
+   } catch (err) {
+        console.log(err)
+        res.redirect(`${process.env.CLIENT_URL}/cart`)
+   }
+
+});
 
 module.exports = router;
