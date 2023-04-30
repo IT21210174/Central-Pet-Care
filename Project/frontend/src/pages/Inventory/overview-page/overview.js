@@ -5,6 +5,7 @@ import PrLvMed from '../../../components/inventory-signals/PrLvlMedium'
 import PrLvHigh from '../../../components/inventory-signals/PrLvlHigh'
 import AdminLayout from '../../Layouts/AdminLayout'
 import './overview.scss'
+import InventoryReport from '../../Reports/InventoryReport'
 
 import clinicEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pharmaceutical.png'
 import storeEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pet-food.png'
@@ -70,6 +71,7 @@ function OverviewComponent() {
                   <span className="insight-card-title">Suppliers</span>
                 </div>
             </div>
+            <InventoryReport data={inventory}/>
         </div>
 
         {/* Runnnig on short displayer */}
