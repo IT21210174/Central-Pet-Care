@@ -13,7 +13,7 @@ $fontfam-1: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 400px;
     height: 90vh; //change height accordingly
     background: rgb(153, 128, 250);
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
@@ -21,8 +21,8 @@ $fontfam-1: 'Poppins', sans-serif;
 
 
 // form styles will go on here
-.add-item-form-container {
-    width: 950px;
+.add-vet-form-container {
+    width: 900px;
     height: 580px;
     background-color: white;
     border-radius: 25px;

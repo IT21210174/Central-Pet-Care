@@ -46,7 +46,7 @@ function AddVet() {
     <AdminLayout>
      <div className="add-item-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
+        <form className="add-vet-form-container" onSubmit={handleSubmit}>
             <span className="tagline-add-item">Add New Veterinary Surgeon</span>
             {/* input field container */}
             <div className="column-container">
