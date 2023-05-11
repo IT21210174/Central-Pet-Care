@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../contexts/AppContext";
 import SideBarItems from "./SidebarItems";
 import { NavLink } from "react-router-dom";
 import "./sidebar.scss";

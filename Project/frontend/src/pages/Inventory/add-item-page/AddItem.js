@@ -1,5 +1,5 @@
 import React, { useContext , useEffect, useState } from "react";
-import { AppContext } from "../../../context/AppContext";
+import { AppContext } from "../../../contexts/AppContext";
 import swal from "sweetalert2";
 import AdminLayout from "../../Layouts/AdminLayout";
 import api from "../../../services/api";
