@@ -261,14 +261,14 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 100,
-				link: "/delivery/add-driver",
+				link: "/admin/delivery/add-driver",
 				nestedItemicon: <FaUserPlus />,
 				nestedItemtext: "Add Driver",
 			},
 
 			{
 				id: 101,
-				link: "/delivery/manage-driver",
+				link: "/admin/delivery/manage-driver",
 				nestedItemicon: <FaUserEdit />,
 				nestedItemtext: "View Drivers",
 			},
@@ -276,21 +276,21 @@ const SidebarItems = [
 
 			{
 				id: 102,
-				link: "/delivery/view-order",
+				link: "/admin/delivery/view-order",
 				nestedItemicon: <TbPackageExport />,
 				nestedItemtext: "Assign Driver",
 			},
 
 			{
 				id: 103,
-				link: "/delivery/processing-order",
+				link: "/admin/delivery/processing-order",
 				nestedItemicon: <BiTimer />,
 				nestedItemtext: "Processing Orders",
 			},
 
 			{
 				id: 104,
-				link: "/delivery/completed-order",
+				link: "/admin/delivery/completed-order",
 				nestedItemicon: <AiOutlineFileDone />,
 				nestedItemtext: "Completed Orders",
 			},
