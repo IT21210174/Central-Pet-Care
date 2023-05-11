@@ -7,6 +7,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import DriverReport from "../DeliveryReport/DeliveryReport";
 
 export default function ItemSearchResultsContainer(props) {
 	const { driver } = props;

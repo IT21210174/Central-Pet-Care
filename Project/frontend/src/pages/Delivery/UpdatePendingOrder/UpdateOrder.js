@@ -50,17 +50,9 @@ function UpdateOrder() {
 
 		fetcher()
 		
-    },[])
+    },[setOrderDetails])
 
-	// const [drivers , setDrivers] = useState([])
-
-	// const availableDrivers = drivers.filter((driver)=>{
-	// 	return driver.driverStatus === "Available"
-	// })
-
-
-    
-
+	
 	const updateOrderFormHandler = (event) => {
 		event.preventDefault();
 		if (orderDetails.orderId !== "") {
@@ -78,7 +70,7 @@ function UpdateOrder() {
             navigateBackBtn()
 		} else {
 			console.log(orderDetails);
-			api.post("/", orderDetails).then((response) => {
+			api.put("/", orderDetails).then((response) => {
 				console.log(response.data);
 				console.log("success");
 			});
@@ -125,7 +117,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.shipping.name}
 								onChange={updateOrderFormInputHandler}
-								name="cusName"
+								name="shipping.name"
 							/>
 						</section>
 						<section className="input-container">
@@ -134,7 +126,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.shipping.address.line1}
 								onChange={updateOrderFormInputHandler}
-								name="adLine1"
+								name="shipping.address.line1"
 							/>
 						</section>
 						<section className="input-container">
@@ -143,7 +135,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.shipping.address.line2}
 								onChange={updateOrderFormInputHandler}
-								name="adLine2"
+								name="shipping.address.line2"
 							/>
 						</section>
 						<section className="input-container">
@@ -152,7 +144,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.shipping.address.city}
 								onChange={updateOrderFormInputHandler}
-								name="adCity"
+								name="shipping.address.city"
 							/>
 						</section>
 					</div>
@@ -166,7 +158,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.shipping.phone}
 								onChange={updateOrderFormInputHandler}
-								name="phoneNum"
+								name="shipping.phone"
 							/>
 						</section>
 						<section className="input-container">
@@ -177,7 +169,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.shippingAmount}
 								onChange={updateOrderFormInputHandler}
-								name="shippingFee"
+								name="shippingAmount"
 							/>
 						</section>
 						<section className="input-container">
@@ -188,7 +180,7 @@ function UpdateOrder() {
 								className="input-field"
 								value={orderDetails.total}
 								onChange={updateOrderFormInputHandler}
-								name="totalFee"
+								name="total"
 							/>
 						</section>
 						<section className="input-container">
@@ -197,7 +189,8 @@ function UpdateOrder() {
 								className="input-field"
 								// value={orderDetails.deliveryStatus}
 								onChange={updateOrderFormInputHandler}
-								name="deliveyStatus"
+								name="deliveryStatus"
+								value={orderDetails.deliveryStatus}
 							>
 								<option className="select-option" value="">
 									Select Type

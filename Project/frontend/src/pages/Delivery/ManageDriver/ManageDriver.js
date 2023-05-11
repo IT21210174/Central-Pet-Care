@@ -5,6 +5,7 @@ import ResultContainer from "./drivers-search-result-container";
 import NoItemsDisplayer from "./drivers-empty-result-diplayer";
 import "./ManageDriver.scss";
 import api from "../../../services/api";
+import DriverReport from "../DeliveryReport/DeliveryReport";
 
 function ManageDriverComponent() {
 	const [drivers, setDrivers] = useState([]);
@@ -62,6 +63,7 @@ function ManageDriverComponent() {
 						<button type="submit" className="search-btn">
 							<ImSearch />
 						</button>
+						<DriverReport data={drivers}/>
 					</form>
 				</div>
 
