@@ -1,23 +1,24 @@
-import React from "react";
-import { useState } from "react";
-import Sidebar from "../../components/sidebar/Sidebar";
-import ActionBar from "../../components/actionbar/ActionBar";
-import "./adminLayout.scss";
-import { AppProvider } from "../../context/AppContext";
+import React, { useState } from 'react'
 
-const AdminLayout = ({ children }) => {
+import Sidebar from '../../components/sidebar/Sidebar'
+import Actionbar from '../../components/actionbar/Acionbar'
+import './adminLayout.scss'
 
-	return (
-		<div className="layoutWrapper">
-			<Sidebar/>
-			<div className="rightContainer">
-				<ActionBar />
-				<div className="content">
-					{children}
-				</div>
-			</div>
-		</div>
-	);
-};
+const AdminLayout = ({children}) => {
 
-export default AdminLayout;
+  return (
+    <div className='layoutWrapper'>
+        <Sidebar />
+        <div className='rightContainer'>
+          <Actionbar />
+          <div className='content'>
+          {
+            children
+          }
+          </div>
+        </div>
+    </div>
+  )
+}
+
+export default AdminLayout

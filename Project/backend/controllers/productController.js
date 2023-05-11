@@ -10,6 +10,7 @@ const getProducts = asyncHandler(async (req, res) => {
 
     const qNew = req.query.new;
     const qCategory = req.query.category;
+    const qSearch = req.query.search;
  
     let products;
 
@@ -17,8 +18,12 @@ const getProducts = asyncHandler(async (req, res) => {
         products = await Product.find().sort({ createdAt: -1 }).limit(5);
     } else if (qCategory) {
         products = await Product.find({
-            categories: { $in: [qCategory] }
+            'categories.categoryA': qCategory
         })
+    } else if (qSearch) {
+        products = await Product.find({
+            $text: { $search: qSearch }
+        });
     } else {
         products = await Product.find();
     }
@@ -46,9 +51,9 @@ const getProductById = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const addProduct = asyncHandler(async (req, res) => {
 
-    const { productName, brand, categories, quantity, price, description, image } = req.body;
+    const { productName, brand, categories, quantity, price, description, SKU, image } = req.body;
   
-    const product = new Product({ productName, brand, categories, quantity, price, description, image });
+    const product = new Product({ productName, brand, categories, quantity, price, description, SKU, image });
 
     const savedProduct = await product.save();
 
@@ -71,7 +76,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         // product.brand = brand;
         // product.categories = categories;
         // product.quantity = quantity;
-        // product.rice = Price;
+        // product.price = Price;
         // product.description = description;
         // product.image = image;
     

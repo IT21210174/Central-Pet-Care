@@ -21,17 +21,60 @@ import { MdDesignServices } from "react-icons/md";
 import { MdSell } from "react-icons/md";
 import { MdDeliveryDining } from "react-icons/md";
 import { SiGoogleanalytics } from "react-icons/si";
-import {TbReportAnalytics} from "react-icons/tb"
+
 import { BsPeopleFill } from "react-icons/bs";
 import { MdHolidayVillage } from "react-icons/md";
 import { GiTakeMyMoney } from "react-icons/gi";
+
 // main function icons
 import { AiFillApi } from "react-icons/ai";
 import { BiStoreAlt } from "react-icons/bi";
 import { BiPlusMedical } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 
-const sidebarItems = [
+// delivery function icons
+import { FaUserPlus } from "react-icons/fa";
+import { TbPackageExport } from "react-icons/tb";
+import { BiTimer } from "react-icons/bi";
+import { AiOutlineFileDone } from "react-icons/ai";
+import { FaUserEdit } from "react-icons/fa";
+
+import {TbReportAnalytics} from "react-icons/tb"
+
+const SidebarItems = [
+	{
+		id: 2000,
+		icon: <BiStoreAlt />,
+		text: "Product Management",
+		nestedFunctions: [
+			{
+				id: 200,
+				link: "/admin/products/manageProducts",
+				nestedItemicon: <BsFillBoxSeamFill />,
+				nestedItemtext: "Manage products",
+			},
+			{
+				id: 201,
+				link: "/admin/products/addProduct",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add product",
+			},
+			{
+				id: 202,
+				link: "/admin/products/manageOrders",
+				nestedItemicon: <BsFillCartFill />,
+				nestedItemtext: "Orders",
+			},
+
+			{
+				id: 203,
+				link: "/admin/products/insights",
+				nestedItemicon: <MdInsights />,
+				nestedItemtext: "Insights",
+			},
+		],
+	},
+	
 	{
 		id: 1000,
 		icon: <BsPalette2 />,
@@ -87,35 +130,7 @@ const sidebarItems = [
 			},
 		],
 	},
-
-	{
-		id: 2000,
-		icon: <BiStoreAlt />,
-		text: "Product Management",
-		nestedFunctions: [
-			{
-				id: 200,
-				link: "/products/compo-1",
-				nestedItemicon: <BsFillBoxSeamFill />,
-				nestedItemtext: "Products",
-			},
-
-			{
-				id: 201,
-				link: "/products/compo-1",
-				nestedItemicon: <BsFillCartFill />,
-				nestedItemtext: "Orders",
-			},
-
-			{
-				id: 202,
-				link: "/products/compo-1",
-				nestedItemicon: <MdInsights />,
-				nestedItemtext: "Insights",
-			},
-		],
-	},
-
+		
 	{
 		id: 3000,
 		icon: <IoIosPeople />,
@@ -151,7 +166,7 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 400,
-				link: "/inventory/add-item",
+				link: "/products/compo-1",
 				nestedItemicon: <GiArchiveRegister />,
 				nestedItemtext: "Register",
 			},
@@ -221,21 +236,21 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 700,
-				link: "/products/compo-1",
+				link: "",
 				nestedItemicon: <BsFillBoxSeamFill />,
 				nestedItemtext: "Products",
 			},
 
 			{
 				id: 701,
-				link: "/products/compo-1",
+				link: "",
 				nestedItemicon: <BsFillCartFill />,
 				nestedItemtext: "Orders",
 			},
 
 			{
 				id: 702,
-				link: "/products/compo-1",
+				link: "",
 				nestedItemicon: <MdInsights />,
 				nestedItemtext: "Insights",
 			},
@@ -243,32 +258,54 @@ const sidebarItems = [
 	},
 
 	{
-		id: 800,
+		id: 1000,
 		icon: <TbTruckDelivery />,
 		text: "Delivery Management",
 		nestedFunctions: [
 			{
-				id: 800,
-				link: "/inventory/test-comp",
-				nestedItemicon: <MdSell />,
-				nestedItemtext: "Order Management",
+				id: 100,
+				link: "/admin/delivery/add-driver",
+				nestedItemicon: <FaUserPlus />,
+				nestedItemtext: "Add Driver",
 			},
 
 			{
-				id: 801,
-				link: "/products/compo-1",
-				nestedItemicon: <MdDeliveryDining />,
-				nestedItemtext: "Driver Management",
+				id: 101,
+				link: "/admin/delivery/manage-driver",
+				nestedItemicon: <FaUserEdit />,
+				nestedItemtext: "View Drivers",
+			},
+
+
+			{
+				id: 102,
+				link: "/admin/delivery/view-order",
+				nestedItemicon: <TbPackageExport />,
+				nestedItemtext: "Assign Driver",
 			},
 
 			{
-				id: 802,
-				link: "/products/compo-1",
-				nestedItemicon: <SiGoogleanalytics />,
-				nestedItemtext: "Analytics",
+				id: 103,
+				link: "/admin/delivery/processing-order",
+				nestedItemicon: <BiTimer />,
+				nestedItemtext: "Processing Orders",
 			},
+
+			{
+				id: 104,
+				link: "/admin/delivery/completed-order",
+				nestedItemicon: <AiOutlineFileDone />,
+				nestedItemtext: "Completed Orders",
+			},
+
+			// {
+			// 	id: 805,
+			// 	link: "",
+			// 	nestedItemicon: <MdInsights />,
+			// 	nestedItemtext: "Insights",
+			// },
 		],
 	},
 ];
 
-export default sidebarItems;
+export default SidebarItems;

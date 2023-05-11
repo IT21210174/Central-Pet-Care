@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema({
         required: [true, 'Please add product brand']
     },
     categories: {
-        type: Array,
+        type: Object,
         required: [true, 'Please add category']
     },
     quantity: {
@@ -30,6 +30,11 @@ const productSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add product description']
     },
+    SKU: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     inStock: {
         type: Boolean,
         required: true,
@@ -43,6 +48,12 @@ const productSchema = mongoose.Schema({
     timestamps: true
 })
 
+productSchema.index({
+    productName: 'text',
+    brand: 'text',
+    categories: 'text',
+    description: 'text'
+});
 
 // Before saving the product, check if it has a productId, if not, generate one
 productSchema.pre('save', async function (next) {
