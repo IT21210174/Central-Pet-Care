@@ -52,13 +52,13 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/wishlist' element={<Wishlist />} />
 
-        <Route path="/delivery/add-driver" element={<AddDriver />} />
-				<Route path="/delivery/manage-driver" element={<ManageDriver />} />
-				<Route path="/delivery/view-order" element={<ViewDeliveryOrder />} />
-				<Route path="/delivery/update-driver" element={<UpdateDriver/>}/> 
-				<Route path="/delivery/update-order" element={<UpdateOrder/>}/> 
-				<Route path="/delivery/processing-order" element={<ProcessingOrder/>}/>
-				<Route path="/delivery/completed-order" element={<CompletedOrder/>}/>
+        <Route path="/admin/delivery/add-driver" element={<AddDriver />} />
+				<Route path="/admin/delivery/manage-driver" element={<ManageDriver />} />
+				<Route path="/admin/delivery/view-order" element={<ViewDeliveryOrder />} />
+				<Route path="/admin/delivery/update-driver" element={<UpdateDriver/>}/> 
+				<Route path="/admin/delivery/update-order" element={<UpdateOrder/>}/> 
+				<Route path="/admin/delivery/processing-order" element={<ProcessingOrder/>}/>
+				<Route path="/admin/delivery/completed-order" element={<CompletedOrder/>}/>
 
       </Routes>
     </Router>
