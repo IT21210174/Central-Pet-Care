@@ -39,7 +39,6 @@ import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import OrdersReport from "./pages/Inventory/generate-reports/OrdersReport";
-import ReportView from './pages/Doc'
 
 
 function App() {
@@ -86,7 +85,7 @@ function App() {
         <Route path="/inventory/update-item" element={<UpdateItem />} />
         <Route path="/inventory/view-item" element={<ViewInventoryItem />}/>
         <Route path="/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
-        <Route path="/inventory/report" element={<ReportView />}/>
+        <Route path="/inventory/report" />
         <Route path="/inventory/release-items" element={<ReleaseItems/>} />
         <Route path="/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
