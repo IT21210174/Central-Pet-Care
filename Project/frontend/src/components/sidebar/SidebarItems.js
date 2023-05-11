@@ -39,6 +39,8 @@ import { BiTimer } from "react-icons/bi";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
 
+import {TbReportAnalytics} from "react-icons/tb"
+
 const SidebarItems = [
 	{
 		id: 2000,
@@ -72,6 +74,7 @@ const SidebarItems = [
 			},
 		],
 	},
+	
 	{
 		id: 1000,
 		icon: <BsPalette2 />,
@@ -92,13 +95,6 @@ const SidebarItems = [
 			},
 
 			{
-				id: 102,
-				link: "/component-3",
-				nestedItemicon: <ImSearch />,
-				nestedItemtext: "Search inventory",
-			},
-
-			{
 				id: 103,
 				link: "/inventory/manage-inventory",
 				nestedItemicon: <MdOutlineInventory2 />,
@@ -107,27 +103,34 @@ const SidebarItems = [
 
 			{
 				id: 104,
-				link: "/component-5",
+				link: "/inventory/release-items",
 				nestedItemicon: <BiCategoryAlt />,
 				nestedItemtext: "Release items",
 			},
 
 			{
 				id: 105,
-				link: "/component-6",
+				link: "/inventory/supplier-registration",
 				nestedItemicon: <TbUserPlus />,
 				nestedItemtext: "Add supplier",
 			},
 
 			{
 				id: 106,
-				link: "/component-7",
+				link: "/inventory/manage-suppliers",
 				nestedItemicon: <TbUser />,
 				nestedItemtext: "Manage suppliers",
 			},
+
+			{
+				id: 107,
+				link: "/inventory/generate-reports",
+				nestedItemicon: <TbReportAnalytics />,
+				nestedItemtext: "Generate reports",
+			},
 		],
 	},
-
+		
 	{
 		id: 3000,
 		icon: <IoIosPeople />,
