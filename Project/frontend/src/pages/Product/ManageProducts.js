@@ -91,7 +91,7 @@ function ManageProducts() {
 
     const columns = [
         { 
-          field: "_id",
+          field: "productId",
           headerName: "ID",
           headerAlign: "center",
           align: "center",

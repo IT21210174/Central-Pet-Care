@@ -13,6 +13,7 @@ function ViewProduct() {
     const [categoryA, setCategoryA] = useState([])
     const [categoryB, setCategoryB] = useState(null)
 
+    const [productId, setProductId] = useState('')
     const [productName, setProductName] = useState('')
     const [brand, setBrand] = useState('')
     const [price, setPrice] = useState('')
@@ -24,6 +25,7 @@ function ViewProduct() {
     useEffect(() => {
         userRequest.get('/products/' + id)
         .then(res => {
+            setProductId(res.data.productId)
             setProductName(res.data.productName)
             setBrand(res.data.brand)
             setPrice(res.data.price)
@@ -49,7 +51,7 @@ function ViewProduct() {
                 </tr>
                 <tr>
                     <td>Product ID</td>
-                    <td>{id}</td>
+                    <td>{productId}</td>
                 </tr>
                 <tr>
                     <td>Product Name</td>

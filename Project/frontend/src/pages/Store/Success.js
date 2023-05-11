@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import StoreSearch from '../../components/store/StoreSearch';
 import { CartContext } from "../../contexts/CartContext";
+import Header from '../../components/store/Header/Header';
 
 const Container = styled.div``;
 
@@ -70,7 +71,7 @@ const Success = () => {
 
   return (
     <Container>
-    <Navbar />
+    <Header />
     <StoreSearch />
       <Wrapper>
           <img src={orderSuccess} height='200px' />

@@ -11,6 +11,7 @@ import { WishlistContext } from '../../contexts/WishlistContext';
 import StoreSearch from '../../components/store/StoreSearch';
 import { toast } from 'react-hot-toast';
 import EmptyWishlist from '../../components/store/EmptyWishlist';
+import Header from '../../components/store/Header/Header';
 
 const Container = styled.div``;
 
@@ -150,7 +151,7 @@ const Wishlist = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Header />
       <StoreSearch />
       <Wrapper>
         <Title>My Wishlist</Title>

@@ -10,7 +10,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { publicRequest } from '../../requestMethods';
 import EmptyCart from '../../components/store/EmptyCart';
 import StoreSearch from '../../components/store/StoreSearch';
-
+import Header from '../../components/store/Header/Header'
 
 const Container = styled.div``;
 
@@ -241,7 +241,7 @@ const Cart = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Header />
       <StoreSearch />
       <Wrapper>
         <Title>My Cart</Title>

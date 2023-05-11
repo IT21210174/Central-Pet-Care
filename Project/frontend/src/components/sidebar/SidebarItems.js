@@ -33,6 +33,38 @@ import { TbTruckDelivery } from "react-icons/tb";
 
 const SidebarItems = [
 	{
+		id: 2000,
+		icon: <BiStoreAlt />,
+		text: "Product Management",
+		nestedFunctions: [
+			{
+				id: 200,
+				link: "/admin/products/manageProducts",
+				nestedItemicon: <BsFillBoxSeamFill />,
+				nestedItemtext: "Manage products",
+			},
+			{
+				id: 201,
+				link: "/admin/products/addProduct",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add product",
+			},
+			{
+				id: 202,
+				link: "/admin/products/manageOrders",
+				nestedItemicon: <BsFillCartFill />,
+				nestedItemtext: "Orders",
+			},
+
+			{
+				id: 203,
+				link: "/admin/products/insights",
+				nestedItemicon: <MdInsights />,
+				nestedItemtext: "Insights",
+			},
+		],
+	},
+	{
 		id: 1000,
 		icon: <BsPalette2 />,
 		text: "Inventory Management",
@@ -84,39 +116,6 @@ const SidebarItems = [
 				link: "/component-7",
 				nestedItemicon: <TbUser />,
 				nestedItemtext: "Manage suppliers",
-			},
-		],
-	},
-
-	{
-		id: 2000,
-		icon: <BiStoreAlt />,
-		text: "Product Management",
-		nestedFunctions: [
-			{
-				id: 200,
-				link: "/admin/products/manageProducts",
-				nestedItemicon: <BsFillBoxSeamFill />,
-				nestedItemtext: "Manage products",
-			},
-			{
-				id: 201,
-				link: "/admin/products/addProduct",
-				nestedItemicon: <MdLibraryAdd />,
-				nestedItemtext: "Add new item",
-			},
-			{
-				id: 202,
-				link: "/admin/orders",
-				nestedItemicon: <BsFillCartFill />,
-				nestedItemtext: "Orders",
-			},
-
-			{
-				id: 203,
-				link: "/admin/insights",
-				nestedItemicon: <MdInsights />,
-				nestedItemtext: "Insights",
 			},
 		],
 	},

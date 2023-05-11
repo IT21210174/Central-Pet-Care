@@ -12,8 +12,8 @@ const Actionbar = () => {
         <div className="user-details">
           <img className='user-image' src='https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg' alt="profile" />
           <div className="profile-details">
-              <span className='username'>Nimal</span>
-              <span className='designation'>Inventory Manager</span>
+              <span className='username'>Nimal Wedagedara</span>
+              <span className='designation'>Manager</span>
           </div>
         </div>
     </div>
