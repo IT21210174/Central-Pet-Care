@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Sidebar from '../../components/sidebar/Sidebar'
-import ActionBar from '../../components/actionbar/ActionBar'
+import Actionbar from '../../components/actionbar/Acionbar'
 import './adminLayout.scss'
 
 const AdminLayout = ({children}) => {
+
   return (
     <div className='layoutWrapper'>
         <Sidebar />
         <div className='rightContainer'>
-          <ActionBar />
+          <Actionbar />
           <div className='content'>
           {
             children

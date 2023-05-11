@@ -20,4 +20,10 @@ router.get("/", protect, admin, getOrders);
 router.put("/:id", updateOrder);
 router.get("/income", protect, admin, getMonthlyIncome);
 
+router.get('/', protect, admin, getOrders)
+router.put('/:id', protect, admin, updateOrder)
+router.delete('/:id', protect, admin, deleteOrder)
+router.get('/income', protect, admin, getMonthlyIncome)
+
+
 module.exports = router;
