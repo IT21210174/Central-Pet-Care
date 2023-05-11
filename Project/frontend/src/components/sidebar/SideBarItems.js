@@ -7,6 +7,7 @@ import { TbUserPlus } from "react-icons/tb";
 import { TbUser } from "react-icons/tb";
 import { FaPaw } from "react-icons/fa";
 import { MdOutlineHomeRepairService } from "react-icons/md";
+import { BsPalette2 } from "react-icons/bs";
 import { CiMedicalCross } from "react-icons/ci";
 import { IoIosPeople } from "react-icons/io";
 import { IoMdPerson } from "react-icons/io";
@@ -24,6 +25,7 @@ import { SiGoogleanalytics } from "react-icons/si";
 import { BsPeopleFill } from "react-icons/bs";
 import { MdHolidayVillage } from "react-icons/md";
 import { GiTakeMyMoney } from "react-icons/gi";
+
 // main function icons
 import { AiFillApi } from "react-icons/ai";
 import { BiStoreAlt } from "react-icons/bi";
@@ -37,113 +39,7 @@ import { BiTimer } from "react-icons/bi";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
 
-const sidebarItems = [
-	{
-		id: 1000,
-		icon: <TbTruckDelivery />,
-		text: "Delivery Management",
-		nestedFunctions: [
-			{
-				id: 100,
-				link: "/delivery/add-driver",
-				nestedItemicon: <FaUserPlus />,
-				nestedItemtext: "Add Driver",
-			},
-
-			{
-				id: 101,
-				link: "/delivery/manage-driver",
-				nestedItemicon: <FaUserEdit />,
-				nestedItemtext: "View Drivers",
-			},
-
-
-			{
-				id: 102,
-				link: "/delivery/view-order",
-				nestedItemicon: <TbPackageExport />,
-				nestedItemtext: "Assign Driver",
-			},
-
-			{
-				id: 103,
-				link: "/delivery/processing-order",
-				nestedItemicon: <BiTimer />,
-				nestedItemtext: "Processing Orders",
-			},
-
-			{
-				id: 104,
-				link: "/delivery/completed-order",
-				nestedItemicon: <AiOutlineFileDone />,
-				nestedItemtext: "Completed Orders",
-			},
-
-			// {
-			// 	id: 805,
-			// 	link: "",
-			// 	nestedItemicon: <MdInsights />,
-			// 	nestedItemtext: "Insights",
-			// },
-		],
-	},
-
-	{
-		id: 8000,
-		icon: <AiFillApi />,
-		text: "Inventory Management",
-		nestedFunctions: [
-			{
-				id: 800,
-				link: "/component-1",
-				nestedItemicon: <MdContentPasteSearch />,
-				nestedItemtext: "Overview",
-			},
-
-			{
-				id: 801,
-				link: "/component-2",
-				nestedItemicon: <MdLibraryAdd />,
-				nestedItemtext: "Add new item",
-			},
-
-			{
-				id: 802,
-				link: "/component-3",
-				nestedItemicon: <ImSearch />,
-				nestedItemtext: "Search inventory",
-			},
-
-			{
-				id: 803,
-				link: "/component-4",
-				nestedItemicon: <MdOutlineInventory2 />,
-				nestedItemtext: "Manage inventory",
-			},
-
-			{
-				id: 804,
-				link: "",
-				nestedItemicon: <BiCategoryAlt />,
-				nestedItemtext: "Release items",
-			},
-
-			{
-				id: 805,
-				link: "/component-6",
-				nestedItemicon: <TbUserPlus />,
-				nestedItemtext: "Add supplier",
-			},
-
-			{
-				id: 806,
-				link: "/component-7",
-				nestedItemicon: <TbUser />,
-				nestedItemtext: "Manage suppliers",
-			},
-		],
-	},
-
+const SidebarItems = [
 	{
 		id: 2000,
 		icon: <BiStoreAlt />,
@@ -151,23 +47,83 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 200,
-				link: "/products",
+				link: "/admin/products/manageProducts",
 				nestedItemicon: <BsFillBoxSeamFill />,
-				nestedItemtext: "Products",
+				nestedItemtext: "Manage products",
 			},
-
 			{
 				id: 201,
-				link: "",
+				link: "/admin/products/addProduct",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add product",
+			},
+			{
+				id: 202,
+				link: "/admin/products/manageOrders",
 				nestedItemicon: <BsFillCartFill />,
 				nestedItemtext: "Orders",
 			},
 
 			{
-				id: 202,
-				link: "",
+				id: 203,
+				link: "/admin/products/insights",
 				nestedItemicon: <MdInsights />,
 				nestedItemtext: "Insights",
+			},
+		],
+	},
+	{
+		id: 1000,
+		icon: <BsPalette2 />,
+		text: "Inventory Management",
+		nestedFunctions: [
+			{
+				id: 100,
+				link: "/inventory/overview",
+				nestedItemicon: <MdContentPasteSearch />,
+				nestedItemtext: "Overview",
+			},
+
+			{
+				id: 101,
+				link: "/inventory/add-item",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add new item",
+			},
+
+			{
+				id: 102,
+				link: "/component-3",
+				nestedItemicon: <ImSearch />,
+				nestedItemtext: "Search inventory",
+			},
+
+			{
+				id: 103,
+				link: "/inventory/manage-inventory",
+				nestedItemicon: <MdOutlineInventory2 />,
+				nestedItemtext: "Manage inventory",
+			},
+
+			{
+				id: 104,
+				link: "/component-5",
+				nestedItemicon: <BiCategoryAlt />,
+				nestedItemtext: "Release items",
+			},
+
+			{
+				id: 105,
+				link: "/component-6",
+				nestedItemicon: <TbUserPlus />,
+				nestedItemtext: "Add supplier",
+			},
+
+			{
+				id: 106,
+				link: "/component-7",
+				nestedItemicon: <TbUser />,
+				nestedItemtext: "Manage suppliers",
 			},
 		],
 	},
@@ -179,21 +135,21 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 300,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <BsPeopleFill />,
 				nestedItemtext: "Manage Staff",
 			},
 
 			{
 				id: 301,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <MdHolidayVillage />,
 				nestedItemtext: "Manage Leaves",
 			},
 
 			{
 				id: 302,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <GiTakeMyMoney />,
 				nestedItemtext: "Manage Payrolls",
 			},
@@ -207,14 +163,14 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 400,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <GiArchiveRegister />,
 				nestedItemtext: "Register",
 			},
 
 			{
 				id: 401,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <FaSyringe />,
 				nestedItemtext: "Treatments",
 			},
@@ -228,14 +184,14 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 500,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <MdMedicalServices />,
 				nestedItemtext: "Service Information",
 			},
 
 			{
 				id: 501,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <MdDesignServices />,
 				nestedItemtext: "Service Records",
 			},
@@ -249,21 +205,21 @@ const sidebarItems = [
 		nestedFunctions: [
 			{
 				id: 600,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <BsFillBoxSeamFill />,
 				nestedItemtext: "Products",
 			},
 
 			{
 				id: 601,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <BsFillCartFill />,
 				nestedItemtext: "Orders",
 			},
 
 			{
 				id: 602,
-				link: "",
+				link: "/products/compo-1",
 				nestedItemicon: <MdInsights />,
 				nestedItemtext: "Insights",
 			},
@@ -298,7 +254,55 @@ const sidebarItems = [
 		],
 	},
 
-	
+	{
+		id: 1000,
+		icon: <TbTruckDelivery />,
+		text: "Delivery Management",
+		nestedFunctions: [
+			{
+				id: 100,
+				link: "/admin/delivery/add-driver",
+				nestedItemicon: <FaUserPlus />,
+				nestedItemtext: "Add Driver",
+			},
+
+			{
+				id: 101,
+				link: "/admin/delivery/manage-driver",
+				nestedItemicon: <FaUserEdit />,
+				nestedItemtext: "View Drivers",
+			},
+
+
+			{
+				id: 102,
+				link: "/admin/delivery/view-order",
+				nestedItemicon: <TbPackageExport />,
+				nestedItemtext: "Assign Driver",
+			},
+
+			{
+				id: 103,
+				link: "/admin/delivery/processing-order",
+				nestedItemicon: <BiTimer />,
+				nestedItemtext: "Processing Orders",
+			},
+
+			{
+				id: 104,
+				link: "/admin/delivery/completed-order",
+				nestedItemicon: <AiOutlineFileDone />,
+				nestedItemtext: "Completed Orders",
+			},
+
+			// {
+			// 	id: 805,
+			// 	link: "",
+			// 	nestedItemicon: <MdInsights />,
+			// 	nestedItemtext: "Insights",
+			// },
+		],
+	},
 ];
 
-export default sidebarItems;
+export default SidebarItems;
