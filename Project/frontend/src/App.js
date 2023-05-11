@@ -69,27 +69,27 @@ function App() {
         <Route path='/wishlist' element={<Wishlist />} />
 
         <Route path="/admin/delivery/add-driver" element={<AddDriver />} />
-		<Route path="/admin/delivery/manage-driver" element={<ManageDriver />} />
-		<Route path="/admin/delivery/view-order" element={<ViewDeliveryOrder />} />
-		<Route path="/admin/delivery/update-driver" element={<UpdateDriver/>}/> 
-		<Route path="/admin/delivery/update-order" element={<UpdateOrder/>}/> 
-		<Route path="/admin/delivery/processing-order" element={<ProcessingOrder/>}/>
-		<Route path="/admin/delivery/completed-order" element={<CompletedOrder/>}/>
+        <Route path="/admin/delivery/manage-driver" element={<ManageDriver />} />
+        <Route path="/admin/delivery/view-order" element={<ViewDeliveryOrder />} />
+        <Route path="/admin/delivery/update-driver" element={<UpdateDriver/>}/> 
+        <Route path="/admin/delivery/update-order" element={<UpdateOrder/>}/> 
+        <Route path="/admin/delivery/processing-order" element={<ProcessingOrder/>}/>
+        <Route path="/admin/delivery/completed-order" element={<CompletedOrder/>}/>
 
-		{/* inventory routes */}
-		<Route path="/inventory/overview" element={<OverviewPage />} />
-		<Route path="/inventory/add-item" element={<AddItemPage />} />
-		<Route path="/inventory/manage-inventory" element={<ManageInventoryPage />}/>
-		<Route path="/inventory/supplier-registration" element={<SupplierRegForm />}/>
-		{/* <Route path="/inventory/generate-reports" element={<OrdersReport />}/> */}
-		<Route path="/inventory/test-comp" element={<TestComp />} />
-		<Route path="/inventory/update-item" element={<UpdateItem />} />
-		<Route path="/inventory/view-item" element={<ViewInventoryItem />}/>
-		<Route path="/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
-		<Route path="/inventory/report" element={<ReportView />}/>
-		<Route path="/inventory/release-items" element={<ReleaseItems/>} />
-		<Route path="/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
-		<Route path="/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
+        {/* inventory routes */}
+        <Route path="/inventory/overview" element={<OverviewPage />} />
+        <Route path="/inventory/add-item" element={<AddItemPage />} />
+        <Route path="/inventory/manage-inventory" element={<ManageInventoryPage />}/>
+        <Route path="/inventory/supplier-registration" element={<SupplierRegForm />}/>
+        {/* <Route path="/inventory/generate-reports" element={<OrdersReport />}/> */}
+        <Route path="/inventory/test-comp" element={<TestComp />} />
+        <Route path="/inventory/update-item" element={<UpdateItem />} />
+        <Route path="/inventory/view-item" element={<ViewInventoryItem />}/>
+        <Route path="/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
+        <Route path="/inventory/report" element={<ReportView />}/>
+        <Route path="/inventory/release-items" element={<ReleaseItems/>} />
+        <Route path="/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
+        <Route path="/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
 
       </Routes>
     </Router>

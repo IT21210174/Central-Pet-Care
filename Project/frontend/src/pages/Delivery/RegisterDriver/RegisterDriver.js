@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import "./RegisterDriver.scss";
-import api from "../../../services/api";
+import { userRequest } from '../../../requestMethods';
 import swal from "sweetalert2";
 
 function RegisterDriver() {
@@ -20,7 +20,7 @@ function RegisterDriver() {
 		event.preventDefault();
 		if (driverDetails.driverName !== "") {
 			console.log(driverDetails);
-			api.post("/", driverDetails).then((response) => {
+			userRequest.post("/drivers", driverDetails).then((response) => {
 				console.log(response.data);
 				console.log("success bro");
 			});
@@ -32,7 +32,7 @@ function RegisterDriver() {
 			});
 		} else {
 			console.log(driverDetails);
-			api.post("/", driverDetails).then((response) => {
+			userRequest.post("/drivers", driverDetails).then((response) => {
 				console.log(response.data);
 				console.log("success bro");
 			});
