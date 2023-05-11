@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './EditStaff.scss'
-import { userRequest } from '../../requestMethods'
-import uploadImage from '../../uploadImage';
+import { userRequest } from '../../../requestMethods'
+import uploadImage from '../../../uploadImage';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -74,19 +73,19 @@ function EditStaff() {
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
 
   return (
     <AdminLayout>
-      <div className="add-item-container-main">
+      <div className="edit-staff-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Edit staff details</span>
+        <form className="edit-staff-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-staff">Edit staff details</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="edit-staff-column">
 
                 <section className="input-container">
                   <span className="input-title"> First Name</span>
@@ -123,7 +122,7 @@ function EditStaff() {
               </div>
 
               {/* column two */}
-              <div className="add-item-column">
+              <div className="edit-staff-column">
               <section className="input-container">
                         <span className="input-title">Last Name</span>
                         <input className="input-field" value={lastName} onChange={(e) => setlastName(e.target.value)} pattern="[a-zA-Z]+" required/>
@@ -152,7 +151,7 @@ function EditStaff() {
                         <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setsimage(e.target.files[0])} />
                     </section>
 
-                    <div className="btn-container-add-item">
+                    <div className="btn-container-edit-staff">
                       <button type='submit' className="submit-btn">Update</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>

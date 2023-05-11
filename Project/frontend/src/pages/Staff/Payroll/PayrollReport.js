@@ -1,7 +1,7 @@
 import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import reportHeader from '../../assets/reportHeader.png';
+import reportHeader from '../../../assets/reportHeader.png';
 import styled from "@emotion/styled";
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 
@@ -54,7 +54,7 @@ const PayrollReport = ({data}) => {
         //Change report name accordingly
         doc.text("Payroll Details Report", (pageWidth / 2), 60, { align: "center" });
         // Underline the text
-        const textWidth = doc.getStringUnitWidth("Products Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const textWidth = doc.getStringUnitWidth("Payroll Details Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
         doc.setLineWidth(0.5);
         doc.line((pageWidth / 2) - (textWidth / 2), 63, (pageWidth / 2) + (textWidth / 2), 63);
 
@@ -64,9 +64,9 @@ const PayrollReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [[ "Staff ID", "OT Hours", "Salary", "Payment Status","Date"]],
+          head: [[ "Staff ID", "OT Hours", "Salary", "Payment Status", "Date"]],
           body: data.map((item) => {
-            return [item.staffId, item.otHours, 'Rs.' + item.salary.toFixed(2), item.paymentStatus,item.date];
+            return [item.staffId, item.otHours, 'Rs.' + item.salary.toFixed(2), item.paymentStatus, item.date];
           }),
           startY: 80, // start the table below the logo
           headStyles: {
@@ -81,7 +81,6 @@ const PayrollReport = ({data}) => {
           },
           columnStyles: {
             // 0: { halign: 'center' }, //we have set center as default
-            1: { halign: 'left' }, // left align the content in second column
           },
         });
     

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './EditPayroll.scss'
-import { userRequest } from '../../requestMethods'
+import { userRequest } from '../../../requestMethods'
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -17,7 +16,6 @@ function EditPayroll() {
     const[paymentStatus,setpaymentStatus] =  useState("")
     const[date,setdate] =  useState("")
     
-
   
     useEffect(() => {
       userRequest.get('/payroll/' + id)
@@ -50,21 +48,22 @@ function EditPayroll() {
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
 
 
   
     return (
       <AdminLayout>
-      <div className="add-item-container-main">
+      <div className="edit-payroll-container-main">
           {/* this is the form container */}
-          <form className="add-payroll-form-container" onSubmit={handleSubmit}>
-              <span className="tagline-add-item"> Add Payroll Details</span>
+          <form className="edit-payroll-form-container" onSubmit={handleSubmit}>
+              <span className="tagline-edit-payroll">Edit Payroll Details</span>
               {/* input field container */} 
               <div className="column-container">
-                {/* column one */}
-                <div className="add-item-column">
+
+
+                <div className="edit-payroll-column">
                   <section className="input-container">
                     <span className="input-title">Staff ID</span>
                     <input className="input-field" value={staffId} onChange={(e) => setstaffId(e.target.value)} required/>
@@ -88,13 +87,12 @@ function EditPayroll() {
                     <span className="input-title">Date</span>
                     <input className="input-field" value={date} onChange={(e) => setdate(e.target.value)}type ='date' max={maxDate} required/>
                   </section>
-                  <div className="btn-container-add-item">
+                  <div className="btn-container-edit-payroll">
                         <button type='submit' className="submit-btn">Submit</button>
                         <button type='reset' className="reset-btn" >Reset</button>
                   </div>
                  
                 </div>
-                {/* column two */}
                 
               </div>
           </form>

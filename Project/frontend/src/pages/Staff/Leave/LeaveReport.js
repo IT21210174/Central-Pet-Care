@@ -1,7 +1,7 @@
 import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import reportHeader from '../../assets/reportHeader.png';
+import reportHeader from '../../../assets/reportHeader.png';
 import styled from "@emotion/styled";
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 

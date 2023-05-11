@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './AddLeave.scss'
-import { userRequest } from '../../requestMethods'
+import { userRequest } from '../../../requestMethods'
 import { toast } from 'react-hot-toast';
 
 
@@ -36,14 +35,14 @@ const handleReset = () => {
 }
   return (
     <AdminLayout>
-    <div className="add-item-container-main">
+    <div className="add-leave-container-main">
         {/* this is the form container */}
         <form className="add-leave-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item"> Leave Request Form</span>
+            <span className="tagline-add-leave"> Leave Request Form</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-leave-column">
                 <section className="input-container">
                   <span className="input-title">Staff ID</span>
                   <input className="input-field" value={staffId} onChange={(e) => setStaffID(e.target.value)} required/>
@@ -70,7 +69,7 @@ const handleReset = () => {
                   <span className="input-title">To</span>
                   <input className="input-field" value={leaveTo} onChange={(e) => setleaveTo(e.target.value)} type='date' required/>
                 </section>
-                <div className="btn-container-add-item">
+                <div className="btn-container-add-leave">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                 </div>

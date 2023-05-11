@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './AddPayroll.scss'
-import { userRequest } from '../../requestMethods'
+import { userRequest } from '../../../requestMethods'
 import { toast } from 'react-hot-toast';
 
 
@@ -37,7 +36,7 @@ const AddPayroll = () => {
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
 
   // useEffect(() => {
@@ -47,14 +46,14 @@ const AddPayroll = () => {
 
   return (
     <AdminLayout>
-    <div className="add-item-container-main">
+    <div className="add-payroll-container-main">
         {/* this is the form container */}
         <form className="add-payroll-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item"> Add Payroll Details</span>
+            <span className="tagline-add-payroll"> Add Payroll Details</span>
             {/* input field container */} 
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-payroll-column">
                 <section className="input-container">
                   <span className="input-title">Staff ID</span>
                   <input className="input-field" value={staffId} onChange={(e) => setstaffId(e.target.value)} required/>
@@ -79,7 +78,7 @@ const AddPayroll = () => {
                   <span className="input-title">Date</span>
                   <input className="input-field" value={date} onChange={(e) => setdate(e.target.value)}type ='date' max={maxDate} required/>
                 </section>
-                <div className="btn-container-add-item">
+                <div className="btn-container-add-payroll">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                 </div>

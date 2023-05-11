@@ -1,7 +1,7 @@
 import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import reportHeader from '../../assets/reportHeader.png';
+import reportHeader from '../../../assets/reportHeader.png';
 import styled from "@emotion/styled";
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 
@@ -54,7 +54,7 @@ const StaffReport = ({data}) => {
         //Change report name accordingly
         doc.text("Staff Details Report", (pageWidth / 2), 60, { align: "center" });
         // Underline the text
-        const textWidth = doc.getStringUnitWidth("Products Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const textWidth = doc.getStringUnitWidth("Staff Details Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
         doc.setLineWidth(0.5);
         doc.line((pageWidth / 2) - (textWidth / 2), 63, (pageWidth / 2) + (textWidth / 2), 63);
 
@@ -66,7 +66,7 @@ const StaffReport = ({data}) => {
         doc.autoTable({
           head: [[ "First Name", "Last Name", "Address", "NIC","Department","Joined Date","Salary"]],
           body: data.map((item) => {
-            return [item.firstName, item.lastName, item.address, item.nic,item.department,item.joinedDate,'Rs.' + item.salary.toFixed(2)];
+            return [item.firstName, item.lastName, item.address, item.nic, item.department, item.joinedDate, 'Rs.' + item.salary.toFixed(2)];
           }),
           startY: 80, // start the table below the logo
           headStyles: {
@@ -81,7 +81,6 @@ const StaffReport = ({data}) => {
           },
           columnStyles: {
             // 0: { halign: 'center' }, //we have set center as default
-            1: { halign: 'left' }, // left align the content in second column
           },
         });
     

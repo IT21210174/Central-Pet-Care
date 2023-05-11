@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './EditLeave.scss'
-import { userRequest } from '../../requestMethods'
+import { userRequest } from '../../../requestMethods'
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -56,14 +55,14 @@ function EditLeave() {
   
     return (
       <AdminLayout>
-      <div className="add-item-container-main">
+      <div className="edit-leave-container-main">
           {/* this is the form container */}
-          <form className="add-payroll-form-container" onSubmit={handleSubmit}>
-              <span className="tagline-add-item"> Edit Leave Details</span>
+          <form className="edit-leave-form-container" onSubmit={handleSubmit}>
+              <span className="tagline-edit-leave"> Edit Leave Details</span>
               {/* input field container */} 
               <div className="column-container">
                 {/* column one */}
-                <div className="add-item-column">
+                <div className="edit-leave-column">
                   <section className="input-container">
                     <span className="input-title">Staff ID</span>
                     <input className="input-field" value={staffId} onChange={(e) => setStaffID(e.target.value)} required/>
@@ -88,7 +87,7 @@ function EditLeave() {
                     <span className="input-title">To</span>
                     <input className="input-field" value={leaveTo} onChange={(e) => setleaveTo(e.target.value)}type ='date' max={maxDate} required/>
                   </section>
-                  <div className="btn-container-add-item">
+                  <div className="btn-container-edit-leave">
                         <button type='submit' className="submit-btn">Update</button>
                         <button type='reset' className="reset-btn" >Reset</button>
                   </div>

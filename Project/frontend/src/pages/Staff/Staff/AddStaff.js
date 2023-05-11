@@ -1,9 +1,8 @@
 import React,{useEffect,useState} from 'react';
-import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './AddStaff.scss'
-import { userRequest } from '../../requestMethods'
-import uploadImage from '../../uploadImage';
+import { userRequest } from '../../../requestMethods'
+import uploadImage from '../../../uploadImage';
 import { toast } from 'react-hot-toast';
 
 const AddStaff = () => {
@@ -18,7 +17,6 @@ const AddStaff = () => {
   const [department,setdepartment] = useState("")
   const [joinedDate,setjoinedDate] = useState("")
   const [salary,setsalary] = useState("")
-  const [simage,setsimage] = useState("")
   const [file, setFile] = useState('')
 
   const handleSubmit = async (e) => {
@@ -53,20 +51,20 @@ const AddStaff = () => {
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
   
 
   return (
     <AdminLayout>
-    <div className="add-item-container-main">
+    <div className="add-staff-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item"> Add Staff Member</span>
+        <form className="add-staff-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-add-staff"> Add Staff Member</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-staff-column">
                 <section className="input-container">
                   <span className="input-title">First Name</span>
                   <input className="input-field" value={firstName} onChange={(e) => setfirstName(e.target.value)} pattern="[a-zA-Z]+" required/>
@@ -93,7 +91,7 @@ const AddStaff = () => {
                 </section>
               </div>
               {/* column two */}
-              <div className="add-item-column">
+              <div className="add-staff-column">
                     <section className="input-container">
                         <span className="input-title">Last Name</span>
                         <input className="input-field" value={lastName} onChange={(e) => setlastName(e.target.value)} pattern="[a-zA-Z]+" required/>
@@ -118,7 +116,7 @@ const AddStaff = () => {
                         <span className="input-title">Staff Member Image</span>
                         <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
                     </section>
-                    <div className="btn-container-add-item">
+                    <div className="btn-container-add-staff">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>

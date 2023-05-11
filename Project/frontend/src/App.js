@@ -17,24 +17,24 @@ import Wishlist from './pages/Store/Wishlist';
 
 //payroll management
 
-import AddPayroll from './pages/Payroll/AddPayroll';
-import ManagePayroll from './pages/Payroll/ManagePayroll';
-import EditPayroll from './pages/Payroll/EditPayroll';
-import ViewPayroll from './pages/Payroll/ViewPayroll';
+import AddPayroll from './pages/Staff/Payroll/AddPayroll';
+import ManagePayroll from './pages/Staff/Payroll/ManagePayroll';
+import EditPayroll from './pages/Staff/Payroll/EditPayroll';
+import ViewPayroll from './pages/Staff/Payroll/ViewPayroll';
 
 
 //staff management
 
-import AddStaff from './pages/Staff/AddStaff'
-import ManageStaff from './pages/Staff/ManageStaff';
-import EditStaff from './pages/Staff/EditStaff';
-import ViewStaff from './pages/Staff/ViewStaff';
+import AddStaff from './pages/Staff/Staff/AddStaff'
+import ManageStaff from './pages/Staff/Staff/ManageStaff';
+import EditStaff from './pages/Staff/Staff/EditStaff';
+import ViewStaff from './pages/Staff/Staff/ViewStaff';
 
 //leave management
-import AddLeave from './pages/Leave/AddLeave';
-import ManageLeave from './pages/Leave/ManageLeave'
-import EditLeave from './pages/Leave/EditLeave'
-import ViewLeave from './pages/Leave/ViewLeave';
+import AddLeave from './pages/Staff/Leave/AddLeave';
+import ManageLeave from './pages/Staff/Leave/ManageLeave'
+import EditLeave from './pages/Staff/Leave/EditLeave'
+import ViewLeave from './pages/Staff/Leave/ViewLeave';
 
 
 
