@@ -93,11 +93,9 @@ const updateStaff = asyncHandler(async (req, res) => {
 // @route   DELETE /api/staffmembers/:id
 // @access  Private
 const deleteStaff = asyncHandler(async (req, res) => {
-    console.log(req.params.id)
+
      const staff = await Staff.findById(req.params.id)
 
-    console.log(staff)
-  
      if (staff) {
          await staff.deleteOne();
          res.status(200).json({message: 'Staff member removed'})
