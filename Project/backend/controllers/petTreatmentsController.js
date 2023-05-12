@@ -7,7 +7,6 @@ const Treatments = require('../models/petTreatmentsModel')
 // @access  Private/Admin
 const getTreatments = asyncHandler(async (req, res) => {
     const qSearch=req.query.search
-    console.log(qSearch)
      
      let treatments
 
