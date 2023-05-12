@@ -52,14 +52,14 @@
 
 
 // search bar stylings
-.search-bar-container{
+.searchBarContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 320px;
 }
 
-.search-field{
+.searchField{
     width: 250px;
     border: transparent;
     background-color: #eaeaea;
@@ -71,7 +71,7 @@
     outline: 2px solid #7D5FFF;
 }
 
-.search-btn{
+.searchBtn{
     border: none;
     font-size: 18px;
     color: white;
@@ -87,6 +87,6 @@
     box-sizing: border-box;
 }
 
-.search-btn:hover{
+.searchBtn:hover{
     cursor: pointer;
 }

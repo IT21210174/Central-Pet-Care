@@ -81,10 +81,10 @@ function ManageStaff() {
     
       return(
 
-        <div className="search-bar-container">
+        <div className="searchBarContainer">
           <form onSubmit={handleSearch}>
-              <input type="text" className="search-field" value={search}  placeholder='Search...' onChange={(e) => setSearch(e.target.value)}/>
-              <button type='submit' className="search-btn">
+              <input type="text" className="searchField" value={search}  placeholder='Search...' onChange={(e) => setSearch(e.target.value)}/>
+              <button type='submit' className="searchBtn">
                 <ImSearch className='search'/>
               </button>
           </form>
@@ -141,43 +141,43 @@ function ManageStaff() {
           headerAlign: "center",
           align: "center",
           flex: 2,
-      },
-      // {
-      //   field: "dob",
-      //   headerName: "DOB",
-      //   headerAlign: "center",
-      //   align: "center",
-      //   flex: 2,
-      // },
-      {
-        field: "email",
-        headerName: "Email",
-        headerAlign: "center",
-        align: "center",
-        flex: 2,
-  },
-  {
-    field: "department",
-    headerName: "Department",
-    headerAlign: "center",
-    align: "center",
-    flex: 2,
-},
-{
-  field: "joinedDate",
-  headerName: "Joined Date",
-  headerAlign: "center",
-  align: "center",
-  flex: 2,
-},
-// {
-//   field: "salary",
-//   headerName: "Salary",
-//   headerAlign: "center",
-//   align: "center",
-//   flex: 2,
-//   valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
-// },
+        },
+        // {
+        //   field: "dob",
+        //   headerName: "DOB",
+        //   headerAlign: "center",
+        //   align: "center",
+        //   flex: 2,
+        // },
+        {
+          field: "email",
+          headerName: "Email",
+          headerAlign: "center",
+          align: "center",
+          flex: 2,
+        },
+        {
+          field: "department",
+          headerName: "Department",
+          headerAlign: "center",
+          align: "center",
+          flex: 2,
+        },
+        {
+          field: "joinedDate",
+          headerName: "Joined Date",
+          headerAlign: "center",
+          align: "center",
+          flex: 2,
+        },
+        // {
+        //   field: "salary",
+        //   headerName: "Salary",
+        //   headerAlign: "center",
+        //   align: "center",
+        //   flex: 2,
+        //   valueFormatter: ({ value }) => `Rs. ${value.toFixed(2)}`,
+        // },
 
         {
           field: "action",

@@ -63,7 +63,11 @@ const orderSchema = mongoose.Schema({
     deliveryStatus: {
         type: String,
         required: true,
-        default: "pending"
+        default: "Pending"
+    },
+    assignedDriver: {
+        type: String,
+        default: ""
     }
 }, {
     timestamps: true

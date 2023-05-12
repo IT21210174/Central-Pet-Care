@@ -81,10 +81,10 @@ function ManageOrders() {
     
       return(
 
-        <div className="search-bar-container">
+        <div className="searchBarContainer">
           <form onSubmit={handleSearch}>
-              <input type="text" className="search-field" value={search}  placeholder='Search...' onChange={(e) => setSearch(e.target.value)}/>
-              <button type='submit' className="search-btn">
+              <input type="text" className="searchField" value={search}  placeholder='Search...' onChange={(e) => setSearch(e.target.value)}/>
+              <button type='submit' className="searchBtn">
                 <ImSearch className='search'/>
               </button>
           </form>
@@ -145,13 +145,13 @@ function ManageOrders() {
               const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
               let statusStyle = '';
               switch (status) {
-                case 'delivered':
+                case 'Completed':
                   statusStyle = 'successful';
                   break;
-                case 'pending':
+                case 'Pending':
                   statusStyle = 'pending';
                   break;
-                case 'processing':
+                case 'Processing':
                   statusStyle = 'processing';
                   break;
                 // Add more cases for additional delivery statuses here
@@ -173,7 +173,7 @@ function ManageOrders() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/products/viewOrder/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />
