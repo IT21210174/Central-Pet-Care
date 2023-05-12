@@ -65,10 +65,7 @@ $fontfam-1: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
+    padding-left: 20px;
 }
 
 // column container stylings
@@ -87,6 +84,7 @@ $fontfam-1: 'Poppins', sans-serif;
     align-items: center;
     width: 450px;
     height: 500px;
+    margin-top: 20px;
 }
 
 .input-container{
@@ -118,7 +116,7 @@ $fontfam-1: 'Poppins', sans-serif;
 
 .input-textarea{
     width: 400px;
-    font-size: 20px;
+    font-size: 16px;
     padding: 10px 20px;
     outline: none;
     margin: 10px 0 15px 0;

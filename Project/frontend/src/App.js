@@ -132,19 +132,19 @@ function App() {
 
 
         {/* inventory routes */}
-        <Route path="/inventory/overview" element={<OverviewPage />} />
-        <Route path="/inventory/add-item" element={<AddItemPage />} />
-        <Route path="/inventory/manage-inventory" element={<ManageInventoryPage />}/>
-        <Route path="/inventory/supplier-registration" element={<SupplierRegForm />}/>
-        {/* <Route path="/inventory/generate-reports" element={<OrdersReport />}/> */}
-        <Route path="/inventory/test-comp" element={<TestComp />} />
-        <Route path="/inventory/update-item" element={<UpdateItem />} />
-        <Route path="/inventory/view-item" element={<ViewInventoryItem />}/>
-        <Route path="/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
-        <Route path="/inventory/report" />
-        <Route path="/inventory/release-items" element={<ReleaseItems/>} />
-        <Route path="/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
-        <Route path="/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
+        <Route path="/admin/inventory/overview" element={<OverviewPage />} />
+        <Route path="/admin/inventory/add-item" element={<AddItemPage />} />
+        <Route path="/admin/inventory/manage-inventory" element={<ManageInventoryPage />}/>
+        <Route path="/admin/inventory/supplier-registration" element={<SupplierRegForm />}/>
+        {/* <Route path="/admin/inventory/generate-reports" element={<OrdersReport />}/> */}
+        <Route path="/admin/inventory/test-comp" element={<TestComp />} />
+        <Route path="/admin/inventory/update-item" element={<UpdateItem />} />
+        <Route path="/admin/inventory/view-item" element={<ViewInventoryItem />}/>
+        <Route path="/admin/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
+        <Route path="/admin/inventory/report" />
+        <Route path="/admin/inventory/release-items" element={<ReleaseItems/>} />
+        <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
+        <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
 
 
         {/* staff routes */}

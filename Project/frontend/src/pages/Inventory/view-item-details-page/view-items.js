@@ -31,7 +31,7 @@ function ViewInventoryItem() {
 			<div className="view-inventory-item-container">
 				<div className="container">
 					<div className="pic-box-inventory-item"></div>
-					<button className="view-item-back-btn" onClick={()=>{navigate("/inventory/manage-inventory")}}>Back</button>
+					<button className="view-item-back-btn" onClick={()=>{navigate("/admin/inventory/manage-inventory")}}>Back</button>
 				</div>
 				<div className="container">
 					<div className="field-names">

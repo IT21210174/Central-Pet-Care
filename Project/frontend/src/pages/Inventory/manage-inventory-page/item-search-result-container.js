@@ -13,12 +13,12 @@ export default function ItemSearchResultsContainer(props) {
 
 	// view function
 	const viewItem = (id) => {
-		navigate("/inventory/view-item", { state: { id } });
+		navigate("/admin/inventory/view-item", { state: { id } });
 	};
 
 	// update function
 	const updateItem = (id) => {
-		navigate(`/inventory/update-item`, { state: { id } });
+		navigate(`/admin/inventory/update-item`, { state: { id } });
 		console.log(id);
 	};
 

@@ -13,12 +13,12 @@ export default function SupplierSearchResultsContainer(props) {
 
 	// view function
 	const viewItem = (id) => {
-		navigate("/supplier/view-supplier-details", { state: { id } });
+		navigate("/admin/supplier/view-supplier-details", { state: { id } });
 	};
 
 	// update function
 	const updateItem = (id) => {
-		navigate(`/supplier/update-supplier-details`, { state: { id } });
+		navigate(`/admin/supplier/update-supplier-details`, { state: { id } });
 		console.log(id);
 	};
 

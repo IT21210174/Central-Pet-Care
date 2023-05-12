@@ -105,49 +105,49 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 100,
-				link: "/inventory/overview",
+				link: "/admin/inventory/overview",
 				nestedItemicon: <MdContentPasteSearch />,
 				nestedItemtext: "Overview",
 			},
 
 			{
 				id: 101,
-				link: "/inventory/add-item",
+				link: "/admin/inventory/add-item",
 				nestedItemicon: <MdLibraryAdd />,
 				nestedItemtext: "Add new item",
 			},
 
 			{
 				id: 103,
-				link: "/inventory/manage-inventory",
+				link: "/admin/inventory/manage-inventory",
 				nestedItemicon: <MdOutlineInventory2 />,
 				nestedItemtext: "Manage inventory",
 			},
 
 			{
 				id: 104,
-				link: "/inventory/release-items",
+				link: "/admin/inventory/release-items",
 				nestedItemicon: <BiCategoryAlt />,
 				nestedItemtext: "Release items",
 			},
 
 			{
 				id: 105,
-				link: "/inventory/supplier-registration",
+				link: "/admin/inventory/supplier-registration",
 				nestedItemicon: <TbUserPlus />,
 				nestedItemtext: "Add supplier",
 			},
 
 			{
 				id: 106,
-				link: "/inventory/manage-suppliers",
+				link: "/admin/inventory/manage-suppliers",
 				nestedItemicon: <TbUser />,
 				nestedItemtext: "Manage suppliers",
 			},
 
 			{
 				id: 107,
-				link: "/inventory/generate-reports",
+				link: "/admin/inventory/generate-reports",
 				nestedItemicon: <TbReportAnalytics />,
 				nestedItemtext: "Generate reports",
 			},

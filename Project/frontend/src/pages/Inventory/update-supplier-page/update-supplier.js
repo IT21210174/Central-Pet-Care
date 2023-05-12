@@ -64,7 +64,7 @@ function UpdateSupplierDetails() {
                 console.log(error);
         })
 
-		navigate("/inventory/manage-suppliers")
+		navigate("/admin/inventory/manage-suppliers")
     }
 
 	const updateSupplierInputHandler = (event) => {
@@ -72,7 +72,7 @@ function UpdateSupplierDetails() {
 	};
 
 	const backBtn = () => {
-		navigate("/inventory/manage-inventory")
+		navigate("/admin/inventory/manage-inventory")
 	}
 
   return (
@@ -231,7 +231,7 @@ function UpdateSupplierDetails() {
 								<button type="submit" className="submit-btn">
 									Update
 								</button>
-								<button type="reset" className="reset-btn" onClick={()=>{navigate("/inventory/manage-suppliers")}}>
+								<button type="reset" className="reset-btn" onClick={()=>{navigate("/admin/inventory/manage-suppliers")}}>
 									Back
 								</button>
 							</div>

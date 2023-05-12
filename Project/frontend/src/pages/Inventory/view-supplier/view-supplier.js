@@ -32,7 +32,7 @@ function ViewSupplierDetails() {
 			<div className="view-inventory-item-container">
 				<div className="container">
 					<div className="pic-box-inventory-item"></div>
-					<button className="view-item-back-btn" onClick={()=>{navigate("/inventory/manage-suppliers")}}>Back</button>
+					<button className="view-item-back-btn" onClick={()=>{navigate("/admin/inventory/manage-suppliers")}}>Back</button>
 				</div>
 				<div className="container">
 					<div className="field-names-supplier">

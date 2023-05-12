@@ -64,7 +64,7 @@ const AddTreatments = () => {
                   <input className="input-field" value={petName} required onChange={(e) => setPetName(e.target.value)}/>
                 </section>
                 <section className="input-container"> 
-                  <span className="input-title">Customet ID</span>
+                  <span className="input-title">Customer ID</span>
                   <input className="input-field" value={customerID} required onChange={(e) => setCustomerID(e.target.value)}/>
                 </section>
                
