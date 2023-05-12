@@ -54,6 +54,6 @@ const petRegisterSchema = mongoose.Schema({
 petRegisterSchema.index({
     petID:'text',
     petName:'text',
- 
 })
+
 module.exports = mongoose.model('PetRegister', petRegisterSchema);

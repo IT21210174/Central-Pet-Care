@@ -9,7 +9,6 @@ const Pet = require('../models/petRegisterModels')
 const getPets = asyncHandler(async (req, res) => {
 
     const qSearch = req.query.search
-    console.log(qSearch)
      
      let pets
 
@@ -27,9 +26,9 @@ const getPets = asyncHandler(async (req, res) => {
 
 })
   
-// @desc    Fetch logged in pets
+// @desc    Fetch a pet
 // @route   GET /api/pets/:id
-// @access  Private
+// @access  Private/Admin
 const getPetByID = asyncHandler(async (req, res) => {
     const pet = await Pet.findById((req.params.id))
   
@@ -43,7 +42,7 @@ const getPetByID = asyncHandler(async (req, res) => {
   
 // @desc    Create pet
 // @route   POST /api/pets
-// @access  Private
+// @access  Private/Admin
 const createPet = asyncHandler(async (req, res) => {
     
     const { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture } = req.body;
@@ -69,7 +68,7 @@ const createPet = asyncHandler(async (req, res) => {
   
 // @desc    Update pet
 // @route   PUT /api/pets/:id
-// @access  Private
+// @access  Private/Admin
 const updatePet = asyncHandler(async (req, res) => {
 
     const pet = await Pet.findById(req.params.id)
@@ -90,7 +89,7 @@ const updatePet = asyncHandler(async (req, res) => {
 
 // @desc    Delete pet
 // @route   DELETE /api/pets/:id
-// @access  Private
+// @access  Private/Admin
 const deletePet = asyncHandler(async (req, res) => {
     const pet = await Pet.findById(req.params.id)
   

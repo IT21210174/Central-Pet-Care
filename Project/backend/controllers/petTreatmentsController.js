@@ -12,7 +12,7 @@ const getTreatments = asyncHandler(async (req, res) => {
      let treatments
 
      if(qSearch){
-         treatments=await Treatments.find(
+         treatments = await Treatments.find(
             {
                 $text:{$search: qSearch}
             }
@@ -26,7 +26,7 @@ const getTreatments = asyncHandler(async (req, res) => {
 
 // @desc    Fetch a treatment
 // @route   GET /api/treatment/:id
-// @access  Private
+// @access  Private/Admin
 const getTreatmentByID = asyncHandler(async (req, res) => {
     const treatment = await Treatments.findById(req.params.id)
   
@@ -40,7 +40,7 @@ const getTreatmentByID = asyncHandler(async (req, res) => {
   
 // @desc    Create treatment
 // @route   POST /api/treatment
-// @access  Private
+// @access  Private/Admin
 const createTreatment = asyncHandler(async (req, res) => {
     
     const { petID, petName, customerID,date, treatment,progressNotes} = req.body;
@@ -62,7 +62,7 @@ const createTreatment = asyncHandler(async (req, res) => {
   
 // @desc    Update treatment
 // @route   PUT /api/treatment/:id
-// @access  Private
+// @access  Private/Admin
 const updateTreatment = asyncHandler(async (req, res) => {
 
     const treatment = await Treatments.findById(req.params.id)
@@ -83,7 +83,7 @@ const updateTreatment = asyncHandler(async (req, res) => {
 
 // @desc    Delete treatment
 // @route   DELETE /api/treatment/:id
-// @access  Private
+// @access  Private/Admin
 const deleteTreatment = asyncHandler(async (req, res) => {
     const treatment = await Treatments.findById(req.params.id)
   
