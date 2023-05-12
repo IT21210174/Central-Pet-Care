@@ -9,7 +9,7 @@ const Service = require('../models/serviceModel')
 const getServices = asyncHandler(async (req, res) => {
     const qSearch=req.query.search
     //testing
-    console.log(qSearch)
+    //console.log(qSearch)
     let services
 
     if(qSearch){
@@ -20,7 +20,7 @@ const getServices = asyncHandler(async (req, res) => {
         )
     }
     else{
-        services=await Service.find();
+        services = await Service.find();
     }
     
     res.status(200).json(services);

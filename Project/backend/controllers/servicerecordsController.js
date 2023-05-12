@@ -10,22 +10,22 @@ const getServiceRecords = asyncHandler(async (req, res) => {
 
     const qSearch=req.query.search
     //testing
-    console.log(qSearch)
-    let servicerecord
+    //console.log(qSearch)
+    let servicerecords
 
     if(qSearch){
-        servicerecord = await ServiceRecord.find(
+        servicerecords = await ServiceRecord.find(
             {
                 $text: {$search: qSearch}
             }
         )
     }
     else{
-        servicerecord=await ServiceRecord.find();
+        servicerecords = await ServiceRecord.find();
     }
 
     
-    res.status(200).json(servicerecord);
+    res.status(200).json(servicerecords);
 
 })
   
