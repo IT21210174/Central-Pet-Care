@@ -78,10 +78,10 @@ function ManageTreatment(){
     
       return(
 
-        <div className="search-bar-container">
+        <div className="searchBarContainer">
           <form onSubmit={handleSearch}>
-              <input type="text" className="search-field" value={search}  placeholder='Search...' onChange={(e) => setSearch(e.target.value)}/>
-              <button type='submit' className="search-btn">
+              <input type="text" className="searchField" value={search}  placeholder='Search...' onChange={(e) => setSearch(e.target.value)}/>
+              <button type='submit' className="searchBtn">
                 <ImSearch className='search'/>
               </button>
           </form>

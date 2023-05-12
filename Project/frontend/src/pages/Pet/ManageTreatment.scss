@@ -1,21 +1,9 @@
+
 .listContainer {
     height: calc(90vh - 10px);
     width: 80vw;
     padding: 5px 10px;
     margin-top: 10px;
-}
-
-.listItemName {
-    display: flex;
-    align-items: center;
-}
-  
-.listItemImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
 }
 
 .action {
@@ -52,14 +40,14 @@
 
 
 // search bar stylings
-.search-bar-container{
+.searchBarContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 320px;
 }
 
-.search-field{
+.searchField{
     width: 250px;
     border: transparent;
     background-color: #eaeaea;
@@ -71,7 +59,7 @@
     outline: 2px solid #7D5FFF;
 }
 
-.search-btn{
+.searchBtn{
     border: none;
     font-size: 18px;
     color: white;
@@ -87,6 +75,6 @@
     box-sizing: border-box;
 }
 
-.search-btn:hover{
+.searchBtn:hover{
     cursor: pointer;
 }

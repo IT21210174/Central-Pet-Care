@@ -14,6 +14,7 @@ const Header = () => {
 				<span className="nav-links">Home</span>
 				<span className="nav-links">About</span>
 				<span className="nav-links">Services</span>
+				<span className="nav-links">Store</span>
 				<span className="nav-links">Contact</span>
 				<div className="nav-login-btn">Signup</div>
 				<div className="nav-login-btn">Signin</div>

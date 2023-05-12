@@ -56,7 +56,7 @@ const updateOrder = asyncHandler(async (req, res) => {
             new: true, 
         });
     
-        res.status(200).json(updatedOrder)
+        res.status(200).json(updatedProduct)
     } else {
         res.status(404)
         throw new Error('Order not found')
