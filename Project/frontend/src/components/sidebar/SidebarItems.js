@@ -97,6 +97,56 @@ const SidebarItems = [
 			},
 		],
 	},
+
+	{
+		id: 1000,
+		icon: <TbTruckDelivery />,
+		text: "Delivery Management",
+		nestedFunctions: [
+			{
+				id: 100,
+				link: "/admin/delivery/add-driver",
+				nestedItemicon: <FaUserPlus />,
+				nestedItemtext: "Add Driver",
+			},
+
+			{
+				id: 101,
+				link: "/admin/delivery/manage-driver",
+				nestedItemicon: <FaUserEdit />,
+				nestedItemtext: "View Drivers",
+			},
+
+
+			{
+				id: 102,
+				link: "/admin/delivery/view-order",
+				nestedItemicon: <TbPackageExport />,
+				nestedItemtext: "Assign Driver",
+			},
+
+			{
+				id: 103,
+				link: "/admin/delivery/processing-order",
+				nestedItemicon: <BiTimer />,
+				nestedItemtext: "Processing Orders",
+			},
+
+			{
+				id: 104,
+				link: "/admin/delivery/completed-order",
+				nestedItemicon: <AiOutlineFileDone />,
+				nestedItemtext: "Completed Orders",
+			},
+
+			// {
+			// 	id: 805,
+			// 	link: "",
+			// 	nestedItemicon: <MdInsights />,
+			// 	nestedItemtext: "Insights",
+			// },
+		],
+	},
 	
 	{
 		id: 1000,
@@ -153,6 +203,43 @@ const SidebarItems = [
 			},
 		],
 	},
+
+	{
+        id:4000,
+        icon:<FaPaw/>,
+        text:"Pet Management",
+        nestedFunctions: [
+                {
+                    id:400,
+                    link:"/admin/pets/petRegister",
+                    nestedItemicon:<GiArchiveRegister/>,
+                    nestedItemtext:"Register"
+                },
+
+                {
+                    id:402,
+                    link:"/admin/pets/managePet",
+                    nestedItemicon:<GiSittingDog/>,
+                    nestedItemtext:"Manage Pets"
+                },
+
+                {
+                    id:401,
+                    link:"/admin/treatments/AddTreatments",
+                    nestedItemicon:<FaSyringe/>,
+                    nestedItemtext:"Add Treatment"
+                },
+
+				{
+                    id:403,
+                    link:"/admin/treatments/ManageTreatments",
+                    nestedItemicon:<FaNotesMedical/>,
+                    nestedItemtext:"Manage Treatments"
+                },
+				
+
+        ]
+    },
 		
 	{
 		id: 3000,
@@ -202,43 +289,6 @@ const SidebarItems = [
 			},
 		],
 	},
-
-	{
-        id:4000,
-        icon:<FaPaw/>,
-        text:"Pet Management",
-        nestedFunctions: [
-                {
-                    id:400,
-                    link:"/admin/pets/petRegister",
-                    nestedItemicon:<GiArchiveRegister/>,
-                    nestedItemtext:"Register"
-                },
-
-                {
-                    id:402,
-                    link:"/admin/pets/managePet",
-                    nestedItemicon:<GiSittingDog/>,
-                    nestedItemtext:"Manage Pets"
-                },
-
-                {
-                    id:401,
-                    link:"/admin/treatments/AddTreatments",
-                    nestedItemicon:<FaSyringe/>,
-                    nestedItemtext:"Add Treatment"
-                },
-
-				{
-                    id:403,
-                    link:"/admin/treatments/ManageTreatments",
-                    nestedItemicon:<FaNotesMedical/>,
-                    nestedItemtext:"Manage Treatments"
-                },
-				
-
-        ]
-    },
 
 	{
 		id: 5000,
@@ -346,55 +396,6 @@ const SidebarItems = [
 		],
 	},
 
-	{
-		id: 1000,
-		icon: <TbTruckDelivery />,
-		text: "Delivery Management",
-		nestedFunctions: [
-			{
-				id: 100,
-				link: "/admin/delivery/add-driver",
-				nestedItemicon: <FaUserPlus />,
-				nestedItemtext: "Add Driver",
-			},
-
-			{
-				id: 101,
-				link: "/admin/delivery/manage-driver",
-				nestedItemicon: <FaUserEdit />,
-				nestedItemtext: "View Drivers",
-			},
-
-
-			{
-				id: 102,
-				link: "/admin/delivery/view-order",
-				nestedItemicon: <TbPackageExport />,
-				nestedItemtext: "Assign Driver",
-			},
-
-			{
-				id: 103,
-				link: "/admin/delivery/processing-order",
-				nestedItemicon: <BiTimer />,
-				nestedItemtext: "Processing Orders",
-			},
-
-			{
-				id: 104,
-				link: "/admin/delivery/completed-order",
-				nestedItemicon: <AiOutlineFileDone />,
-				nestedItemtext: "Completed Orders",
-			},
-
-			// {
-			// 	id: 805,
-			// 	link: "",
-			// 	nestedItemicon: <MdInsights />,
-			// 	nestedItemtext: "Insights",
-			// },
-		],
-	},
 ];
 
 export default SidebarItems;
