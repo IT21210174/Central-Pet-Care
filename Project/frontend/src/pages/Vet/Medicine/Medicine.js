@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import { useState } from 'react';
-import { userRequest } from '../../requestMethods'
-import CustomDataGrid from '../../components/dataGrid/CustomDataGrid';
+import { userRequest } from '../../../requestMethods'
+import CustomDataGrid from '../../../components/dataGrid/CustomDataGrid';
 import {ImSearch} from 'react-icons/im'
 
 import './Medicine.scss'
@@ -30,8 +30,7 @@ function Medicine() {
 
       const [search, setSearch] = useState('')
     
-      console.log(search)
-    //  userRequest.get(`medicines?search=${search}`)
+    //  console.log(search)
     
       const handleSearch = (e) => {
           e.preventDefault()
@@ -68,7 +67,7 @@ function Medicine() {
         },
         {
           field: "uses",
-          headerName: "Uses",
+          headerName: "Use",
           headerAlign: "left",
           align: "left",
           type: "text",

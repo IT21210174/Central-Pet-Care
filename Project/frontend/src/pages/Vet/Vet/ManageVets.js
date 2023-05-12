@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import { useState } from 'react';
-import { userRequest } from '../../requestMethods'
-import CustomDataGrid from '../../components/dataGrid/CustomDataGrid';
+import { userRequest } from '../../../requestMethods'
+import CustomDataGrid from '../../../components/dataGrid/CustomDataGrid';
 import { Link } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 import { MdOutlineDelete } from 'react-icons/md';
@@ -100,7 +100,7 @@ function ManageVets() {
         },
         {
           field: "vetName",
-          headerName: "Vet.Name",
+          headerName: "Vet Name",
           headerAlign: "center",
           align: "center",
           flex: 4,
@@ -118,8 +118,7 @@ function ManageVets() {
           headerName: "Telephone",
           headerAlign: "center",
           align: "center",
-         // type: "number",
-          flex: 2,
+          flex: 2.5,
         },
         {
           field: "email",
@@ -129,18 +128,18 @@ function ManageVets() {
           flex: 3,
         },
         {
-            field: "experience",
-            headerName: "Experience",
-            headerAlign: "center",
-            align: "center",
-            flex: 4,
+          field: "experience",
+          headerName: "Experience",
+          headerAlign: "center",
+          align: "center",
+          flex: 3.5,
         },
         {
           field: "qualification",
           headerName: "Qualification",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 3.5,
       },
         {
           field: "action",

@@ -16,21 +16,21 @@ import Success from './pages/Store/Success';
 import Wishlist from './pages/Store/Wishlist';
 
 //vet management
-import Addvet from './pages/Vet/AddVet';
-import EditVet from './pages/Vet/EditVet';
-import ManageVets from './pages/Vet/ManageVets';
-import ViewVet from './pages/Vet/ViewVet';
+import Addvet from './pages/Vet/Vet/AddVet';
+import EditVet from './pages/Vet/Vet/EditVet';
+import ManageVets from './pages/Vet/Vet/ManageVets';
+import ViewVet from './pages/Vet/Vet/ViewVet';
 
 //prescriptions
-import AddPrescription from './pages/Prescription/AddPrescription';
-import ManagePrescription from './pages/Prescription/ManagePrescription';
-import EditPrescription from './pages/Prescription/EditPrescription';
-import ViewPrescription from './pages/Prescription/ViewPrescription';
+import AddPrescription from './pages/Vet/Prescription/AddPrescription';
+import ManagePrescription from './pages/Vet/Prescription/ManagePrescription';
+import EditPrescription from './pages/Vet/Prescription/EditPrescription';
+import ViewPrescription from './pages/Vet/Prescription/ViewPrescription';
 
 //medicine
-import Medicine from './pages/Medicine/Medicine';
+import Medicine from './pages/Vet/Medicine/Medicine';
 
-import VetCard from './pages/Vet/VetCard';
+import VetCard from './pages/Vet/Vet/VetCard';
 
 function App() {
   return (

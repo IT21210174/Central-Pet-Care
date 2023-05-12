@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import { useState } from 'react';
-import { userRequest } from '../../requestMethods'
-import CustomDataGrid from '../../components/dataGrid/CustomDataGrid';
+import { userRequest } from '../../../requestMethods'
+import CustomDataGrid from '../../../components/dataGrid/CustomDataGrid';
 import { Link } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 import { MdOutlineDelete } from 'react-icons/md';
@@ -104,7 +104,7 @@ function ManagePrescription() {
           headerAlign: "center",
           align: "center",
           type: "text",
-          flex: 3,
+          flex: 4,
         },
         {
           field: "description",
@@ -119,7 +119,7 @@ function ManagePrescription() {
             headerName: "Medicine",
             headerAlign: "center",
             align: "center",
-            flex: 2,
+            flex: 3,
         },
         {
           field: "dosage",
@@ -155,7 +155,7 @@ function ManagePrescription() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={prescriptions} columns={columns} searchBar={<SearchBar />} /> 
+              <CustomDataGrid data={prescriptions} columns={columns} searchBar={<SearchBar />} /> 
             </div>
         </AdminLayout>
     )

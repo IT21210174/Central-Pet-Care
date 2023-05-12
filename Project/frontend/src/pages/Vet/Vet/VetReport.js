@@ -1,7 +1,7 @@
 import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import reportHeader from '../../assets/reportHeader.png';
+import reportHeader from '../../../assets/reportHeader.png';
 import styled from "@emotion/styled";
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 
@@ -64,7 +64,7 @@ const VetReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [["VCSL ID", "Vet Name", "Telephone", "Experience", "Qualification"]],
+          head: [["VCSL ID", "Vet Name", "Telephone", "Email", "Experience", "Qualification"]],
           body: data.map((vet) => {
             return [vet.vcslId, vet.vetName, vet.telephone, vet.email, vet.experience, vet.qualification ];
           }),

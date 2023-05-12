@@ -10,7 +10,7 @@ const vetSchema = mongoose.Schema({
         required: [true, 'Please add veterinary surgeon name']
     },
     telephone: {
-        type: Number,
+        type: String,
         required: [true, 'Please add telephone number']
     },
     email: {

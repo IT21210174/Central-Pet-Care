@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import AdminLayout from '../Layouts/AdminLayout'
+import AdminLayout from '../../Layouts/AdminLayout'
 import './EditPrescription.scss'
-import { userRequest } from '../../requestMethods'
+import { userRequest } from '../../../requestMethods'
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -10,7 +10,6 @@ function EditPrescription() {
 
   const { id } = useParams()
   const navigate = useNavigate()
-
 
   const[petname , setPetName] = useState("")
   const[address, setAddress] = useState("")
@@ -49,42 +48,41 @@ function EditPrescription() {
 
   return (
     <AdminLayout>
-      <div className="add-item-container-main">
+      <div className="edit-prescription-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Edit Prescription</span>
+        <form className="edit-prescription-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-prescription">Edit Prescription</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="edit-prescription-column">
                 <section className="input-container">
                   <span className="input-title">pet name</span>
-                  <input type="text" className="input-field" value={petname} onChange={(e) => setPetName(e.target.value)}/>
+                  <input type="text" className="input-field" value={petname} onChange={(e) => setPetName(e.target.value)} required />
                 </section>
                 <section className="input-container">
                   <span className="input-title">address</span>
-                  <input type="text" className="input-field" value={address} onChange={(e) => setAddress(e.target.value)}/>
+                  <input type="text" className="input-field" value={address} onChange={(e) => setAddress(e.target.value)} required />
                 </section>
                 <section className="input-container">
-                        <span className="input-title">description</span>
-                        <textarea type="text" className='input-textarea' id="" cols="30" rows="10" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                    </section>
+                  <span className="input-title">description</span>
+                  <textarea type="text" className='input-textarea' id="" cols="30" rows="10" value={description} onChange={(e) => setDescription(e.target.value)} required ></textarea>
+                </section>
                
-              </div>
-              {/* column two */}
-              <div className="add-item-column">
-              <section className="input-container">
+                <section className="input-container">
                   <span className="input-title">medicine</span>
-                  <input type="text" className="input-field" value={medicine} onChange={(e) => setMedicine(e.target.value)}/>
+                  <input type="text" className="input-field" value={medicine} onChange={(e) => setMedicine(e.target.value)} required />
                 </section>
                 <section className="input-container">
                   <span className="input-title">dosage</span>
-                  <input type="text" className="input-field" value={dosage} onChange={(e) => setDosage(e.target.value)}/>
+                  <input type="text" className="input-field" value={dosage} onChange={(e) => setDosage(e.target.value)} required />
                 </section>
-                    <div className="btn-container-add-item">
-                      <button type='submit' className="submit-btn">Update</button>
-                      <button type='reset' className="reset-btn">Reset</button>
-                    </div>
+
+                <div className="btn-container-edit-prescription">
+                  <button type='submit' className="submit-btn">Update</button>
+                  <button type='reset' className="reset-btn">Reset</button>
+                </div>
+
               </div>
             </div>
         </form>

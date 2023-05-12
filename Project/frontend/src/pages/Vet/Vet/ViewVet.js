@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import AdminLayout from '../Layouts/AdminLayout';
-import { userRequest } from '../../requestMethods'
+import AdminLayout from '../../Layouts/AdminLayout';
+import { userRequest } from '../../../requestMethods'
 import { toast } from 'react-hot-toast';
 
 import './ViewVet.scss'
