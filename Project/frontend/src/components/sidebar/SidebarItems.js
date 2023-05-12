@@ -55,15 +55,15 @@ const SidebarItems = [
 		nestedFunctions: [
 			{
 				id: 200,
-				link: "/admin/products/manageProducts",
-				nestedItemicon: <BsFillBoxSeamFill />,
-				nestedItemtext: "Manage products",
+				link: "/admin/products/addProduct",
+				nestedItemicon: <MdLibraryAdd />,
+				nestedItemtext: "Add Product",
 			},
 			{
 				id: 201,
-				link: "/admin/products/addProduct",
-				nestedItemicon: <MdLibraryAdd />,
-				nestedItemtext: "Add product",
+				link: "/admin/products/manageProducts",
+				nestedItemicon: <BsFillBoxSeamFill />,
+				nestedItemtext: "Manage Products",
 			},
 			{
 				id: 202,
@@ -174,7 +174,7 @@ const SidebarItems = [
 				id: 304,
 				link: "/admin/payroll/AddPayroll",
 				nestedItemicon: <GiTakeMyMoney />,
-				nestedItemtext: "Add Payroll Record",
+				nestedItemtext: "Add Payroll",
 			},
 
 			{
