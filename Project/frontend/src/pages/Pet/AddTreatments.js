@@ -22,36 +22,39 @@ const AddTreatments = () => {
     setTreatment('')
     setProgressNotes('')
 
-}
-const handleSubmit = async (e) => {
-  e.preventDefault()
- 
-  userRequest.post("/treatments", { petID, petName, customerID,date, treatment,progressNotes })
-  .then(res => {
-      toast.success('Treatment added')
-      handleReset()
-  }).catch(err => {
-      toast.error(err.message)
-  })
-}  
-const [maxDate, setMaxDate] = useState(null)
+  }
 
-useEffect(() => {
-  const date = new Date();
-  setMaxDate(date.toISOString() .split("T")[0])
-}, [])
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+  
+    userRequest.post("/treatments", { petID, petName, customerID, date, treatment, progressNotes })
+    .then(res => {
+        toast.success('Treatment added')
+        handleReset()
+    }).catch(err => {
+        toast.error(err.message)
+    })
+  } 
+
+  const [maxDate, setMaxDate] = useState(null)
+
+  useEffect(() => {
+    const date = new Date();
+    setMaxDate(date.toISOString().split("T")[0])
+  }, [])
+
 
   return (
     <AdminLayout>
 
-    <div className="add-treat-container-main">
+    <div className="add-treatment-container-main">
         {/* this is the form container */}
-        <form className="add-treat-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-treat">Add Treatment</span>
+        <form className="add-treatment-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-add-treatment">Add Treatment</span>
             {/* input field container */}
             
               {/* column one */}
-              <div className="add-treat-column">
+              <div className="add-treatment-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field" value={petID} required onChange={(e) => setPetID(e.target.value)}/>
@@ -82,8 +85,7 @@ useEffect(() => {
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn">Reset</button>
-                    </div>
-              
+                    </div>         
             </div>
         </form>
     </div>

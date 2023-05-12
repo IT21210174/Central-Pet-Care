@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './EditPet.scss'
 import { userRequest } from '../../requestMethods'
@@ -51,7 +50,7 @@ function EditPet() {
     
     if(file ){
       const URL = await uploadImage(file)
-      userRequest.put("/pets/" + id, { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL  })
+      userRequest.put("/pets/" + id, { petID, petName, dob, gender, species, breed, customerID, customerName, contactNumber, medicalHistory, picture : URL  })
       .then(res => {
           toast.success('Pet updated')
           navigate('/admin/pets/managePet')
@@ -60,7 +59,7 @@ function EditPet() {
       })
     }
     else {
-      userRequest.put("/pets/" + id, { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL })
+      userRequest.put("/pets/" + id, { petID, petName, dob, gender, species, breed, customerID, customerName, contactNumber, medicalHistory, picture : imageURL })
       .then(res => {
           toast.success('Pet updated')
           navigate('/admin/pets/managePet')
@@ -69,23 +68,24 @@ function EditPet() {
       })
     }
   }  
+  
   const [maxDate, setMaxDate] = useState(null)
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
 
   return (
     <AdminLayout>
-      <div className="add-item-container-main">
+      <div className="edit-pet-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Edit Pet</span>
+        <form className="edit-pet-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-pet">Edit Pet</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="edit-pet-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field" value={petID} required onChange={(e) => setPetID(e.target.value)}/>
@@ -120,14 +120,14 @@ function EditPet() {
                       <option className='select-option' >Fish</option>
                       
                   </select>
-                  </section>
+                </section>
                 <section className="input-container">
                   <span className="input-title">breed</span>
                   <input className="input-field" value={breed} onChange={(e) => setPetBreed(e.target.value)}/>
                 </section>
               </div>
               {/* column two */}
-               <div className="add-item-column">
+               <div className="edit-pet-column">
                    <section className="input-container">
                       <span className="input-title">customer ID</span>
                       <input className="input-field"  value={customerID} required onChange={(e) => setCustomerID(e.target.value)}/>
@@ -148,7 +148,7 @@ function EditPet() {
                         <span className="input-title">Upload Image</span>
                         <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])}/>
                     </section>
-                    <div className="btn-container-add-item">
+                    <div className="btn-container-edit-pet">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>

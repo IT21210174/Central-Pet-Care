@@ -26,8 +26,7 @@ function EditTreatment() {
         setDate(res.data.date)
         setTreatment(res.data.treatment)
         setProgressNotes(res.data.progressNotes)
-   
-
+        
     }).catch(err =>{
         toast.error(err.message)
     })
@@ -37,32 +36,33 @@ function EditTreatment() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-      userRequest.put("/treatments/" + id, {petID, petName, customerID,date, treatment,progressNotes })
-      .then(res => {
-          toast.success('Treatment updated')
-          navigate('/admin/treatments/ManageTreatments')
-      }).catch(err => {
-          toast.error(err.message)
-      })
-    
+    userRequest.put("/treatments/" + id, {petID, petName, customerID, date, treatment, progressNotes })
+    .then(res => {
+        toast.success('Treatment updated')
+        navigate('/admin/treatments/ManageTreatments')
+    }).catch(err => {
+        toast.error(err.message)
+    })  
   }  
+
   const [maxDate, setMaxDate] = useState(null)
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
+
 
   return (
     <AdminLayout>
-      <div className="add-treat-container-main">
+      <div className="edit-treatment-container-main">
         {/* this is the form container */}
-        <form className="add-treat-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-treat">Edit Treatment</span>
+        <form className="edit-treatment-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-treatment">Edit Treatment</span>
             {/* input field container */}
             
               {/* column one */}
-              <div className="add-traet-column">
+              <div className="edit-treatment-column">
                 <section className="input-container"> 
                   <span className="input-title">Pet ID</span>
                   <input className="input-field" value={petID} required onChange={(e) => setPetID(e.target.value)}/>
@@ -90,7 +90,7 @@ function EditTreatment() {
                   <span className="input-title">Progress Notes</span>
                   <textarea className='input-textarea' id="" cols="30" rows="10" value={progressNotes} required onChange={(e) => setProgressNotes(e.target.value)}></textarea>
                 </section>
-                    <div className="btn-container-add-item">
+                    <div className="btn-container-edit-treatment">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>

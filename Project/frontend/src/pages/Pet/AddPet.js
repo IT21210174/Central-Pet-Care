@@ -6,7 +6,6 @@ import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
 
 
-
 function AddPet() {
 
   const [petID, setPetID] = useState("")
@@ -20,7 +19,6 @@ function AddPet() {
   const [contactNumber, setContactNumber] = useState("")
   const [medicalHistory, setMedicalHistory] = useState("")
   const [file, setFile] = useState(null)
-  const [imageURL, setImageURL] = useState('')
  
   const handleReset = () => {
         setPetID('')
@@ -57,7 +55,7 @@ function AddPet() {
 
   useEffect(() => {
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   }, [])
 
   return (
@@ -65,8 +63,8 @@ function AddPet() {
       
     <div className="add-pet-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Add Pet</span>
+        <form className="add-pet-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-add-pet">Add Pet</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
@@ -112,7 +110,7 @@ function AddPet() {
                 </section>
               </div>
               {/* column two */}
-               <div className="add-item-column">
+               <div className="add-pet-column">
                    <section className="input-container">
                       <span className="input-title">customer ID</span>
                       <input className="input-field"  value={customerID} required onChange={(e) => setCustomerID(e.target.value)}/>
@@ -133,7 +131,7 @@ function AddPet() {
                         <span className="input-title">Upload Image</span>
                         <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' required onChange={(e) => setFile(e.target.files[0])}/>
                     </section>
-                    <div className="btn-container-add-item">
+                    <div className="btn-container-add-pet">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn">Reset</button>
                     </div>

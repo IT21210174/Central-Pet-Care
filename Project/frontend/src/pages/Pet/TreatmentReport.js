@@ -64,7 +64,7 @@ const TreatmentReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [["Pet ID", "Pet Name","Customer ID", "Date", "Treatment","Progress Notes"]],
+          head: [["Pet ID", "Pet Name", "Customer ID", "Date", "Treatment", "Progress Notes"]],
           body: data.map((item) => {
             return [item.petID, item.petName, item.customerID, item.date, item.treatment, item.progressNotes];
           }),
@@ -79,10 +79,12 @@ const TreatmentReport = ({data}) => {
             halign: 'center',
             fontSize: 11,
           },
-        //   columnStyles: {
-        //     // 0: { halign: 'center' }, //we have set center as default
-        //     1: { halign: 'left' }, // left align the content in second column
-        //   },
+          columnStyles: {
+            // 0: { halign: 'center' }, //we have set center as default
+            // 1: { halign: 'left' }, // left align the content in second column
+            4: { halign: 'left' },
+            5: { halign: 'left' },
+          },
         });
     
         doc.save("treatments.pdf"); //Change name accordingly

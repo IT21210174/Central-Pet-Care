@@ -9,20 +9,20 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: 'Poppins', sans-serif;
 
-.add-treat-container-main{
+.add-treatment-container-main{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 110%;
+    width: 100%;
     height: 120vh; //change height accordingly
     background: rgb(153, 128, 250);
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 // form styles will go on here
-.add-treat-form-container {
+.add-treatment-form-container {
     width: 480px;
-    height: 800px;
+    height: 820px;
     background-color: white;
     border-radius: 25px;
     box-shadow: 5px 5px 8px rgba($color: #000000, $alpha: .4),
@@ -61,7 +61,7 @@ $fontfam-1: 'Poppins', sans-serif;
     visibility: visible;
 }
 
-.tagline-add-treat{
+.tagline-add-treatment{
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
@@ -70,8 +70,8 @@ $fontfam-1: 'Poppins', sans-serif;
     align-items: center;
     margin-bottom: 15px;
 }
-// column container stylings
 
+// column container stylings
 .column-container {
     display: flex;
     justify-content: space-between;
@@ -80,7 +80,7 @@ $fontfam-1: 'Poppins', sans-serif;
     height: 530px;
 }
 
-.add-item-column{
+.add-treatment-column{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -137,7 +137,7 @@ $fontfam-1: 'Poppins', sans-serif;
    border: none;
 }
 
-.btn-container-add-item{
+.btn-container-add-treatment{
     margin-top: 10px;
     display: flex;
     justify-content: space-evenly;
