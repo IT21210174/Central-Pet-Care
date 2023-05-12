@@ -206,14 +206,14 @@ const SidebarItems = [
                     id:402,
                     link:"/admin/pets/managePet",
                     nestedItemicon:<GiSittingDog/>,
-                    nestedItemtext:"Manage Pet"
+                    nestedItemtext:"Manage Pets"
                 },
 
                 {
                     id:401,
                     link:"/admin/treatments/AddTreatments",
                     nestedItemicon:<FaSyringe/>,
-                    nestedItemtext:"Treatments"
+                    nestedItemtext:"Add Treatment"
                 },
 
 				{
