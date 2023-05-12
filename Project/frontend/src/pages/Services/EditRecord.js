@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './EditRecord.scss';
 import { userRequest } from '../../requestMethods'
-//import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
-
-import styled from 'styled-components';
-
-const Wrapper = styled.section`
-`;
 
 
 function EditRecord() {
@@ -46,32 +39,35 @@ function EditRecord() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Combine selected categories
-   
 
-    
-      userRequest.put("/servicerecords/" + id, { serviceId,customerId,vcslId, petId, date, serviceCharge })
-      .then(res => {
-          toast.success('Record updated')
-          navigate('/admin/service/ManageRecords')
-      }).catch(err => {
-          toast.error(err.message)
-      })
+    userRequest.put("/servicerecords/" + id, { serviceId, customerId, vcslId, petId, date, serviceCharge })
+    .then(res => {
+        toast.success('Record updated')
+        navigate('/admin/service/ManageRecords')
+    }).catch(err => {
+        toast.error(err.message)
+    })
     
   }  
+
+  const [maxDate,setMaxDate] = useState(null)
+  
+  useEffect(()=>{
+    const date = new Date();
+    setMaxDate(date.toISOString().split("T")[0])
+  },[])
 
 
   return (
     <AdminLayout>
-      <Wrapper>
-      <div className="add-record-container-main">
+      <div className="edit-record-container-main">
         {/* this is the form container */}
-        <form className="add-record-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-record">Edit Record</span>
+        <form className="edit-record-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-record">Edit Record</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-record-column">
+              <div className="edit-record-column">
 
                 {/* <section className="input-container">
                   <span className="input-title">Record ID</span>
@@ -101,7 +97,7 @@ function EditRecord() {
 
                 <section className="input-container">
                   <span className="input-title">Date</span>
-                  <input type='date' className="input-field" value={date} onChange={(e) => setdate(e.target.value)} required/>
+                  <input className="input-field" value={date} onChange={(e) => setdate(e.target.value)} type="date" max={maxDate} required/>
                 </section>
 
                 <section className="input-container">
@@ -109,17 +105,17 @@ function EditRecord() {
                   <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={serviceCharge} onChange={(e) => setserviceCharge(e.target.value)} required/>
                 </section>
 
-              <div className="btn-container-add-record">
-                    <button type='submit' className="submit-btn">Update</button>
-                    <button type='reset' className="reset-btn">Reset</button>
-                  </div>
+                <div className="btn-container-edit-record">
+                  <button type='submit' className="submit-btn">Update</button>
+                  <button type='reset' className="reset-btn">Reset</button>
+                </div>
 
-                  </div>   
+              </div>   
 
             </div>
         </form>
     </div>
-    </Wrapper>
+
     </AdminLayout>
 
   )

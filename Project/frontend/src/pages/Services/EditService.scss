@@ -9,21 +9,21 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: 'Poppins', sans-serif;
 
-.add-service-container-main{
+.edit-service-container-main{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90vh; //change height accordingly
+    height: 95vh; //change height accordingly
     background: rgb(153, 128, 250);
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 
 // form styles will go on here
-.add-service-form-container {
+.edit-service-form-container {
     width: 480px;
-    height: 600px;
+    height: 650px;
     background-color: white;
     border-radius: 25px;
     box-shadow: 5px 5px 8px rgba($color: #000000, $alpha: .4),
@@ -61,7 +61,7 @@ $fontfam-1: 'Poppins', sans-serif;
     visibility: visible;
 }
 
-.tagline-add-service{
+.tagline-edit-service{
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
@@ -76,7 +76,7 @@ $fontfam-1: 'Poppins', sans-serif;
     height: 530px;
 }
 
-.add-service-column{
+.edit-service-column{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -133,7 +133,7 @@ $fontfam-1: 'Poppins', sans-serif;
    border: none;
 }
 
-.btn-container-add-service{
+.btn-container-edit-service{
     margin-top: 10px;
     display: flex;
     justify-content: space-evenly;

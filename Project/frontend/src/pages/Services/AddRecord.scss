@@ -9,7 +9,7 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: 'Poppins', sans-serif;
 
-.add-service-container-main{
+.add-record-container-main{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,9 +21,9 @@ $fontfam-1: 'Poppins', sans-serif;
 
 
 // form styles will go on here
-.add-service-form-container-services {
-    width: 480px;
-    height: 650px;
+.add-record-form-container {
+    width: 500px;
+    height: 680px;
     background-color: white;
     border-radius: 25px;
     box-shadow: 5px 5px 8px rgba($color: #000000, $alpha: .4),
@@ -61,13 +61,13 @@ $fontfam-1: 'Poppins', sans-serif;
     visibility: visible;
 }
 
-.tagline-add-service{
+.tagline-add-record{
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
 }
-// column container stylings
 
+// column container stylings
 .column-container {
     display: flex;
     justify-content: space-between;
@@ -76,7 +76,7 @@ $fontfam-1: 'Poppins', sans-serif;
     height: 530px;
 }
 
-.add-service-column{
+.add-record-column{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -114,7 +114,7 @@ $fontfam-1: 'Poppins', sans-serif;
 
 .input-textarea{
     width: 400px;
-    font-size: 20px;
+    font-size: 16px;
     padding: 10px 20px;
     outline: none;
     margin: 10px 0 15px 0;
@@ -133,7 +133,7 @@ $fontfam-1: 'Poppins', sans-serif;
    border: none;
 }
 
-.btn-container-add-service{
+.btn-container-add-record{
     margin-top: 10px;
     display: flex;
     justify-content: space-evenly;

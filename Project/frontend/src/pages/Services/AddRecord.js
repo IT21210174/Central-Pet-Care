@@ -4,11 +4,6 @@ import './AddRecord.scss'
 import { userRequest } from '../../requestMethods'
 import { toast } from 'react-hot-toast';
 
-import styled from 'styled-components';
-
-const Wrapper = styled.section`
-`;
-
 function AddRecord() {
 
   //const [recordId, setrecordId] = useState('')
@@ -34,8 +29,9 @@ function AddRecord() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Combine selected categories
-    console.log({ serviceId,customerId,vcslId,petId,date,serviceCharge});
+
+    //console.log({ serviceId,customerId,vcslId,petId,date,serviceCharge});
+
     userRequest.post("/servicerecords", { serviceId,customerId,vcslId,petId,date,serviceCharge})
     .then(res => {
         toast.success('Record added')
@@ -44,18 +40,18 @@ function AddRecord() {
         toast.error(err.message)
     })
   }
-  const[maxDate,setMaxDate]=useState(null)
+
+  const [maxDate,setMaxDate] = useState(null)
   
   useEffect(()=>{
     const date = new Date();
-    setMaxDate(date.toISOString() .split("T")[0])
+    setMaxDate(date.toISOString().split("T")[0])
   },[])
 
 
 
   return (
     <AdminLayout>
-      <Wrapper>
 
       <div className="add-record-container-main">
         {/* this is the form container */}
@@ -102,17 +98,17 @@ function AddRecord() {
                   <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={serviceCharge} onChange={(e) => setserviceCharge(e.target.value)} required/>
                 </section>
 
-              <div className="btn-container-add-item">
+                  <div className="btn-container-add-record">
                     <button type='submit' className="submit-btn">Submit</button>
                     <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                   </div>
 
-                  </div>   
+              </div>   
 
             </div>
         </form>
-    </div>
-    </Wrapper>
+      </div>
+
     </AdminLayout>
 
   )

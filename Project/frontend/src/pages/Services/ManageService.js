@@ -100,25 +100,25 @@ function ManageService() {
           headerName: "Service ID",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 2,
         },
         { 
           field: "serviceName",
           headerName: "Service Name",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 2,
         },
         { 
             field: "serviceImage",
             headerName: "Service Image",
             headerAlign: "center",
             align: "center",
-            flex: 4,
+            flex: 2,
             renderCell: (params) => {
               return (
                 <div className="listItemName">
-                  <img className="listItemImg" src={params.row.serviceImage} alt="" />
+                  <img className="listItemServiceImg" src={params.row.serviceImage} alt="" />
                 </div>
               );
             },
@@ -129,7 +129,9 @@ function ManageService() {
             headerName: "Service Charge",
             headerAlign: "center",
             align: "center",
-            flex: 4,
+            type: "number",
+            flex: 2,
+            valueFormatter: ({ value }) => `Rs. ${value?.toFixed(2)}`,
         },  
 
         {
@@ -139,7 +141,7 @@ function ManageService() {
           align: "center",
           sortable: false,
           filterable: false,
-          flex: 3,
+          flex: 2,
           renderCell: (params) => {
             return (
               <div className='action'>

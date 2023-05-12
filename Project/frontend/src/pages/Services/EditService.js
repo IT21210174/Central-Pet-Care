@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './EditService.scss'
 import { userRequest } from '../../requestMethods'
 import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-
-const Wrapper = styled.section`
-`;
-
 
 function EditService() {
 
@@ -40,8 +34,7 @@ function EditService() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Combine selected categories
-  
+
     if(file ){
       const URL = await uploadImage(file)
       userRequest.put("/services/" + id, { serviceId,serviceName,serviceCharge,serviceDescription,serviceImage: URL })
@@ -69,15 +62,15 @@ function EditService() {
 
   return (
     <AdminLayout>
-      <Wrapper>
-      <div className="add-service-container-main">
+
+      <div className="edit-service-container-main">
         {/* this is the form container */}
-        <form className="add-service-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-service">Edit Service</span>
+        <form className="edit-service-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-service">Edit Service</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="edit-service-column">
 
                 <section className="input-container">
                   <span className="input-title">Service ID</span>
@@ -90,26 +83,31 @@ function EditService() {
                 </section>
 
                 <section className="input-container">
-                        <span className="input-title">Service  Description</span>
-                        <textarea className='input-textarea' id="" cols="30" rows="10" value={serviceDescription} onChange={(e) => setserviceDescription(e.target.value)} required></textarea>
+                  <span className="input-title">Service  Description</span>
+                  <textarea className='input-textarea' id="" cols="30" rows="10" value={serviceDescription} onChange={(e) => setserviceDescription(e.target.value)} required></textarea>
                 </section>
 
                 <section className="input-container">
-                        <span className="input-title">Service image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
+                  <span className="input-title">Service Charge</span>
+                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={serviceCharge} onChange={(e) => setserviceCharge(e.target.value)} required/>
+                </section>
+
+                <section className="input-container">
+                  <span className="input-title">Service image</span>
+                  <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
                 </section>
 
 
-                    <div className="btn-container-add-item">
-                      <button type='submit' className="submit-btn">Update</button>
-                      <button type='reset' className="reset-btn">Reset</button>
-                    </div>
+                <div className="btn-container-edit-service">
+                  <button type='submit' className="submit-btn">Update</button>
+                  <button type='reset' className="reset-btn">Reset</button>
+                </div>
 
               </div>
             </div>
         </form>
-    </div>
-    </Wrapper>
+      </div>
+
     </AdminLayout>
 
   )

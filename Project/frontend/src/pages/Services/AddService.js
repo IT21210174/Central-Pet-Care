@@ -4,11 +4,6 @@ import './AddService.scss'
 import { userRequest } from '../../requestMethods'
 import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
-import styled from 'styled-components';
-import { Axios } from 'axios';
-import axios from 'axios';
-
-const Wrapper = styled.section``;
 
 function AddService() {
   
@@ -17,7 +12,6 @@ function AddService() {
   const [serviceCharge, setserviceCharge] = useState("")
   const [serviceDescription, setserviceDescription] = useState("")
   const [file, setFile] = useState(null)
-  const [imageURL, setImageURL] = useState("")
  
   const handleReset = () => {
 
@@ -32,9 +26,9 @@ function AddService() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Combine selected categories
+
     const imageURL = await uploadImage(file);
-    axios.post("http://localhost:4000/api/services/", { serviceId,serviceName,serviceCharge,serviceDescription,serviceImage: imageURL })
+    userRequest.post("/services", { serviceId, serviceName, serviceCharge, serviceDescription, serviceImage: imageURL })
     .then(res => {
         toast.success('Service added')
         handleReset()
@@ -42,22 +36,21 @@ function AddService() {
         toast.error(err.message)
     })
 
-    console.log({ serviceId,serviceName,serviceCharge,serviceDescription,serviceImage: imageURL });
+    // console.log({ serviceId,serviceName,serviceCharge,serviceDescription,serviceImage: imageURL });
   }  
-
 
 
   return (
     <AdminLayout>
-      <Wrapper>
+
       <div className="add-service-container-main">
         {/* this is the form container */}
-        <form className="add-service-form-container-services" onSubmit={handleSubmit}>
+        <form className="add-service-form-container" onSubmit={handleSubmit}>
             <span className="tagline-add-service">Add Service</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-service-column">
 
                 <section className="input-container">
                   <span className="input-title">Service ID</span>
@@ -70,31 +63,31 @@ function AddService() {
                 </section>
 
                 <section className="input-container">
-                        <span className="input-title">Service  Description</span>
-                        <textarea className='input-textarea' id="" cols="30" rows="10" value={serviceDescription} onChange={(e) => setserviceDescription(e.target.value)} required></textarea>
+                  <span className="input-title">Service Description</span>
+                  <textarea className='input-textarea' id="" cols="30" rows="10" value={serviceDescription} onChange={(e) => setserviceDescription(e.target.value)} required></textarea>
                 </section>
 
                 <section className="input-container">
-                        <span className="input-title">Service image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])}/>
-                </section>
-
-                { <section className="input-container">
                   <span className="input-title">Service Charge</span>
                   <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={serviceCharge} onChange={(e) => setserviceCharge(e.target.value)} required/>
-                </section> }
+                </section>
 
-                    <div className="btn-container-add-item">
-                      <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
-                    </div>
-                    </div>  
+                <section className="input-container">
+                  <span className="input-title">Service image</span>
+                  <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])}/>
+                </section>
 
-             
+
+                <div className="btn-container-add-service">
+                  <button type='submit' className="submit-btn">Submit</button>
+                  <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
+                </div>
+              </div>  
+
             </div>
         </form>
-    </div>
-    </Wrapper>
+      </div>
+
     </AdminLayout>
 
   )

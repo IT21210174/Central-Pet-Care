@@ -138,7 +138,9 @@ function ManageRecord() {
             headerName: "Service Date",
             headerAlign: "center",
             align: "center",
+            type: 'date',
             flex: 2,
+            valueGetter: ({ value }) => value && new Date(value),
           },
         
         {
@@ -178,7 +180,7 @@ function ManageRecord() {
     return (
         <AdminLayout>
             <div className='listContainer'>
-            <CustomDataGrid data={records} columns={columns} searchBar={<SearchBar />} report={ <RecordReport data={records}/> }/>
+              <CustomDataGrid data={records} columns={columns} searchBar={<SearchBar />} report={ <RecordReport data={records}/> }/>
             </div>
         </AdminLayout>
     )

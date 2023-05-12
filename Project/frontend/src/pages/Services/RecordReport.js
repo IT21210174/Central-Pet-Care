@@ -65,8 +65,8 @@ const RecordReport = ({data}) => {
         // Add the table to the document
         doc.autoTable({
           head: [["Record ID", "Service ID", "Customer ID", "Pet ID", "Date", "Charge"]],
-          body: data.map((records) => {
-            return [records.recordId, records.serviceId, records.customerId, records.petId,records.date, 'Rs.' + records.serviceCharge.toFixed(2)];
+          body: data.map((record) => {
+            return [record.recordId, record.serviceId, record.customerId, record.petId, record.date, 'Rs.' + record.serviceCharge.toFixed(2)];
           }),
           startY: 80, // start the table below the logo
           headStyles: {
