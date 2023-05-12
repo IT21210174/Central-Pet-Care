@@ -10,7 +10,7 @@ const getVets = asyncHandler(async (req, res) => {
 
     const vSearch = req.query.search
     //testing
-    console.log(vSearch)
+    //console.log(vSearch)
     let vets
 
     if(vSearch){

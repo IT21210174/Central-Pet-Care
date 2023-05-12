@@ -10,7 +10,7 @@ const getPrescriptions = asyncHandler(async (req, res) => {
 
     const pSearch = req.query.search
     //testing
-    console.log(pSearch)
+    //console.log(pSearch)
     let prescriptions
 
     if(pSearch){

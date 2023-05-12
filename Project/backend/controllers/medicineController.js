@@ -11,7 +11,7 @@ const getMedicines = asyncHandler(async (req, res) => {
     
     const qSearch = req.query.search
     //testing
-    console.log(qSearch)
+    //console.log(qSearch)
     let medicines
 
     if(qSearch){
