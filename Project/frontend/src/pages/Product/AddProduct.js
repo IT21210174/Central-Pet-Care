@@ -96,14 +96,14 @@ function AddProduct() {
 
   return (
     <AdminLayout>
-      <div className="add-item-container-main">
+      <div className="add-product-container-main">
         {/* this is the form container */}
-        <form className="add-item-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-item">Add product</span>
+        <form className="add-product-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-add-product">Add product</span>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-item-column">
+              <div className="add-product-column">
 
                 <section className="input-container">
                   <span className="input-title">Product name</span>
@@ -136,7 +136,7 @@ function AddProduct() {
               </div>
 
               {/* column two */}
-              <div className="add-item-column">
+              <div className="add-product-column">
 
                     <section className="input-container">
                         <span className="input-title">Brand</span>
@@ -170,7 +170,7 @@ function AddProduct() {
                         <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
                     </section>
 
-                    <div className="btn-container-add-item">
+                    <div className="btn-container-add-product">
                       <button type='submit' className="submit-btn">Submit</button>
                       <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>

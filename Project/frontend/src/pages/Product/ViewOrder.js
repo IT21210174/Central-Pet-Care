@@ -4,35 +4,27 @@ import AdminLayout from '../Layouts/AdminLayout';
 import { userRequest } from '../../requestMethods'
 import { toast } from 'react-hot-toast';
 
-import './viewProduct.scss'
+// import './viewOrder.scss'
 
-function ViewProduct() {
+function ViewOrder() {
 
     const { id } = useParams()
 
-    const [categoryA, setCategoryA] = useState([])
-    const [categoryB, setCategoryB] = useState(null)
-
-    const [productName, setProductName] = useState('')
-    const [brand, setBrand] = useState('')
-    const [price, setPrice] = useState('')
-    const [quantity, setQuantity] = useState('')
-    const [description, setDescription] = useState('')
-    const [SKU, setSKU] = useState('')
-    const [imageURL, setImageURL] = useState('')
+    const [orderId, setOrderId] = useState('')
+    const [total, setTotal] = useState('')
+    const [date, setDate] = useState('')
+    const [paymentStatus, setPaymentStatus] = useState('')
+    const [deliveryStatus, setDeliveryStatus] = useState('')
 
     useEffect(() => {
-        userRequest.get('/products/' + id)
+        userRequest.get('/orders/' + id)
         .then(res => {
-            setProductName(res.data.productName)
-            setBrand(res.data.brand)
-            setPrice(res.data.price)
-            setQuantity(res.data.quantity)
-            setDescription(res.data.description)
-            setSKU(res.data.SKU)
-            setCategoryA(res.data.categories.categoryA);
-            setCategoryB(res.data.categories.categoryB);
-            setImageURL(res.data.image)
+            console.log(res)
+            setOrderId(res.data.orderId)
+            setTotal(res.data.total)
+            setDate(res.data.createdAt)
+            setPaymentStatus(res.data.paymentStatus)
+            setDeliveryStatus(res.data.deliveryStatus)
         }).catch(err =>{
             toast.error(err.message)
         })
@@ -43,41 +35,24 @@ function ViewProduct() {
             <div className='product'>
             <table>
                 <tr>
-                    <td colSpan='2' className='imageContainer'>
-                        <img src={imageURL} className='image' height='120px' />
-                    </td>
+                    <td>Order ID</td>
+                    <td>{orderId}</td>
                 </tr>
                 <tr>
-                    <td>Product ID</td>
-                    <td>{id}</td>
+                    <td>Total</td>
+                    <td>Rs. {total}</td>
                 </tr>
                 <tr>
-                    <td>Product Name</td>
-                    <td>{productName}</td>
+                    <td>Date</td>
+                    <td>{date.split()}</td>
                 </tr>
                 <tr>
-                    <td>Brand</td>
-                    <td>{brand}</td>
+                    <td>Payment Status</td>
+                    <td>{paymentStatus === 'succeeded' ? 'Successful' : 'Unsuccessful'}</td>
                 </tr>
                 <tr>
-                    <td>Price</td>
-                    <td>{price}</td>
-                </tr>
-                <tr>
-                    <td>Quantity</td>
-                    <td>{quantity}</td>
-                </tr>
-                <tr>
-                    <td>SKU</td>
-                    <td>{SKU}</td>
-                </tr>
-                <tr>
-                    <td>Categories</td>
-                    <td>{categoryA.map(cat => cat + ', ')}{categoryB}</td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td style={{whiteSpace: 'pre-wrap'}}>{description}</td>
+                    <td>Delivery Status</td>
+                    <td>{deliveryStatus}</td>
                 </tr>
             </table>
             </div>
@@ -85,4 +60,4 @@ function ViewProduct() {
     )
 }
 
-export default ViewProduct
+export default ViewOrder
