@@ -31,7 +31,6 @@
 .productInfoContainer {
     flex: 2;
     display: flex;
-    width: 40vw;
     justify-content: center;
     align-items: center;
     margin: 20px 10px;
@@ -48,7 +47,7 @@
 }
 
 .productRow {
-    cursor: pointer;
+    // cursor: pointer;
 }
 
 .productRow:hover .productDetail,
