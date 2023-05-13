@@ -12,7 +12,8 @@ const {
 	getMonthlyIncome,
 	getYearlyIncome,
 	getDailyOrderCount,
-	getOrderStats
+	getOrderStats,
+	getProductIncome
 } = require("../controllers/orderController");
 
 router.post("/", protect, createOrder);
@@ -26,6 +27,7 @@ router.get('/insights/montlyIncome', protect, admin, getMonthlyIncome)
 router.get('/insights/yearlyIncome', protect, admin, getYearlyIncome)
 router.get('/insights/dailyOrderCount', protect, admin, getDailyOrderCount)
 router.get('/insights/orderStats', protect, admin, getOrderStats)
+router.get('/insights/productIncome/:id', protect, admin, getProductIncome)
 
 
 module.exports = router;

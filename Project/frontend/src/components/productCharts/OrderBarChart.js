@@ -33,7 +33,7 @@ export default function OrderBarChart() {
   }, []);
 
   return (
-    <div className="orderChart">
+    <div className="orderBarChart">
       <h3 className="orderChartTitle">Daily Order Count</h3>
       <ResponsiveContainer width="100%" aspect={3 / 1}>
         <BarChart data={dailyOrderCount}>

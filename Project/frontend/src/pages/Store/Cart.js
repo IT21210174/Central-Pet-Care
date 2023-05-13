@@ -165,7 +165,7 @@ const Summary = styled.div`
   margin-top: 8px;
   border-radius: 10px;
   padding: 20px;
-  height: auto;
+  height: 100%;
 `;
 
 const SummaryTitle = styled.h1`

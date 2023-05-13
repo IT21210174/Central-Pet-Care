@@ -95,7 +95,7 @@ function ManageProducts() {
           headerName: "ID",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 2,
         },
         {
           field: "productName",

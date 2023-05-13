@@ -33,7 +33,7 @@ export default function ProductBarChart() {
       }, []);
     
     return (
-        <div className="productChart">
+        <div className="productBarChart">
         <h3 className="productChartTitle">Product Count By Category</h3>
         <ResponsiveContainer width="100%" aspect={3 / 1}>
             <BarChart data={productCount}>

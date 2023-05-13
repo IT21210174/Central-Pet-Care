@@ -56,7 +56,7 @@ function Insights() {
         <div className="productInsight">
           <img src='https://cdn-icons-png.flaticon.com/512/550/550713.png' className="productInsightImg" />
           <div className="productInsightDetails">
-            <span className="productInsightName">Total Revenue</span>
+            <span className="productInsightName">Total Sales Revenue</span>
             <span className="productInsightData">Rs. {totalRevenue.toLocaleString()}</span>
           </div> 
         </div>

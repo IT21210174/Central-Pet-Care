@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const mongoose = require('mongoose');
 
 const Order = require('../models/orderModel')
 
@@ -256,6 +257,57 @@ const getOrderStats = asyncHandler(async (req, res) => {
     res.status(200).json({ totalOrders, totalAmount });
 });
 
+// @desc    Get product income by id
+// @route   GET /api/orders/insights/productIncome/:id
+// @access  Private/Admin
+const getProductIncome = asyncHandler(async (req, res) => {
+    
+    const id = req.params.id;
+
+    // Convert the id string to a Mongoose ObjectId
+    const productId = new mongoose.Types.ObjectId(id);
+
+    // Define an array of month names
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    // Create a new Date object representing the current date and time
+    const currentDate = new Date();
+
+    // Create a new Date object representing the start of the current year
+    const currentYearStart = new Date(currentDate.getFullYear(), 0, 1);
+
+    // Use the Mongoose aggregation pipeline to retrieve the total sales income for each month in the current year
+    const income = await Order.aggregate([
+        // Unwind the orderItems array to deconstruct it into separate documents
+        { $unwind: "$orderItems" },
+        // Only consider orders created after the start of the current year and with product IDs in the provided array
+        { $match: { createdAt: { $gte: currentYearStart }, 'orderItems.productId': productId } },
+        // Project a new field 'month' that extracts the month from the 'createdAt' field, and rename the 'amount' field to 'sales'
+        {
+            $project: {
+                month: { $month: "$createdAt" },
+                sales: "$orderItems.productTotal",
+            },
+        },
+        // Group the orders by month, and calculate the total sales income for each month
+        {
+            $group: {
+                _id: "$month",
+                Income: { $sum: "$sales" },
+            },
+        },
+        // Add a new field 'name' that maps the month value to the corresponding name from the monthNames array
+        {
+            $addFields: {
+                name: { $arrayElemAt: [monthNames, { $subtract: ["$_id", 1] }] },
+            },
+        },
+        { $sort: { _id: 1 } }, // Sort by month in ascending order
+    ]);
+
+    res.status(200).json(income);
+});
+
 module.exports = {
     createOrder,
     getOrderById,
@@ -266,5 +318,6 @@ module.exports = {
     getMonthlyIncome,
     getYearlyIncome,
     getDailyOrderCount,
-    getOrderStats
+    getOrderStats,
+    getProductIncome
 }
