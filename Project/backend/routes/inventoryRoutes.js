@@ -5,7 +5,7 @@ const {
 	createSingleItem,
 	updateSingleItem,
 	deleteSingleItem,
-	printInventoryReport,
+	// printInventoryReport,
 	getSingleItemMongo
 } = require("../controllers/inventoryController");
 
@@ -27,7 +27,7 @@ router.put("/:id", updateSingleItem);
 router.delete("/:id", deleteSingleItem);
 
 // generate inventory report
-router.get("/report", printInventoryReport);
+// router.get("/report", printInventoryReport);
 
 // get single item from mongID
 router.get("/mongo/:id",getSingleItemMongo)
