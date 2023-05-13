@@ -70,6 +70,7 @@
     width: 25%;
     font-weight: 600;
     padding: 5px 10px;
+    border: 1px solid lightgray !important;
     border-right: none !important;
     border-top-left-radius: 10px;
 }
@@ -77,6 +78,7 @@
 .productData {
     width: 75%;
     padding: 15px 10px;
+    border: 1px solid lightgray !important;
     border-left: none !important;
     border-bottom-right-radius: 10px;
 }
