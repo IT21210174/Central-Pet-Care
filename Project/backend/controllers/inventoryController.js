@@ -57,7 +57,8 @@ const createSingleItem = asyncHandler(async (req, res) => {
 		rackNo,
 		quantity,
 		manufacturer,
-		productDescription,
+		reorderLevel,
+		measurementUnit,
 		productImage,
 	} = req.body);
 
@@ -88,31 +89,6 @@ const deleteSingleItem = asyncHandler(async (req, res) => {
 	res.status(200);
 	res.json({ message: "item was deleted from the database" });
 });
-
-// // print inventory report
-// const printInventoryReport = (req, res) => {
-// 	const docDefinition = {
-// 		content: [
-// 			{ text: "My PDF Document", style: "header" },
-// 			{ text: "This is some sample text for my PDF.", style: "body" },
-// 		],
-// 		styles: {
-// 			header: { fontSize: 24, bold: true },
-// 			body: { fontSize: 12 },
-// 		},
-// 	};
-
-// 	const pdfDoc = pdfMake.createPdf(docDefinition);
-
-// 	const fileStream = fs.createWriteStream("output.pdf");
-// 	pdfDoc.pipe(fileStream);
-
-// 	res.setHeader("Content-Type", "application/pdf");
-// 	res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
-// 	pdfDoc.pipe(res);
-
-// 	pdfDoc.end();
-// };
 
 module.exports = {
 	getSingleItem,
