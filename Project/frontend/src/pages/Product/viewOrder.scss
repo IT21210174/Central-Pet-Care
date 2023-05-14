@@ -78,18 +78,33 @@
     border: 1px solid lightgray !important;
 }
 
-.orderItemProductImage {
-    width: 15%;
+
+.orderItemProduct {
+    width: 50%;
+    text-align: left;
     padding: 10px;
+}
+
+.orderItemProductWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderItemProductImageConatiner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }
 
 .orderItemImage {
     height: 50px;
 }
 
-.orderItemProductName {
-    width: 35%;
-    text-align: left;
+.orderItemProductNameConatiner {
+    flex: 4;
 }
 
 .orderItemUnitPrice {

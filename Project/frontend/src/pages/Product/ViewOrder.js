@@ -51,8 +51,7 @@ function ViewOrder() {
                     <td className='orderData'>
                         <table className='orderItems'>
                             <tr>
-                                <td className='orderItemDetail'>Image</td>
-                                <td className='orderItemDetail'>Product Name</td>
+                                <td className='orderItemDetail'>Product</td>
                                 <td className='orderItemDetail'>Unit Price</td>
                                 <td className='orderItemDetail'>Quantity</td>
                                 <td className='orderItemDetail'>Total</td>
@@ -61,11 +60,17 @@ function ViewOrder() {
                                 return(
                                     <>
                                         <tr className='orderItemRow'>
-                                            <td className='orderItemData orderItemProductImage'><img src={item.image} className='orderItemImage' /></td>
-                                            <td className='orderItemData orderItemProductName'>
-                                                <Link to={`../admin/products/viewProduct/${item.productId}`} style={{textDecoration: 'none', color: 'black'}} >
-                                                    {item.productName}
-                                                </Link>
+                                            <td className='orderItemData orderItemProduct'>
+                                                <div className='orderItemProductWrapper'>
+                                                    <div className='orderItemProductImageConatiner'>
+                                                        <img src={item.image} className='orderItemImage' />
+                                                    </div>
+                                                    <div className='orderItemProductNameConatiner'>
+                                                        <Link to={`../admin/products/viewProduct/${item.productId}`} style={{textDecoration: 'none', color: 'black'}} >
+                                                            {item.productName}
+                                                        </Link>
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td className='orderItemData orderItemUnitPrice'>Rs. {item.unitPrice.toLocaleString()}</td>
                                             <td className='orderItemData orderItemQuantity'>{item.quantity}</td>
@@ -104,7 +109,12 @@ function ViewOrder() {
                 <tr className='orderRow'>
                     <td className='orderDetail'>Address</td>
                     <td className='orderData'>
-                        {shipping?.address?.line1 && shipping?.address?.line2 ? shipping.address.line1 + ", " + shipping.address.line2 : ""}
+                        {shipping?.address?.line1 && shipping?.address?.city
+                            ? shipping?.address?.line2
+                                ? shipping.address.line1 + ", " + shipping.address.line2 + ", " + shipping.address.city
+                                : shipping.address.line1 + ", " + shipping.address.city
+                            : ""
+                        }
                     </td>
                 </tr>
                 <tr className='orderRow'>
