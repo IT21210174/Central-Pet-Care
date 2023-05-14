@@ -14,7 +14,7 @@ export default function OrderSearchResultsContainer(props) {
 	const navigate = useNavigate()
 
 	const updateItem = (id) => {
-		navigate(`/delivery/update-order`, { state: { id } });
+		navigate(`/admin/delivery/update-order`, { state: { id } });
 		console.log(id);
 	};
 

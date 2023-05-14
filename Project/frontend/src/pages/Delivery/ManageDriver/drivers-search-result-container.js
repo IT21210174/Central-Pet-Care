@@ -4,10 +4,10 @@ import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
-import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
 import DriverReport from "../DeliveryReport/DeliveryReport";
+import { userRequest } from '../../../requestMethods'
 
 export default function ItemSearchResultsContainer(props) {
 	const { driver } = props;
@@ -15,7 +15,7 @@ export default function ItemSearchResultsContainer(props) {
 
 	// update function
 	const updateItem = (id) => {
-		navigate(`/delivery/update-driver`, { state: { id } });
+		navigate(`/admin/delivery/update-driver`, { state: { id } });
 		console.log(id);
 	};
 
@@ -46,7 +46,7 @@ export default function ItemSearchResultsContainer(props) {
 						"success"
 					);
 
-					api.delete(`/${deletingID}`)
+					userRequest.delete(`/drivers/${deletingID}`)
 						.then((response) => {
 							console.log(response);
 						})

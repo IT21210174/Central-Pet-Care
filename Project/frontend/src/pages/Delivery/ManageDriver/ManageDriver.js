@@ -4,8 +4,8 @@ import AdminLayout from "../../Layouts/AdminLayout";
 import ResultContainer from "./drivers-search-result-container";
 import NoItemsDisplayer from "./drivers-empty-result-diplayer";
 import "./ManageDriver.scss";
-import api from "../../../services/api";
 import DriverReport from "../DeliveryReport/DeliveryReport";
+import { userRequest } from '../../../requestMethods'
 
 function ManageDriverComponent() {
 	const [drivers, setDrivers] = useState([]);
@@ -13,7 +13,7 @@ function ManageDriverComponent() {
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
-		api.get("/").then((response) => {
+		userRequest.get("/drivers").then((response) => {
 			setDrivers(response.data);
 		});
 	}, []);
@@ -23,7 +23,7 @@ function ManageDriverComponent() {
 	};
 
 	const searchFunction = () => {
-		api.get(`/${searchPrompt}`)
+		userRequest.get(`/drivers/${searchPrompt}`)
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);

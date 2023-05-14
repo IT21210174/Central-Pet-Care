@@ -20,7 +20,7 @@ function ManageProducts() {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const getProducts = () => {
-        userRequest.get("/products")
+        userRequest.get("products")
         .then(res => {
             setProducts(res.data)
         })

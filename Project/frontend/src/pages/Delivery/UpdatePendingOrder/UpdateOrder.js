@@ -1,12 +1,10 @@
 import React , {useEffect, useState} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
 import swal from 'sweetalert2';
-import api from '../../../services/order-api';
+import { userRequest } from '../../../requestMethods';
 import './UpdateOrder.scss'
 import Swal from 'sweetalert2';
-
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 
 function UpdateOrder() {
@@ -37,7 +35,7 @@ function UpdateOrder() {
 
     useEffect(()=>{
        const fetcher = async() => {
-			await axios.get(`http://localhost:4000/api/deliver-orders/${id}`)
+			await userRequest.get(`/deliver-orders/${id}`)
 			.then((response)=>{
 				console.log(response.data)
 				setOrderDetails(response.data)
@@ -57,7 +55,7 @@ function UpdateOrder() {
 		event.preventDefault();
 		if (orderDetails.orderId !== "") {
 			console.log(orderDetails._id);
-			axios.put(`http://localhost:4000/api/deliver-orders/${orderDetails._id}`, orderDetails).then((response) => {
+			userRequest.put(`/deliver-orders/${orderDetails._id}`, orderDetails).then((response) => {
 				console.log(response.data);
 				console.log("success");
 			});
@@ -70,7 +68,7 @@ function UpdateOrder() {
             navigateBackBtn()
 		} else {
 			console.log(orderDetails);
-			api.put("/", orderDetails).then((response) => {
+			userRequest.put("//deliver-orders", orderDetails).then((response) => {
 				console.log(response.data);
 				console.log("success");
 			});
@@ -83,7 +81,7 @@ function UpdateOrder() {
 	};
 
 	const navigateBackBtn = () => {
-        navigate(`/delivery/view-order`);
+        navigate(`/admin/delivery/view-order`);
     }
 
 	const updateOrderFormInputHandler = (event) => {

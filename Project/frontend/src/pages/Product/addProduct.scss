@@ -9,7 +9,7 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: 'Poppins', sans-serif;
 
-.add-item-container-main{
+.add-product-container-main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@ $fontfam-1: 'Poppins', sans-serif;
 
 
 // form styles will go on here
-.add-item-form-container {
+.add-product-form-container {
     width: 950px;
     height: 580px;
     background-color: white;
@@ -61,7 +61,7 @@ $fontfam-1: 'Poppins', sans-serif;
     visibility: visible;
 }
 
-.tagline-add-item{
+.tagline-add-product{
     font-size: 20px;
     font-weight: 600;
     color: $secondary-color-purple1;
@@ -76,7 +76,7 @@ $fontfam-1: 'Poppins', sans-serif;
     height: 530px;
 }
 
-.add-item-column{
+.add-product-column{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -133,7 +133,7 @@ $fontfam-1: 'Poppins', sans-serif;
    border: none;
 }
 
-.btn-container-add-item{
+.btn-container-add-product{
     margin-top: 10px;
     display: flex;
     justify-content: space-evenly;

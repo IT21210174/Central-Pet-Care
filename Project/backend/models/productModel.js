@@ -49,10 +49,12 @@ const productSchema = mongoose.Schema({
 })
 
 productSchema.index({
+    productId: 'text',
     productName: 'text',
     brand: 'text',
     categories: 'text',
-    description: 'text'
+    description: 'text',
+    SKU: 'text'
 });
 
 // Before saving the product, check if it has a productId, if not, generate one

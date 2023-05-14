@@ -1,16 +1,24 @@
-import React, { useState } from "react";
-import SidebarItems from "./SidebarItems";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../contexts/AppContext";
+import SideBarItems from "./SidebarItems";
+import { NavLink } from "react-router-dom";
 import "./sidebar.scss";
 
 import { IoIosArrowForward } from "react-icons/io";
 
-function Sidebar() {
-	const [selected, setSelected] = useState(0);
-	const [selectedMain, setMain] = useState(0);
+function SideBar() {
+
+	const {stateTrack , setStateTrack} = useContext(AppContext)
+	const [selected, setSelected] = useState(null);
+	// const [selectedMain, setMain] = useState(0);
+
+	useEffect(() => {
+		eventTransformer(stateTrack);
+	}, []);
 
 	const eventTransformer = (num) => {
-		setMain(num);
+		setStateTrack(num);
 		setSelected(0);
 	};
 
@@ -22,7 +30,7 @@ function Sidebar() {
 			</div>
 			{/* side menu items container */}
 			<div className="side-bar-item-container">
-				{SidebarItems.map((item, index) => {
+				{SideBarItems.map((item, index) => {
 					const { id, icon, text, nestedFunctions } = item;
 
 					return (
@@ -37,13 +45,14 @@ function Sidebar() {
 											className="mainFuncItemName"
 											onClick={() => {
 												eventTransformer(index);
+												console.log(index);
 											}}
 										>
 											{text}
 										</span>
 										<span
 											className={`scrollFuncIcon ${
-												index === selectedMain &&
+												index === stateTrack &&
 												"scroll-function-show"
 											}`}
 										>
@@ -53,7 +62,7 @@ function Sidebar() {
 
 									<div
 										className={`nested-function-container${
-											index === selectedMain
+											index === stateTrack
 												? "cont-show"
 												: ""
 										}`}
@@ -67,7 +76,7 @@ function Sidebar() {
 												} = nestedFunction;
 
 												return (
-													<NavLink
+													<NavLink key={index}
 														to={link}
 														className={({
 															isActive,
@@ -98,4 +107,4 @@ function Sidebar() {
 	);
 }
 
-export default Sidebar;
+export default SideBar;

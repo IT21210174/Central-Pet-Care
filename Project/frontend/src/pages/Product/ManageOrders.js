@@ -145,13 +145,13 @@ function ManageOrders() {
               const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
               let statusStyle = '';
               switch (status) {
-                case 'delivered':
+                case 'Completed':
                   statusStyle = 'successful';
                   break;
-                case 'pending':
+                case 'Pending':
                   statusStyle = 'pending';
                   break;
-                case 'processing':
+                case 'Processing':
                   statusStyle = 'processing';
                   break;
                 // Add more cases for additional delivery statuses here

@@ -4,14 +4,14 @@ import AdminLayout from "../../Layouts/AdminLayout";
 import ResultContainer from "./orders-search-result-container";
 import NoItemsDisplayer from "./orders-empty-result-displayer";
 import "./CompletedOrder.scss";
-import orderApi from '../../../services/order-api'
+import { userRequest } from '../../../requestMethods'
 
 function ViewCompletedOrderComponent() {
 	const [orders, setOrders] = useState([]);
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
-		orderApi.get("/").then((response) => {
+		userRequest.get("/deliver-orders").then((response) => {
 			setOrders(response.data);
 			console.log(orders);
 		});
@@ -27,7 +27,7 @@ function ViewCompletedOrderComponent() {
 	};
 
 	const searchFunction = () => {
-		orderApi.get(`/${searchPrompt}`)
+		userRequest.get(`/deliver-orders/${searchPrompt}`)
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);

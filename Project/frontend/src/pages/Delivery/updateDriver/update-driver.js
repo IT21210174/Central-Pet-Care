@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
 import swal from 'sweetalert2';
-import api from '../../../services/api';
+import { userRequest } from '../../../requestMethods';
 import './update-driver.scss'
 import Swal from 'sweetalert2';
 
@@ -17,7 +17,7 @@ function UpdateDriver() {
 
 
     useEffect(()=>{
-        api.get(`/mongo/${id}`).then((response)=>{
+        userRequest.get(`/drivers/mongo/${id}`).then((response)=>{
             setDriverDetails(response.data)
             console.log(driverDetails);
         })
@@ -38,7 +38,7 @@ function UpdateDriver() {
 		event.preventDefault();
 		if (driverDetails.driverName !== "") {
 			console.log(driverDetails);
-			api.put(`/mongo/${id}`, driverDetails).then((response) => {
+			userRequest.put(`/drivers/mongo/${id}`, driverDetails).then((response) => {
 				console.log(response.data);
 				console.log("success bro");
 			});
@@ -51,7 +51,7 @@ function UpdateDriver() {
             navigateBackBtn()
 		} else {
 			console.log(driverDetails);
-			api.post("/", driverDetails).then((response) => {
+			userRequest.post("/drivers", driverDetails).then((response) => {
 				console.log(response.data);
 				console.log("success bro");
 			});
@@ -64,7 +64,7 @@ function UpdateDriver() {
 	};
 
 	const navigateBackBtn = () => {
-        navigate(`/delivery/manage-driver`);
+        navigate(`/admin/delivery/manage-driver`);
     }
 
 	const addDriverFormInputHandler = (event) => {
