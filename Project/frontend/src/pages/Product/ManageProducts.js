@@ -95,13 +95,13 @@ function ManageProducts() {
           headerName: "ID",
           headerAlign: "center",
           align: "center",
-          flex: 4,
+          flex: 2,
         },
         {
           field: "productName",
           headerName: "Product",
           headerAlign: "center",
-          flex: 7.5,
+          flex: 7,
           renderCell: (params) => {
             return (
               <div className="listItemName">
@@ -146,10 +146,10 @@ function ManageProducts() {
           renderCell: (params) => {
             return (
               <div className='action'>
-                <Link to={"/admin/products/viewProuduct/" + params.row._id}>
+                <Link to={"/admin/products/viewProduct/" + params.row._id}>
                   <AiOutlineEye className='view' />
                 </Link>
-                <Link to={"/admin/products/editProuduct/" + params.row._id}>
+                <Link to={"/admin/products/editProduct/" + params.row._id}>
                   <FiEdit className='edit' />
                 </Link>
                 <MdOutlineDelete className='delete' onClick={() => {handleDelete(params.row._id)}} />

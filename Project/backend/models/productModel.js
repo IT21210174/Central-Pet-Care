@@ -77,6 +77,11 @@ productSchema.pre('save', async function (next) {
         doc.productId = `P${counter.seq.toString().padStart(4, '0')}`;
         }
 
+        // Set inStock to false if quantity is less than 0
+        if (doc.quantity < 0) {
+            doc.inStock = false;
+        }
+
         return next(); // Call the next middleware in the chain
     } catch (err) {
         return next(err); // Pass any errors to the error handler middleware

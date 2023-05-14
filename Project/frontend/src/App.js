@@ -16,6 +16,7 @@ import ManageOrders from './pages/Product/ManageOrders';
 import Success from './pages/Store/Success';
 import Wishlist from './pages/Store/Wishlist';
 import ViewOrder from './pages/Product/ViewOrder';
+import Insights from './pages/Product/Insights'
 
 // delivery components
 import AddDriver from "./pages/Delivery/RegisterDriver/RegisterDriver";
@@ -107,11 +108,11 @@ function App() {
         {/* product routes */}
         <Route path='/admin/products/manageProducts' element={< ManageProducts />} />
         <Route path='/admin/products/addProduct' element={<AddProduct />} />
-        <Route path='/admin/products/editProuduct/:id' element={<EditProduct />} />
-        <Route path='/admin/products/viewProuduct/:id' element={<ViewProduct />} />
+        <Route path='/admin/products/editProduct/:id' element={<EditProduct />} />
+        <Route path='/admin/products/viewProduct/:id' element={<ViewProduct />} />
         <Route path='/admin/products/manageOrders' element={<ManageOrders />} />
         <Route path='/admin/products/viewOrder/:id' element={<ViewOrder />} />
-        <Route path='/admin/products/insights' />
+        <Route path='/admin/products/insights' element={<Insights />} />
 
         {/* store routes */}
         <Route path='/store' element={<ProductCatalog />} />
