@@ -207,7 +207,7 @@ function App() {
 
         <Route path='/register' element={<Register />} />
         <Route path='/user' element={<UserLayout />} />
-        <Route path='/myOrders' element={<MyOrders />} />
+        <Route path='/account/myOrders' element={<MyOrders />} />
 
       </Routes>
     </Router>

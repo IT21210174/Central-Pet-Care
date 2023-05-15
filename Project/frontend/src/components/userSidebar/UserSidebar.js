@@ -17,7 +17,7 @@ function UserSidebar() {
                     My Profile
                 </li>
             </NavLink>
-            <NavLink to='../myOrders'>
+            <NavLink to='../account/myOrders'>
                 <li className='userSidebarListItem'>
                     <div className='userSidebarListItemIcon'>
                         <BsCartFill />
