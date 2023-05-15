@@ -7,7 +7,7 @@ import Footer from '../../components/store/Footer'
 import Navbar from '../../components/store/Navbar'
 import { useEffect, useState, useContext } from 'react';
 import { CartContext } from "../../contexts/CartContext";
-import { publicRequest } from '../../requestMethods';
+import { publicRequest, userRequest } from '../../requestMethods';
 import EmptyCart from '../../components/store/EmptyCart';
 import StoreSearch from '../../components/store/StoreSearch';
 import Header from '../../components/store/Header/Header'
@@ -229,7 +229,11 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     try{
-      const res = await publicRequest.post("/checkout/create-checkout-session", {
+      // const res = await publicRequest.post("/checkout/create-checkout-session", {
+      //   cartItems: cart.items,
+      //   amount: cart.total
+      // })
+      const res = await userRequest.post("/checkout/create-checkout-session-logged-in", {
         cartItems: cart.items,
         amount: cart.total
       })

@@ -3,6 +3,7 @@ const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
 const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
+const { protect } = require("../middleware/authMiddleware");
 
 router.post('/create-checkout-session', async (req, res) => {
 
@@ -62,7 +63,76 @@ router.post('/create-checkout-session', async (req, res) => {
         cancel_url: `${process.env.CLIENT_URL}/cart`,
         expand: ['line_items'],
         metadata: {
-            user: '642e790648b9f700fd416671'
+            user: ''
+        }
+    });
+
+    // send the session id to the client
+    res.send({ url: session.url });
+
+});
+
+//for logged in users
+router.post('/create-checkout-session-logged-in', protect, async (req, res) => {
+
+    const line_items = req.body.cartItems.map((item) => {
+        return {
+            price_data: {
+                currency: 'lkr',
+                product_data: {
+                    name: item.product.productName,
+                images: [item.product.image],
+                metadata: {
+                    id: item.product._id
+                }
+                },
+                unit_amount: item.product.price * 100,
+            },
+            quantity: item.cartQuantity,
+        }
+    })
+
+    const email = req.user.email
+    const userId = req.user._id.toString();
+
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        shipping_address_collection: {allowed_countries: ['LK']},
+        shipping_options: [
+            {
+            shipping_rate_data: {
+                type: 'fixed_amount',
+                fixed_amount: {amount: 0, currency: 'lkr'},
+                display_name: 'Free shipping',
+                delivery_estimate: {
+                minimum: {unit: 'business_day', value: 5},
+                maximum: {unit: 'business_day', value: 7},
+                },
+            },
+            },
+            {
+            shipping_rate_data: {
+                type: 'fixed_amount',
+                fixed_amount: {amount: 60000, currency: 'lkr'},
+                display_name: 'Next day air',
+                delivery_estimate: {
+                minimum: {unit: 'business_day', value: 1},
+                maximum: {unit: 'business_day', value: 1},
+                },
+            },
+            },
+        ],
+        phone_number_collection: {
+            enabled: true
+        },
+        customer_email: email ? email : undefined, // Include email only if it is not an empty string
+        line_items,
+        mode: 'payment',
+        success_url: `${process.env.SERVER_URL}/api/checkout/create-order?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.CLIENT_URL}/cart`,
+        expand: ['line_items'],
+        metadata: {
+            user: userId
         }
     });
 
@@ -139,7 +209,5 @@ router.get("/create-order", async (req, res) => {
    }
 
 });
-
-module.exports = router;
 
 module.exports = router;

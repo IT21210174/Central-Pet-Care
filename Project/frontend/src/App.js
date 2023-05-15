@@ -93,6 +93,10 @@ import ViewPrescription from './pages/Vet/Prescription/ViewPrescription';
 //medicine
 import Medicine from './pages/Vet/Medicine/Medicine';
 
+import Register from './pages/User/Register';
+import UserLayout from './pages/Layouts/UserLayout'
+import MyOrders from './pages/Store/MyOrders';
+
 
 function App() {
   return (
@@ -200,6 +204,10 @@ function App() {
         <Route path='/admin/prescriptions/viewPrescription/:id' element={<ViewPrescription />} />
 
         <Route path='/admin/medicines/manageMedicines' element={<Medicine />} />
+
+        <Route path='/register' element={<Register />} />
+        <Route path='/user' element={<UserLayout />} />
+        <Route path='/myOrders' element={<MyOrders />} />
 
       </Routes>
     </Router>

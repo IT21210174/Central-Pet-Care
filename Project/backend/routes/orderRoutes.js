@@ -16,9 +16,9 @@ const {
 	getProductIncome
 } = require("../controllers/orderController");
 
-router.post("/", protect, createOrder);
+// router.post("/", protect, createOrder);
 router.get("/:id", protect, getOrderById);
-router.get("/myorders", protect, getMyOrders);
+router.get("/my/orders", protect, getMyOrders);
 
 router.get('/', protect, admin, getOrders)
 router.put('/:id', protect, admin, updateOrder)
