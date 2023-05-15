@@ -31,7 +31,7 @@ function ViewPrescription() {
 
     return (
         <AdminLayout>
-            <div className='product'>
+            <div className='prescription'>
                 
             {/* <table>
                 
@@ -58,27 +58,32 @@ function ViewPrescription() {
                 
             </table> */}
 
-            <div className='prescription-record-container'>
-                    
-                    <div className = "prescription-details-container">
-                        
-                        <div className="prescription-prompts">
+
+            
+                <div className='prescription-record-container'>
+                    <div className = "prescription-details-container">                     
+                        <div className='prescription-line'>
                             <span className='prescription-line-info'>Pet Name</span>
-                            <span className='prescription-line-info'>Address</span>
-                            <span className='prescription-line-info'>Description </span>
-                            <span className='prescription-line-info'>Medicine</span>
-                            <span className='prescription-line-info'>Dosage </span>
-                        </div>
-                        <div className="prescription-values">
                             <span className='prescription-line-info-values'>{petname}</span>
+                        </div>
+                        <div className='prescription-line'>
+                            <span className='prescription-line-info'>Address</span>
                             <span className='prescription-line-info-values'>{address}</span>
+                        </div>
+                        <div className='prescription-line'>
+                            <span className='prescription-line-info'>Description </span>
                             <span className='prescription-line-info-values'>{description}</span>
+                        </div>
+                        <div className='prescription-line'>
+                            <span className='prescription-line-info'>Medicine</span>
                             <span className='prescription-line-info-values'>{medicine}</span>
+                        </div>
+                        <div className='prescription-line'>
+                            <span className='prescription-line-info'>Dosage </span>
                             <span className='prescription-line-info-values'>{dosage}</span>
                         </div>
                     </div> 
                 </div>
-
             </div>
         </AdminLayout>
     )
