@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './addProduct.scss'
@@ -11,6 +11,8 @@ function EditProduct() {
 
   const { id } = useParams()
   const navigate = useNavigate()
+
+  const fileInputRef = useRef(null);
 
   const categoryA = [
     { value: 'Dog', label: 'Dog' },
@@ -42,6 +44,17 @@ function EditProduct() {
   const [file, setFile] = useState(null)
   const [imageURL, setImageURL] = useState('')
 
+  const [initialValues, setInitialValues] = useState({
+    initialProductName: productName,
+    initialBrand: brand,
+    initialPrice: price,
+    initialQuantity: quantity,
+    initialDescription: description,
+    initialSKU: SKU,
+    initialCategoryA: selectedCategoryA,
+    initialCategoryB: selectedCategoryB
+  })
+
   useEffect(() => {
     userRequest.get('/products/' + id)
     .then(res => {
@@ -54,10 +67,37 @@ function EditProduct() {
         setSelectedCategoryA(res.data.categories.categoryA.map(cat => ({ value: cat, label: cat })));
         setSelectedCategoryB({ value: res.data.categories.categoryB, label: res.data.categories.categoryB });
         setImageURL(res.data.image)
+        
+        setInitialValues({
+          initialProductName: res.data.productName,
+          initialBrand: res.data.brand,
+          initialPrice: res.data.price,
+          initialQuantity: res.data.quantity,
+          initialDescription: res.data.description,
+          initialSKU: res.data.SKU,
+          initialCategoryA: res.data.categories.categoryA.map(cat => ({ value: cat, label: cat })),
+          initialCategoryB: { value: res.data.categories.categoryB, label: res.data.categories.categoryB }
+        });
     }).catch(err =>{
         toast.error(err.message)
     })
   }, [id])
+
+  const handleReset = () => {
+    setSelectedCategoryA(initialValues.initialCategoryA);
+    setSelectedCategoryB(initialValues.initialCategoryB);
+    setProductName(initialValues.initialProductName);
+    setBrand(initialValues.initialBrand);
+    setPrice(initialValues.initialPrice);
+    setQuantity(initialValues.initialQuantity);
+    setDescription(initialValues.initialDescription);
+    setSKU(initialValues.initialSKU);
+    setFile(null);
+    // Reset the value of the file input field using the ref
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  }
 
 
   const handleSubmit = async (e) => {
@@ -187,12 +227,12 @@ function EditProduct() {
 
                     <section className="input-container">
                         <span className="input-title">Product image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
+                        <input ref={fileInputRef} type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
                     </section>
 
                     <div className="btn-container-add-product">
                       <button type='submit' className="submit-btn">Update</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
 
               </div>

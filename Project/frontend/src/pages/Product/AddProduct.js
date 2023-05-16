@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './addProduct.scss'
@@ -7,6 +7,8 @@ import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
 
 function AddProduct() {
+
+  const fileInputRef = useRef(null);
 
   const categoryA = [
     { value: 'Dog', label: 'Dog' },
@@ -47,8 +49,10 @@ function AddProduct() {
     setDescription('')
     setSKU('')
     setFile(null)
-    // Clear the value of the file input field
-    document.getElementById('file-input').value = '';
+    // Reset the value of the file input field using the ref
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -182,7 +186,7 @@ function AddProduct() {
 
                     <section className="input-container">
                         <span className="input-title">Product image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
+                        <input ref={fileInputRef} type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
                     </section>
 
                     <div className="btn-container-add-product">
