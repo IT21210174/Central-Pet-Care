@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Item = require("../models/itemModel");
-const pdfMake = require("pdfmake");
-const fs = require("fs");
+// const pdfMake = require("pdfmake");
+// const fs = require("fs");
 
 // const itemModel = require("../models/itemModel")
 
@@ -89,30 +89,30 @@ const deleteSingleItem = asyncHandler(async (req, res) => {
 	res.json({ message: "item was deleted from the database" });
 });
 
-// print inventory report
-const printInventoryReport = (req, res) => {
-	const docDefinition = {
-		content: [
-			{ text: "My PDF Document", style: "header" },
-			{ text: "This is some sample text for my PDF.", style: "body" },
-		],
-		styles: {
-			header: { fontSize: 24, bold: true },
-			body: { fontSize: 12 },
-		},
-	};
+// // print inventory report
+// const printInventoryReport = (req, res) => {
+// 	const docDefinition = {
+// 		content: [
+// 			{ text: "My PDF Document", style: "header" },
+// 			{ text: "This is some sample text for my PDF.", style: "body" },
+// 		],
+// 		styles: {
+// 			header: { fontSize: 24, bold: true },
+// 			body: { fontSize: 12 },
+// 		},
+// 	};
 
-	const pdfDoc = pdfMake.createPdf(docDefinition);
+// 	const pdfDoc = pdfMake.createPdf(docDefinition);
 
-	const fileStream = fs.createWriteStream("output.pdf");
-	pdfDoc.pipe(fileStream);
+// 	const fileStream = fs.createWriteStream("output.pdf");
+// 	pdfDoc.pipe(fileStream);
 
-	res.setHeader("Content-Type", "application/pdf");
-	res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
-	pdfDoc.pipe(res);
+// 	res.setHeader("Content-Type", "application/pdf");
+// 	res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
+// 	pdfDoc.pipe(res);
 
-	pdfDoc.end();
-};
+// 	pdfDoc.end();
+// };
 
 module.exports = {
 	getSingleItem,
@@ -120,6 +120,6 @@ module.exports = {
 	createSingleItem,
 	updateSingleItem,
 	deleteSingleItem,
-	printInventoryReport,
+	// printInventoryReport,
 	getSingleItemMongo
 };

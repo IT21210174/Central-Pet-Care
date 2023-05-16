@@ -111,4 +111,76 @@ const deleteProduct = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {getProducts, getProductById, addProduct, updateProduct, deleteProduct}
+// @desc    Get product count by categories
+// @route   GET /api/orders/insights/productCount
+// @access  Private/Admin
+const getProductCountByCategory = asyncHandler(async (req, res) => {
+
+    const counts = await Product.aggregate([
+      {
+        $group: {
+          _id: {
+            categoryA: "$categories.categoryA",
+            categoryB: "$categories.categoryB"
+          },
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+  
+    const categoryCounts = {};
+
+    counts.forEach((item) => {
+
+      const categoryA = item._id.categoryA;
+      const categoryB = item._id.categoryB;
+      
+      categoryA.forEach((categoryAItem) => {
+
+        if (!categoryCounts[categoryAItem]) {
+          categoryCounts[categoryAItem] = {};
+        }
+
+        if (!categoryCounts[categoryAItem][categoryB]) {
+          categoryCounts[categoryAItem][categoryB] = 0;
+        }
+
+        categoryCounts[categoryAItem][categoryB] += item.count;
+
+      });
+    });
+  
+    const categoryA = ["Dog", "Cat", "Fish", "Rabbit", "Bird", "Cattle", "Pig", "Hamster", "Other"];
+    const categoryB = ["Food", "Accessory", "Toy"];
+  
+    const data = [];
+
+    categoryA.forEach((categoryAItem) => {
+
+      const item = { categoryA: categoryAItem };
+
+      categoryB.forEach((categoryBItem) => {
+        item[categoryBItem] = categoryCounts[categoryAItem]?.[categoryBItem] || 0;
+      });
+
+      data.push(item);
+
+    });
+  
+    res.status(200).json(data);
+});
+
+
+// @desc    Get total product count
+// @route   GET /api/orders/insights/totalOrderCount
+// @access  Private/Admin
+const getProductStats = asyncHandler(async (req, res) => {
+
+  // Use countDocuments() to count the total number of products
+  const totalProducts = await Product.countDocuments();
+
+  res.status(200).json({ totalProducts });
+});
+
+
+module.exports = {getProducts, getProductById, addProduct, updateProduct, deleteProduct, getProductCountByCategory, getProductStats}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './addProduct.scss'
@@ -7,6 +7,8 @@ import uploadImage from '../../uploadImage';
 import { toast } from 'react-hot-toast';
 
 function AddProduct() {
+
+  const fileInputRef = useRef(null);
 
   const categoryA = [
     { value: 'Dog', label: 'Dog' },
@@ -47,8 +49,10 @@ function AddProduct() {
     setDescription('')
     setSKU('')
     setFile(null)
-    // Clear the value of the file input field
-    document.getElementById('file-input').value = '';
+    // Reset the value of the file input field using the ref
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -93,13 +97,28 @@ function AddProduct() {
     }),
   };
 
+  //Demo
+  const showDemo = (e) => {
+    e.preventDefault()
+    setProductName('Norsh Freeze-Dried Raw Salmon Skin Twirls Dog & Cat Treats - 25g')
+    setBrand('Nash')
+    setPrice(900)
+    setQuantity(26)
+    setDescription('100% Natural, Raw Hand-rolled Raw Salmon Skin Twirls Pet Treat. Freeze-dried to Preserve Peak Nutritional Content. A delicious treat for dogs and cats.')
+    setSKU('PET00102')
+    setSelectedCategoryA(["Dog", "Cat"].map(cat => ({ value: cat, label: cat })));
+    setSelectedCategoryB({ value: "Food", label: "Food" });
+  }
 
   return (
     <AdminLayout>
       <div className="add-product-container-main">
         {/* this is the form container */}
         <form className="add-product-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-product">Add product</span>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+              <span className="tagline-add-product">Add product</span>
+              <button onClick={showDemo} style={{padding: '5px 20px', marginRight: '25px'}}>DEMO</button>
+            </div>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
@@ -107,12 +126,12 @@ function AddProduct() {
 
                 <section className="input-container">
                   <span className="input-title">Product name</span>
-                  <input type='text' className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
+                  <input type='text' pattern="^[a-zA-Z].{9,}$" title="Product name should start with a letter and contain 10 or more characters" className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
                   <span className="input-title">Price</span>
-                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
+                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Price can only contain up to 2 decimal places (e.g. - 99.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
@@ -140,7 +159,7 @@ function AddProduct() {
 
                     <section className="input-container">
                         <span className="input-title">Brand</span>
-                        <input type='text' className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
+                        <input type='text' pattern="^[a-zA-Z0-9 ]+$" title="Brand can only contain alphanumeric characters and spaces" className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
                     </section>
 
                     <section className="input-container">
@@ -162,12 +181,12 @@ function AddProduct() {
 
                     <section className="input-container">
                         <span className="input-title">SKU</span>
-                        <input type='text' className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
+                        <input type='text' pattern="^[a-zA-Z0-9]+$" title="SKU can only contain alphanumeric characters" className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
                     </section>
 
                     <section className="input-container">
                         <span className="input-title">Product image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
+                        <input ref={fileInputRef} type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} required/>
                     </section>
 
                     <div className="btn-container-add-product">

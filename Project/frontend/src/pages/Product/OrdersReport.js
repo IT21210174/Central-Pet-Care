@@ -66,7 +66,7 @@ const OrdersReport = ({data}) => {
         doc.autoTable({
           head: [["Order ID", "Amount", "Date", "Payment Status", "Delivery Status"]],
           body: data.map((item) => {
-            return [item.orderId, 'Rs.' + item.total.toFixed(2), new Date(item.createdAt).toLocaleDateString(), item.paymentStatus, item.deliveryStatus];
+            return [item.orderId, 'Rs.' + item.total.toFixed(2), new Date(item.createdAt).toLocaleDateString(), item.paymentStatus == "succeeded" ? "Successful" : "Unsuccessful", item.deliveryStatus];
           }),
           startY: 80, // start the table below the logo
           headStyles: {

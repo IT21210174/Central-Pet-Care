@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
 import AdminLayout from '../Layouts/AdminLayout'
 import './addProduct.scss'
@@ -11,6 +11,8 @@ function EditProduct() {
 
   const { id } = useParams()
   const navigate = useNavigate()
+
+  const fileInputRef = useRef(null);
 
   const categoryA = [
     { value: 'Dog', label: 'Dog' },
@@ -42,6 +44,17 @@ function EditProduct() {
   const [file, setFile] = useState(null)
   const [imageURL, setImageURL] = useState('')
 
+  const [initialValues, setInitialValues] = useState({
+    initialProductName: productName,
+    initialBrand: brand,
+    initialPrice: price,
+    initialQuantity: quantity,
+    initialDescription: description,
+    initialSKU: SKU,
+    initialCategoryA: selectedCategoryA,
+    initialCategoryB: selectedCategoryB
+  })
+
   useEffect(() => {
     userRequest.get('/products/' + id)
     .then(res => {
@@ -54,10 +67,37 @@ function EditProduct() {
         setSelectedCategoryA(res.data.categories.categoryA.map(cat => ({ value: cat, label: cat })));
         setSelectedCategoryB({ value: res.data.categories.categoryB, label: res.data.categories.categoryB });
         setImageURL(res.data.image)
+        
+        setInitialValues({
+          initialProductName: res.data.productName,
+          initialBrand: res.data.brand,
+          initialPrice: res.data.price,
+          initialQuantity: res.data.quantity,
+          initialDescription: res.data.description,
+          initialSKU: res.data.SKU,
+          initialCategoryA: res.data.categories.categoryA.map(cat => ({ value: cat, label: cat })),
+          initialCategoryB: { value: res.data.categories.categoryB, label: res.data.categories.categoryB }
+        });
     }).catch(err =>{
         toast.error(err.message)
     })
   }, [id])
+
+  const handleReset = () => {
+    setSelectedCategoryA(initialValues.initialCategoryA);
+    setSelectedCategoryB(initialValues.initialCategoryB);
+    setProductName(initialValues.initialProductName);
+    setBrand(initialValues.initialBrand);
+    setPrice(initialValues.initialPrice);
+    setQuantity(initialValues.initialQuantity);
+    setDescription(initialValues.initialDescription);
+    setSKU(initialValues.initialSKU);
+    setFile(null);
+    // Reset the value of the file input field using the ref
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  }
 
 
   const handleSubmit = async (e) => {
@@ -127,12 +167,12 @@ function EditProduct() {
 
                 <section className="input-container">
                   <span className="input-title">Product name</span>
-                  <input type='text' className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
+                  <input type='text' pattern="^[a-zA-Z].{9,}$" title="Product name should start with a letter and contain 10 or more characters" className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
                   <span className="input-title">Price</span>
-                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
+                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Price can only contain up to 2 decimal places (e.g. - 99.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
@@ -160,7 +200,7 @@ function EditProduct() {
 
                     <section className="input-container">
                         <span className="input-title">Brand</span>
-                        <input type='text' className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
+                        <input type='text' pattern="^[a-zA-Z0-9 ]+$" title="Brand can only contain alphanumeric characters and spaces" className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
                     </section>
 
                     <section className="input-container">
@@ -182,17 +222,17 @@ function EditProduct() {
 
                     <section className="input-container">
                         <span className="input-title">SKU</span>
-                        <input type='text' className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
+                        <input type='text' pattern="^[a-zA-Z0-9]+$" title="SKU can only contain alphanumeric characters" className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
                     </section>
 
                     <section className="input-container">
                         <span className="input-title">Product image</span>
-                        <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
+                        <input ref={fileInputRef} type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setFile(e.target.files[0])} />
                     </section>
 
                     <div className="btn-container-add-product">
                       <button type='submit' className="submit-btn">Update</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
 
               </div>

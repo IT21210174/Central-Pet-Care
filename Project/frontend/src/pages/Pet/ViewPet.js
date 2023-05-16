@@ -19,7 +19,6 @@ function ViewPet() {
     const [customerName, setCustomerName] = useState("")
     const [contactNumber, setContactNumber] = useState("")
     const [medicalHistory, setMedicalHistory] = useState("")
-    const [file, setFile] = useState(null)
     const [imageURL, setImageURL] = useState('')
     
     useEffect(() => {
@@ -43,61 +42,52 @@ function ViewPet() {
 
     return (
         <AdminLayout>
-             <div className='service'>
-            {/* <table>
-                <tr>
-                    <td colSpan='2' className='imageContainer'>
-                        <img src={imageURL} className='image' height='120px' />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Service ID</td>
-                    <td>{serviceId}</td>
-                </tr>
-                <tr>
-                    <td>Service Name</td>
-                    <td>{serviceName}</td>
-                </tr>
-                <tr>
-                    <td>Service Charge</td>
-                    <td>{serviceCharge}</td>
-                </tr>
-                <tr>
-                    <td>Service Description</td>
-                    <td style={{whiteSpace: 'pre-wrap'}}>{serviceDescription}</td>
-                </tr>
-                
-            </table> */}
+             <div className='pet'>
 
-                <div className='service-record-container'>
-                    <div className = "service-pic-container">
-                        <img src={imageURL} className='service-img'></img>
+                <div className='pet-record-container'>
+                    <div className = "pet-pic-container">
+                        <img src={imageURL} className='pet-img'></img>
                     </div>
-                    <div className = "service-details-container">
-                        <div className="service-prompts">
-                            <span className='service-line-info'>Pet ID</span>
-                            <span className='service-line-info'>Pet Name</span>
-                            <span className='service-line-info'>DOB</span>
-                            <span className='service-line-info'>Gender</span>
-                            <span className='service-line-info'>Species</span>
-                            <span className='service-line-info'>Breed</span>
-                            <span className='service-line-info'>Customer ID</span>
-                            <span className='service-line-info'>Customer Name</span>
-                            <span className='service-line-info'>Contact Number</span>
-                            <span className='service-line-info'>Medical History</span>
-                            
+                    <div className = "pet-details-container">                     
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Pet ID</span>
+                            <span className='pet-line-info-values'>{petID}</span>
                         </div>
-                        <div className="service-values">
-                            <span className='service-line-info-values'>{petID}</span>
-                            <span className='service-line-info-values'>{petName}</span>
-                            <span className='service-line-info-values'>{dob}</span>
-                            <span className='service-line-info-values'>{gender}</span>
-                            <span className='service-line-info-values'>{species}</span>
-                            <span className='service-line-info-values'>{breed}</span>
-                            <span className='service-line-info-values'>{customerID}</span>
-                            <span className='service-line-info-values'>{customerName}</span>
-                            <span className='service-line-info-values'>{contactNumber}</span>
-                            <span className='service-line-info-values'>{medicalHistory}</span>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Pet Name</span>
+                            <span className='pet-line-info-values'>{petName}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>DOB</span>
+                            <span className='pet-line-info-values'>{dob}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Gender</span>
+                            <span className='pet-line-info-values'>{gender}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Species</span>
+                            <span className='pet-line-info-values'>{species}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Breed</span>
+                            <span className='pet-line-info-values'>{breed}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Customer ID</span>
+                            <span className='pet-line-info-values'>{customerID}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Customer Name</span>
+                            <span className='pet-line-info-values'>{customerName}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Contact Number</span>
+                            <span className='pet-line-info-values'>{contactNumber}</span>
+                        </div>
+                        <div className='pet-line'>
+                            <span className='pet-line-info'>Medical History</span>
+                            <span className='pet-line-info-values'>{medicalHistory}</span>
                         </div>
                     </div> 
                 </div>

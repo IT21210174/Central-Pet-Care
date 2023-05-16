@@ -1,55 +1,43 @@
-.main-view-leaves{
-    width: 100%;
-    height: 90vh;
+.leave {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.leave-table{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 300px;
+    // background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
     height: auto;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 4px 4px 8px rgba($color: #000000, $alpha: .4);
-    padding: 10px;
+    min-height: 90vh;
+    padding: 40px;
 }
 
-.leave-headings{
-    height: 100%;
+.leave-record-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.leave-details-container{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+}
+
+.leave-line {
+    display: flex;
+    margin: 10px 0;
+}
+
+.leave-line-info{
+    flex: 1;
+    padding: 5px 10px;
     font-weight: 600;
-    font-size: 1.2em;
+    min-width: 150px; //change accordingly
+    white-space: pre-wrap;
 }
 
-
-.leave-heading-values{
-    height: 100%;
-    width: 49%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-size: 1.2em;
-}
-
-.leave-heading-values{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.staff-leave-prompts{
+.leave-line-info-values{
+    flex: 2;
     padding: 5px 10px;
-}
-
-.staff-leave-prompts-values{
-    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
 }

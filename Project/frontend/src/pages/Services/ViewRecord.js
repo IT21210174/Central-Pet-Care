@@ -36,55 +36,61 @@ function ViewRecord() {
 
     return (
         <AdminLayout>
-            <div className='record'>
+            <div className='serviceRecord'>
                 
-            {/* <table>
-                <tr>
-                    <td>Service ID</td>
-                    <td>{serviceId}</td>
-                </tr>
-                <tr>
-                    <td>Customer ID</td>
-                    <td>{customerId}</td>
-                </tr>
-                <tr>
-                    <td>VCSL ID</td>
-                    <td>{vcslId}</td>
-                </tr>
-                <tr>
-                    <td>Pet ID</td>
-                    <td>{petId}</td>
-                </tr>
-                <tr>
-                    <td>Date</td>
-                    <td>{date}</td>
-                </tr>
-                <tr>
-                    <td>Service Charge</td>
-                    <td>{serviceCharge}</td>
-                </tr>
-            </table> */}
-             <div className='record-container'>
-                    
-                    <div className = "record-details-container">
-                        <div className="record-prompts">
-                            <span className='record-line-info'>Service ID</span>
-                            <span className='record-line-info'>Customer ID</span>
-                            <span className='record-line-info'>VCSL ID</span>
-                            <span className='record-line-info'>Pet ID</span>
-                            <span className='record-line-info'>Date</span>
-                            <span className='record-line-info'>Service Charge</span>
-                            
+                {/* <table>
+                    <tr>
+                        <td>Service ID</td>
+                        <td>{serviceId}</td>
+                    </tr>
+                    <tr>
+                        <td>Customer ID</td>
+                        <td>{customerId}</td>
+                    </tr>
+                    <tr>
+                        <td>VCSL ID</td>
+                        <td>{vcslId}</td>
+                    </tr>
+                    <tr>
+                        <td>Pet ID</td>
+                        <td>{petId}</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>{date}</td>
+                    </tr>
+                    <tr>
+                        <td>Service Charge</td>
+                        <td>{serviceCharge}</td>
+                    </tr>
+                </table> */}
 
+
+                <div className='serviceRecord-record-container'>
+                    <div className = "serviceRecord-details-container">    
+                        <div className='serviceRecord-line'>
+                            <span className='serviceRecord-line-info'>Service ID</span>
+                            <span className='serviceRecord-line-info-values'>{serviceId}</span>
+                        </div>                 
+                        <div className='serviceRecord-line'>
+                            <span className='serviceRecord-line-info'>Customer ID</span>
+                            <span className='serviceRecord-line-info-values'>{customerId}</span>
                         </div>
-                        <div className="record-values">
-                            <span className='record-line-info-values'>{serviceId}</span>
-                            <span className='record-line-info-values'>{customerId}</span>
-                            <span className='record-line-info-values'>{vcslId}</span>
-                            <span className='record-line-info-values'>{petId}</span>
-                            <span className='record-line-info-values'>{date}</span>
-                            <span className='record-line-info-values'>{serviceCharge}</span>
-                           
+                        <div className='serviceRecord-line'>
+                            <span className='serviceRecord-line-info'>VCSL ID</span>
+                            <span className='serviceRecord-line-info-values'>{vcslId}</span>
+                        </div>
+                        <div className='serviceRecord-line'>
+                            <span className='serviceRecord-line-info'>Pet ID</span>
+                            <span className='serviceRecord-line-info-values'>{petId}</span>
+                        </div>
+                        <div className='serviceRecord-line'>
+                            <span className='serviceRecord-line-info'>Date</span>
+                            <span className='serviceRecord-line-info-values'>{date}</span>
+                        </div>
+                        <div className='serviceRecord-line'>
+                            <span className='serviceRecord-line-info'>Service Charge</span>
+                            <span className='serviceRecord-line-info-values'>{serviceCharge}</span>
                         </div>
                     </div> 
                 </div>

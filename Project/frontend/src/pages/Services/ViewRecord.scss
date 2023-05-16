@@ -1,76 +1,43 @@
-.record {
+.serviceRecord {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
+    // background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
     height: auto;
     min-height: 90vh;
+    padding: 40px;
 }
 
-table {
-    margin: 5px;
-    border: 2px solid gray;
-}
-
-table tr td {
-    align-items: center;
-    border: 1px solid lightgray;
-    padding: 5px 10px;
-}
-
-.record-container{
-    width: 500px;
-    height: 500px;
-    background-color: white;
-    border-radius: 10px;
+.serviceRecord-record-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 30px 50px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
-
-
-.record-details-container{
-    padding-top: 50px;
+.serviceRecord-details-container{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 625px;
-    height: 90%;
-}
-
-
-.record-prompts{
-    font-size: 1.2em;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
     flex-direction: column;
-    width: 49%;
-    height: 100%;
 }
 
-.record-values{
-    font-size: 1.2em;
+.serviceRecord-line {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 55%;
-    height: 100%;
+    margin: 10px 0;
 }
 
-.record-line-info{
+.serviceRecord-line-info{
+    flex: 1;
     padding: 5px 10px;
-    margin-top: 10px;
-    font-weight: 700;
+    font-weight: 600;
+    min-width: 180px; //change accordingly
+    white-space: pre-wrap;
 }
 
-.record-line-info-values{
-    width: 90%;
+.serviceRecord-line-info-values{
+    flex: 2;
     padding: 5px 10px;
-    margin-top: 10px;
     border-radius: 5px;
+    white-space: pre-wrap;
 }
-

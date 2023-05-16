@@ -32,54 +32,64 @@ function ViewLeave() {
 
     return (
         <AdminLayout>
-            {/* <div className='leave'>
-            <table>
-               
-                <tr>
-                    <td> ID</td>
-                    <td>{id}</td>
-                </tr>
-                <tr>
-                    <td>Staff Id</td>
-                    <td>{staffId}</td>
-                </tr>
-                <tr>
-                    <td>Leave Type</td>
-                    <td>{leaveType}</td>
-                </tr>
-                <tr>
-                    <td>Reason</td>
-                    <td>{reason}</td>
-                </tr>
-                <tr>
-                    <td>Leave From</td>
-                    <td>{leaveFrom}</td>
-                </tr>
-                <tr>
-                    <td>To</td>
-                    <td>{leaveTo}</td>
-                </tr>
-                
-            </table>
-            </div> */}
 
-            <div className="main-view-leaves">
-                <div className="leave-table">
-                <div className="leave-headings">
-                    <span className="staff-leave-prompts">Staff ID</span>
-                    <span className="staff-leave-prompts">Leave Type</span>
-                    <span className="staff-leave-prompts">Reason</span>
-                    <span className="staff-leave-prompts">Leave From</span>
-                    <span className="staff-leave-prompts">To</span>
+            <div className='leave'>
+                {/* <div className='leave'>
+                <table>
+                
+                    <tr>
+                        <td> ID</td>
+                        <td>{id}</td>
+                    </tr>
+                    <tr>
+                        <td>Staff Id</td>
+                        <td>{staffId}</td>
+                    </tr>
+                    <tr>
+                        <td>Leave Type</td>
+                        <td>{leaveType}</td>
+                    </tr>
+                    <tr>
+                        <td>Reason</td>
+                        <td>{reason}</td>
+                    </tr>
+                    <tr>
+                        <td>Leave From</td>
+                        <td>{leaveFrom}</td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td>{leaveTo}</td>
+                    </tr>
+                    
+                </table>
+                </div> */}
+
+                <div className='leave-record-container'>
+                    <div className = "leave-details-container">                     
+                        <div className='leave-line'>
+                            <span className='leave-line-info'>Staff ID</span>
+                            <span className='leave-line-info-values'>{staffId}</span>
+                        </div>
+                        <div className='leave-line'>
+                            <span className='leave-line-info'>Leave Type</span>
+                            <span className='leave-line-info-values'>{leaveType}</span>
+                        </div>
+                        <div className='leave-line'>
+                            <span className='leave-line-info'>Reason </span>
+                            <span className='leave-line-info-values'>{reason}</span>
+                        </div>
+                        <div className='leave-line'>
+                            <span className='leave-line-info'>Leave From</span>
+                            <span className='leave-line-info-values'>{leaveFrom}</span>
+                        </div>
+                        <div className='leave-line'>
+                            <span className='leave-line-info'>Leave To</span>
+                            <span className='leave-line-info-values'>{leaveTo}</span>
+                        </div>
+                    </div> 
                 </div>
-                <div className="leave-heading-values">
-                    <span className="staff-leave-prompts-values">{staffId}</span>
-                    <span className="staff-leave-prompts-values">{leaveType}</span>
-                    <span className="staff-leave-prompts-values">{reason}</span>
-                    <span className="staff-leave-prompts-values">{leaveFrom}</span>
-                    <span className="staff-leave-prompts-values">{leaveTo}</span>
-                </div>
-                </div>
+
             </div>
 
         </AdminLayout>

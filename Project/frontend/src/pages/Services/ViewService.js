@@ -14,7 +14,6 @@ function ViewService() {
     const [serviceName, setservicetName] = useState('')
     const [serviceCharge, setserviceCharge] = useState('')
     const [serviceDescription, setserviceDescription] = useState('')
-    //const [file, setFile] = useState('')
     const [imageURL, setImageURL] = useState('')
 
     useEffect(() => {
@@ -34,46 +33,50 @@ function ViewService() {
     return (
         <AdminLayout>
             <div className='service'>
-            {/* <table>
-                <tr>
-                    <td colSpan='2' className='imageContainer'>
-                        <img src={imageURL} className='image' height='120px' />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Service ID</td>
-                    <td>{serviceId}</td>
-                </tr>
-                <tr>
-                    <td>Service Name</td>
-                    <td>{serviceName}</td>
-                </tr>
-                <tr>
-                    <td>Service Charge</td>
-                    <td>{serviceCharge}</td>
-                </tr>
-                <tr>
-                    <td>Service Description</td>
-                    <td style={{whiteSpace: 'pre-wrap'}}>{serviceDescription}</td>
-                </tr>
+                {/* <table>
+                    <tr>
+                        <td colSpan='2' className='imageContainer'>
+                            <img src={imageURL} className='image' height='120px' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Service ID</td>
+                        <td>{serviceId}</td>
+                    </tr>
+                    <tr>
+                        <td>Service Name</td>
+                        <td>{serviceName}</td>
+                    </tr>
+                    <tr>
+                        <td>Service Charge</td>
+                        <td>{serviceCharge}</td>
+                    </tr>
+                    <tr>
+                        <td>Service Description</td>
+                        <td style={{whiteSpace: 'pre-wrap'}}>{serviceDescription}</td>
+                    </tr>
+                    
+                </table> */}
                 
-            </table> */}
-
                 <div className='service-record-container'>
                     <div className = "service-pic-container">
                         <img src={imageURL} className='service-img'></img>
                     </div>
-                    <div className = "service-details-container">
-                        <div className="service-prompts">
+                    <div className = "service-details-container">                     
+                        <div className='service-line'>
                             <span className='service-line-info'>Service ID</span>
-                            <span className='service-line-info'>Service Name</span>
-                            <span className='service-line-info'>Service Charge</span>
-                            <span className='service-line-info'>Service Description</span>
-                        </div>
-                        <div className="service-values">
                             <span className='service-line-info-values'>{serviceId}</span>
+                        </div>
+                        <div className='service-line'>
+                            <span className='service-line-info'>Service Name</span>
                             <span className='service-line-info-values'>{serviceName}</span>
+                        </div>
+                        <div className='service-line'>
+                            <span className='service-line-info'>Service Charge</span>
                             <span className='service-line-info-values'>{serviceCharge}</span>
+                        </div>
+                        <div className='service-line'>
+                            <span className='service-line-info'>Service Description</span>
                             <span className='service-line-info-values'>{serviceDescription}</span>
                         </div>
                     </div> 
