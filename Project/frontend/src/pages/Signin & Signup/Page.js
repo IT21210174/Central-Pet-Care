@@ -17,10 +17,16 @@ function Login() {
         <div className="form-container-signin-signup">
             <div className="left-partition-reg-user">
                 <div className="switch-buttons-container">
-                    <div className={activeOne === 0 ? `signer-btn active` : `signer-btn`} onClick={()=>setActiveOne(0)}>sign in</div>
-                    <div className={activeOne === 1 ? `signer-btn active` : `signer-btn`} onClick={()=>setActiveOne(1)}>sign up</div>
+                    <div className={activeOne === 0 ? `signer-btn active` : `signer-btn`} onClick={()=>{
+                        setActiveOne(0) 
+                        setTracker(true)
+                    }}>sign in</div>
+                    <div className={activeOne === 1 ? `signer-btn active` : `signer-btn`} onClick={()=>{
+                        setActiveOne(1)
+                        setTracker(false)
+                    }}>sign up</div>
                 </div>
-                <SigninSignupContainer/>
+                <SigninSignupContainer trackState={tracker}/>
             </div>
             <img src={LoginPic} alt="" className="right-partition-reg-user"/>
         </div>

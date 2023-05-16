@@ -1,3 +1,13 @@
+// colors
+$primary-color-navyBlue: #2c2c54;
+$secondary-color-purple1: #7d5fff;
+$secondary-color-purple2: #5f27cd;
+$secondary-color-purple3: #9980fa;
+$secondary-color-purple4: #e9e3ff;
+$ash-color: #636e72;
+$success-color: #2ecc71;
+$danger-color: #e74c3c;
+
 // page component css
 .background{
     width: 100vw;
@@ -71,4 +81,77 @@
     height: 100%;
     width: 98%;
     background-color: rgba($color: #000000, $alpha: .1);
+}
+
+// sign in form stylings
+.signin-signup-cpt-frame{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.signin-signup-cpt-frame > form{
+    width: 100%;
+}
+
+.signin-signup-label{
+    font-size: .8em;
+    font-weight: 600;
+    color: $ash-color;
+    user-select: none;
+    color: $ash-color;
+}
+
+.input-container-signin-signup{
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 6px;
+}
+
+.signin-signup-input-field{
+    width: 100%;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid $ash-color;
+    margin-top: 5px;
+}
+
+.signin-signup-input-field:focus{
+    outline-color: $secondary-color-purple1;
+}
+
+.signin-signup-btn{
+    width: 100%;
+    background-color: $secondary-color-purple1;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 0;
+    border: none;
+    border-radius: 4px;
+    margin-top: 25px;
+}
+
+// error message styling
+.error-state-signin{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    font-size: .9em;
+    font-weight: 600;
+    color: #d63031;
+    margin-top: 10px;
+}
+
+.hide{
+    visibility: hidden;
 }
