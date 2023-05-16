@@ -107,12 +107,12 @@ function AddProduct() {
 
                 <section className="input-container">
                   <span className="input-title">Product name</span>
-                  <input type='text' className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
+                  <input type='text' pattern="^[a-zA-Z].{9,}$" title="Product name should start with a letter and contain 10 or more characters" className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
                   <span className="input-title">Price</span>
-                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Enter price with up to 2 decimals (e.g. 59.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
+                  <input type='text' pattern="[0-9]*[.]?[0-9]{0,2}" title='Price can only contain up to 2 decimal places (e.g. - 99.99)' className="input-field" value={price} onChange={(e) => setPrice(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
@@ -140,7 +140,7 @@ function AddProduct() {
 
                     <section className="input-container">
                         <span className="input-title">Brand</span>
-                        <input type='text' className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
+                        <input type='text' pattern="^[a-zA-Z0-9 ]+$" title="Brand can only contain alphanumeric characters and spaces" className="input-field" value={brand} onChange={(e) => setBrand(e.target.value)} required />
                     </section>
 
                     <section className="input-container">
@@ -162,7 +162,7 @@ function AddProduct() {
 
                     <section className="input-container">
                         <span className="input-title">SKU</span>
-                        <input type='text' className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
+                        <input type='text' pattern="^[a-zA-Z0-9]+$" title="SKU can only contain alphanumeric characters" className="input-field" value={SKU} onChange={(e) => setSKU(e.target.value)} required/>
                     </section>
 
                     <section className="input-container">
