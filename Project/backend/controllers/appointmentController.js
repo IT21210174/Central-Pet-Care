@@ -47,7 +47,8 @@ const updateAppointment = (req, res) => {
         appointment.reason = req.body.reason;
         appointment.date = req.body.date;
         appointment.additionalNote = req.body.additionalNote;
-        appointment.status = req.body.status;       
+        appointment.status = req.body.status; 
+        appointment.vet = req.body.vet;       
 
         appointment.save()
             .then(() => res.status(200).json("Appointment updated!"))

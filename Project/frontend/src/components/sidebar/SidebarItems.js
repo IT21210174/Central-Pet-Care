@@ -63,6 +63,12 @@ import { BiNotepad } from "react-icons/bi"
 import { MdEditNote } from "react-icons/md"
 import { GiMedicines } from "react-icons/gi"
 
+//appointment management
+import { RiCalendarLine } from 'react-icons/ri'
+import { FaRegCalendarAlt } from 'react-icons/fa'
+import { MdOutlineSchedule } from 'react-icons/md'
+import { BsCalendarCheck } from 'react-icons/bs'
+
 
 const SidebarItems = [
 	{
@@ -200,6 +206,34 @@ const SidebarItems = [
 				link: "/admin/inventory/generate-reports",
 				nestedItemicon: <TbReportAnalytics />,
 				nestedItemtext: "Generate reports",
+			},
+		],
+	},
+
+	{
+		id: 7000,
+		icon: <RiCalendarLine />,
+		text: "Appointment Management",
+		nestedFunctions: [
+			{
+				id: 700,
+				link: "/admin/appointments/manageAppointments",
+				nestedItemicon: <FaRegCalendarAlt />,
+				nestedItemtext: "Manage Appointments",
+			},
+
+			{
+				id: 701,
+				link: "/admin/appointments/upcoming",
+				nestedItemicon: <MdOutlineSchedule />,
+				nestedItemtext: "Upcoming",
+			},
+
+			{
+				id: 702,
+				link: "/admin/appointments/completed",
+				nestedItemicon: <BsCalendarCheck />,
+				nestedItemtext: "Completed",
 			},
 		],
 	},

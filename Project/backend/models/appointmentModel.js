@@ -46,6 +46,9 @@ const appointmentSchema = mongoose.Schema({
         type: String,
         required: true,
         default: "Pending",
+    },
+    vet: {
+        type: String,
     }
 }, {
     timestamps: true
@@ -68,7 +71,7 @@ appointmentSchema.pre('save', async function (next) {
         );
 
         // Generate the new appointmentId using the incremented seq value from the counter
-        doc.appointmentId = `APPT${counter.seq.toString().padStart(4, '0')}`;
+        doc.appointmentId = `APT${counter.seq.toString().padStart(4, '0')}`;
         }
 
         return next(); // Call the next middleware in the chain

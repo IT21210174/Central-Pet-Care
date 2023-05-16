@@ -99,7 +99,11 @@ import MyOrders from './pages/Store/MyOrders';
 
 //appointment
 import CreateAppointment from './pages/Appointment/CreateAppointment';
-
+import ManageAppointments from './pages/Appointment/ManageAppointments';
+import EditAppointment from './pages/Appointment/EditAppointment';
+import ViewAppointment from './pages/Appointment/ViewAppointment';
+import UpcomingAppointments from './pages/Appointment/UpcomingAppointments';
+import CompletedAppointments from './pages/Appointment/CompletedAppointments';
 
 function App() {
   return (
@@ -208,11 +212,20 @@ function App() {
 
         <Route path='/admin/medicines/manageMedicines' element={<Medicine />} />
 
+        {/* appointment routes */}
+        <Route path='/makeAppointment' element={<CreateAppointment />} />
+
+        <Route path='/admin/appointments/manageAppointments' element={<ManageAppointments />} />
+        <Route path='/admin/appointments/editAppointment/:id' element={<EditAppointment />} />
+        <Route path='/admin/appointments/viewAppointment/:id' element={<ViewAppointment />} />
+        <Route path='/admin/appointments/upcoming' element={<UpcomingAppointments />} />
+        <Route path='/admin/appointments/completed' element={<CompletedAppointments />} />
+
+
         <Route path='/register' element={<Register />} />
         <Route path='/user' element={<UserLayout />} />
         <Route path='/account/myOrders' element={<MyOrders />} />
 
-        <Route path='/makeAppointment' element={<CreateAppointment />} />
 
       </Routes>
     </Router>

@@ -1,60 +1,78 @@
-import React, { useState, useRef } from 'react';
-import { publicRequest } from '../../requestMethods'
+import React, { useState, useEffect, useRef } from 'react';
+import AdminLayout from '../Layouts/AdminLayout'
+import { userRequest } from '../../requestMethods'
 import { toast } from 'react-hot-toast';
-import Header from '../../components/store/Header/Header'
-import Footer from '../../components/store/Footer'
-import './createAppointment.scss'
+import { useNavigate, useParams } from 'react-router-dom';
+import './editAppointment.scss'
 
-function CreateAppointment() {
+function EditAppointment() {
+
+  const { id } = useParams()
+  const navigate = useNavigate()
 
   const [ownerName, setOwnerName] = useState('')
   const [ownerContact, setOwnerContact] = useState('')
   const [petName, setpetName] = useState('')
   const [petAge, setPetAge] = useState('')
-  const [petSpecies, setPetSpecies] = useState('Dog')
-  const [petGender, setPetGender] = useState('Male')
+  const [petSpecies, setPetSpecies] = useState('')
+  const [petGender, setPetGender] = useState('')
   const [reason, setReason] = useState('')
   const [date, setDate] = useState('')
   const [additionalNote, setAdditionalNote] = useState('')
+  const [status, setStatus] = useState('')
+  const [vet, setVet] = useState('')
+
+
+  useEffect(() => {
+    userRequest.get('/appointments/' + id)
+    .then(res => {
+        setOwnerName(res.data.ownerName)
+        setOwnerContact(res.data.ownerContact)
+        setpetName(res.data.petName)
+        setPetAge(res.data.petAge)
+        setPetSpecies(res.data.petSpecies)
+        setPetGender(res.data.petGender)
+        setReason(res.data.reason)
+        setDate(res.data.date)
+        setAdditionalNote(res.data.additionalNote)
+        setStatus(res.data.status)
+        setVet(res.data.vet)
+    }).catch(err =>{
+        toast.error(err.message)
+    })
+  }, [id])
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    publicRequest.post("/appointments", { ownerName, ownerContact, petName, petAge, petSpecies, petGender, reason, date, additionalNote })
+    if (status === "Completed" && vet.trim() === "") {
+      toast.error('Please provide the name of the veterinary surgeon for completed appointments');
+      return;
+    }
+
+    userRequest.put("/appointments/" + id, { ownerName, ownerContact, petName, petAge, petSpecies, petGender, reason, date, additionalNote, status, vet })
     .then(res => {
-        toast.success('Appointment requested')
-        handleReset()
+        toast.success('Appointment updated')
+        navigate('/admin/appointments/manageAppointments')
     }).catch(err => {
         toast.error(err.message)
     })
-  } 
-
-  const handleReset = () => {
-    setOwnerName('')
-    setOwnerContact('')
-    setpetName('')
-    setPetAge('')
-    setPetSpecies('Dog')
-    setPetGender('Male')
-    setReason('')
-    setDate('')
-    setAdditionalNote('')
-  }
+    
+  }  
 
 
   return (
-    <div>
-      <Header />
-      <div className="add-appointment-container-main">
+    <AdminLayout>
+      <div className="edit-appointment-container-main">
         {/* this is the form container */}
-        <form className="add-appointment-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-appointment">Book an appointment</span>
+        <form className="edit-appointment-form-container" onSubmit={handleSubmit}>
+            <span className="tagline-edit-appointment">Edit appointment</span>
 
             {/* input field container */}
             <div className="column-container">
               {/* column one */}
-              <div className="add-appointment-column">
+              <div className="edit-appointment-column">
 
                 <section className="input-container">
                   <span className="input-title">Owner name</span>
@@ -93,20 +111,19 @@ function CreateAppointment() {
                   </select> 
                 </section>
 
-                <div className="btn-container-add-appointment">
-                    <button type='submit' className="submit-btn">Book Now</button>
-                    {/* <button type='reset' className="reset-btn">Reset</button> */}
-                </div>
-
+                <section className="input-container">
+                    <span className="input-title">Veterinary Surgeon</span>
+                    <input type='text'  className="input-field" value={vet} onChange={(e) => setVet(e.target.value)} />
+                </section>
 
               </div>
 
               {/* column two */}
-              <div className="add-appointment-column">
+              <div className="edit-appointment-column">
 
                 <section className="input-container">
                     <span className="input-title">Contact number</span>
-                    <input type='text'  className="input-field" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required/>
+                    <input type='tel'  className="input-field" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required/>
                 </section>
                 
                 <section className="input-container">
@@ -124,16 +141,28 @@ function CreateAppointment() {
                     <textarea className='input-textarea' id="" cols="30" rows="10" value={additionalNote} onChange={(e) => setAdditionalNote(e.target.value)} required></textarea>
                 </section>
 
+                <section className="input-container">
+                  <span className="input-title">Status</span>
+                  <select className="input-field" value={status} onChange={(e) => setStatus(e.target.value)} required>
+                      <option className='select-option' value="Pending">Pending</option>
+                      <option className='select-option' value="Approved">Approved</option>
+                      <option className='select-option' value="Completed">Completed</option>
+                      <option className='select-option' value="Cancelled">Cancelled</option>
+                  </select> 
+                </section>
+
+                <div className="btn-container-edit-appointment">
+                    <button type='submit' className="submit-btn">Update</button>
+                </div>
+
 
               </div>
             </div>
         </form>
-    </div>
-
-    <Footer />
-    </div>
+      </div>
+    </AdminLayout>
 
   )
 }
 
-export default CreateAppointment
+export default EditAppointment
