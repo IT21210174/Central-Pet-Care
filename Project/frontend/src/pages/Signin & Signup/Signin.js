@@ -15,7 +15,7 @@ function Signin() {
               {/* password container */}
               <div className="input-container-signin-signup">
                 <span className="signin-signup-label">Password*</span>
-                <input type="text" className="signin-signup-input-field" placeholder='Enter your password'/>
+                <input type="password" className="signin-signup-input-field" placeholder='Enter your password'/>
               </div>
               {/* error message */}
               <span className={errorState ? `error-state-signin` : `error-state-signin hide`}>

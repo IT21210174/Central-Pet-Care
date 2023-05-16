@@ -45,12 +45,12 @@ function Signup() {
                {/* password container */}
               <div className="input-container-signin-signup">
                 <span className="signin-signup-label">Password*</span>
-                <input type="text" className="signin-signup-input-field" placeholder='Enter your password' name='password' value={passwordValidator.password} onChange={signUpFieldHandler}/>
+                <input type="password" className="signin-signup-input-field" placeholder='Enter your password' name='password' value={passwordValidator.password} onChange={signUpFieldHandler}/>
               </div>
                {/* confirm password container */}
               <div className="input-container-signin-signup">
                 <span className="signin-signup-label">Re-enter Password*</span>
-                <input type="text" className="signin-signup-input-field" placeholder='Re-enter the password' name='repassword' value={passwordValidator.repassword} onChange={signUpFieldHandler}/>
+                <input type="password" className="signin-signup-input-field" placeholder='Re-enter the password' name='repassword' value={passwordValidator.repassword} onChange={signUpFieldHandler}/>
               </div>
               {/* error message */}
               <span className={errorState ? `error-state-signin` : `error-state-signin hide`}>
