@@ -97,6 +97,9 @@ import Register from './pages/User/Register';
 import UserLayout from './pages/Layouts/UserLayout'
 import MyOrders from './pages/Store/MyOrders';
 
+//appointment
+import CreateAppointment from './pages/Appointment/CreateAppointment';
+
 
 function App() {
   return (
@@ -208,6 +211,8 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/user' element={<UserLayout />} />
         <Route path='/account/myOrders' element={<MyOrders />} />
+
+        <Route path='/makeAppointment' element={<CreateAppointment />} />
 
       </Routes>
     </Router>

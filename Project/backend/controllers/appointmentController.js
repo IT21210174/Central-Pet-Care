@@ -21,9 +21,9 @@ const getAppointmentById = (req, res) => {
 // Create an appointment
 const createAppointment = (req, res) => {
 
-    const { ownerName, ownerContact, petName, petSpecies, serviceType, date, additionalNote } = req.body;
+    const { ownerName, ownerContact, petName, petAge, petSpecies, petGender, reason, date, additionalNote } = req.body;
   
-    const newAppointment = new Appointment({ ownerName, ownerContact, petName, petSpecies, serviceType, date, additionalNote });
+    const newAppointment = new Appointment({ ownerName, ownerContact, petName, petAge, petSpecies, petGender, reason, date, additionalNote });
 
     newAppointment
     .save()
@@ -41,8 +41,10 @@ const updateAppointment = (req, res) => {
         appointment.ownerName = req.body.ownerName;
         appointment.ownerContact  = req.body.ownerContact ;
         appointment.petName = req.body.petName;
+        appointment.petAge = req.body.petAge;
         appointment.petSpecies = req.body.petSpecies;
-        appointment.serviceType = req.body.serviceType;
+        appointment.petGender = req.body.petGender;
+        appointment.reason = req.body.reason;
         appointment.date = req.body.date;
         appointment.additionalNote = req.body.additionalNote;
         appointment.status = req.body.status;       

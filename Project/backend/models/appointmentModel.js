@@ -15,14 +15,22 @@ const appointmentSchema = mongoose.Schema({
         required: true
     },
     petName: {
-        type: Object,
+        type: String,
+        required: true
+    },
+    petAge: {
+        type: Number,
         required: true
     },
     petSpecies: {
         type: String,
         required: true
     },
-    serviceType: {
+    petGender: {
+        type: String,
+        required: true
+    },
+    reason: {
         type: String,
         required: true
     },
