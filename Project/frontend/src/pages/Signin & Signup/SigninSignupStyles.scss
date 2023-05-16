@@ -1,0 +1,74 @@
+// page component css
+.background{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container-signin-signup{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 0 0 40px 0;
+    padding: 10px;
+    box-shadow: 3px 3px 8px rgba($color: #000000, $alpha: .3);
+}
+
+.left-partition-reg-user{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 35%;
+    height: 100%;
+    background-color: white;
+}
+
+// buttons and button container
+.switch-buttons-container{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.signer-btn{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-transform: lowercase;
+    user-select: none;
+}
+
+.signer-btn:hover {
+    cursor: pointer;
+}
+
+.active{
+    background-color: rgba($color: #000000, $alpha: .1);
+    border-radius: 15px 15px 0 0;
+}
+
+.right-partition-reg-user{
+    height: 100%;
+    width: 66%;
+    object-fit: cover;
+    border-radius: 35px 0 35px 0;
+}
+
+// sign in sign up container styles
+.signin-signup-container-main{
+    height: 100%;
+    width: 98%;
+    background-color: rgba($color: #000000, $alpha: .1);
+}
