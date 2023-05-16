@@ -93,13 +93,28 @@ function AddProduct() {
     }),
   };
 
+  //Demo
+  const showDemo = (e) => {
+    e.preventDefault()
+    setProductName('Norsh Freeze-Dried Raw Salmon Skin Twirls Dog & Cat Treats - 25g')
+    setBrand('Nash')
+    setPrice(900)
+    setQuantity(26)
+    setDescription('100% Natural, Raw Hand-rolled Raw Salmon Skin Twirls Pet Treat. Freeze-dried to Preserve Peak Nutritional Content. A delicious treat for dogs and cats.')
+    setSKU('PET00102')
+    setSelectedCategoryA(["Dog", "Cat"].map(cat => ({ value: cat, label: cat })));
+    setSelectedCategoryB({ value: "Food", label: "Food" });
+  }
 
   return (
     <AdminLayout>
       <div className="add-product-container-main">
         {/* this is the form container */}
         <form className="add-product-form-container" onSubmit={handleSubmit}>
-            <span className="tagline-add-product">Add product</span>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+              <span className="tagline-add-product">Add product</span>
+              <button onClick={showDemo} style={{padding: '5px 20px', marginRight: '25px'}}>DEMO</button>
+            </div>
             {/* input field container */}
             <div className="column-container">
               {/* column one */}

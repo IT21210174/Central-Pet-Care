@@ -107,7 +107,7 @@ function ViewOrder() {
                     <td className='orderData'>{shipping.name}</td>
                 </tr>
                 <tr className='orderRow'>
-                    <td className='orderDetail'>Address</td>
+                    <td className='orderDetail'>Delivery Address</td>
                     <td className='orderData'>
                         {shipping?.address?.line1 && shipping?.address?.city
                             ? shipping?.address?.line2
@@ -118,7 +118,7 @@ function ViewOrder() {
                     </td>
                 </tr>
                 <tr className='orderRow'>
-                    <td className='orderDetail'>Phone</td>
+                    <td className='orderDetail'>Phone Number</td>
                     <td className='orderData'>{shipping.phone}</td>
                 </tr>
                 <tr className='orderRow'>
