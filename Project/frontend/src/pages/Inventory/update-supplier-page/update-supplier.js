@@ -1,6 +1,5 @@
 import React , {useEffect, useState} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
-import swal from 'sweetalert2';
 import { userRequest } from '../../../requestMethods';
 import './update-supplier.scss'
 import Swal from 'sweetalert2';
@@ -193,7 +192,7 @@ function UpdateSupplierDetails() {
 					onSubmit={updateSupplierFormHandler}
 				>
 					<span className="tagline-add-supplier">
-						Fill the form for supplier registration
+						Update details of the supplier
 					</span>
 					{/* input field container */}
 					<div className="column-container">

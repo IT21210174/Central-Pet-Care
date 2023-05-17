@@ -16,6 +16,7 @@ const deliverRoutes = require('./routes/deliverRoutes');
 
 const inventoryRoutes = require('./routes/inventoryRoutes');
 const supplierRoutes = require('./routes/supplierRoutes');
+const releaseItemsRoutes = require('./routes/releaseItemsRoutes')
 
 //staff management
 const staffRoutes = require('./routes/staffRoutes')
@@ -57,6 +58,7 @@ app.use("/api/deliver-orders", deliverRoutes);
 
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/suppliers', supplierRoutes);
+app.use('/api/release-items',releaseItemsRoutes)
 
 //staff management
 app.use('/api/staff', staffRoutes);

@@ -41,6 +41,7 @@ import { FaUserEdit } from "react-icons/fa";
 
 // inventory
 import {TbReportAnalytics} from "react-icons/tb"
+import { BsCalculator } from "react-icons/bs"
 
 // staff
 import { AiOutlineUserAdd } from "react-icons/ai";
@@ -176,7 +177,7 @@ const SidebarItems = [
 
 			{
 				id: 104,
-				link: "/admin/inventory/release-items",
+				link: "/admin/inventory/release-search",
 				nestedItemicon: <BiCategoryAlt />,
 				nestedItemtext: "Release items",
 			},
@@ -200,6 +201,13 @@ const SidebarItems = [
 				link: "/admin/inventory/generate-reports",
 				nestedItemicon: <TbReportAnalytics />,
 				nestedItemtext: "Generate reports",
+			},
+
+			{
+				id: 108,
+				link: "/inventory/rop-calculator",
+				nestedItemicon: <BsCalculator />,
+				nestedItemtext: "ROP Calculator",
 			},
 		],
 	},
