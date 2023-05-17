@@ -41,6 +41,7 @@ import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import OrdersReport from "./pages/Inventory/generate-reports/OrdersReport";
+import Login from './pages/Signin & Signup/Page';
 
 //payroll management
 import AddPayroll from './pages/Staff/Payroll/AddPayroll';
@@ -92,6 +93,7 @@ import EditPrescription from './pages/Vet/Prescription/EditPrescription';
 import ViewPrescription from './pages/Vet/Prescription/ViewPrescription';
 //medicine
 import Medicine from './pages/Vet/Medicine/Medicine';
+import HomePage from './pages/Home/Home-page';
 
 import Register from './pages/User/Register';
 import UserLayout from './pages/Layouts/UserLayout'
@@ -157,6 +159,8 @@ function App() {
         <Route path="/admin/inventory/release-items" element={<ReleaseItems/>} />
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
+        <Route path="/central-pet-care" element={<HomePage/>} />
+        <Route path="/central-pet-care/login" element={<Login/>} />
 
 
         {/* staff routes */}

@@ -3,8 +3,7 @@ import { AppContext } from "../../../contexts/AppContext";
 import swal from "sweetalert2";
 import AdminLayout from "../../Layouts/AdminLayout";
 import api from "../../../services/api";
-// import uploadImage from './uploadImage'
-// import './firebase'
+import uploadImage from '../../../uploadImage'
 import "./addItem.scss";
 
 const AddItem = () => {
@@ -18,7 +17,8 @@ const AddItem = () => {
 		rackNo: "",
 		quantity: "",
 		manufacturer: "",
-		productDescription: "",
+		reorderLevel:"",
+		measurementUnit:"",
 		productImage: "",
 	});
 
@@ -28,10 +28,14 @@ const AddItem = () => {
 
 		if (formData.sku !== "" && formData.category !== "") {
 
-			// const imageURL = await uploadImage(file);
-			// productImage: imageURL
+			const imageURL = await uploadImage(file);
+			setFormData({...formData, productImage: imageURL})
 
-			api.post("/", {...formData})
+				const dataToSend = {
+					...formData , productImage: imageURL
+				}
+
+				api.post("/", dataToSend)
 				.then((response) => {
 					console.log(response);
 					swal.fire({
@@ -44,8 +48,15 @@ const AddItem = () => {
 				})
 				.catch((error) => {
 					console.log(error);
+					swal.fire({
+						icon: "error",
+						iconColor: "#e74c3c",
+						title: "Operation Not Success",
+						text: error,
+					});
 				});
-
+			
+			console.log(formData);
 			setFormData({
 				sku: "",
 				itemName: "",
@@ -54,7 +65,8 @@ const AddItem = () => {
 				rackNo: "",
 				quantity: "",
 				manufacturer: "",
-				productDescription: "",
+				reorderLevel:"",
+				measurementUnit:"",
 				productImage: "",
 			});
 		} else {
@@ -175,18 +187,27 @@ const AddItem = () => {
 							</section>
 							<section className="input-container">
 								<span className="input-title">
-									product description
+									reorder level
 								</span>
-								<textarea
-									className="input-textarea"
-									value={formData.productDescription}
-									id=""
-									cols="30"
-									rows="10"
-									name="productDescription"
+								<input
+									className="input-field"
+									value={formData.reorderLevel}
+									name="reorderLevel"
 									onChange={addItemInputHandler}
-								></textarea>
+								/>
 							</section>
+							<section className="input-container">
+								<span className="input-title">
+									measurement unit
+								</span>
+								<input
+									className="input-field"
+									value={formData.measurementUnit}
+									name="measurementUnit"
+									onChange={addItemInputHandler}
+								/>
+							</section>
+							
 							<section className="input-container">
 								<span className="input-title">
 									product image

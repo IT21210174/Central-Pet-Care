@@ -36,7 +36,12 @@ const itemSchema = mongoose.Schema({
         required: true
     },
 
-    productDescription:{
+    reorderLevel:{
+        type:Number,
+        required: false
+    },
+
+    measurementUnit:{
         type:String,
         required: true
     },
