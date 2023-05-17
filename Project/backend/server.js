@@ -38,6 +38,9 @@ const vetRoutes  = require('./routes/vetRoutes')
 const prescriptionRoutes  = require('./routes/prescriptionRoutes')
 const medicineRoutes  = require('./routes/medicineRoutes')
 
+//appointment management
+const appointmentRoutes  = require('./routes/appointmentRoutes')
+
 const port = process.env.PORT || 4000;
 
 const app = express();
@@ -78,6 +81,11 @@ app.use('/api/servicerecords', servicerecordsRoutes);
 app.use('/api/vets', vetRoutes);
 app.use('/api/prescriptions', prescriptionRoutes);
 app.use('/api/medicines', medicineRoutes);
+
+
+//appointment management
+app.use('/api/appointments', appointmentRoutes);
+
 
 app.use(errorHandler);
 

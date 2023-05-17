@@ -8,29 +8,33 @@ function ViewInventoryItem() {
 	const location = useLocation();
 	const { id } = location.state;
 
+	const [loading, setIsLoading] = useState(false)
 	const [viewItem, setViewItem] = useState({});
 
 	const navigate = useNavigate()
 
 	useEffect(() => {
 		const fetchData = async () => {
-			await api.get(`mongo/${id}`).then(
-				(response) => {
+			await api.get(`mongo/${id}`)
+			.then((response) => {
 					setViewItem(response.data);
-				},
-				[setViewItem]
-			);
+					setIsLoading(true)
+				}
+			)
+			.catch((err)=>{
+				console.log(err);
+			})
 		};
 
 		fetchData();
-	});
+	},[]);
 
 	console.log(viewItem);
 	return (
 		<AdminLayout>
 			<div className="view-inventory-item-container">
 				<div className="container">
-					<div className="pic-box-inventory-item"></div>
+					<img src={viewItem.productImage} alt="" className="pic-box-inventory-item"/>
 					<button className="view-item-back-btn" onClick={()=>{navigate("/admin/inventory/manage-inventory")}}>Back</button>
 				</div>
 				<div className="container">
@@ -40,20 +44,19 @@ function ViewInventoryItem() {
 							Manufacturer
 						</span>
 						<span className="data-fields-inventory">SKU ID</span>
-						<span className="data-fields-inventory">Quantity</span>
+						<span className="data-fields-inventory">Remaining Quantity</span>
 						<span className="data-fields-inventory">
 							Unit Price
 						</span>
 						<span className="data-fields-inventory">Category</span>
 						<span className="data-fields-inventory">Rack No</span>
+						<span className="data-fields-inventory">Reorder Level</span>
+						<span className="data-fields-inventory">Measurement Unit</span>
 						<span className="data-fields-inventory">
 							Created At
 						</span>
 						<span className="data-fields-inventory">
 							Updated At
-						</span>
-						<span className="data-fields-inventory">
-							Description
 						</span>
 					</div>
 					<div className="field-values">
@@ -79,13 +82,16 @@ function ViewInventoryItem() {
 							{viewItem.rackNo}
 						</span>
 						<span className="data-fields-inventory-values">
-							{viewItem.createdAt}
+							{viewItem.reorderLevel}
 						</span>
 						<span className="data-fields-inventory-values">
-							{viewItem.updatedAt}
+							{viewItem.measurementUnit}
 						</span>
 						<span className="data-fields-inventory-values">
-							{viewItem.productDescription}
+							{loading ? viewItem.createdAt.toString().substring(0,10) : viewItem.createdAt}
+						</span>
+						<span className="data-fields-inventory-values">
+							{loading ? viewItem.updatedAt.toString().substring(0,10) : viewItem.updatedAt}
 						</span>
 					</div>
 				</div>
