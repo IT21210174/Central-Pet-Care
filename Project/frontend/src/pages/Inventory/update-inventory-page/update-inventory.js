@@ -1,7 +1,6 @@
 import React , {useEffect, useState} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
-import swal from 'sweetalert2';
-import api from '../../../services/api';
+import {userRequest} from '../../../requestMethods'
 import './update-inventory.scss'
 import Swal from 'sweetalert2';
 
@@ -15,12 +14,18 @@ function UpdateItem() {
     const {id} = location.state
     
     useEffect(()=>{
-        api.get(`/mongo/${id}`).then((response)=>{
-            setUpdateFormData(response.data)
-            console.log(response.data);
-        })
+
+		const fetchData = async() => {
+			await userRequest.get(`inventory/mongo/${id}`).then((response)=>{
+				setUpdateFormData(response.data)
+				console.log(response.data);
+			})
+		}
+
+		fetchData()
     },[])
 
+	const [file , setFile] = useState('')
     const [updateFormData, setUpdateFormData] = useState({
         _id:"",
 		sku: "",
@@ -35,11 +40,11 @@ function UpdateItem() {
 	});
 
 
-    const updateFormHandler = (event) => {
+    const updateFormHandler = async(event) => {
 
 		event.preventDefault()
 
-        api.put(`/${id}` , updateFormData).then((response)=>{
+       await userRequest.put(`inventory/${id}` , updateFormData).then((response)=>{
             if(response){
                 Swal.fire(
                     {
@@ -64,7 +69,7 @@ function UpdateItem() {
                 console.log(error);
         })
 
-		navigate("/inventory/manage-inventory")
+		navigate("/admin/inventory/manage-inventory")
     }
 
 	const updateItemInputHandler = (event) => {
@@ -72,16 +77,19 @@ function UpdateItem() {
 	};
 
 	const backBtn = () => {
-		navigate("/inventory/manage-inventory")
+		navigate("/admin/inventory/manage-inventory")
 	}
 
   return (
         <AdminLayout>
 			<div className="add-item-container-main">
 				{/* this is the form container */}
-				<form className="add-item-form-container" onSubmit={updateFormHandler}>
+				<form
+					className="add-item-form-container"
+					onSubmit={updateFormHandler}
+				>
 					<span className="tagline-add-item">
-						Update Item Details
+						Fill the form for add item
 					</span>
 					{/* input field container */}
 					<div className="column-container">
@@ -117,8 +125,8 @@ function UpdateItem() {
 								>
 									<option
 										className="select-option"
-										value="undefined"
-									></option>
+										value=""
+									>Select Category ---</option>
 									<option
 										className="select-option"
 										value="clinical-item"
@@ -176,18 +184,27 @@ function UpdateItem() {
 							</section>
 							<section className="input-container">
 								<span className="input-title">
-									product description
+									reorder level
 								</span>
-								<textarea
-									className="input-textarea"
-									value={updateFormData.productDescription}
-									id=""
-									cols="30"
-									rows="10"
-									name="productDescription"
+								<input
+									className="input-field"
+									value={updateFormData.reorderLevel}
+									name="reorderLevel"
 									onChange={updateItemInputHandler}
-								></textarea>
+								/>
 							</section>
+							<section className="input-container">
+								<span className="input-title">
+									measurement unit
+								</span>
+								<input
+									className="input-field"
+									value={updateFormData.measurementUnit}
+									name="measurementUnit"
+									onChange={updateItemInputHandler}
+								/>
+							</section>
+							
 							<section className="input-container">
 								<span className="input-title">
 									product image
@@ -195,17 +212,17 @@ function UpdateItem() {
 								<input
 									type="file"
 									name="productImage"
-									value={updateFormData.productImage}
-									id=""
+									id="file-input"
+									accept='.png, .jpeg, .jpg, .webp'
 									className="input-field"
-									onChange={updateItemInputHandler}
+									onChange={(e) => setFile(e.target.files[0])}
 								/>
 							</section>
 							<div className="btn-container-add-item">
 								<button type="submit" className="submit-btn">
 									Update
 								</button>
-								<button type="reset" className="reset-btn" onClick={()=>{backBtn()}}>
+								<button className="reset-btn" onClick={()=>{backBtn()}}>
 									Back
 								</button>
 							</div>

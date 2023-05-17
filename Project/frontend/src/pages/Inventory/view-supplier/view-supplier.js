@@ -1,8 +1,8 @@
 import AdminLayout from "../../Layouts/AdminLayout";
 import React, { useEffect, useState } from "react";
 import "./view-supplier.scss";
-import api from "../../../services/supplierAPI";
 import { useLocation  , useNavigate} from "react-router-dom";
+import { userRequest } from "../../../requestMethods";
 
 function ViewSupplierDetails() {
 	const location = useLocation();
@@ -14,7 +14,7 @@ function ViewSupplierDetails() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			await api.get(`mongo/${id}`).then(
+			await userRequest.get(`suppliers/mongo/${id}`).then(
 				(response) => {
 					setViewSupplierDetails(response.data);
 				},

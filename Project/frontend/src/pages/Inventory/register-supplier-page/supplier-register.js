@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import swal from "sweetalert2";
 import AdminLayout from "../../Layouts/AdminLayout";
-import api from "../../../services/supplierAPI";
+import {userRequest} from '../../../requestMethods'
 import "./supplier-register.scss";
 
 function SupplierRegistration() {
@@ -18,12 +18,12 @@ function SupplierRegistration() {
 		companyAddress: "",
 	});
 
-	const addSupplierFormHandler = (event) => {
+	const addSupplierFormHandler = async(event) => {
 		event.preventDefault();
 		console.log(formData);
 
 		if (formData.agentID !== "" && formData.businessType !== "" && formData.supplierCategory !== "" && formData.phone !== "" && formData.email)  {
-			api.post("/", formData)
+			await userRequest.post("suppliers/", formData)
 				.then((response) => {
 					console.log(response);
 					swal.fire({

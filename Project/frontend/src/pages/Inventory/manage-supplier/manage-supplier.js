@@ -1,9 +1,9 @@
 import React , {useState , useEffect} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
-import api from '../../../services/supplierAPI';
 import { ImSearch } from "react-icons/im";
 import ResultContainer from "./supplier-search-result-container";
 import NoSuppliersDisplayer from "./supplier-empty-result-displayer";
+import { userRequest } from '../../../requestMethods';
 
 
 function ManageSupplierWindow() {
@@ -11,10 +11,15 @@ function ManageSupplierWindow() {
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
-		api.get("/").then((response) => {
-			setSuppliers(response.data);
-            console.log(suppliers);
-		});
+
+		const fetchAllSuppliers = async() => {
+			userRequest.get("suppliers/").then((response) => {
+				setSuppliers(response.data);
+				console.log(suppliers);
+			});
+		}
+
+		fetchAllSuppliers()
 	}, []);
 	
 
@@ -26,8 +31,8 @@ function ManageSupplierWindow() {
 		setSearchPrompt(e.target.value);
 	};
 
-	const searchFunction = () => {
-		api.get(`/${searchPrompt}`)
+	const searchFunction = async() => {
+		await userRequest.get(`suppliers/${searchPrompt}`)
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);

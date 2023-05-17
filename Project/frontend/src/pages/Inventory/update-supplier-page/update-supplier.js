@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react'
 import AdminLayout from '../../Layouts/AdminLayout'
 import swal from 'sweetalert2';
-import api from '../../../services/supplierAPI';
+import { userRequest } from '../../../requestMethods';
 import './update-supplier.scss'
 import Swal from 'sweetalert2';
 
@@ -15,10 +15,15 @@ function UpdateSupplierDetails() {
     const {id} = location.state
     
     useEffect(()=>{
-        api.get(`/mongo/${id}`).then((response)=>{
-            setUpdateSupplierFormData(response.data)
-            console.log(response.data);
-        })
+
+		const fetchSupplierData = async() => {
+			await userRequest.get(`suppliers/mongo/${id}`).then((response)=>{
+				setUpdateSupplierFormData(response.data)
+				console.log(response.data);
+			})
+		}
+
+		fetchSupplierData()
     },[])
 
     const [updateSupplierFormData, setUpdateSupplierFormData] = useState({
@@ -35,11 +40,11 @@ function UpdateSupplierDetails() {
 	});
 
 
-    const updateSupplierFormHandler = (event) => {
+    const updateSupplierFormHandler = async(event) => {
 
 		event.preventDefault()
 
-        api.put(`/${id}` , updateSupplierFormData).then((response)=>{
+        await userRequest.put(`suppliers/${id}` , updateSupplierFormData).then((response)=>{
             if(response){
                 Swal.fire(
                     {
@@ -72,7 +77,7 @@ function UpdateSupplierDetails() {
 	};
 
 	const backBtn = () => {
-		navigate("/admin/inventory/manage-inventory")
+		navigate("/admin/inventory/manage-suppliers")
 	}
 
   return (
@@ -231,7 +236,7 @@ function UpdateSupplierDetails() {
 								<button type="submit" className="submit-btn">
 									Update
 								</button>
-								<button type="reset" className="reset-btn" onClick={()=>{navigate("/admin/inventory/manage-suppliers")}}>
+								<button type="reset" className="reset-btn" onClick={()=>{backBtn()}}>
 									Back
 								</button>
 							</div>
