@@ -159,7 +159,7 @@ function App() {
         <Route path="/admin/inventory/release-items" element={<ReleaseItems/>} />
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
-        <Route path="/central-pet-care" element={<HomePage/>} />
+        <Route path="/home" element={<HomePage/>} />
         <Route path="/central-pet-care/login" element={<Login/>} />
 
 

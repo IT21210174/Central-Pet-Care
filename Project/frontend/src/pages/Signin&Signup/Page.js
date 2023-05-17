@@ -21,11 +21,11 @@ function Login() {
         <div className="form-container-signin-signup">
             <div className="left-partition-reg-user">
                 <div className="switch-buttons-container">
-                    <div className={activeOne === 0 ? `signer-btn active` : `signer-btn`} onClick={()=>{
+                    <div className={activeOne === 0 ? `signer-btn btn-active` : `signer-btn`} onClick={()=>{
                         setActiveOne(0) 
                         setTracker(true)
                     }}>sign in</div>
-                    <div className={activeOne === 1 ? `signer-btn active` : `signer-btn`} onClick={()=>{
+                    <div className={activeOne === 1 ? `signer-btn btn-active` : `signer-btn`} onClick={()=>{
                         setActiveOne(1)
                         setTracker(false)
                     }}>sign up</div>
