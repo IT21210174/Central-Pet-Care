@@ -6,7 +6,7 @@ import PrLvHigh from '../../../components/inventory-signals/PrLvlHigh'
 import AdminLayout from '../../Layouts/AdminLayout'
 import './overview.scss'
 import InventoryReport from '../../Reports/InventoryReport'
-
+import {userRequest} from '../../../requestMethods'
 import clinicEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pharmaceutical.png'
 import storeEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pet-food.png'
 import supplier from '../../../assets/imgs/PrototypeResources/insight-cards/supplier.png'
@@ -21,12 +21,16 @@ function OverviewComponent() {
   const [supplierCount , setSupplierCount] = useState([])
 
   useEffect(()=>{
-    api.get("/").then((response)=>{setInventory(response.data)})
-    console.log(inventory);
+    
+    const fetchAll = async() => {
+      await userRequest.get("inventory/").then((response)=>{setInventory(response.data)})
+      console.log(inventory);
+  
+      await userRequest.get("suppliers/").then((response)=>{setSupplierCount(response.data)})
+      console.log(supplierCount);
+    }
 
-    supplierApi.get("/").then((response)=>{setSupplierCount(response.data)})
-    console.log(supplierCount);
-
+    fetchAll()
   },[])
 
   let pharmCount = 0

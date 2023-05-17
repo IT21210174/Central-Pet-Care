@@ -16,11 +16,10 @@ const AddItem = () => {
 	const [categError , setCategError] = useState("")
 	const [rackErr , setRackErr] = useState("")
 	const [manufacErr , setManufacErr] = useState("")
-	const [dummyField , setDummyField] = useState("")
 	const [mesUnitErr , setMesUnitErr] = useState("")
 	const [itemErr , setItemErr] = useState("")
 
-	const [validationSuccess , setValidationSuccess] = useState(true)
+	let hasError = false
 
 	const [file , setFile] = useState('')
 	const [formData, setFormData] = useState({
@@ -43,7 +42,7 @@ const AddItem = () => {
 		// check if item name empty
 		if(formData.itemName === ""){
 			setItemErr("Item Name can't be empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setItemErr("")
@@ -52,7 +51,7 @@ const AddItem = () => {
 		// check if category
 		if(formData.category === ""){
 			setCategError("Categroy must be selected")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setCategError("")
@@ -61,7 +60,7 @@ const AddItem = () => {
 		// check price
 		if(parseFloat(formData.price) < 1 || formData.price === ""){
 			setPriceError("Price can't be negative or empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setPriceError("")
@@ -70,7 +69,7 @@ const AddItem = () => {
 		// check rack no
 		if(formData.rackNo === ""){
 			setRackErr("Rack number can't be empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setRackErr("")
@@ -79,7 +78,7 @@ const AddItem = () => {
 		// check manufaturer
 		if(formData.manufacturer === ""){
 			setManufacErr("Manufacturer can't be empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setManufacErr("")
@@ -88,7 +87,7 @@ const AddItem = () => {
 		// check reorder level
 		if( parseInt(formData.reorderLevel) < 1|| formData.reorderLevel === ""){
 			setReorderLvlError("Reorder level can't be negative or empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setReorderLvlError("")
@@ -97,7 +96,7 @@ const AddItem = () => {
 		// check measurement unit
 		if(formData.measurementUnit === ""){
 			setMesUnitErr("Measurement unit field can't be empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setMesUnitErr("")
@@ -108,7 +107,7 @@ const AddItem = () => {
 		const skuPattern = /^(CLI|PET)\d{4}$/;
   		if (!skuPattern.test(formData.sku)) {
     		setSkuError("SKU should start with CLI or PET followed by 4 digits");
-    		setValidationSuccess(false)
+    		hasError=true
   		}
 		else{
 			setSkuError("")
@@ -117,7 +116,7 @@ const AddItem = () => {
 		// checking quantity is valid
 		if(parseInt(formData.quantity) < 1 || formData.quantity === '' ){
 			setQtyError("Quantity can not be less than one or empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setQtyError("")
@@ -126,7 +125,7 @@ const AddItem = () => {
 		// checking quantity is valid
 		if(parseInt(formData.quantity) < 1 || formData.quantity === '' ){
 			setQtyError("Quantity can not be less than one or empty")
-			setValidationSuccess(false)
+			hasError=true
 		}
 		else{
 			setQtyError("")
@@ -135,13 +134,13 @@ const AddItem = () => {
 		// // if picture not uploaded
 		// if(formData.productImage === '' ){
 		// 	setPicError("Valid picture type must be uploaded")
-		// 	setValidationSuccess(false)
+		// 	hasError=true
 		// }
 		// else{
 		// 	setPicError("")
 		// }
 
-		if (validationSuccess) {
+		if (!hasError) {
 
 			const imageURL = await uploadImage(file);
 			setFormData({...formData, productImage: imageURL})
@@ -363,19 +362,6 @@ const AddItem = () => {
 									className="input-field-add-item"
 									onChange={(e) =>{
 										 setFile(e.target.files[0])
-										 setValidationSuccess(true)
-										//  const isValidFileType = (file) => {
-    									// 	const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-    									// 	return allowedTypes.includes(file.type);
-  										//  };
-
-										//  if (formData.productImage === "" || !isValidFileType(file)) {
-      									//  // Set state or display an error message
-      									//  	setFile(null);
-      									//  	setPicError("Valid picture type must be uploaded")
-    									//  } else {
-      									//  	setFile(file);
-    									//  }
 									}}
 								/>
 								<span className={picError ? `validateErrors` : `validateErrors visible-non`}>{picError}</span>
