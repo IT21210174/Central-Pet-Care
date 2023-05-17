@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './SigninSignupStyles.scss'
 import LoginPic from '../../assets/sign-in-asset-2.jpg'
 import SigninSignupContainer from './SigninSignupContainer'
+import Header from '../../components/store/Header/Header'
+import Footer from '../../components/store/Footer'
 
 function Login() {
     // state variable to track whether we are in sign in or sign up
@@ -12,6 +14,8 @@ function Login() {
     // if tracker == false display sign up
 
   return (
+    <div>
+    <Header />
     <div className="background">
         <img className="bg-image-cover" src="" alt="" />
         <div className="form-container-signin-signup">
@@ -30,6 +34,8 @@ function Login() {
             </div>
             <img src={LoginPic} alt="" className="right-partition-reg-user"/>
         </div>
+    </div>
+    <Footer />
     </div>
   )
 }

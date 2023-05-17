@@ -41,7 +41,7 @@ import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import OrdersReport from "./pages/Inventory/generate-reports/OrdersReport";
-import Login from './pages/Signin & Signup/Page';
+import Login from './pages/Signin&Signup/Page';
 
 //payroll management
 import AddPayroll from './pages/Staff/Payroll/AddPayroll';
