@@ -17,7 +17,6 @@ $font-fam-1: "Poppins", sans-serif;
 	overflow-y: scroll;
 }
 
-/* Styles for the scrollbar in the data grid */
 .home-page-container::-webkit-scrollbar {
 	// display: none;
     width: 8px;
@@ -30,7 +29,7 @@ $font-fam-1: "Poppins", sans-serif;
 
 .home-page-container::-webkit-scrollbar-thumb {
     background-color: #888;
-    // border-radius: 10px;
+    border-radius: 4px;
 }
 
 .home-page-container::-webkit-scrollbar-thumb:hover {

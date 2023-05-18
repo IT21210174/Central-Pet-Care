@@ -26,13 +26,14 @@ export default function SupplierSearchResultsContainer(props) {
 	const deleteSupplier = (deletingID) => {
 		console.log(deletingID);
 		Swal.fire({
-				title: "Confirm the action",
-				text: "You won't be able to revert this!",
-				icon: "warning",
+				title: 'Confirmation Needed',
+				text: "Please confirm your action",
+				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonText: "Yes, delete it!",
-				cancelButtonText: "No, cancel!",
-				reverseButtons: true,
+				confirmButtonColor: '#f44336', // Red color for confirm button
+				cancelButtonColor: '#4caf50', // Green color for cancel button      
+				confirmButtonText: 'Delete',
+				// reverseButtons: true,
 			})
 			.then(async(result) => {
 				if (result.isConfirmed) {
