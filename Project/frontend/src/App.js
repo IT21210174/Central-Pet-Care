@@ -83,6 +83,8 @@ import ManageRecord from './pages/Services/ManageRecord';
 import EditService from './pages/Services/EditService';
 import ViewService from './pages/Services/ViewService';
 
+import AppBlog from './components/blog';
+
 //vet management
 import Addvet from './pages/Vet/Vet/AddVet';
 import EditVet from './pages/Vet/Vet/EditVet';
@@ -115,7 +117,7 @@ function App() {
       <Toaster />
       
       <Routes>
-        <Route path='/' element={<ProductCatalog />} />
+        <Route path='/' element={<AppBlog />} />
         <Route exact path='/component-2' element={<AddItem />} />
         <Route exact path='/component-3' element={<AddProduct />} />
         

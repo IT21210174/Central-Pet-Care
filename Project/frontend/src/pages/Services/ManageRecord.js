@@ -102,32 +102,32 @@ function ManageRecord() {
         },
 
         { 
-            field: "serviceId",
-            headerName: "Service ID",
+            field: "serviceName",
+            headerName: "Service Name",
             headerAlign: "center",
             align: "center",
             flex: 2,
           },
 
         { 
-            field: "customerId",
-            headerName: "Customer ID",
+            field: "customerName",
+            headerName: "Customer Name",
             headerAlign: "center",
             align: "center",
             flex: 2,
         },
         
         { 
-            field: "vcslId",
-            headerName: "VCSL ID",
+            field: "vetName",
+            headerName: "Vet Name",
             headerAlign: "center",
             align: "center",
             flex: 2,
           },
 
           { 
-            field: "petId",
-            headerName: "Pet ID",
+            field: "petType",
+            headerName: "Pet Type",
             headerAlign: "center",
             align: "center",
             flex: 2,

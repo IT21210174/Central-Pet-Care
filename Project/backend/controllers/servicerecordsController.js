@@ -48,14 +48,14 @@ const getServiceRecordById = asyncHandler(async (req, res) => {
 // @access  Private
 const addServiceRecord = asyncHandler(async (req, res) => {
     
-    const {recordId,serviceId,customerId,vcslId,petId,date,serviceCharge} = req.body;
+    const {recordId,serviceName,customerName,vetName,petType,date,serviceCharge} = req.body;
 
     const servicerecord = new ServiceRecord({
         recordId: req.body.recordId,
-        serviceId: req.body.serviceId,
-        customerId: req.body.customerId,
-        vcslId: req.body.vcslId,
-        petId: req.body.petId,
+        serviceName: req.body.serviceName,
+        customerName: req.body.customerName,
+        vetName: req.body.vetName,
+        petType: req.body.petType,
         date: req.body.date,
         serviceCharge:req.body.serviceCharge,
     })
