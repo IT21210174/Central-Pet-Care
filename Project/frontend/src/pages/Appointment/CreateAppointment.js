@@ -58,7 +58,9 @@ function CreateAppointment() {
 
                 <section className="input-container">
                   <span className="input-title">Owner name</span>
-                  <input type='text' className="input-field" value={ownerName} onChange={(e) => setOwnerName(e.target.value)} required/>
+                  <input type='text' className="input-field" value={ownerName} onChange={(e) => setOwnerName(e.target.value)} 
+                    required
+                  />
                 </section>
 
                 <section className="input-container">
