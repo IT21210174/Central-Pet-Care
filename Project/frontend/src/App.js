@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 
 import AddItem from './pages/FormSample/AddItem';
 import AdminLayout from './pages/Layouts/AdminLayout';
+import About from './pages/About';
 
 import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
@@ -97,6 +98,8 @@ import Register from './pages/User/Register';
 import UserLayout from './pages/Layouts/UserLayout'
 import MyOrders from './pages/Store/MyOrders';
 
+//about us
+import AboutUs from './pages/Aboutus/Aboutus';
 
 function App() {
   return (
@@ -104,7 +107,8 @@ function App() {
       <Toaster />
       
       <Routes>
-        <Route path='/' element={<ProductCatalog />} />
+      
+        <Route path='/' element={<AboutUs />} />
         <Route exact path='/component-2' element={<AddItem />} />
         <Route exact path='/component-3' element={<AddProduct />} />
         

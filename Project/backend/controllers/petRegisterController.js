@@ -45,16 +45,16 @@ const getPetByID = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createPet = asyncHandler(async (req, res) => {
     
-    const { petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture } = req.body;
+    const { petID, petName,age, gender,species, breed, nic, customerName,contactNumber,medicalHistory, picture } = req.body;
 
     const pet = new Pet({
         petID: petID,
         petName: petName,
-        dob:dob,
+        age:age,
         gender:gender,
         species:species,
         breed: breed,
-        customerID:customerID,
+        nic:nic,
         customerName: customerName,
         contactNumber:contactNumber,
         medicalHistory:medicalHistory,

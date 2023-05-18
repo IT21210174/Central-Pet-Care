@@ -12,7 +12,7 @@ function EditTreatment() {
 
   const [petID, setPetID] = useState('')
   const [petName, setPetName] = useState('')
-  const [customerID, setCustomerID] = useState('')
+  const [nic, setCustomerNIC] = useState('')
   const [date, setDate] = useState('')
   const [treatment, setTreatment] = useState('')
   const [progressNotes, setProgressNotes] = useState('')
@@ -22,7 +22,7 @@ function EditTreatment() {
     .then(res => {
         setPetID(res.data.petID)
         setPetName(res.data.petName)
-        setCustomerID(res.data.customerID)
+        setCustomerNIC(res.data.nic)
         setDate(res.data.date)
         setTreatment(res.data.treatment)
         setProgressNotes(res.data.progressNotes)
@@ -36,7 +36,7 @@ function EditTreatment() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    userRequest.put("/treatments/" + id, {petID, petName, customerID, date, treatment, progressNotes })
+    userRequest.put("/treatments/" + id, {petID, petName, nic, date, treatment, progressNotes })
     .then(res => {
         toast.success('Treatment updated')
         navigate('/admin/treatments/ManageTreatments')
@@ -72,8 +72,8 @@ function EditTreatment() {
                   <input className="input-field" value={petName} required onChange={(e) => setPetName(e.target.value)}/>
                 </section>
                 <section className="input-container"> 
-                  <span className="input-title">Customet ID</span>
-                  <input className="input-field" value={customerID} required onChange={(e) => setCustomerID(e.target.value)}/>
+                  <span className="input-title">NIC</span>
+                  <input className="input-field" value={nic} required onChange={(e) => setCustomerNIC(e.target.value)}/>
                 </section>
                
                 <section className="input-container">

@@ -11,11 +11,11 @@ function ViewPet() {
     const { id } = useParams()
     const [petID, setPetID] = useState("")
     const [petName, setPetName] = useState("")
-    const [dob, setPetDob] = useState("")
+    const [age, setPetAge] = useState("")
     const [gender, setPetGender] = useState("")
     const [species, setPetSpecies] = useState("")
     const [breed, setPetBreed] = useState("")
-    const [customerID, setCustomerID] = useState("")
+    const [nic, setCustomerNIC] = useState("")
     const [customerName, setCustomerName] = useState("")
     const [contactNumber, setContactNumber] = useState("")
     const [medicalHistory, setMedicalHistory] = useState("")
@@ -27,11 +27,11 @@ function ViewPet() {
         .then(res => {
             setPetID(res.data.petID)
             setPetName(res.data.petName)
-            setPetDob(res.data.dob)
+            setPetAge(res.data.age)
             setPetGender(res.data.gender)
             setPetSpecies(res.data.species)
             setPetBreed(res.data.breed)
-            setCustomerID(res.data.customerID)
+            setCustomerNIC(res.data.nic)
             setCustomerName(res.data.customerName)
             setContactNumber(res.data.contactNumber)
             setMedicalHistory(res.data.medicalHistory)
@@ -70,8 +70,8 @@ function ViewPet() {
                     <td>{petName}</td>
                 </tr>
                 <tr>
-                    <td>DOB</td>
-                    <td>{dob}</td>
+                    <td>Age</td>
+                    <td>{age}</td>
                 </tr>
                 <tr>
                     <td>Gender</td>
@@ -86,8 +86,8 @@ function ViewPet() {
                     <td>{breed}</td>
                 </tr>
                 <tr>
-                    <td>Customer ID</td>
-                    <td>{customerID}</td>
+                    <td>NIC</td>
+                    <td>{nic}</td>
                 </tr>
                 <tr>
                     <td>Customer Name</td>

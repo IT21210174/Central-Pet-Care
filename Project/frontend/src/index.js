@@ -7,6 +7,8 @@ import ProductsContextProvider from './contexts/ProductsContext';
 import WishlistContextProvider from './contexts/WishlistContext';
 import { AppProvider } from './contexts/AppContext';
 
+//import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <ProductsContextProvider>

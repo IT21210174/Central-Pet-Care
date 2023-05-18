@@ -11,7 +11,7 @@ function ViewTreatment() {
     const { id } = useParams()
     const [petID, setPetID] = useState('')
     const [petName, setPetName] = useState('')
-    const [customerID, setCustomerID] = useState('')
+    const [nic, setCustomerNIC] = useState('')
     const [date, setDate] = useState('')
     const [treatment, setTreatment] = useState('')
     const [progressNotes, setProgressNotes] = useState('')
@@ -21,7 +21,7 @@ function ViewTreatment() {
         .then(res => {
             setPetID(res.data.petID)
             setPetName(res.data.petName)
-            setCustomerID(res.data.customerID)
+            setCustomerNIC(res.data.nic)
             setDate(res.data.date)
             setTreatment(res.data.treatment)
             setProgressNotes(res.data.progressNotes)
@@ -74,8 +74,8 @@ function ViewTreatment() {
                             <span className='treatment-line-info-values'>{petName}</span>
                         </div>
                         <div className='treatment-line'>
-                            <span className='treatment-line-info'>Customer ID</span>
-                            <span className='treatment-line-info-values'>{customerID}</span>
+                            <span className='treatment-line-info'>NIC</span>
+                            <span className='treatment-line-info-values'>{nic}</span>
                         </div>
                         <div className='treatment-line'>
                             <span className='treatment-line-info'>Date</span>

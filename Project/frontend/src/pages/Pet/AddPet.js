@@ -10,11 +10,11 @@ function AddPet() {
 
   const [petID, setPetID] = useState("")
   const [petName, setPetName] = useState("")
-  const [dob, setPetDob] = useState("")
+  const [age, setPetAge] = useState("")
   const [gender, setPetGender] = useState("")
   const [species, setPetSpecies] = useState("")
   const [breed, setPetBreed] = useState("")
-  const [customerID, setCustomerID] = useState("")
+  const [nic, setCustomerNIC] = useState("")
   const [customerName, setCustomerName] = useState("")
   const [contactNumber, setContactNumber] = useState("")
   const [medicalHistory, setMedicalHistory] = useState("")
@@ -23,11 +23,11 @@ function AddPet() {
   const handleReset = () => {
         setPetID('')
         setPetName('')
-        setPetDob('')
+        setPetAge('')
         setPetGender('')
         setPetSpecies('')
         setPetBreed('')
-        setCustomerID('')
+        setCustomerNIC('')
         setCustomerName('')
         setContactNumber('')
         setMedicalHistory('')
@@ -42,7 +42,7 @@ function AddPet() {
    
     const imageURL = await uploadImage(file);
   
-    userRequest.post("/pets", {petID, petName,dob, gender,species, breed, customerID, customerName,contactNumber,medicalHistory, picture : imageURL })
+    userRequest.post("/pets", {petID, petName,age, gender,species, breed, nic, customerName,contactNumber,medicalHistory, picture : imageURL })
     .then(res => {
         toast.success('Pet added')
         handleReset()
@@ -78,8 +78,8 @@ function AddPet() {
                   <input className="input-field" value={petName} required onChange={(e) => setPetName(e.target.value)}/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">DOB</span>
-                  <input className="input-field" type="date" max={maxDate} value={dob} required onChange={(e) => setPetDob(e.target.value)}/>
+                  <span className="input-title">Age</span>
+                  <input className="input-field" type="number" id="ageNumber" name="ageNumber" min="1" max ="100" value={age} required onChange={(e) => setPetAge(e.target.value)}/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">Gender</span>
@@ -112,8 +112,8 @@ function AddPet() {
               {/* column two */}
                <div className="add-pet-column">
                    <section className="input-container">
-                      <span className="input-title">customer ID</span>
-                      <input className="input-field"  value={customerID} required onChange={(e) => setCustomerID(e.target.value)}/>
+                      <span className="input-title">NIC</span>
+                      <input className="input-field"  value={nic} required onChange={(e) => setCustomerNIC(e.target.value)}/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">customer Name</span>
