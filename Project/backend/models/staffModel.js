@@ -39,6 +39,10 @@ const staffSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add department']
     },
+    designation: {
+        type: String,
+        required: [true, 'Please add designation']
+    },
     joinedDate: {
         type: String,
         required: [true, 'Please add joined date']
@@ -88,6 +92,7 @@ staffSchema.index({
     email: 'text',
     staffId: 'text',
     department: 'text',
+    designation : 'text',
 
 })
 

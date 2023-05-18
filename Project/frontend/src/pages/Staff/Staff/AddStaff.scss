@@ -14,7 +14,7 @@ $fontfam-1: 'Poppins', sans-serif;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 95vh; //change height accordingly
+    height: 90vh; //change height accordingly
     background: rgb(153, 128, 250);
     background: linear-gradient(106deg, rgba(153, 128, 250, 0.8715861344537815) 0%, rgba(255, 255, 255, 1) 100%);
 }
@@ -134,7 +134,7 @@ $fontfam-1: 'Poppins', sans-serif;
 }
 
 .btn-container-add-staff{
-    margin-top: 90px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-evenly;
     width: 400px;

@@ -316,19 +316,19 @@ const SidebarItems = [
 				nestedItemtext: "Manage Leaves",
 			},
 
-			{
-				id: 304,
-				link: "/admin/payroll/AddPayroll",
-				nestedItemicon: <GiTakeMyMoney />,
-				nestedItemtext: "Add Payroll",
-			},
+			// {
+			// 	id: 304,
+			// 	link: "/admin/payroll/AddPayroll",
+			// 	nestedItemicon: <GiTakeMyMoney />,
+			// 	nestedItemtext: "Add Payroll",
+			// },
 
-			{
-				id: 305,
-				link: "/admin/payroll/ManagePayroll",
-				nestedItemicon: <GiReceiveMoney />,
-				nestedItemtext: "Manage Payrolls",
-			},
+			// {
+			// 	id: 305,
+			// 	link: "/admin/payroll/ManagePayroll",
+			// 	nestedItemicon: <GiReceiveMoney />,
+			// 	nestedItemtext: "Manage Payrolls",
+			// },
 		],
 	},
 

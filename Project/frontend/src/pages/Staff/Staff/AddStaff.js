@@ -15,6 +15,7 @@ const AddStaff = () => {
   const [email,setemail] = useState("")
  // const [staffId,setstaffId] = useState("")
   const [department,setdepartment] = useState("")
+  const [designation,setdesignation] = useState("")
   const [joinedDate,setjoinedDate] = useState("")
   const [salary,setsalary] = useState("")
   const [file, setFile] = useState('')
@@ -22,7 +23,7 @@ const AddStaff = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const imageURL = await uploadImage(file);
-    userRequest.post("/staff",  {firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage: imageURL})
+    userRequest.post("/staff",  {firstName, lastName, address, nic, contactNo, dob, email, department,designation, joinedDate, salary, simage: imageURL})
     .then(res => {
       toast.success('Staff added')
       handleReset()
@@ -41,6 +42,7 @@ const AddStaff = () => {
     setemail('')
    // setstaffId('')
     setdepartment('')
+    setdesignation('')
     setjoinedDate('')
     setsalary('')
     setFile(null)
@@ -75,7 +77,7 @@ const AddStaff = () => {
                 </section>
                 <section className="input-container">
                   <span className="input-title">Contact No</span>
-                  <input className="input-field" type="tel" value={contactNo} onChange={(e) => setcontactNo(e.target.value)} title="Add valid contact Num" required/>
+                  <input className="input-field" type="tel" value={contactNo} onChange={(e) => setcontactNo(e.target.value)} pattern="07[1,2,5,6,7,8][0-9]{7}" maxlength="10" title="Add valid contact Num" required/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">Email</span>
@@ -98,7 +100,8 @@ const AddStaff = () => {
                     </section>
                     <section className="input-container">
                         <span className="input-title">NIC</span>
-                        <input className="input-field" value={nic} onChange={(e) => setnic(e.target.value)} pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$" required/>
+                        <input className="input-field" value={nic} onChange={(e) => setnic(e.target.value)} required/>
+                        {/* <input className="input-field" value={nic} onChange={(e) => setnic(e.target.value)} pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$" required/> */}
                     </section>
                     <section className="input-container">
                         <span className="input-title">Date Of Birth</span>
@@ -111,6 +114,10 @@ const AddStaff = () => {
                     <section className="input-container">
                         <span className="input-title">Joined Date</span>
                         <input className="input-field" value={joinedDate} onChange={(e) => setjoinedDate(e.target.value)} type="date" max={maxDate} required/>
+                    </section>
+                    <section className="input-container">
+                        <span className="input-title">Designation</span>
+                        <input className="input-field" value={designation} onChange={(e) => setdesignation(e.target.value)} required/>
                     </section>
                     <section className="input-container">
                         <span className="input-title">Staff Member Image</span>
