@@ -8,7 +8,7 @@ import ServiceBack from "../../assets/imgs/hero-sec-image/services.png";
 import LastPic from "../../assets/imgs/hero-sec-image/last-pic.jpg";
 import Footer from "../../components/footer/footer"
 // component importings
-import Header from "../../components/header/header";
+import HeaderAdvanced from "../../components/headerAdvanced/HeaderAdvanced";
 
 function HomePage() {
 	return (
@@ -17,7 +17,7 @@ function HomePage() {
 
 			{/* hero section */}
 			<div className="hero-picture">
-				<Header />
+				<HeaderAdvanced />
 				<img src={HeroImage} alt="" className="hero-sec-image" />
 				<div className="hero-overlay"></div>
 				<div className="welcome-container">

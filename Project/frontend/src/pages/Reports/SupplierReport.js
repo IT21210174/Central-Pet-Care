@@ -28,7 +28,8 @@ const IconWrapper = styled.div`
   vertical-align: middle; /* adjust the vertical alignment of the icon */
 `;
 
-const InventoryReport = ({data}) => {
+
+function SupplierReport({data}) {
 
     const downloadPDF = () => {
         const doc = new jsPDF();
@@ -52,9 +53,9 @@ const InventoryReport = ({data}) => {
         doc.setFontSize(28);
 
         //Change report name accordingly
-        doc.text("Inventory Report", (pageWidth / 2), 60, { align: "center" });
+        doc.text("Supplier Details Report", (pageWidth / 2), 60, { align: "center" });
         // Underline the text
-        const textWidth = doc.getStringUnitWidth("Inventory Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const textWidth = doc.getStringUnitWidth("Supplier Details Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
         doc.setLineWidth(0.5);
         doc.line((pageWidth / 2) - (textWidth / 2), 63, (pageWidth / 2) + (textWidth / 2), 63);
 
@@ -64,9 +65,9 @@ const InventoryReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [["SKU", "Item Name", "Category", "Manufacturer", "Quantity"]],
-          body: data.map((item) => {
-            return [item.sku, item.itemName, item.category, item.manufacturer, item.quantity];
+          head: [["Company", "Agent Name", "Agent ID", "Supplier Category", "Supplying Item"]],
+          body: data.map((supplier) => {
+            return [supplier.companyName, supplier.agentName, supplier.agentID, supplier.supplierCategory, supplier.supplyingItem];
           }),
           startY: 80, // start the table below the logo
           headStyles: {
@@ -81,7 +82,7 @@ const InventoryReport = ({data}) => {
           }
         });
     
-        doc.save("inventory.pdf"); //Change name accordingly
+        doc.save("suppliers.pdf"); //Change name accordingly
       };
 
   return (
@@ -89,9 +90,9 @@ const InventoryReport = ({data}) => {
       <IconWrapper>
         <HiOutlineDocumentReport size="1rem"/>
       </IconWrapper>
-      Inventory Report
+      Supplier Report
     </Button>
   );
-};
+}
 
-export default InventoryReport;
+export default SupplierReport

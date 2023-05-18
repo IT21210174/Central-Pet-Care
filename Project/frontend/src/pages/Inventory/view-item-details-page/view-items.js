@@ -1,8 +1,8 @@
 import AdminLayout from "../../Layouts/AdminLayout";
 import React, { useEffect, useState } from "react";
 import "./view-items.scss";
-import api from "../../../services/api";
 import { useLocation  , useNavigate} from "react-router-dom";
+import {userRequest} from '../../../requestMethods'
 
 function ViewInventoryItem() {
 	const location = useLocation();
@@ -15,7 +15,7 @@ function ViewInventoryItem() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			await api.get(`mongo/${id}`)
+			await userRequest.get(`inventory/mongo/${id}`)
 			.then((response) => {
 					setViewItem(response.data);
 					setIsLoading(true)

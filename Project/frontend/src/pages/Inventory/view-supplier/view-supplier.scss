@@ -118,3 +118,26 @@ $ash-color: #636e72;
     color: $primary-color-navyBlue;
 }
 
+.pic-box-view-supplier{
+    margin-top: 100px;
+    width: 300px;
+    height: 250px;
+}
+
+.view-supplier-back-btn{
+    width: 160px;
+    padding: 4px 10px;
+    background-color: $secondary-color-purple1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+.view-supplier-back-btn:hover{
+    background-color: $secondary-color-purple2;
+    cursor: pointer;
+}
+

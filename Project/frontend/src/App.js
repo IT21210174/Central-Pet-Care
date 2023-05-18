@@ -32,16 +32,18 @@ import AddItemPage from "./pages/Inventory/add-item-page/AddItem";
 import OverviewPage from "./pages/Inventory/overview-page/overview";
 import SupplierRegForm from "./pages/Inventory/register-supplier-page/supplier-register";
 import ManageInventoryPage from "./pages/Inventory/manage-inventory-page/manage-inventory";
-import GenerateReports from "./pages/Inventory/generate-reports/generate-reports";
 import UpdateItem from "./pages/Inventory/update-inventory-page/update-inventory";
 import TestComp from "./pages/Inventory/release-items-page/test-comp";
 import ViewInventoryItem from "./pages/Inventory/view-item-details-page/view-items";
 import ManageSupplierWindow from "./pages/Inventory/manage-supplier/manage-supplier";
 import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
+import ReleasedItems from './pages/Inventory/released-items/ReleasedItems';
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import OrdersReport from "./pages/Inventory/generate-reports/OrdersReport";
 import Login from './pages/Signin&Signup/Page';
+import ReleaseSearch from './pages/Inventory/release-search/ReleaseSearch';
+import RopCalculator from './pages/Inventory/rop-calculator/RopCalc'
 
 //payroll management
 import AddPayroll from './pages/Staff/Payroll/AddPayroll';
@@ -156,10 +158,13 @@ function App() {
         <Route path="/admin/inventory/view-item" element={<ViewInventoryItem />}/>
         <Route path="/admin/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
         <Route path="/admin/inventory/report" />
+         <Route path="/admin/inventory/released-list" element={<ReleasedItems/>} />
         <Route path="/admin/inventory/release-items" element={<ReleaseItems/>} />
+        <Route path="/admin/inventory/release-search" element={<ReleaseSearch/>} />
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
-        <Route path="/home" element={<HomePage/>} />
+        <Route path="/central-pet-care" element={<HomePage/>} />
+        <Route path="/admin/inventory/rop-calculator" element={<RopCalculator/>} />
         <Route path="/central-pet-care/login" element={<Login/>} />
 
 

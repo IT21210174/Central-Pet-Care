@@ -28,8 +28,8 @@ const IconWrapper = styled.div`
   vertical-align: middle; /* adjust the vertical alignment of the icon */
 `;
 
-const InventoryReport = ({data}) => {
-
+function ReleaseItemsReport({data}) {
+  
     const downloadPDF = () => {
         const doc = new jsPDF();
 
@@ -52,9 +52,9 @@ const InventoryReport = ({data}) => {
         doc.setFontSize(28);
 
         //Change report name accordingly
-        doc.text("Inventory Report", (pageWidth / 2), 60, { align: "center" });
+        doc.text("Released Items Report", (pageWidth / 2), 60, { align: "center" });
         // Underline the text
-        const textWidth = doc.getStringUnitWidth("Inventory Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const textWidth = doc.getStringUnitWidth("Released Items Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
         doc.setLineWidth(0.5);
         doc.line((pageWidth / 2) - (textWidth / 2), 63, (pageWidth / 2) + (textWidth / 2), 63);
 
@@ -64,9 +64,9 @@ const InventoryReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [["SKU", "Item Name", "Category", "Manufacturer", "Quantity"]],
-          body: data.map((item) => {
-            return [item.sku, item.itemName, item.category, item.manufacturer, item.quantity];
+          head: [["Record ID", "Employee Name", "Employe Name", "Item", "SKU" , "Quantity"]],
+          body: data.map((record) => {
+            return [record.releaseRecord, record.staffName, record.staffID, record.itemName, record.sku, record.quantity];
           }),
           startY: 80, // start the table below the logo
           headStyles: {
@@ -81,17 +81,18 @@ const InventoryReport = ({data}) => {
           }
         });
     
-        doc.save("inventory.pdf"); //Change name accordingly
+        doc.save("released-items.pdf"); //Change name accordingly
       };
 
-  return (
+
+      return (
     <Button onClick={downloadPDF}>
       <IconWrapper>
         <HiOutlineDocumentReport size="1rem"/>
       </IconWrapper>
-      Inventory Report
+      Released Items Report
     </Button>
   );
-};
+}
 
-export default InventoryReport;
+export default ReleaseItemsReport

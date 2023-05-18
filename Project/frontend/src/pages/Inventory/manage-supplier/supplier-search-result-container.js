@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
-import api from "../../../services/supplierAPI";
+import { userRequest } from "../../../requestMethods";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -23,9 +23,10 @@ export default function SupplierSearchResultsContainer(props) {
 	};
 
 	// delete function
-	const deleteItem = (deletingID) => {
+	const deleteSupplier = (deletingID) => {
+		console.log(deletingID);
 		Swal.fire({
-				title: "Are you sure?",
+				title: "Confirm the action",
 				text: "You won't be able to revert this!",
 				icon: "warning",
 				showCancelButton: true,
@@ -33,17 +34,18 @@ export default function SupplierSearchResultsContainer(props) {
 				cancelButtonText: "No, cancel!",
 				reverseButtons: true,
 			})
-			.then((result) => {
+			.then(async(result) => {
 				if (result.isConfirmed) {
-					Swal.fire(
-						"Deleted!",
-						"Your file has been deleted.",
-						"success"
-					);
+					
 
-					api.delete(`/${deletingID}`)
+					await userRequest.delete(`suppliers/${deletingID}`)
 						.then((response) => {
 							console.log(response);
+							Swal.fire(
+								"Deleted!",
+								"Your file has been deleted.",
+								"success"
+							);
 						})
 						.catch((error) => {
 							console.log(error);
@@ -123,7 +125,7 @@ export default function SupplierSearchResultsContainer(props) {
 								{/* delete button */}
 								<button
 									className="action-btns-manage-inventory"
-									onClick={() => deleteItem(_id)}
+									onClick={() => deleteSupplier(_id)}
 								>
 									<AiOutlineDelete />
 								</button>

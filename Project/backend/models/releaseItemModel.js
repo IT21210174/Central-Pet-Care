@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 
-const itemSchema = mongoose.Schema({
+const releaseItemSchema = mongoose.Schema({
+
+    releaseRecord:{
+        type: String,
+        required: true
+    },
+
     sku:{
         type: String,
         required: true
@@ -21,24 +27,24 @@ const itemSchema = mongoose.Schema({
         required: true
     },
 
-    rackNo:{
-        type: String,
-        required: true
-    },
-
     quantity:{
         type: Number,
         required: true
     },
 
-    manufacturer:{
+    totalCost:{
+        type: Number,
+        required: true
+    },
+
+    staffName:{
         type: String,
         required: true
     },
 
-    reorderLevel:{
-        type:Number,
-        required: false
+    staffID:{
+        type:String,
+        required: true
     },
 
     measurementUnit:{
@@ -46,12 +52,7 @@ const itemSchema = mongoose.Schema({
         required: true
     },
 
-    productImage:{
-        type:String,
-        required: true
-    }
-
 },{timestamps:true})
 
 
-module.exports = mongoose.model('item',itemSchema)
+module.exports = mongoose.model('releaseItem',releaseItemSchema)
