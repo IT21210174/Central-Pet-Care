@@ -64,9 +64,9 @@ const StaffReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [[ "First Name", "Last Name", "Address", "NIC","Department","Joined Date","Salary"]],
+          head: [[ "First Name", "Last Name", "NIC","Department","Designation","Joined Date","Salary"]],
           body: data.map((item) => {
-            return [item.firstName, item.lastName, item.address, item.nic, item.department, item.joinedDate, 'Rs.' + item.salary.toFixed(2)];
+            return [item.firstName, item.lastName, item.nic, item.department, item.designation, item.joinedDate, 'Rs.' + item.salary.toFixed(2)];
           }),
           startY: 80, // start the table below the logo
           headStyles: {

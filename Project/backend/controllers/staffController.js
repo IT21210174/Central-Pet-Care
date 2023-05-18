@@ -46,7 +46,7 @@ const getStaffById = asyncHandler(async (req, res) => {
 // @access  Private
 const addStaff = asyncHandler(async (req, res) => {
     
-    const { firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage} = req.body;
+    const { firstName, lastName, address, nic, contactNo, dob, email, department,designation, joinedDate, salary, simage} = req.body;
 
     const staff = new Staff({
         firstName: req.body.firstName,
@@ -57,6 +57,7 @@ const addStaff = asyncHandler(async (req, res) => {
         dob: req.body.dob,
         email: req.body.email,
         department: req.body.department,
+        designation: req.body.designation,
         joinedDate: req.body.joinedDate,
         salary: req.body.salary,
         simage: req.body.simage,
