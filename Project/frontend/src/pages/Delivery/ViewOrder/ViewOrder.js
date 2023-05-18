@@ -6,6 +6,7 @@ import NoItemsDisplayer from "./orders-empty-result-displayer";
 import "./ViewOrder.scss";
 import orderApi from '../../../services/order-api'
 import { userRequest } from "../../../requestMethods";
+import OrderReport from "../OrderReport/OrderReport";
 
 function ViewOrderComponent() {
 	const [orders, setOrders] = useState([]);
@@ -67,6 +68,7 @@ function ViewOrderComponent() {
 							<ImSearch />
 						</button>
 					</form>
+					<OrderReport data={orders}/>
 				</div>
 
 				{/* data fetching section including buttons*/}
