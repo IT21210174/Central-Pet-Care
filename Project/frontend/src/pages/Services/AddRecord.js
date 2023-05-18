@@ -7,10 +7,10 @@ import { toast } from 'react-hot-toast';
 function AddRecord() {
 
   //const [recordId, setrecordId] = useState('')
-  const [serviceId, setserviceId] = useState("")
-  const [customerId, setcustomerId] = useState("")
-  const [vcslId, setvcslId] = useState("")
-  const [petId, setpetId] = useState("")
+  const [serviceName, setserviceName] = useState("")
+  const [customerName, setcustomerName] = useState("")
+  const [vetName, setvetName] = useState("")
+  const [petType, setpetType] = useState("")
   const [date, setdate] = useState("")
   const [serviceCharge, setserviceCharge] = useState('')
 
@@ -18,10 +18,10 @@ function AddRecord() {
   const handleReset = () => {
   
     //setrecordId('')
-    setserviceId('')
-    setcustomerId('')
-    setvcslId('')
-    setpetId('')
+    setserviceName('')
+    setcustomerName('')
+    setvetName('')
+    setpetType('')
     setdate('')
     setserviceCharge('')
     
@@ -32,7 +32,7 @@ function AddRecord() {
 
     //console.log({ serviceId,customerId,vcslId,petId,date,serviceCharge});
 
-    userRequest.post("/servicerecords", { serviceId,customerId,vcslId,petId,date,serviceCharge})
+    userRequest.post("/servicerecords", { serviceName,customerName,vetName,petType,date,serviceCharge})
     .then(res => {
         toast.success('Record added')
         handleReset()
@@ -68,23 +68,23 @@ function AddRecord() {
                 </section> */}
 
                 <section className="input-container">
-                  <span className="input-title">Service ID</span>
-                  <input type='text' className="input-field" value={serviceId} onChange={(e) => setserviceId(e.target.value)} required/>
+                  <span className="input-title">Service Name</span>
+                  <input type='text' className="input-field" value={serviceName} onChange={(e) => setserviceName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
-                  <span className="input-title">Customer ID</span>
-                  <input type='text' className="input-field" value={customerId} onChange={(e) => setcustomerId(e.target.value)} required/>
+                  <span className="input-title">Customer Name</span>
+                  <input type='text' className="input-field" value={customerName} onChange={(e) => setcustomerName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
-                  <span className="input-title">VCSL ID</span>
-                  <input type='text' className="input-field" value={vcslId} onChange={(e) => setvcslId(e.target.value)} required/>
+                  <span className="input-title">Vet Name</span>
+                  <input type='text' className="input-field" value={vetName} onChange={(e) => setvetName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
-                  <span className="input-title">Pet ID</span>
-                  <input type='text' className="input-field" value={petId} onChange={(e) => setpetId(e.target.value)} required/>
+                  <span className="input-title">Pet Type</span>
+                  <input type='text' className="input-field" value={petType} onChange={(e) => setpetType(e.target.value)} required/>
                 </section>
 
 

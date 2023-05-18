@@ -7,23 +7,23 @@ const serviceRecordSchema = mongoose.Schema({
         type: String,
         unique: true,
     },
-    serviceId: {
+    serviceName: {
         type: String,
-        required: [true, 'Please add service ID'],
+        required: [true, 'Please add service Name'],
         ref: 'Service'
     },
-    customerId: {
+    customerName: {
         type: String,
-        required: [true, 'Please add customer ID']
+        required: [true, 'Please add customer Name']
     },
-    vcslId: {
+    vetName: {
         type: String,
-        required: [true, 'Please add vcsl ID']
+        required: [true, 'Please add vet Name']
         
     },
-    petId: {
+    petType: {
         type: String,
-        required: [true, 'Please add pet ID']
+        required: [true, 'Please add pet Type']
     },
     date: {
         type: String,
@@ -38,8 +38,8 @@ const serviceRecordSchema = mongoose.Schema({
     timestamps: true
 })
 serviceRecordSchema.index({
-    serviceId:'text',
-    petId:'text'
+    serviceName:'text',
+    petType:'text'
 })
 
 // // Before saving the product, check if it has a productId, if not, generate one
