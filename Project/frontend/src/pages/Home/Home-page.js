@@ -8,7 +8,6 @@ import ServiceBack from "../../assets/imgs/hero-sec-image/services.png";
 import LastPic from "../../assets/imgs/hero-sec-image/last-pic.jpg";
 import Footer from "../../components/footer/footer"
 // component importings
-import Header from "../../components/header/header";
 import HeaderAdvanced from "../../components/headerAdvanced/HeaderAdvanced";
 
 function HomePage() {
