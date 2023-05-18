@@ -6,6 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import { userRequest } from '../../../requestMethods';
 
 export default function OrderSearchResultsContainer(props) {
 	const { order } = props;
@@ -27,19 +28,46 @@ export default function OrderSearchResultsContainer(props) {
 		console.log(id);
 	};
 
-	const deleteItem = (deletingID) => {
+	const deleteItem = async(deleteID) => {
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  console.log('deleted');
+			  Swal.fire(
+				'Deleted!',
+				'Your file has been deleted.',
+				'success'
+			  )
+
+			  userRequest.delete(`orders/${deleteID}`)
+			  .then((res)=>{
+			  console.log(res.data)
+		})
+
 		const leftItems = processing.filter((item) => {
-			return item._id !== deletingID
+			return item._id !== deleteID
 		})
 
 		setProcessing(leftItems)
+
+			}
+		  })
 	};
+
+	const deleteUsingMongo = async(deleteID) => {
+		
+	}
 
 	return (
 		<div>
 			{processing.reverse().map((singleItem) => {
-				
-				console.log(singleItem)
 
 				const {deliveryStatus , orderId , shipping , _id} = singleItem
 				const {address , name , phone} = shipping
@@ -48,27 +76,27 @@ export default function OrderSearchResultsContainer(props) {
 				if (processing.length > 0) {
 					return (
 						<div className="order-info" key={_id}>
-							<span className="item-field-view-order">
+							<span className="item-field-completed-order">
 								{orderId}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-completed-order">
 								{name}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-completed-order">
 								{phone}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-completed-order">
 								{city}
 							</span>
-							<span className="item-field-view-order">
+							<span className={`${deliveryStatus === 'Pending' ? 'item-field-completed-order pending-order-state' : deliveryStatus === 'Processing' ? 'item-field-completed-order processing-order-state' : 'item-field-completed-order completed-order-state'}`}>
 								{deliveryStatus}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-completed-order">
 								{/* <button className="action-btns-view-order" onClick={()=>{updateItem(orderId)}}>
 									<BiEdit />
 								</button> */}
 								<button
-									className="action-btns-view-order"
+									className="action-btns-completed-order"
 									onClick={() => deleteItem(_id)}
 								>
 									<AiOutlineDelete />

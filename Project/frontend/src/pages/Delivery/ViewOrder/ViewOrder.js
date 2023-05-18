@@ -5,24 +5,29 @@ import ResultContainer from "./orders-search-result-container";
 import NoItemsDisplayer from "./orders-empty-result-displayer";
 import "./ViewOrder.scss";
 import orderApi from '../../../services/order-api'
+import { userRequest } from "../../../requestMethods";
+import OrderReport from "../OrderReport/OrderReport";
 
 function ViewOrderComponent() {
 	const [orders, setOrders] = useState([]);
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
-		orderApi.get("/").then((response) => {
-			setOrders(response.data);
-			console.log(orders);
-		});
-	}, []);
+		const fetchOrders = async() => {
+			await userRequest.get("deliver-orders/").then((response) => {
+				setOrders(response.data);
+				console.log(orders);
+			});
+		}
+		fetchOrders()
+	}, [setOrders , setSearchPrompt]);
 
 	const searchFieldHandler = (e) => {
 		setSearchPrompt(e.target.value);
 	};
 
-	const searchFunction = () => {
-		orderApi.get(`/${searchPrompt}`)
+	const searchFunction = async() => {
+		await userRequest.get(`deliver-orders/${searchPrompt}`)
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);
@@ -41,7 +46,6 @@ function ViewOrderComponent() {
 
 	const searchFormHandler = (e) => {
 		e.preventDefault();
-		console.log(searchPrompt);
 		searchFunction();
 		setSearchPrompt("");
 	};
@@ -51,26 +55,27 @@ function ViewOrderComponent() {
 			<div className="actionbar-container-view-order">
 				{/* main headline */}
 				{/*Search bar*/}
-				<div className="search-bar-container">
+				<div className="search-bar-container-view-order">
 					<input
 						type="text"
-						className="search-field"
+						className="search-field-view-order"
 						placeholder="Search order by order ID"
 						value={searchPrompt}
 						onChange={searchFieldHandler}
 					/>
 					<form onSubmit={searchFormHandler}>
-						<button type="submit" className="search-btn">
+						<button type="submit" className="search-btn-view-order">
 							<ImSearch />
 						</button>
 					</form>
+					<OrderReport data={orders}/>
 				</div>
 
 				{/* data fetching section including buttons*/}
 
-				<div className="search-results-section">
+				<div className="search-results-section-view-order">
 					{/* table headings */}
-					<div className="order-info-item-head">
+					<div className="order-info-item-head-view-order">
 						<span className="item-field-head-view-order">
 							Order ID
 						</span>
@@ -90,7 +95,7 @@ function ViewOrderComponent() {
 					</div>
 					{/* scrollable section */}
 
-					<div className="search-results-container">
+					<div className="search-results-container-view-order">
 						{/* display the results */}
 						{orders.length === 0 ? (
 							<NoItemsDisplayer />

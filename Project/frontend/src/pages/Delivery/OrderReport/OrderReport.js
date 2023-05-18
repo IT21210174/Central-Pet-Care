@@ -28,7 +28,7 @@ const IconWrapper = styled.div`
   vertical-align: middle; /* adjust the vertical alignment of the icon */
 `;
 
-const DriverReport = ({data}) => {
+const OrderReport = ({data}) => {
 
     const downloadPDF = () => {
         const doc = new jsPDF();
@@ -52,9 +52,9 @@ const DriverReport = ({data}) => {
         doc.setFontSize(28);
 
         //Change report name accordingly
-        doc.text("Driver Report", (pageWidth / 2), 60, { align: "center" });
+        doc.text("Order Delivery Report", (pageWidth / 2), 60, { align: "center" });
         // Underline the text
-        const textWidth = doc.getStringUnitWidth("Driver Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const textWidth = doc.getStringUnitWidth("Order Delivery Report") * doc.internal.getFontSize() / doc.internal.scaleFactor;
         doc.setLineWidth(0.5);
         doc.line((pageWidth / 2) - (textWidth / 2), 63, (pageWidth / 2) + (textWidth / 2), 63);
 
@@ -64,9 +64,9 @@ const DriverReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [["Driver Name", "NIC", "Licence No", "Telephone", "Vehicle No"]],
+          head: [["OrderID", "Customer Name", "City", "Status","Total Amount(Rs.)", "Used Vehicle"]],
           body: data.map((item) => {
-            return [item.driverName, item.nicNumber, item.driversLicenceNo, item.phoneNum, item.vehicleRegNo];
+            return [item.orderId, item.shipping.name, item.shipping.address.city, item.deliveryStatus, item.total, item.assignedDriver];
           }),
           startY: 80, // start the table below the logo
           headStyles: {
@@ -81,7 +81,7 @@ const DriverReport = ({data}) => {
           }
         });
     
-        doc.save("Drivers.pdf"); //Change name accordingly
+        doc.save("DeliveryOrders.pdf"); //Change name accordingly
       };
 
   return (
@@ -89,9 +89,9 @@ const DriverReport = ({data}) => {
       <IconWrapper>
         <HiOutlineDocumentReport size="1rem"/>
       </IconWrapper>
-      DRIVER REPORT
+      ORDER REPORT
     </Button>
   );
 };
 
-export default DriverReport;
+export default OrderReport;
