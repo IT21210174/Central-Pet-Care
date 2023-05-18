@@ -39,6 +39,7 @@ import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import ReleaseSearch from './pages/Inventory/release-search/ReleaseSearch';
+import RopCalculator from './pages/Inventory/rop-calculator/RopCalc'
 import Login from './pages/Signin & Signup/Page';
 
 //payroll management
@@ -148,6 +149,7 @@ function App() {
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
         <Route path="/central-pet-care" element={<HomePage/>} />
+        <Route path="/admin/inventory/rop-calculator" element={<RopCalculator/>} />
         <Route path="/central-pet-care/login" element={<Login/>} />
 
 

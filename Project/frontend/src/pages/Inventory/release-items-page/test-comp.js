@@ -161,7 +161,7 @@ function ReleaseItems() {
 
 
 		// checking quantity is valid
-		if(parseInt(releaseItemFormData.quantity) < 0 || parseInt(releaseItemFormData.quantity) > parseInt(itemObject.quantity)){
+		if(parseInt(releaseItemFormData.quantity) <= 0 || parseInt(releaseItemFormData.quantity) > parseInt(itemObject.quantity)){
 			setQtyError("Quantity can't be greater than available or negative")
 			validationFailed = true
 		}
@@ -252,23 +252,23 @@ function ReleaseItems() {
 
   return (
     <AdminLayout>
-			<div className="add-item-container-main">
+			<div className="release-item-container-main">
 				{/* this is the form container */}
 				<form
-					className="add-item-form-container"
+					className="release-item-form-container"
 					onSubmit={releaseItemFormHandler}
 				>
-					<span className="tagline-add-item">
-						Release an item form the stock
+					<span className="tagline-release-item">
+						Release an item form the stock <span>  [Note: {itemObject.quantity} items currently remaining in the stock from this item]</span>
 					</span>
 					{/* input field container */}
 					<div className="column-container">
 						{/* column one */}
-						<div className="add-item-column">
+						<div className="release-item-column">
 							<section className="input-container">
 								<span className="input-title">Record ID</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.releaseRecord}
 									name="releaseRecord"
 									onChange={releaseFormInputHandler}
@@ -280,7 +280,7 @@ function ReleaseItems() {
 									store keeping unit (SKU)
 								</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.sku}
 									name="sku"
 									onChange={releaseFormInputHandler}
@@ -291,7 +291,7 @@ function ReleaseItems() {
 							<section className="input-container">
 								<span className="input-title">category</span>
 								<select
-									className="input-field-add-item"
+									className="input-field-release-item"
 									name="category"
 									value={releaseItemFormData.category}
 									onChange={releaseFormInputHandler}
@@ -319,7 +319,7 @@ function ReleaseItems() {
 							<section className="input-container">
 								<span className="input-title">unit price</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.price}
 									name="price"
 									onChange={releaseFormInputHandler}
@@ -330,7 +330,7 @@ function ReleaseItems() {
 							<section className="input-container">
 								<span className="input-title">Total Cost</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.totalCost}
 									name="totalCost"
 									onChange={()=>{
@@ -342,12 +342,12 @@ function ReleaseItems() {
 							</section>
 						</div>
 						{/* column two */}
-						<div className="add-item-column">
+						<div className="release-item-column">
 
               <section className="input-container">
 								<span className="input-title">item name</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.itemName}
 									name="itemName"
 									onChange={releaseFormInputHandler}
@@ -360,7 +360,7 @@ function ReleaseItems() {
               <section className="input-container">
 								<span className="input-title">measurement unit</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.measurementUnit}
 									name="measurementUnit"
 									onChange={releaseFormInputHandler}
@@ -373,7 +373,7 @@ function ReleaseItems() {
 							<section className="input-container">
 								<span className="input-title">quantity</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.quantity}
 									name="quantity"
 									onChange={releaseFormInputHandler}
@@ -384,7 +384,7 @@ function ReleaseItems() {
               <section className="input-container">
 								<span className="input-title">Employee Name</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.staffName}
 									name="staffName"
 									onChange={releaseFormInputHandler}
@@ -395,7 +395,7 @@ function ReleaseItems() {
               <section className="input-container">
 								<span className="input-title">Employee ID</span>
 								<input
-									className="input-field-add-item"
+									className="input-field-release-item"
 									value={releaseItemFormData.staffID}
 									name="staffID"
 									onChange={releaseFormInputHandler}
@@ -403,11 +403,11 @@ function ReleaseItems() {
 								<span className={staffIDErr ? `validateErrors` : `validateErrors visible-non`}>{staffIDErr}</span>
 							</section>
 							
-							<div className="btn-container-add-item">
-								<button type="submit" className="submit-btn-add-item">
+							<div className="btn-container-release-item">
+								<button type="submit" className="submit-btn-release-item">
 									Release
 								</button>
-								<button type="reset" className="reset-btn-add-item" onClick={()=>backBtn()}>
+								<button type="reset" className="reset-btn-release-item" onClick={()=>backBtn()}>
 									Back
 								</button>
 							</div>

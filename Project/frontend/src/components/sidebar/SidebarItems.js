@@ -196,16 +196,16 @@ const SidebarItems = [
 				nestedItemtext: "Manage suppliers",
 			},
 
-			{
-				id: 107,
-				link: "/admin/inventory/generate-reports",
-				nestedItemicon: <TbReportAnalytics />,
-				nestedItemtext: "Generate reports",
-			},
+			// {
+			// 	id: 107,
+			// 	link: "/admin/inventory/generate-reports",
+			// 	nestedItemicon: <TbReportAnalytics />,
+			// 	nestedItemtext: "Generate reports",
+			// },
 
 			{
 				id: 108,
-				link: "/inventory/rop-calculator",
+				link: "/admin/inventory/rop-calculator",
 				nestedItemicon: <BsCalculator />,
 				nestedItemtext: "ROP Calculator",
 			},

@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import "./view-supplier.scss";
 import { useLocation  , useNavigate} from "react-router-dom";
 import { userRequest } from "../../../requestMethods";
+import ViewSupplier from '../../../assets/view-supplier.png'
 
 function ViewSupplierDetails() {
 	const location = useLocation();
 	const { id } = location.state;
 
 	const [viewSupplierDetails, setViewSupplierDetails] = useState({});
+	const [loading, setIsloading] = useState(false)
 
 	const navigate = useNavigate()
 
@@ -17,12 +19,14 @@ function ViewSupplierDetails() {
 			await userRequest.get(`suppliers/mongo/${id}`).then(
 				(response) => {
 					setViewSupplierDetails(response.data);
+					setIsloading(true)
 				},
 				[setViewSupplierDetails]
 			);
 		};
 
 		fetchData();
+		
 	});
 
 	console.log(viewSupplierDetails);
@@ -31,8 +35,8 @@ function ViewSupplierDetails() {
 		<AdminLayout>
 			<div className="view-inventory-item-container">
 				<div className="container">
-					<div className="pic-box-inventory-item"></div>
-					<button className="view-item-back-btn" onClick={()=>{navigate("/admin/inventory/manage-suppliers")}}>Back</button>
+					<img src={ViewSupplier} alt="" className="pic-box-view-supplier"></img>
+					<button className="view-supplier-back-btn" onClick={()=>{navigate("/admin/inventory/manage-suppliers")}}>Back</button>
 				</div>
 				<div className="container">
 					<div className="field-names-supplier">
@@ -74,7 +78,7 @@ function ViewSupplierDetails() {
 							{viewSupplierDetails.supplierCategory}
 						</span>
 						<span className="data-fields-supplier-values">
-							Rs. {viewSupplierDetails.supplyingItem}
+							{viewSupplierDetails.supplyingItem}
 						</span>
 						<span className="data-fields-supplier-values">
 							{viewSupplierDetails.companyAddress}
@@ -89,10 +93,10 @@ function ViewSupplierDetails() {
 							{viewSupplierDetails.phone}
 						</span>
 						<span className="data-fields-supplier-values">
-							{viewSupplierDetails.createdAt}
+							{loading ? viewSupplierDetails.createdAt.toString().substring(0,10) : viewSupplierDetails.createdAt}
 						</span>
-            <span className="data-fields-supplier-values">
-							{viewSupplierDetails.updatedAt}
+            			<span className="data-fields-supplier-values">
+							{loading ? viewSupplierDetails.updatedAt.toString().substring(0,10) : viewSupplierDetails.updatedAt}
 						</span>
 					</div>
 				</div>

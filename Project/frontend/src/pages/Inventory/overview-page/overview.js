@@ -75,7 +75,7 @@ function OverviewComponent() {
                   <span className="insight-card-title">Suppliers</span>
                 </div>
             </div>
-            <InventoryReport data={inventory}/>
+            
         </div>
 
         {/* Runnnig on short displayer */}
@@ -92,22 +92,23 @@ function OverviewComponent() {
             <div className="running-short-container">
                 {
                   inventory.reverse().map((singleItem)=>{
-                      const {_id, sku , itemName , category , price , rackNo , quantity , manufacturer} = singleItem
+                      const {_id, sku , itemName , category , reorderLevel  , price , rackNo , quantity , manufacturer} = singleItem
                       
-                      if(Number(quantity) < 15){
+                      if(Number(quantity) < reorderLevel){
                         return(
                         <div className="running-short-item" key={_id}>
                             <span className="item-field">{itemName}</span>
                             <span className="item-field">{sku}</span>
                             <span className="item-field">{category}</span>
                             <span className="item-field">{quantity}</span>
-                            <span className="item-field">{quantity < 8 ? <PrLvHigh/> : <PrLvMed/>}</span>
+                            <span className="item-field">{quantity < 5 ? <PrLvHigh/> : <PrLvMed/>}</span>
                         </div>
                       )
                       }
                   }) 
                 }
             </div>
+            <InventoryReport data={inventory} className='genereate-rep-btn-invnentory'/>
         </div>
     </div>
     </AdminLayout>
