@@ -9,8 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function OrderSearchResultsContainer(props) {
 	const { order } = props;
-
-
+	order.reverse()
 	const navigate = useNavigate()
 
 	const updateItem = (id) => {
@@ -21,7 +20,7 @@ export default function OrderSearchResultsContainer(props) {
 
 	return (
 		<div>
-			{order.reverse().map((singleItem) => {
+			{order.map((singleItem) => {
 				
 				console.log(singleItem)
 
@@ -31,7 +30,7 @@ export default function OrderSearchResultsContainer(props) {
 
 				if (order.length > 0) {
 					return (
-						<div className="order-info" key={_id}>
+						<div className="order-info-view-order" key={_id}>
 							<span className="item-field-view-order">
 								{orderId}
 							</span>
@@ -44,11 +43,11 @@ export default function OrderSearchResultsContainer(props) {
 							<span className="item-field-view-order">
 								{city}
 							</span>
-							<span className="item-field-view-order">
+							<span className={`${deliveryStatus === 'Pending' ? 'item-field-view-order pending-order-state' : deliveryStatus === 'Processing' ? 'item-field-view-order processing-order-state' : 'item-field-view-order completed-order-state'}`}>
 								{deliveryStatus}
 							</span>
 							<span className="item-field-view-order">
-								<button className="action-btns-view-orderV1" onClick={()=>{updateItem(orderId)}}>
+								<button className="action-btns-view-orderV1" onClick={()=>{updateItem(_id)}}>
 									<BiEdit />
 								</button>
 							</span>

@@ -17,9 +17,9 @@ const getAllDrivers = asyncHandler(async (req, res) => {
 
 // method for get a single driver
 const getSingleDriver = asyncHandler(async (req, res) => {
-	const driverID = req.params.id;
+	const name = req.params.id;
 
-	const selectedDriver = await Driver.find({ nicNumber: driverID });
+	const selectedDriver = await Driver.find({ driverName: name });
 
 	if (selectedDriver.length !== 0) {
 		res.status(200).json(selectedDriver);

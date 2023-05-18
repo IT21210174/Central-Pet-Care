@@ -89,7 +89,7 @@ const DriverReport = ({data}) => {
       <IconWrapper>
         <HiOutlineDocumentReport size="1rem"/>
       </IconWrapper>
-      REPORT
+      DRIVER REPORT
     </Button>
   );
 };

@@ -8,94 +8,106 @@ import { userRequest } from '../../../requestMethods'
 
 function ViewCompletedOrderComponent() {
 	const [orders, setOrders] = useState([]);
+	const [root, setRoot] = useState([])
 	const [searchPrompt, setSearchPrompt] = useState("");
-
 	useEffect(() => {
-		userRequest.get("/deliver-orders").then((response) => {
-			setOrders(response.data);
-			console.log(orders);
-		});
-	}, []);
-
-
-	// const processingOrders = orders.filter((order)=>{
-	// return order.deliveryStatus === "Processing"
-	// })
-
-	const searchFieldHandler = (e) => {
-		setSearchPrompt(e.target.value);
-	};
-
-	const searchFunction = () => {
-		userRequest.get(`/deliver-orders/${searchPrompt}`)
-			.then((response) => {
-				if (response.status === 200) {
-					console.log(response);
-					setOrders(response.data);
-				} else {
-					console.log("no such item");
-					setOrders([]);
-				}
-			})
-			.catch((error) => {
-				console.log("no such item");
-				console.log(error);
-				setOrders([])
+		const fetcher = async() => {
+			await userRequest.get("/deliver-orders/").then((response) => {
+				setOrders(response.data);
+				setRoot(response.data)
+				console.log('use effect called');
 			});
-	};
+		}
+		fetcher()
+	},[]);
+
+	// const searchFieldHandler = (e) => {
+	// 	setSearchPrompt(e.target.value);
+	// };
+
+	// const searchFunction = () => {
+	// 	userRequest.get(`/deliver-orders/${searchPrompt}`)
+	// 		.then((response) => {
+	// 			if (response.status === 200) {
+	// 				console.log(response);
+	// 				setOrders(response.data);
+	// 				console.log(searchPrompt);
+	// 			} else {
+	// 				console.log("no such item");
+	// 				setOrders([]);
+	// 			}
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log("no such item");
+	// 			console.log(error);
+	// 			setOrders([])
+	// 		});
+	// };
+
+	const extendedFrontendSearch = () => {
+		const results = root.filter((order)=>{
+			return order.orderId === searchPrompt
+		})
+		
+		if(results.length === 0){
+			setOrders([])
+			console.log("empty array recieved");
+		}
+		setOrders(results)
+		console.log(orders);
+	}
 
 	const searchFormHandler = (e) => {
-		e.preventDefault();
-		console.log(searchPrompt);
-		searchFunction();
+		e.preventDefault()
+		extendedFrontendSearch()
 		setSearchPrompt("");
 	};
 
 	return (
 		<AdminLayout>
-			<div className="actionbar-container-view-order">
+			<div className="actionbar-container-completed-order">
 				{/* main headline */}
 				{/*Search bar*/}
-				<div className="search-bar-container">
-					<input
-						type="text"
-						className="search-field"
-						placeholder="Search order by order ID"
-						value={searchPrompt}
-						onChange={searchFieldHandler}
-					/>
+				{/* <div className="search-bar-container-completed-order">
 					<form onSubmit={searchFormHandler}>
-						<button type="submit" className="search-btn">
+						<input
+							type="text"
+							className="search-field-completed-order"
+							placeholder="Search order by order ID"
+							value={searchPrompt}
+							onChange={(e)=>{setSearchPrompt(e.target.value)}}
+						/>
+						<button type="submit" className="search-btn-completed-order">
 							<ImSearch />
 						</button>
 					</form>
-				</div>
+				</div> */}
 
 				{/* data fetching section including buttons*/}
 
-				<div className="search-results-section">
+				<div className="search-results-section-completed-order">
 					{/* table headings */}
-					<div className="order-info-item-head">
-						<span className="item-field-head-view-order">
+					<div className="order-info-item-head-completed-order">
+						<span className="item-field-head-completed-order">
 							Order ID
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-completed-order">
 							Customer Name
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-completed-order">
 							Customer Phone
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-completed-order">
 							Delivery Location
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-completed-order">
 							Delivery Status
 						</span>
-						<span className="item-field-head-view-order"></span>
+						<span className="item-field-head-completed-order"></span>
 					</div>
 					{/* scrollable section */}
 
-					<div className="search-results-container">
+					<div className="search-results-container-completed-order">
 						{/* display the results */}
 						{orders.length === 0 ? (
 							<NoItemsDisplayer />

@@ -9,7 +9,7 @@ $ash-color: #636e72;
 // fonts
 $fontfam-1: "Poppins", sans-serif;
 
-.add-driver-container {
+.update-driver-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -23,7 +23,7 @@ $fontfam-1: "Poppins", sans-serif;
 	);
 }
 
-.form-container {
+.form-container-update-driver {
 	width: 950px;
 	height: 580px;
 	display: flex;
@@ -34,7 +34,7 @@ $fontfam-1: "Poppins", sans-serif;
 	box-shadow: 8px 8px 10px rgba($color: #000000, $alpha: 0.5);
 }
 
-.add-driver-column {
+.column-update-driver {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -43,12 +43,12 @@ $fontfam-1: "Poppins", sans-serif;
 	height: 500px;
 }
 
-.input-container {
+.input-container-update-driver {
 	display: flex;
 	flex-direction: column;
 }
 
-.input-title {
+.input-title-update-driver {
 	text-transform: capitalize;
 	color: $primary-color-navyBlue;
 	font-weight: 600;
@@ -56,7 +56,7 @@ $fontfam-1: "Poppins", sans-serif;
 	font-size: 0.9em;
 }
 
-.input-field {
+.input-field-update-driver {
 	width: 400px;
 	font-size: 1em;
 	padding: 10px 20px;
@@ -66,11 +66,11 @@ $fontfam-1: "Poppins", sans-serif;
 	border-radius: 10px;
 }
 
-.input-field:focus {
+.input-field-update-driver:focus {
 	border-color: $secondary-color-purple1;
 }
 
-.input-textarea {
+.input-textarea-update-driver {
 	width: 400px;
 	font-size: 1em;
 	padding: 10px 20px;
@@ -83,23 +83,23 @@ $fontfam-1: "Poppins", sans-serif;
 	resize: none;
 }
 
-.input-textarea:focus {
+.input-textarea-update-driver:focus {
 	border-color: $secondary-color-purple1;
 }
 
-.select-option {
+.select-option-update-driver {
 	width: 350px;
 	border: none;
 }
 
-.btn-container-add-driver {
+.btn-container-update-driver {
 	margin-top: 35px;
 	display: flex;
 	justify-content: space-evenly;
 	width: 400px;
 }
 
-.submit-btn {
+.submit-btn-update-driver {
 	padding: 5px 50px;
 	width: 200px;
 	outline: none;
@@ -111,7 +111,7 @@ $fontfam-1: "Poppins", sans-serif;
 	transition: 0.4s;
 }
 
-.reset-btn {
+.reset-btn-update-driver {
 	padding: 5px 50px;
 	width: 180px;
 	outline: none;
@@ -123,12 +123,25 @@ $fontfam-1: "Poppins", sans-serif;
 	transition: 0.4s;
 }
 
-.submit-btn:hover {
+.submit-btn-update-driver:hover {
 	cursor: pointer;
 	box-shadow: 4px 4px 8px rgba($color: #000000, $alpha: 0.6);
 }
 
-.reset-btn:hover {
+.reset-btn-update-driver:hover {
 	cursor: pointer;
 	box-shadow: 4px 4px 8px rgba($color: #000000, $alpha: 0.6);
+}
+
+.validateErrors{
+	font-size: 0.8em;
+	letter-spacing: 1px;
+	color: crimson;
+	margin-left: 10px;
+	height: 18px;
+	transform: translateY(-10px);
+}
+
+.visible-non{
+	visibility: hidden;
 }
