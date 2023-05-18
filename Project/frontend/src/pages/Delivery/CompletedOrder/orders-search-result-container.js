@@ -30,13 +30,13 @@ export default function OrderSearchResultsContainer(props) {
 
 	const deleteItem = async(deleteID) => {
 		Swal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
+			title: 'Confirmation Needed',
+			text: "Please confirm your action",
 			icon: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete it!'
+			confirmButtonColor: '#f44336', // Red color for confirm button
+			cancelButtonColor: '#4caf50', // Green color for cancel button      
+			confirmButtonText: 'Delete'
 		  }).then((result) => {
 			if (result.isConfirmed) {
 			  console.log('deleted');

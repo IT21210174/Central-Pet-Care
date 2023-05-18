@@ -30,15 +30,15 @@ export default function ItemSearchResultsContainer(props) {
 
 		// swalWithBootstrapButtons
 			Swal.fire({
-				title: "Are you sure?",
-				text: "You won't be able to revert this!",
-				icon: "warning",
+				title: 'Confirmation Needed',
+				text: "Please confirm your action",
+				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: "Yes, delete it!",
+				confirmButtonColor: '#f44336', // Red color for confirm button
+				cancelButtonColor: '#4caf50', // Green color for cancel button      
+				confirmButtonText: 'Delete',
 				cancelButtonText: "Cancel",
-				reverseButtons: true,
+				// reverseButtons: true,
 			})
 			.then((result) => {
 				if (result.isConfirmed) {
