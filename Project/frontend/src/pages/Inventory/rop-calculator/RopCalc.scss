@@ -87,7 +87,6 @@ $fontfam-1: "Poppins", sans-serif;
 .input-container {
 	display: flex;
 	flex-direction: column;
-	margin-top: 10px;
 }
 
 .input-title {
@@ -227,4 +226,36 @@ $fontfam-1: "Poppins", sans-serif;
 	font-weight: 600;
 	letter-spacing: 3px;
 	margin-top: 30px;
+}
+
+.rop-calc-user-guide{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 40px;
+}
+
+.cal-guide-tips{
+	width: 750px;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.cal-heads-container{
+	width: 200px;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.calc-head{
+	font-weight: 600;
+	margin-top: 5px;
+}
+
+.calc-tips{
+	margin-top: 5px;
 }

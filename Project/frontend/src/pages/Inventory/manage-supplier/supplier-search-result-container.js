@@ -24,8 +24,9 @@ export default function SupplierSearchResultsContainer(props) {
 
 	// delete function
 	const deleteSupplier = (deletingID) => {
+		console.log(deletingID);
 		Swal.fire({
-				title: "Are you sure?",
+				title: "Confirm the action",
 				text: "You won't be able to revert this!",
 				icon: "warning",
 				showCancelButton: true,
@@ -35,15 +36,16 @@ export default function SupplierSearchResultsContainer(props) {
 			})
 			.then(async(result) => {
 				if (result.isConfirmed) {
-					Swal.fire(
-						"Deleted!",
-						"Your file has been deleted.",
-						"success"
-					);
+					
 
-					await userRequest.delete(`/${deletingID}`)
+					await userRequest.delete(`suppliers/${deletingID}`)
 						.then((response) => {
 							console.log(response);
+							Swal.fire(
+								"Deleted!",
+								"Your file has been deleted.",
+								"success"
+							);
 						})
 						.catch((error) => {
 							console.log(error);

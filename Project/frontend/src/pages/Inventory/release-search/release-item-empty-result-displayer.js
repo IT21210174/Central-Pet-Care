@@ -5,7 +5,7 @@ function NoItemssDisplayer() {
 	return (
 		<div className="operation-unsuccess-container">
 			<img src={EmptyResult} alt="" className="imgblock" />
-			<span className="message-box">No Results, Try Different Agent ID.</span>
+			<span className="message-box">No Results, Try another search</span>
 		</div>
 	);
 }

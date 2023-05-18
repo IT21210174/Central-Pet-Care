@@ -37,6 +37,7 @@ import ViewInventoryItem from "./pages/Inventory/view-item-details-page/view-ite
 import ManageSupplierWindow from "./pages/Inventory/manage-supplier/manage-supplier";
 import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
+import ReleasedItems from './pages/Inventory/released-items/ReleasedItems';
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import ReleaseSearch from './pages/Inventory/release-search/ReleaseSearch';
 import RopCalculator from './pages/Inventory/rop-calculator/RopCalc'
@@ -144,6 +145,7 @@ function App() {
         <Route path="/admin/inventory/view-item" element={<ViewInventoryItem />}/>
         <Route path="/admin/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
         <Route path="/admin/inventory/report" />
+         <Route path="/admin/inventory/released-list" element={<ReleasedItems/>} />
         <Route path="/admin/inventory/release-items" element={<ReleaseItems/>} />
         <Route path="/admin/inventory/release-search" element={<ReleaseSearch/>} />
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />

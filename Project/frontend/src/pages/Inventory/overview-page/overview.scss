@@ -18,6 +18,10 @@ $secondary-color-purple4: #e9e3ff;
 	align-items: center;
 }
 
+.insight-card:nth-child(4){
+	width: 320px;
+}
+
 .insight-card {
 	padding: 10px;
 	width: 250px;
@@ -57,6 +61,7 @@ $secondary-color-purple4: #e9e3ff;
 .insight-card-title {
 	font-size: 18px;
 	font-weight: 600;
+	transform: translateY(-10px);
 }
 
 // second row styles goes on here
@@ -155,4 +160,9 @@ $secondary-color-purple4: #e9e3ff;
 	color: white;
 	border-radius: 5px;
 	font-size: 1.1em;
+}
+
+.report-gen-section-inventory{
+	margin-left: 20px;
+	margin-bottom: 10px;
 }

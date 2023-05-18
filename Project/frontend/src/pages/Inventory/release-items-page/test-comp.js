@@ -142,8 +142,9 @@ function ReleaseItems() {
 		}
 
     // check staff id
-		if(releaseItemFormData.staffID === ""){
-			setStaffIDErr("Staff ID can't be empty")
+		const staffIDTemplate = /^SID\d{4}$/
+		if(!staffIDTemplate.test(releaseItemFormData.staffID)){
+			setStaffIDErr("Staff ID format should be SIDXXXX")
 			validationFailed = true
 		}
 		else{
@@ -162,7 +163,7 @@ function ReleaseItems() {
 
 		// checking quantity is valid
 		if(parseInt(releaseItemFormData.quantity) <= 0 || parseInt(releaseItemFormData.quantity) > parseInt(itemObject.quantity)){
-			setQtyError("Quantity can't be greater than available or negative")
+			setQtyError("Quantity can't be equal or less than zero")
 			validationFailed = true
 		}
 		else{

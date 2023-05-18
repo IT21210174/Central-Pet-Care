@@ -135,5 +135,25 @@ $danger-color: #e74c3c;
     cursor: pointer;
 }
 
+.release-records-btn{
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    color: white;
+    height: 34px;
+    width: 150px;
+    border-radius: 5px;
+    margin-left: 30px;
+    background-color: $secondary-color-purple1;
+    transition: .3s;
+}
+
+.release-records-btn:hover{
+    background-color: $secondary-color-purple2;
+    cursor: pointer;
+}
 
 

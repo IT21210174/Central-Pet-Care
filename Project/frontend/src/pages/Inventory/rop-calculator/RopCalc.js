@@ -68,6 +68,19 @@ function RopCalc() {
                 </form>
 
                 <span className='rop-calc-final-val-displayer'>Reorder Point(ROP) is {rop}</span>
+
+                {/* <div className="rop-calc-user-guide">
+                    <div className="cal-heads-container">
+                        <span className='calc-head'>Average Demand:</span>
+                        <span className='calc-head'>Lead Time:</span>
+                        <span className='calc-head'>Safety Stock:</span>
+                    </div>
+                    <div className="cal-guide-tips">
+                        <span className='calc-tips'>Average number of units sold or consumed per day</span>
+                        <span className='calc-tips'>Time takes for an order to be delivered after it has been placed</span>
+                        <span className='calc-tips'>Additional buffer stock kept to mitigate uncertainties in demand or supply.</span>
+                    </div>
+                </div> */}
             </div>
         </div>
     </AdminLayout>

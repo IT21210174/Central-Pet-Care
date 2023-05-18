@@ -1,11 +1,12 @@
 import React, { useState ,useEffect } from 'react'
-import api from '../../../services/api'
-import supplierApi from '../../../services/supplierAPI'
+import value from '../../../assets/imgs/hero-sec-image/balance.png'
 import PrLvMed from '../../../components/inventory-signals/PrLvlMedium'
 import PrLvHigh from '../../../components/inventory-signals/PrLvlHigh'
 import AdminLayout from '../../Layouts/AdminLayout'
 import './overview.scss'
 import InventoryReport from '../../Reports/InventoryReport'
+import SupplierReport from '../../Reports/SupplierReport'
+import ReleaseItemsReport from '../../Reports/ReleaseItemsReport'
 import {userRequest} from '../../../requestMethods'
 import clinicEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pharmaceutical.png'
 import storeEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pet-food.png'
@@ -17,7 +18,7 @@ function OverviewComponent() {
 
   // hooks and other data reading logics
   const [inventory , setInventory] = useState([])
-
+  const [releasedRecords, setReleasedRecords] = useState([])
   const [supplierCount , setSupplierCount] = useState([])
 
   useEffect(()=>{
@@ -28,6 +29,9 @@ function OverviewComponent() {
   
       await userRequest.get("suppliers/").then((response)=>{setSupplierCount(response.data)})
       console.log(supplierCount);
+
+      await userRequest.get("release-items/").then((response)=>{setReleasedRecords(response.data)})
+      console.log(releasedRecords);
     }
 
     fetchAll()
@@ -35,9 +39,13 @@ function OverviewComponent() {
 
   let pharmCount = 0
   let petItemCount = 0
+  let totalCount = 0
 
   inventory.map((singleItem)=>{
-    const {category} = singleItem;
+    const {category , quantity , price} = singleItem;
+
+    totalCount += quantity * price
+
 
     if(category === 'clinical-item'){
       pharmCount++
@@ -75,9 +83,21 @@ function OverviewComponent() {
                   <span className="insight-card-title">Suppliers</span>
                 </div>
             </div>
+
+            <div className="insight-card">
+                <img src={value} alt="" className="insight-card-pic" />
+                <div className="insight-card-details">
+                  <span className="item-count-displayer">{totalCount < 10 ? `0${totalCount}` : totalCount}</span>
+                  <span className="insight-card-title">LKR Inventory Worth</span>
+                </div>
+            </div>
             
         </div>
-
+            <div className="report-gen-section-inventory">
+              <InventoryReport data={inventory}/>
+              <SupplierReport data={supplierCount}/>
+              <ReleaseItemsReport data={releasedRecords}/>
+            </div>
         {/* Runnnig on short displayer */}
         <div className="row-heading">Limited Availability Items</div>
         <div className="second-row-container">
@@ -108,7 +128,6 @@ function OverviewComponent() {
                   }) 
                 }
             </div>
-            <InventoryReport data={inventory} className='genereate-rep-btn-invnentory'/>
         </div>
     </div>
     </AdminLayout>

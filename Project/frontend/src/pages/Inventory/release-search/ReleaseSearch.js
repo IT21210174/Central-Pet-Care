@@ -5,13 +5,14 @@ import './ReleaseSearch.scss'
 import AdminLayout from '../../Layouts/AdminLayout'
 import ReleaseItemsResultsContainer from './release-items-search-result-container';
 import ReleaseItemsMessageDisplayer from './release-item-empty-result-displayer'
+import { useNavigate } from 'react-router-dom';
 
 function ReleaseSearch() {
 
     const [originalItems , setOriginalItems] = useState([])
     const [items, setItems] = useState([]);
 	const [searchPrompt, setSearchPrompt] = useState("");
-
+	const navigate = useNavigate()
 
     useEffect(()=>{
         const fetchData = async() => {
@@ -51,6 +52,11 @@ function ReleaseSearch() {
 							<ImSearch />
 						</button>
 					</form>
+					<button className="release-records-btn" onClick={()=>{
+						navigate("/admin/inventory/released-list")
+					}}>
+						Release Records
+					</button>
 				</div>
 
 				{/* data fetching section including buttons*/}
