@@ -9,15 +9,15 @@ import LastPic from "../../assets/imgs/hero-sec-image/last-pic.jpg";
 import Footer from "../../components/footer/footer"
 // component importings
 import HeaderAdvanced from "../../components/headerAdvanced/HeaderAdvanced";
+import HeaderTransparent from "../../components/headerAdvanced/HeaderTransparent";
 
 function HomePage() {
 	return (
 		<div className="home-page-container">
-			{/* header section */}
-
 			{/* hero section */}
 			<div className="hero-picture">
-				<HeaderAdvanced />
+				{/* <HeaderAdvanced /> */}
+				<HeaderTransparent />
 				<img src={HeroImage} alt="" className="hero-sec-image" />
 				<div className="hero-overlay"></div>
 				<div className="welcome-container">

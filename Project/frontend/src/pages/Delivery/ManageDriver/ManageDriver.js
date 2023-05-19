@@ -23,6 +23,8 @@ function ManageDriverComponent() {
 		setSearchPrompt(e.target.value);
 	};
 
+	
+
 	const searchFunction = () => {
 		// userRequest.get(`/drivers/${searchPrompt}`)
 		// 	.then((response) => {

@@ -19,7 +19,18 @@ $font-fam-1: "Poppins", sans-serif;
     height: 70px;
     color: white;
     z-index: 1000;
-    background-color: #2c2c54;
+    background-color: $primary-col;
+}
+
+.nav-container-header-adv-transparent {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 70px;
+    color: white;
+    z-index: 1000;
 }
 
 .nav-container-header-adv-without-color {
@@ -65,7 +76,7 @@ $font-fam-1: "Poppins", sans-serif;
     transform: translateX(300px);
 }
 
-.partition-nav-2>.nav-links-header-advanced {
+.partition-nav-2-header-adv>.nav-links-header-advanced {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,26 +87,27 @@ $font-fam-1: "Poppins", sans-serif;
     transition: 0.2s;
 }
 
-.partition-nav-2>.nav-links-header-advanced:hover {
+.partition-nav-2-header-adv>.nav-links-header-advanced:hover {
     color: white;
     cursor: pointer;
     border-color: $secondary-col3;
 }
 
-.nav-login-btn:hover {
+.nav-login-btn-header-advanced:hover {
     background-color: $secondary-col3;
     color: white;
     cursor: pointer;
     border-color: $secondary-col3;
 }
 
-.nav-login-btn {
+.nav-login-btn-header-advanced {
     border: 2px solid white;
     color: white;
     background-color: transparent;
     border-radius: 20px;
     padding: 4px 20px;
     transition: 0.3s;
+    margin-left: 10px;
 }
 
 .company-logo {
@@ -128,14 +140,16 @@ $font-fam-1: "Poppins", sans-serif;
 }
 
 .btn-section-header-adv{
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    padding: 5px 10px;
+    background-color: $primary-col;
     position: absolute;
-    transform: translate(50px , 30px);
+    transform: translate(50px , 95px);
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .hide{
@@ -143,9 +157,26 @@ $font-fam-1: "Poppins", sans-serif;
 }
 
 .scroller-btns{
-    border: none;
+    width: 100px;
+    border: 1px solid white;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
-    color: black;
+    border-left: none;
+    border-right: none;
+    color: white;
     font-weight: 600;
     font-family: $font-fam-1;
+    margin-right: 60px;
+}
+
+.show{
+    display: flex;
+    visibility: visible;
+}
+
+.hide{
+    visibility: hidden;
 }
