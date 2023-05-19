@@ -118,7 +118,7 @@ function App() {
       <Toaster />
       
       <Routes>
-        <Route path='/' element={<AppBlog />} />
+        {/* <Route path='/' element={<AppBlog />} /> */}
         <Route exact path='/component-2' element={<AddItem />} />
         <Route exact path='/component-3' element={<AddProduct />} />
         
@@ -166,9 +166,9 @@ function App() {
         <Route path="/admin/inventory/release-search" element={<ReleaseSearch/>} />
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
-        <Route path="/central-pet-care" element={<HomePage/>} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/admin/inventory/rop-calculator" element={<RopCalculator/>} />
-        <Route path="/central-pet-care/login" element={<Login/>} />
+        <Route path="/login" element={<Login/>} />
 
 
         {/* staff routes */}
