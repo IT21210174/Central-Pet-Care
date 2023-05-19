@@ -246,6 +246,14 @@ function RegisterDriver() {
 						</section>
 						<section className="input-container-add-driver">
 							<span className="input-title-add-driver">vehicle type</span>
+							{/* <div className="input-field-add-driver">
+								<label>
+									<input
+									type=""
+									checked={driverDetails.vehicleType.includes("Bike")}
+									/>
+								</label>
+							</div> */}
 							<select
 								className="input-field-add-driver"
 								value={driverDetails.vehicleType}
