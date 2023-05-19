@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './blog.scss';
 
@@ -51,7 +52,7 @@ function AppBlog() {
     <section id="blog" className="block blog-block">
       <div className="container-fluid">
         <div className="title-holder">
-          <h2 style={{ color: 'purple' }}>Our Services</h2>
+          <h2 style={{ color: '#7D5FFF' }}>Our Services</h2>
           <div className="subtitle">Reliable and Trustworthy Pet Care</div>
         </div>
         <div className="row">

@@ -11,11 +11,11 @@ function ViewPet() {
     const { id } = useParams()
     const [petID, setPetID] = useState("")
     const [petName, setPetName] = useState("")
-    const [dob, setPetDob] = useState("")
+    const [age, setPetAge] = useState("")
     const [gender, setPetGender] = useState("")
     const [species, setPetSpecies] = useState("")
     const [breed, setPetBreed] = useState("")
-    const [customerID, setCustomerID] = useState("")
+    const [nic, setCustomerNIC] = useState("")
     const [customerName, setCustomerName] = useState("")
     const [contactNumber, setContactNumber] = useState("")
     const [medicalHistory, setMedicalHistory] = useState("")
@@ -26,11 +26,11 @@ function ViewPet() {
         .then(res => {
             setPetID(res.data.petID)
             setPetName(res.data.petName)
-            setPetDob(res.data.dob)
+            setPetAge(res.data.age)
             setPetGender(res.data.gender)
             setPetSpecies(res.data.species)
             setPetBreed(res.data.breed)
-            setCustomerID(res.data.customerID)
+            setCustomerNIC(res.data.nic)
             setCustomerName(res.data.customerName)
             setContactNumber(res.data.contactNumber)
             setMedicalHistory(res.data.medicalHistory)
@@ -58,8 +58,8 @@ function ViewPet() {
                             <span className='pet-line-info-values'>{petName}</span>
                         </div>
                         <div className='pet-line'>
-                            <span className='pet-line-info'>DOB</span>
-                            <span className='pet-line-info-values'>{dob}</span>
+                            <span className='pet-line-info'>Age</span>
+                            <span className='pet-line-info-values'>{age}</span>
                         </div>
                         <div className='pet-line'>
                             <span className='pet-line-info'>Gender</span>
@@ -74,8 +74,8 @@ function ViewPet() {
                             <span className='pet-line-info-values'>{breed}</span>
                         </div>
                         <div className='pet-line'>
-                            <span className='pet-line-info'>Customer ID</span>
-                            <span className='pet-line-info-values'>{customerID}</span>
+                            <span className='pet-line-info'>NIC</span>
+                            <span className='pet-line-info-values'>{nic}</span>
                         </div>
                         <div className='pet-line'>
                             <span className='pet-line-info'>Customer Name</span>

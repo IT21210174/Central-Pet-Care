@@ -11,7 +11,7 @@ const petRegisterSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add pet Name'],
     },
-    dob: {
+    age: {
         type: String,
         required: [true, 'Please add Age']
     },
@@ -27,9 +27,9 @@ const petRegisterSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add Breed'],
     },
-    customerID: {
+    nic: {
         type: String,
-        required: [true, 'Please add customerID']
+        required: [true, 'Please add NIC']
     },
     customerName: {
         type: String,
@@ -54,6 +54,14 @@ const petRegisterSchema = mongoose.Schema({
 petRegisterSchema.index({
     petID:'text',
     petName:'text',
+    age:'text',
+    gender:'text',
+    species:'text',
+    breed:'text',
+    nic: 'text',
+    customerName:'text',
+    contactNumber:'text',
+    medicalHistory:'text'
 })
 
 module.exports = mongoose.model('PetRegister', petRegisterSchema);

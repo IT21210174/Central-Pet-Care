@@ -42,12 +42,12 @@ const getTreatmentByID = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createTreatment = asyncHandler(async (req, res) => {
     
-    const { petID, petName, customerID,date, treatment,progressNotes} = req.body;
+    const { petID, petName, nic,date, treatment,progressNotes} = req.body;
 
     const petTreatment = new Treatments({
         petID: petID,
         petName: petName,
-        customerID: customerID,
+        nic: nic,
         date:date,
         treatment:treatment,
         progressNotes:progressNotes,

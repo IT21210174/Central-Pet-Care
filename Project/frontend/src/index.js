@@ -8,6 +8,8 @@ import WishlistContextProvider from './contexts/WishlistContext';
 import { UserContextProvider } from './contexts/UserContext';
 import { AppProvider } from './contexts/AppContext';
 
+//import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>

@@ -10,9 +10,9 @@ const petTreatmentsSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add pet Name'],
     },
-    customerID: {
+    nic: {
         type: String,
-        required: [true, 'Please add customerID']
+        required: [true, 'Please add NIC']
     },
     
     date: {
@@ -34,6 +34,10 @@ const petTreatmentsSchema = mongoose.Schema({
 petTreatmentsSchema.index({   
     petID:'text',
     petName:'text',
+    nic:'text',
+    date:'text',
+    treatment:'text',
+    progressNotes:'text'
 })
 
 module.exports = mongoose.model('PetTreatments', petTreatmentsSchema);
