@@ -20,14 +20,20 @@ const HeaderTransparent = () => {
 			<div className="partition-nav-2-header-adv">
 				<span className="nav-links-header-advanced">Home</span>
 				<span className="nav-links-header-advanced">About</span>
-				<span className="nav-links-header-advanced">Services</span>
+				<span className="nav-links-header-advanced" onClick={()=>{
+					navigate("/services")
+				}}>Services</span>
 				<span className="nav-links-header-advanced">Contact</span>
 				<span className="nav-links-header-advanced" onClick={()=>{
 					navigate("/store")
 				}}>Store</span>
 				<div className={logStatus ? `hide` : `show`}>
-					<div className="nav-login-btn-header-advanced">Signup</div>
-					<div className="nav-login-btn-header-advanced">Signin</div>
+					<div className="nav-login-btn-header-advanced"onClick={()=>{
+					navigate("/login")
+				}}>Signup</div>
+					<div className="nav-login-btn-header-advanced"onClick={()=>{
+					navigate("/login")
+				}}>Signin</div>
 				</div>
 			</div>
             <div className={logStatus ? `partiton-nav-3 show` : `hide`}>

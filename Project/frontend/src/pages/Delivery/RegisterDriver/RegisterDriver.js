@@ -78,6 +78,7 @@ function RegisterDriver() {
 		}
 
 		// check if the phone number has 10 digits
+		// another pattern : /^0\d{9}$/
 		const phoneNumPattern = /^\d{10}$/; // regex to match exactly 10 digits
 		if (!phoneNumPattern.test(driverDetails.phoneNum)) {
 		  	setPhoneNumError("Invalid Phone Number");

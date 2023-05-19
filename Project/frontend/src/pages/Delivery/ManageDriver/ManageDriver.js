@@ -23,6 +23,16 @@ function ManageDriverComponent() {
 		setSearchPrompt(e.target.value);
 	};
 
+	// const searchAllField = () => {
+	// 	const results = originDrivers.filter((singleDriver)=>{
+	// 		const driverProps = Object.values(singleDriver)
+	// 		return driverProps.some((value)=>{
+	// 			return value && value.toString().toLowerCase().replace(/\s/g,"").includes(searchPrompt.toLowerCase())
+	// 		})
+	// 	})
+
+	// 	setDrivers(results)
+	// }
 	
 
 	const searchFunction = () => {
@@ -50,6 +60,7 @@ function ManageDriverComponent() {
 		e.preventDefault();
 		console.log(searchPrompt);
 		searchFunction();
+		//searchAllField();
 		setSearchPrompt("");
 	};
 

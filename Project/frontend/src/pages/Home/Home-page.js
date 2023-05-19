@@ -10,8 +10,11 @@ import Footer from "../../components/footer/footer"
 // component importings
 import HeaderAdvanced from "../../components/headerAdvanced/HeaderAdvanced";
 import HeaderTransparent from "../../components/headerAdvanced/HeaderTransparent";
-
+import FooterStore from "../../components/store/Footer";
+import { useNavigate } from "react-router-dom";
 function HomePage() {
+
+	const navigate = useNavigate()
 	return (
 		<div className="home-page-container">
 			{/* hero section */}
@@ -32,7 +35,9 @@ function HomePage() {
 							Call today to schedule an appointment
 						</div>
 						<div className="welcome-sec-button">
-							<button className="schedule-appt-btn">
+							<button className="schedule-appt-btn" onClick={()=>{
+								navigate("/makeAppointment")
+							}}>
 								schedule appointment
 							</button>
 						</div>
@@ -125,7 +130,7 @@ function HomePage() {
 			</div>
 
 			{/* footer section */}
-			<Footer/>
+			<FooterStore/>
 		</div>
 	);
 }

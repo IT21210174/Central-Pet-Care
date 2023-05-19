@@ -169,6 +169,7 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/admin/inventory/rop-calculator" element={<RopCalculator/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/services" element={<AppBlog/>} />
 
 
         {/* staff routes */}
