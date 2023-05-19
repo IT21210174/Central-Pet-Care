@@ -26,7 +26,7 @@ function Signin() {
           setErrorState(false)
           setUser(res.data)
           if(res.data.isAdmin === true)
-            navigate('/admin')
+            navigate('/admin/products/insights')
           else
             navigate('/')
         }
