@@ -44,6 +44,22 @@ function EditPet() {
     })
   }, [id])
 
+  const handleReset = () => {
+    setPetID('')
+    setPetName('')
+    setPetAge('')
+    setPetGender('')
+    setPetSpecies('')
+    setPetBreed('')
+    setCustomerNIC('')
+    setCustomerName('')
+    setContactNumber('')
+    setMedicalHistory('')
+    setFile(null)
+   
+// Clear the value of the file input field
+document.getElementById('file-input').value = '';
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -150,7 +166,7 @@ function EditPet() {
                     </section>
                     <div className="btn-container-edit-pet">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
               </div>
             </div>

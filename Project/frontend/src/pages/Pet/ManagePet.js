@@ -113,6 +113,13 @@ function ManagePet() {
             );
           },
         },
+      //   {
+      //     field: "gender",
+      //     headerName: "Gender",
+      //     headerAlign: "center",
+      //     align: "center",
+      //     flex: 1,
+      // },
         
         {
             field: "customerName",
@@ -128,6 +135,7 @@ function ManagePet() {
           align: "center",
           flex: 1,
       },
+      
   
 
         

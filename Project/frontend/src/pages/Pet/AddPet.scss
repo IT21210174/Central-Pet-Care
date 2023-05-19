@@ -89,13 +89,31 @@ $fontfam-1: 'Poppins', sans-serif;
     flex-direction: column;
 }
 
-.input-title{
+
+
+.input-title {
     text-transform: capitalize;
     color: $primary-color-navyBlue;
     font-weight: 600;
     color: $ash-color;
     font-size: 0.9em;
-}
+    align-self: flex-start;
+  }
+  
+  .input-title-gender {
+    margin-top: 5px;
+
+  }
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+  }
+  
+  .radio-label input {
+    margin-right: 5px;
+  }
 
 .input-field{
     width: 400px;
@@ -106,6 +124,7 @@ $fontfam-1: 'Poppins', sans-serif;
     border: 2px solid $primary-color-navyBlue;
     border-radius: 10px;
 }
+
 
 .input-field:focus{
     border-color: $secondary-color-purple1;

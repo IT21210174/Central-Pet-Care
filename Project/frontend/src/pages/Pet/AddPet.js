@@ -89,6 +89,7 @@ function AddPet() {
                       <option className='select-option' >Female</option>
                   </select>
                 </section>
+
                 <section className="input-container">
                   <span className="input-title">Species</span>
                   <select className="input-field" value={species} onChange={(e) => setPetSpecies(e.target.value)}>
@@ -105,10 +106,64 @@ function AddPet() {
                   </select>
                   </section>
                 <section className="input-container">
-                  <span className="input-title">breed</span>
+                  <span className="input-title ">breed</span>
                   <input className="input-field" value={breed} onChange={(e) => setPetBreed(e.target.value)}/>
                 </section>
+                
+                {/* <section className="input-container">
+                <span className="input-title">Gender</span>
+                <div className='radio-btn-pet'>
+                
+                 <input
+                    className='input-radiobtn'
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    checked={gender === "Male"}
+                    onChange={(e) => setPetGender(e.target.value)}
+                />
+               Male
+              
+              
+              <input
+                  className='input-radiobtn'
+                  type="radio"
+                  name="gender"
+                  value="Female"
+                  checked={gender === "Female"}
+                  onChange={(e) => setPetGender(e.target.value)}
+              />
+             Female
+          
+           </div>
+          </section> */}
+          {/* <section className="input-container">
+  <span className="input-title">Gender</span>
+  <div className="checkbox-container">
+    <label className="checkbox-label">
+      <input
+        type="checkbox"
+        className="checkbox-field"
+        value="Male"
+        checked={gender === "Male"}
+        onChange={(e) => setPetGender(e.target.checked ? "Male" : "")}
+      />
+      Male
+    </label>
+    <label className="checkbox-label">
+      <input
+        type="checkbox"
+        className="checkbox-field"
+        value="Female"
+        checked={gender === "Female"}
+        onChange={(e) => setPetGender(e.target.checked ? "Female" : "")}
+      />
+      Female
+    </label>
+  </div>
+</section> pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$"*/}
               </div>
+              
               {/* column two */}
                <div className="add-pet-column">
                    <section className="input-container">
@@ -133,7 +188,7 @@ function AddPet() {
                     </section>
                     <div className="btn-container-add-pet">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
               </div>
             </div>

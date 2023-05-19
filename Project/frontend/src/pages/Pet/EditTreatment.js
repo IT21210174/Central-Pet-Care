@@ -31,7 +31,16 @@ function EditTreatment() {
         toast.error(err.message)
     })
   }, [id])
+ 
+  const handleReset = () => {
+    setPetID('')
+    setPetName('')
+    setCustomerNIC('')
+    setDate('')
+    setTreatment('')
+    setProgressNotes('')
 
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -92,7 +101,7 @@ function EditTreatment() {
                 </section>
                     <div className="btn-container-edit-treatment">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
               
             </div>

@@ -84,7 +84,7 @@ const AddTreatments = () => {
                 </section>
                     <div className="btn-container-add-item">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>         
             </div>
         </form>
