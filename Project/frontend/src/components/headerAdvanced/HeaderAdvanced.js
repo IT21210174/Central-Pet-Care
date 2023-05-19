@@ -19,7 +19,7 @@ const HeaderAdvanced = () => {
 			{/* this is for the link section */}
 			<div className="partition-nav-2-header-adv">
 				<span className="nav-links-header-advanced">Home</span>
-				<span className="nav-links-header-advanced">About</span>
+				{/* <span className="nav-links-header-advanced">About</span> */}
 				<span className="nav-links-header-advanced">Services</span>
 				<span className="nav-links-header-advanced">Contact</span>
 				<span className="nav-links-header-advanced" onClick={()=>{

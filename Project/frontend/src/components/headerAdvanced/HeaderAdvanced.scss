@@ -140,7 +140,7 @@ $font-fam-1: "Poppins", sans-serif;
 }
 
 .btn-section-header-adv{
-    width: 200px;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,7 +169,8 @@ $font-fam-1: "Poppins", sans-serif;
     color: white;
     font-weight: 600;
     font-family: $font-fam-1;
-    margin-right: 60px;
+    // margin-right: 60px;
+    cursor: pointer;
 }
 
 .show{

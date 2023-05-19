@@ -1,6 +1,8 @@
 
 import React from 'react';
 import './blog.scss';
+import Header from './store/Header/Header';
+import Footer from './store/Footer'
 
 const blogData = [
   {
@@ -49,7 +51,9 @@ const blogData = [
 
 function AppBlog() {
   return (
-    <section id="blog" className="block blog-block">
+    <div>
+    <Header />
+    <section id="blog" className="block blog-block" style={{marginTop: '70px'}}>
       <div className="container-fluid">
         <div className="title-holder">
           <h2 style={{ color: '#7D5FFF' }}>Our Services</h2>
@@ -73,6 +77,8 @@ function AppBlog() {
         </div>
       </div>
     </section>
+    <Footer />
+    </div>
   );
 }
 
