@@ -4,7 +4,7 @@ import ResultContainer from "./item-search-result-container";
 import NoItemsDisplayer from "./item-empty-result-diplayer";
 import AdminLayout from "../../Layouts/AdminLayout";
 import "./manage-inventory.scss";
-import api from "../../../services/api";
+import {userRequest} from '../../../requestMethods'
 
 
 function ManageInventoryComponent() {
@@ -14,9 +14,13 @@ function ManageInventoryComponent() {
 	const [searchPrompt, setSearchPrompt] = useState("");
 
 	useEffect(() => {
-		api.get("/").then((response) => {
-			setInventory(response.data);
-		});
+			const fetchData = async() => {
+				await userRequest.get("inventory/")
+				.then((response) => {
+					setInventory(response.data)});
+				}
+			
+			fetchData()
 	}, []);
 	
 
@@ -28,8 +32,8 @@ function ManageInventoryComponent() {
 		setSearchPrompt(e.target.value);
 	};
 
-	const searchFunction = () => {
-		api.get(`/${searchPrompt}`)
+	const searchFunction = async() => {
+		userRequest.get(`inventory/${searchPrompt}`)
 			.then((response) => {
 				if (response.status === 200) {
 					console.log(response);

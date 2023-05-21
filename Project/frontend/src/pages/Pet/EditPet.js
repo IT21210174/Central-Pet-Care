@@ -13,11 +13,11 @@ function EditPet() {
 
   const [petID, setPetID] = useState("")
   const [petName, setPetName] = useState("")
-  const [dob, setPetDob] = useState("")
+  const [age, setPetAge] = useState("")
   const [gender, setPetGender] = useState("")
   const [species, setPetSpecies] = useState("")
   const [breed, setPetBreed] = useState("")
-  const [customerID, setCustomerID] = useState("")
+  const [nic, setCustomerNIC] = useState("")
   const [customerName, setCustomerName] = useState("")
   const [contactNumber, setContactNumber] = useState("")
   const [medicalHistory, setMedicalHistory] = useState("")
@@ -29,11 +29,11 @@ function EditPet() {
     .then(res => {
         setPetID(res.data.petID)
         setPetName(res.data.petName)
-        setPetDob(res.data.dob)
+        setPetAge(res.data.age)
         setPetGender(res.data.gender)
         setPetSpecies(res.data.species)
         setPetBreed(res.data.breed)
-        setCustomerID(res.data.customerID)
+        setCustomerNIC(res.data.nic)
         setCustomerName(res.data.customerName)
         setContactNumber(res.data.contactNumber)
         setMedicalHistory(res.data.medicalHistory)
@@ -44,13 +44,29 @@ function EditPet() {
     })
   }, [id])
 
+  const handleReset = () => {
+    setPetID('')
+    setPetName('')
+    setPetAge('')
+    setPetGender('')
+    setPetSpecies('')
+    setPetBreed('')
+    setCustomerNIC('')
+    setCustomerName('')
+    setContactNumber('')
+    setMedicalHistory('')
+    setFile(null)
+   
+// Clear the value of the file input field
+document.getElementById('file-input').value = '';
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     
     if(file ){
       const URL = await uploadImage(file)
-      userRequest.put("/pets/" + id, { petID, petName, dob, gender, species, breed, customerID, customerName, contactNumber, medicalHistory, picture : URL  })
+      userRequest.put("/pets/" + id, { petID, petName, age, gender, species, breed, nic, customerName, contactNumber, medicalHistory, picture : URL  })
       .then(res => {
           toast.success('Pet updated')
           navigate('/admin/pets/managePet')
@@ -59,7 +75,7 @@ function EditPet() {
       })
     }
     else {
-      userRequest.put("/pets/" + id, { petID, petName, dob, gender, species, breed, customerID, customerName, contactNumber, medicalHistory, picture : imageURL })
+      userRequest.put("/pets/" + id, { petID, petName, age, gender, species, breed, nic, customerName, contactNumber, medicalHistory, picture : imageURL })
       .then(res => {
           toast.success('Pet updated')
           navigate('/admin/pets/managePet')
@@ -95,8 +111,8 @@ function EditPet() {
                   <input className="input-field" value={petName} required onChange={(e) => setPetName(e.target.value)}/>
                 </section>
                 <section className="input-container">
-                  <span className="input-title">DOB</span>
-                  <input className="input-field" type="date" max={maxDate} value={dob} required onChange={(e) => setPetDob(e.target.value)}/>
+                  <span className="input-title">Age</span>
+                  <input className="input-field" type="number" id="ageNumber" name="ageNumber" min="1" max ="100" value={age} required onChange={(e) => setPetAge(e.target.value)}/>
                 </section>
                 <section className="input-container">
                   <span className="input-title">Gender</span>
@@ -129,8 +145,8 @@ function EditPet() {
               {/* column two */}
                <div className="edit-pet-column">
                    <section className="input-container">
-                      <span className="input-title">customer ID</span>
-                      <input className="input-field"  value={customerID} required onChange={(e) => setCustomerID(e.target.value)}/>
+                      <span className="input-title">NIC</span>
+                      <input className="input-field"  value={nic} required onChange={(e) => setCustomerNIC(e.target.value)}/>
                     </section>
                     <section className="input-container">
                        <span className="input-title">customer Name</span>
@@ -150,7 +166,7 @@ function EditPet() {
                     </section>
                     <div className="btn-container-edit-pet">
                       <button type='submit' className="submit-btn">Submit</button>
-                      <button type='reset' className="reset-btn">Reset</button>
+                      <button type='reset' className="reset-btn" onClick={handleReset}>Reset</button>
                     </div>
               </div>
             </div>

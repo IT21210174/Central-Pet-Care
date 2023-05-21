@@ -89,7 +89,7 @@ const InventoryReport = ({data}) => {
       <IconWrapper>
         <HiOutlineDocumentReport size="1rem"/>
       </IconWrapper>
-      REPORT
+      Inventory Report
     </Button>
   );
 };

@@ -6,6 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import api from "../../../services/api";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import {userRequest} from '../../../requestMethods'
 
 export default function ItemSearchResultsContainer(props) {
 	const { inventory, setFunc } = props;
@@ -25,15 +26,16 @@ export default function ItemSearchResultsContainer(props) {
 	// delete function
 	const deleteItem = (deletingID) => {
 		Swal.fire({
-				title: "Are you sure?",
-				text: "You won't be able to revert this!",
-				icon: "warning",
+				title: 'Confirmation Needed',
+				text: "Please confirm your action",
+				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonText: "Yes, delete it!",
-				cancelButtonText: "No, cancel!",
-				reverseButtons: true,
+				confirmButtonColor: '#f44336', // Red color for confirm button
+				cancelButtonColor: '#4caf50', // Green color for cancel button      
+				confirmButtonText: 'Delete',
+				// reverseButtons: true,
 			})
-			.then((result) => {
+			.then(async(result) => {
 				if (result.isConfirmed) {
 					Swal.fire(
 						"Deleted!",
@@ -41,7 +43,7 @@ export default function ItemSearchResultsContainer(props) {
 						"success"
 					);
 
-					api.delete(`/${deletingID}`)
+					await userRequest.delete(`inventory/${deletingID}`)
 						.then((response) => {
 							console.log(response);
 						})

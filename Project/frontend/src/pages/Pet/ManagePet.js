@@ -103,7 +103,7 @@ function ManagePet() {
           field: "petName",
           headerName: "Pet Name",
           headerAlign: "center",
-          flex: 2,
+          flex: 1,
           renderCell: (params) => {
             return (
               <div className="listItemName">
@@ -113,24 +113,14 @@ function ManagePet() {
             );
           },
         },
-        {
-            field: "dob",
-            headerName: "DOB",
-            headerAlign: "center",
-            type: 'date',
-            align: "center",
-            flex: 2,
-            valueGetter: ({ value }) => value && new Date(value),
-        },
-
-
-        {
-            field: "customerID",
-            headerName: "Customer ID",
-            headerAlign: "center",
-            align: "center",
-            flex: 2,
-        },
+      //   {
+      //     field: "gender",
+      //     headerName: "Gender",
+      //     headerAlign: "center",
+      //     align: "center",
+      //     flex: 1,
+      // },
+        
         {
             field: "customerName",
             headerName: "Customer Name",
@@ -138,6 +128,15 @@ function ManagePet() {
             align: "center",
             flex: 2,
         },
+        {
+          field: "contactNumber",
+          headerName: "Contact Number",
+          headerAlign: "center",
+          align: "center",
+          flex: 1,
+      },
+      
+  
 
         
         {

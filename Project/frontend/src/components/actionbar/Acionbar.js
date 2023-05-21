@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {IoIosLogOut} from 'react-icons/io'
 import './actionbar.scss'
 
 const Actionbar = () => {
@@ -15,6 +15,9 @@ const Actionbar = () => {
               <span className='username'>Nimal Wedagedara</span>
               <span className='designation'>Manager</span>
           </div>
+          <button className='logout-user'>
+              Logout<IoIosLogOut className='logout-user-icon'/>
+          </button>
         </div>
     </div>
   )

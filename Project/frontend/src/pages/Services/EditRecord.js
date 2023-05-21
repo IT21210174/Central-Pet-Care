@@ -12,11 +12,11 @@ function EditRecord() {
   const navigate = useNavigate()
 
   //const [recordId, setrecordId] = useState('')
-  const [serviceId, setserviceId] = useState('')
-  const [customerId, setcustomerId] = useState('')
-  const [vcslId, setvcslId] = useState('')
-  const [petId, setpetId] = useState('')
-  const [date, setdate] = useState('')
+  const [serviceName, setserviceName] = useState("")
+  const [customerName, setcustomerName] = useState("")
+  const [vetName, setvetName] = useState("")
+  const [petType, setpetType] = useState("")
+  const [date, setdate] = useState("")
   const [serviceCharge, setserviceCharge] = useState('')
 
 
@@ -24,10 +24,10 @@ function EditRecord() {
     userRequest.get('/servicerecords/' + id)
     .then(res => {
         //setrecordId(res.data.recordId)
-        setserviceId(res.data.serviceId)
-        setcustomerId(res.data.customerId)
-        setvcslId(res.data.vcslId)
-        setpetId(res.data.petId)
+        setserviceName(res.data.serviceName)
+        setcustomerName(res.data.customerName)
+        setvetName(res.data.vetName)
+        setpetType(res.data.petType)
         setdate(res.data.date)
         setserviceCharge(res.data.serviceCharge)
        
@@ -40,7 +40,7 @@ function EditRecord() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    userRequest.put("/servicerecords/" + id, { serviceId, customerId, vcslId, petId, date, serviceCharge })
+    userRequest.put("/servicerecords/" + id, { serviceName,customerName,vetName,petType, date, serviceCharge })
     .then(res => {
         toast.success('Record updated')
         navigate('/admin/service/ManageRecords')
@@ -74,24 +74,24 @@ function EditRecord() {
                   <input type='text' className="input-field" value={recordId} onChange={(e) => setrecordId(e.target.value)} required/>
                 </section> */}
 
-                <section className="input-container">
-                  <span className="input-title">Service ID</span>
-                  <input type='text' className="input-field" value={serviceId} onChange={(e) => setserviceId(e.target.value)} required/>
+<section className="input-container">
+                  <span className="input-title">Service Name</span>
+                  <input type='text' className="input-field" value={serviceName} onChange={(e) => setserviceName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
-                  <span className="input-title">Customer ID</span>
-                  <input type='text' className="input-field" value={customerId} onChange={(e) => setcustomerId(e.target.value)} required/>
+                  <span className="input-title">Customer Name</span>
+                  <input type='text' className="input-field" value={customerName} onChange={(e) => setcustomerName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
-                  <span className="input-title">VCSL ID</span>
-                  <input type='text' className="input-field" value={vcslId} onChange={(e) => setvcslId(e.target.value)} required/>
+                  <span className="input-title">Vet Name</span>
+                  <input type='text' className="input-field" value={vetName} onChange={(e) => setvetName(e.target.value)} required/>
                 </section>
 
                 <section className="input-container">
-                  <span className="input-title">Pet ID</span>
-                  <input type='text' className="input-field" value={petId} onChange={(e) => setpetId(e.target.value)} required/>
+                  <span className="input-title">Pet Type</span>
+                  <input type='text' className="input-field" value={petType} onChange={(e) => setpetType(e.target.value)} required/>
                 </section>
 
 

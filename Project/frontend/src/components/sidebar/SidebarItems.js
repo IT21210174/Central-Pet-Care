@@ -41,6 +41,7 @@ import { FaUserEdit } from "react-icons/fa";
 
 // inventory
 import {TbReportAnalytics} from "react-icons/tb"
+import { BsCalculator } from "react-icons/bs"
 
 // staff
 import { AiOutlineUserAdd } from "react-icons/ai";
@@ -182,7 +183,7 @@ const SidebarItems = [
 
 			{
 				id: 104,
-				link: "/admin/inventory/release-items",
+				link: "/admin/inventory/release-search",
 				nestedItemicon: <BiCategoryAlt />,
 				nestedItemtext: "Release items",
 			},
@@ -201,11 +202,18 @@ const SidebarItems = [
 				nestedItemtext: "Manage suppliers",
 			},
 
+			// {
+			// 	id: 107,
+			// 	link: "/admin/inventory/generate-reports",
+			// 	nestedItemicon: <TbReportAnalytics />,
+			// 	nestedItemtext: "Generate reports",
+			// },
+
 			{
-				id: 107,
-				link: "/admin/inventory/generate-reports",
-				nestedItemicon: <TbReportAnalytics />,
-				nestedItemtext: "Generate reports",
+				id: 108,
+				link: "/admin/inventory/rop-calculator",
+				nestedItemicon: <BsCalculator />,
+				nestedItemtext: "ROP Calculator",
 			},
 		],
 	},
@@ -308,19 +316,19 @@ const SidebarItems = [
 				nestedItemtext: "Manage Leaves",
 			},
 
-			{
-				id: 304,
-				link: "/admin/payroll/AddPayroll",
-				nestedItemicon: <GiTakeMyMoney />,
-				nestedItemtext: "Add Payroll",
-			},
+			// {
+			// 	id: 304,
+			// 	link: "/admin/payroll/AddPayroll",
+			// 	nestedItemicon: <GiTakeMyMoney />,
+			// 	nestedItemtext: "Add Payroll",
+			// },
 
-			{
-				id: 305,
-				link: "/admin/payroll/ManagePayroll",
-				nestedItemicon: <GiReceiveMoney />,
-				nestedItemtext: "Manage Payrolls",
-			},
+			// {
+			// 	id: 305,
+			// 	link: "/admin/payroll/ManagePayroll",
+			// 	nestedItemicon: <GiReceiveMoney />,
+			// 	nestedItemtext: "Manage Payrolls",
+			// },
 		],
 	},
 

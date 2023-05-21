@@ -5,7 +5,7 @@ function NoItemsDisplayer() {
 	return (
 		<div className="operation-unsuccess-container">
 			<img src={EmptyResult} alt="" className="imgblock" />
-			<span className="message-box">No results, Try a different order ID.</span>
+			<span className="message-box">No Processing Orders currently</span>
 		</div>
 	);
 }

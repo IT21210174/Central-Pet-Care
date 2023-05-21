@@ -1,12 +1,13 @@
 import React, { useState ,useEffect } from 'react'
-import api from '../../../services/api'
-import supplierApi from '../../../services/supplierAPI'
+import value from '../../../assets/imgs/hero-sec-image/balance.png'
 import PrLvMed from '../../../components/inventory-signals/PrLvlMedium'
 import PrLvHigh from '../../../components/inventory-signals/PrLvlHigh'
 import AdminLayout from '../../Layouts/AdminLayout'
 import './overview.scss'
 import InventoryReport from '../../Reports/InventoryReport'
-
+import SupplierReport from '../../Reports/SupplierReport'
+import ReleaseItemsReport from '../../Reports/ReleaseItemsReport'
+import {userRequest} from '../../../requestMethods'
 import clinicEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pharmaceutical.png'
 import storeEquipment from '../../../assets/imgs/PrototypeResources/insight-cards/pet-food.png'
 import supplier from '../../../assets/imgs/PrototypeResources/insight-cards/supplier.png'
@@ -17,23 +18,34 @@ function OverviewComponent() {
 
   // hooks and other data reading logics
   const [inventory , setInventory] = useState([])
-
+  const [releasedRecords, setReleasedRecords] = useState([])
   const [supplierCount , setSupplierCount] = useState([])
 
   useEffect(()=>{
-    api.get("/").then((response)=>{setInventory(response.data)})
-    console.log(inventory);
+    
+    const fetchAll = async() => {
+      await userRequest.get("inventory/").then((response)=>{setInventory(response.data)})
+      console.log(inventory);
+  
+      await userRequest.get("suppliers/").then((response)=>{setSupplierCount(response.data)})
+      console.log(supplierCount);
 
-    supplierApi.get("/").then((response)=>{setSupplierCount(response.data)})
-    console.log(supplierCount);
+      await userRequest.get("release-items/").then((response)=>{setReleasedRecords(response.data)})
+      console.log(releasedRecords);
+    }
 
+    fetchAll()
   },[])
 
   let pharmCount = 0
   let petItemCount = 0
+  let totalCount = 0
 
   inventory.map((singleItem)=>{
-    const {category} = singleItem;
+    const {category , quantity , price} = singleItem;
+
+    totalCount += quantity * price
+
 
     if(category === 'clinical-item'){
       pharmCount++
@@ -71,9 +83,21 @@ function OverviewComponent() {
                   <span className="insight-card-title">Suppliers</span>
                 </div>
             </div>
-            <InventoryReport data={inventory}/>
-        </div>
 
+            <div className="insight-card">
+                <img src={value} alt="" className="insight-card-pic" />
+                <div className="insight-card-details">
+                  <span className="item-count-displayer">{totalCount < 10 ? `0${totalCount}` : totalCount}</span>
+                  <span className="insight-card-title">LKR Inventory Worth</span>
+                </div>
+            </div>
+            
+        </div>
+            <div className="report-gen-section-inventory">
+              <InventoryReport data={inventory}/>
+              <SupplierReport data={supplierCount}/>
+              <ReleaseItemsReport data={releasedRecords}/>
+            </div>
         {/* Runnnig on short displayer */}
         <div className="row-heading">Limited Availability Items</div>
         <div className="second-row-container">
@@ -88,16 +112,16 @@ function OverviewComponent() {
             <div className="running-short-container">
                 {
                   inventory.reverse().map((singleItem)=>{
-                      const {_id, sku , itemName , category , price , rackNo , quantity , manufacturer} = singleItem
+                      const {_id, sku , itemName , category , reorderLevel  , price , rackNo , quantity , manufacturer} = singleItem
                       
-                      if(Number(quantity) < 15){
+                      if(Number(quantity) < reorderLevel){
                         return(
                         <div className="running-short-item" key={_id}>
                             <span className="item-field">{itemName}</span>
                             <span className="item-field">{sku}</span>
                             <span className="item-field">{category}</span>
                             <span className="item-field">{quantity}</span>
-                            <span className="item-field">{quantity < 8 ? <PrLvHigh/> : <PrLvMed/>}</span>
+                            <span className="item-field">{quantity < 5 ? <PrLvHigh/> : <PrLvMed/>}</span>
                         </div>
                       )
                       }

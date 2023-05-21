@@ -107,8 +107,8 @@ function ManageTreatment(){
           
         },
         {
-            field: "customerID",
-            headerName: "Customer ID",
+            field: "nic",
+            headerName: "NIC",
             headerAlign: "center",
             align:"center",
             flex: 1,

@@ -7,23 +7,23 @@ const serviceRecordSchema = mongoose.Schema({
         type: String,
         unique: true,
     },
-    serviceId: {
+    serviceName: {
         type: String,
-        required: [true, 'Please add service ID'],
+        required: [true, 'Please add service Name'],
         ref: 'Service'
     },
-    customerId: {
+    customerName: {
         type: String,
-        required: [true, 'Please add customer ID']
+        required: [true, 'Please add customer Name']
     },
-    vcslId: {
+    vetName: {
         type: String,
-        required: [true, 'Please add vcsl ID']
+        required: [true, 'Please add vet Name']
         
     },
-    petId: {
+    petType: {
         type: String,
-        required: [true, 'Please add pet ID']
+        required: [true, 'Please add pet Type']
     },
     date: {
         type: String,
@@ -37,28 +37,30 @@ const serviceRecordSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
+
 serviceRecordSchema.index({
-    serviceId:'text',
-    petId:'text'
+    recordId: 'text',
+    serviceName:'text',
+    petType:'text'
 })
 
-// // Before saving the product, check if it has a productId, if not, generate one
+// // Before saving the service record, check if it has a recordId, if not, generate one
 serviceRecordSchema.pre('save', async function (next) {
 
      try {
         const doc = this; // Get reference to the document being saved
 
-//         // Check if the document has a productId
+//         // Check if the document has a recordId
       if (!doc.recordId) { 
 
-//         // If there's no productId, fetch the counter from the counters collection and increment it
+//         // If there's no recordId, fetch the counter from the counters collection and increment it
         const counter = await Counter.findOneAndUpdate(
-             { _id: 'recordId' }, // The counter document has _id 'productId'
+             { _id: 'recordId' }, // The counter document has _id 'recordId'
              { $inc: { seq: 1 } }, // Increment the seq field by 1
              { new: true, upsert: true } // Create the counter document if it doesn't exist
         );
 
-//         // Generate the new productId using the incremented seq value from the counter
+//         // Generate the new recordId using the incremented seq value from the counter
          doc.recordId = `RE${counter.seq.toString().padStart(4, '0')}`;
          }
 

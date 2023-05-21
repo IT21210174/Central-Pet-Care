@@ -34,8 +34,6 @@ export default function OrderSearchResultsContainer(props) {
 	return (
 		<div>
 			{processing.reverse().map((singleItem) => {
-				
-				console.log(singleItem)
 
 				const {deliveryStatus , orderId , shipping , _id} = singleItem
 				const {address , name , phone} = shipping
@@ -43,24 +41,24 @@ export default function OrderSearchResultsContainer(props) {
 
 				if (processing.length > 0) {
 					return (
-						<div className="order-info" key={_id}>
-							<span className="item-field-view-order">
+						<div className="order-info-processing-order" key={_id}>
+							<span className="item-field-processing-order">
 								{orderId}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-processing-order">
 								{name}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-processing-order">
 								{phone}
 							</span>
-							<span className="item-field-view-order">
+							<span className="item-field-processing-order">
 								{city}
 							</span>
-							<span className="item-field-view-order">
+							<span className={`${deliveryStatus === 'Pending' ? 'item-field-processing-order pending-order-state' : deliveryStatus === 'Processing' ? 'item-field-processing-order processing-order-state' : 'item-field-processing-order completed-order-state'}`}>
 								{deliveryStatus}
 							</span>
-							<span className="item-field-view-order">
-								<button className="action-btns-view-orderV2" onClick={()=>{updateItem(orderId)}}>
+							<span className="item-field-processing-order">
+								<button className="action-btns-processing-orderV2" onClick={()=>{updateItem(_id)}}>
 									<BiEdit />
 								</button>
 							</span>

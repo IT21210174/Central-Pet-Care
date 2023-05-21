@@ -18,7 +18,22 @@ $font-fam-1: "Poppins", sans-serif;
 }
 
 .home-page-container::-webkit-scrollbar {
-	display: none;
+	// display: none;
+    width: 8px;
+    height: 0px;
+}
+
+.home-page-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.home-page-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.home-page-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }
 
 .hero-picture {
@@ -61,6 +76,7 @@ $font-fam-1: "Poppins", sans-serif;
 	left: 0;
 	width: 100%;
 	height: 100%;
+	font-family: $font-fam-1;
 }
 
 .welcome-text {
@@ -68,6 +84,7 @@ $font-fam-1: "Poppins", sans-serif;
 	color: white;
 	line-height: 80px;
 	font-weight: 900;
+	font-family: $font-fam-1;
 }
 
 .welcome-text-body {
@@ -75,6 +92,7 @@ $font-fam-1: "Poppins", sans-serif;
 	color: white;
 	margin-top: 20px;
 	font-weight: 300;
+	font-family: $font-fam-1;
 }
 
 .schedule-appt-btn {
@@ -110,6 +128,7 @@ $font-fam-1: "Poppins", sans-serif;
 	justify-content: center;
 	align-items: flex-end;
 	padding: 10px;
+	font-family: $font-fam-1;
 }
 
 .text-section {
@@ -120,6 +139,7 @@ $font-fam-1: "Poppins", sans-serif;
 	border-radius: 20px 0 0 20px;
 	background-color: white;
 	box-shadow: 4px 4px 8px rgba($color: #000000, $alpha: 0.4);
+	font-family: $font-fam-1;
 }
 
 .watermark-logo {
@@ -143,6 +163,7 @@ $font-fam-1: "Poppins", sans-serif;
 	color: black;
 	font-weight: 700;
 	margin-bottom: 10px;
+	font-family: $font-fam-1;
 }
 
 .image-section {
@@ -156,6 +177,7 @@ $font-fam-1: "Poppins", sans-serif;
 	width: 15px;
 	background-color: $secondary-col3;
 	box-shadow: 0px 4px 8px rgba($color: #000000, $alpha: 0.4);
+	
 }
 
 .discount-container {
@@ -177,6 +199,7 @@ $font-fam-1: "Poppins", sans-serif;
 	font-weight: 800;
 	letter-spacing: 4px;
 	margin: 10px;
+	font-family: $font-fam-1;
 }
 
 .our-message {

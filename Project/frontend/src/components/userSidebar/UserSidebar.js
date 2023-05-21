@@ -25,14 +25,6 @@ function UserSidebar() {
                     My Orders
                 </li>
             </NavLink>
-            <NavLink to='../admin/products/manageProducts'>
-                <li className='userSidebarListItem'>
-                    <div className='userSidebarListItemIcon'>
-                        <BsCartFill />
-                    </div>
-                    My Appointments
-                </li>
-            </NavLink>
         </ul>
     </div>
   )

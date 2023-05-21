@@ -64,9 +64,9 @@ const PetReport = ({data}) => {
       
         // Add the table to the document
         doc.autoTable({
-          head: [["Pet ID", "Pet Name", "DOB", "Customer ID", "Customer Name", "Contact Number", "Medical History"]],
+          head: [["Pet ID", "Pet Name", "Age", "NIC", "Customer Name", "Contact Number", "Medical History"]],
           body: data.map((item) => {
-            return [item.petID, item.petName, item.dob, item.customerID, item.customerName, item.contactNumber, item.medicalHistory];
+            return [item.petID, item.petName, item.age, item.nic, item.customerName, item.contactNumber, item.medicalHistory];
           }),
           startY: 80, // start the table below the logo
           headStyles: {

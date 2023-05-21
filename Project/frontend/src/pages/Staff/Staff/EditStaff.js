@@ -18,8 +18,9 @@ function EditStaff() {
   const [contactNo,setcontactNo] = useState("")
   const [dob,setdob] = useState("")
   const [email,setemail] = useState("")
-  const [staffId,setstaffId] = useState("")
+  // const [staffId,setstaffId] = useState("")
   const [department,setdepartment] = useState("")
+  const [designation,setdesignation] = useState("")
   const [joinedDate,setjoinedDate] = useState("")
   const [salary,setsalary] = useState("")
   const [simage,setsimage] = useState(null)
@@ -35,8 +36,9 @@ function EditStaff() {
       setcontactNo(res.data.contactNo)
       setdob(res.data.dob)
       setemail(res.data.email)
-      setstaffId(res.data.staffId)
+      // setstaffId(res.data.staffId)
       setdepartment(res.data.department)
+      setdesignation(res.data.designation)
       setjoinedDate(res.data.joinedDate)
       setsalary(res.data.salary)
       setImageURL(res.data.image)
@@ -51,7 +53,7 @@ function EditStaff() {
     
     if(simage ){
       const URL = await uploadImage(simage)
-      userRequest.put("/staff/" + id, { firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage : URL })
+      userRequest.put("/staff/" + id, { firstName, lastName, address, nic, contactNo, dob, email, department, designation, joinedDate, salary, simage : URL })
       .then(res => {
           toast.success('Staff Deatils updated')
           navigate('/admin/staff/ManageStaff')
@@ -60,7 +62,7 @@ function EditStaff() {
       })
     }
     else {
-      userRequest.put("/staff/" + id, {firstName, lastName, address, nic, contactNo, dob, email, department, joinedDate, salary, simage : imageURL })
+      userRequest.put("/staff/" + id, {firstName, lastName, address, nic, contactNo, dob, email, department, designation, joinedDate, salary, simage : imageURL })
       .then(res => {
           toast.success('Staff Deatils updated')
           navigate('/admin/staff/ManageStaff')
@@ -135,17 +137,18 @@ function EditStaff() {
                         <span className="input-title">Date Of Birth</span>
                         <input className="input-field" value={dob} onChange={(e) => setdob(e.target.value)} type="date" max={maxDate} required/>
                     </section>
-                    <section className="input-container">
+                    {/* <section className="input-container">
                         <span className="input-title">Staff ID</span>
                         <input className="input-field" value={staffId} onChange={(e) => setstaffId(e.target.value)} required/>
-                    </section>
+                    </section> */}
                     <section className="input-container">
                         <span className="input-title">Joined Date</span>
                         <input className="input-field" value={joinedDate} onChange={(e) => setjoinedDate(e.target.value)} type="date" max={maxDate} required/>
                     </section>
-
-                   
-
+                    <section className="input-container">
+                        <span className="input-title">Designation</span>
+                        <input className="input-field" value={designation} onChange={(e) => setdesignation(e.target.value)} required/>
+                    </section>
                     <section className="input-container">
                         <span className="input-title">Staff Member Image</span>
                         <input id="file-input" type="file" accept='.png, .jpeg, .jpg, .webp' className='input-field' onChange={(e) => setsimage(e.target.files[0])} />

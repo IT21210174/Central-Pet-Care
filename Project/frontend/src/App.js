@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import AddItem from './pages/FormSample/AddItem';
 import AdminLayout from './pages/Layouts/AdminLayout';
 
+
 import AddProduct from './pages/Product/AddProduct';
 import ManageProducts from './pages/Product/ManageProducts';
 import EditProduct from './pages/Product/EditProduct';
@@ -32,15 +33,18 @@ import AddItemPage from "./pages/Inventory/add-item-page/AddItem";
 import OverviewPage from "./pages/Inventory/overview-page/overview";
 import SupplierRegForm from "./pages/Inventory/register-supplier-page/supplier-register";
 import ManageInventoryPage from "./pages/Inventory/manage-inventory-page/manage-inventory";
-import GenerateReports from "./pages/Inventory/generate-reports/generate-reports";
 import UpdateItem from "./pages/Inventory/update-inventory-page/update-inventory";
 import TestComp from "./pages/Inventory/release-items-page/test-comp";
 import ViewInventoryItem from "./pages/Inventory/view-item-details-page/view-items";
 import ManageSupplierWindow from "./pages/Inventory/manage-supplier/manage-supplier";
 import ViewSupplierDetails from './pages/Inventory/view-supplier/view-supplier'
 import ReleaseItems from "./pages/Inventory/release-items-page/test-comp";
+import ReleasedItems from './pages/Inventory/released-items/ReleasedItems';
 import UpdateSupplierDetails from './pages/Inventory/update-supplier-page/update-supplier'
 import OrdersReport from "./pages/Inventory/generate-reports/OrdersReport";
+import Login from './pages/Signin&Signup/Page';
+import ReleaseSearch from './pages/Inventory/release-search/ReleaseSearch';
+import RopCalculator from './pages/Inventory/rop-calculator/RopCalc'
 
 //payroll management
 import AddPayroll from './pages/Staff/Payroll/AddPayroll';
@@ -80,6 +84,8 @@ import ManageRecord from './pages/Services/ManageRecord';
 import EditService from './pages/Services/EditService';
 import ViewService from './pages/Services/ViewService';
 
+import AppBlog from './components/blog';
+
 //vet management
 import Addvet from './pages/Vet/Vet/AddVet';
 import EditVet from './pages/Vet/Vet/EditVet';
@@ -92,6 +98,7 @@ import EditPrescription from './pages/Vet/Prescription/EditPrescription';
 import ViewPrescription from './pages/Vet/Prescription/ViewPrescription';
 //medicine
 import Medicine from './pages/Vet/Medicine/Medicine';
+import HomePage from './pages/Home/Home-page';
 
 import Register from './pages/User/Register';
 import UserLayout from './pages/Layouts/UserLayout'
@@ -111,7 +118,7 @@ function App() {
       <Toaster />
       
       <Routes>
-        <Route path='/' element={<ProductCatalog />} />
+        {/* <Route path='/' element={<AppBlog />} /> */}
         <Route exact path='/component-2' element={<AddItem />} />
         <Route exact path='/component-3' element={<AddProduct />} />
         
@@ -154,9 +161,15 @@ function App() {
         <Route path="/admin/inventory/view-item" element={<ViewInventoryItem />}/>
         <Route path="/admin/inventory/manage-suppliers" element={<ManageSupplierWindow />}/>
         <Route path="/admin/inventory/report" />
+         <Route path="/admin/inventory/released-list" element={<ReleasedItems/>} />
         <Route path="/admin/inventory/release-items" element={<ReleaseItems/>} />
+        <Route path="/admin/inventory/release-search" element={<ReleaseSearch/>} />
         <Route path="/admin/supplier/view-supplier-details" element={<ViewSupplierDetails/>} />
         <Route path="/admin/supplier/update-supplier-details" element={<UpdateSupplierDetails/>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/admin/inventory/rop-calculator" element={<RopCalculator/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/services" element={<AppBlog/>} />
 
 
         {/* staff routes */}

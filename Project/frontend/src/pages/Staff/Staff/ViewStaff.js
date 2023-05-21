@@ -19,6 +19,7 @@ function ViewStaff() {
     const [email,setemail] = useState("")
     const [staffId,setstaffId] = useState("")
     const [department,setdepartment] = useState("")
+    const [designation,setdesignation] = useState("")
     const [joinedDate,setjoinedDate] = useState("")
     const [salary,setsalary] = useState("")
     const [imageURL, setImageURL] = useState('')
@@ -35,6 +36,7 @@ function ViewStaff() {
             setemail(res.data.email)
             setstaffId(res.data.staffId)
             setdepartment(res.data.department)
+            setdesignation(res.data.designation)
             setjoinedDate(res.data.joinedDate)
             setsalary(res.data.salary)
            
@@ -143,6 +145,10 @@ function ViewStaff() {
                         <div className='staff-line'>
                             <span className='staff-line-info'>Department</span>
                             <span className='staff-line-info-values'>{department}</span>
+                        </div>
+                        <div className='staff-line'>
+                            <span className='staff-line-info'>Designation</span>
+                            <span className='staff-line-info-values'>{designation}</span>
                         </div>
                         <div className='staff-line'>
                             <span className='staff-line-info'>Joined Date</span>

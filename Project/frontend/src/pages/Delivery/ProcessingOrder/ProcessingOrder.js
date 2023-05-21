@@ -13,7 +13,6 @@ function ViewProcessingOrderComponent() {
 	useEffect(() => {
 		userRequest.get("/deliver-orders").then((response) => {
 			setOrders(response.data);
-			console.log(orders);
 		});
 	}, []);
 
@@ -26,16 +25,10 @@ function ViewProcessingOrderComponent() {
 		setSearchPrompt(e.target.value);
 	};
 
-	const searchFunction = () => {
-		userRequest.get(`/deliver-orders/${searchPrompt}`)
+	const searchFunction = async() => {
+		await userRequest.get(`deliver-orders/${searchPrompt}`)
 			.then((response) => {
-				if (response.status === 200) {
-					console.log(response);
-					setOrders(response.data);
-				} else {
-					console.log("no such item");
-					setOrders([]);
-				}
+				setOrders(response.data);
 			})
 			.catch((error) => {
 				console.log("no such item");
@@ -43,6 +36,10 @@ function ViewProcessingOrderComponent() {
 				setOrders([])
 			});
 	};
+
+	const executeFrontendSearch = () => {
+
+	}
 
 	const searchFormHandler = (e) => {
 		e.preventDefault();
@@ -53,49 +50,49 @@ function ViewProcessingOrderComponent() {
 
 	return (
 		<AdminLayout>
-			<div className="actionbar-container-view-order">
+			<div className="actionbar-container-processing-order">
 				{/* main headline */}
 				{/*Search bar*/}
-				<div className="search-bar-container">
+				{/* <div className="search-bar-container-processing-order">
 					<input
 						type="text"
-						className="search-field"
+						className="search-field-processing-order"
 						placeholder="Search order by order ID"
 						value={searchPrompt}
 						onChange={searchFieldHandler}
 					/>
 					<form onSubmit={searchFormHandler}>
-						<button type="submit" className="search-btn">
+						<button type="submit" className="search-btn-processing-order">
 							<ImSearch />
 						</button>
 					</form>
-				</div>
+				</div> */}
 
 				{/* data fetching section including buttons*/}
 
-				<div className="search-results-section">
+				<div className="search-results-section-processing-order">
 					{/* table headings */}
-					<div className="order-info-item-head">
-						<span className="item-field-head-view-order">
+					<div className="order-info-item-head-processing-order">
+						<span className="item-field-head-processing-order">
 							Order ID
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-processing-order">
 							Customer Name
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-processing-order">
 							Customer Phone
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-processing-order">
 							Delivery Location
 						</span>
-						<span className="item-field-head-view-order">
+						<span className="item-field-head-processing-order">
 							Delivery Status
 						</span>
-						<span className="item-field-head-view-order"></span>
+						<span className="item-field-head-processing-order"></span>
 					</div>
 					{/* scrollable section */}
 
-					<div className="search-results-container">
+					<div className="search-results-container-processing-order">
 						{/* display the results */}
 						{orders.length === 0 ? (
 							<NoItemsDisplayer />

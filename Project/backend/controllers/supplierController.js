@@ -78,7 +78,7 @@ const updateSingleSupplier = asyncHandler(async (req, res) => {
 // delete a single item
 const deleteSingleSupplier = asyncHandler(async (req, res) => {
 	const id = req.params.id;
-	await Item.findByIdAndDelete(id);
+	await Supplier.findByIdAndDelete(id);
 	res.status(200);
 	res.json({ message: "item was deleted from the database" });
 });

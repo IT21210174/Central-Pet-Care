@@ -2,7 +2,7 @@ import styled from "styled-components";
   
 const Container = styled.div`
     display: flex;
-    background-color: #E9E3FF;
+    background-color: #2c2c54;
 `;
   
 const Left = styled.div`
@@ -12,10 +12,12 @@ const Left = styled.div`
     padding: 20px;
 `;
   
-const Logo = styled.h1``;
+const Logo = styled.h1`
+color:white;`;
   
 const Desc = styled.p`
     margin: 20px 0px;
+    color:white;
 `;
   
 const SocialContainer = styled.div`
@@ -41,6 +43,7 @@ const Center = styled.div`
   
 const Title = styled.h3`
     margin-bottom: 30px;
+    color:white;
 `;
   
 const List = styled.ul`
@@ -54,6 +57,7 @@ const List = styled.ul`
 const ListItem = styled.li`
     width: 50%;
     margin-bottom: 10px;
+    color: white;
 `;
   
 const Right = styled.div`
@@ -65,6 +69,7 @@ const ContactItem = styled.div`
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    color:white;
 `;
   
 const Payment = styled.img`

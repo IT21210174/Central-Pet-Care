@@ -20,27 +20,29 @@ export default function ItemSearchResultsContainer(props) {
 	};
 
 	const deleteItem = (deletingID) => {
-		const swalWithBootstrapButtons = Swal.mixin({
-			customClass: {
-				confirmButton: "btn-success",
-				cancelButton: "btn-danger",
-			},
-			buttonsStyling: false,
-		});
+		// const swalWithBootstrapButtons = Swal.mixin({
+		// 	customClass: {
+		// 		confirmButton: "btn-success",
+		// 		cancelButton: "btn-danger",
+		// 	},
+		// 	//buttonsStyling: false,
+		// });
 
-		swalWithBootstrapButtons
-			.fire({
-				title: "Are you sure?",
-				text: "You won't be able to revert this!",
-				icon: "warning",
+		// swalWithBootstrapButtons
+			Swal.fire({
+				title: 'Confirmation Needed',
+				text: "Please confirm your action",
+				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonText: "Yes, delete it!",
-				cancelButtonText: "No, cancel!",
-				reverseButtons: true,
+				confirmButtonColor: '#f44336', // Red color for confirm button
+				cancelButtonColor: '#4caf50', // Green color for cancel button      
+				confirmButtonText: 'Delete',
+				cancelButtonText: "Cancel",
+				// reverseButtons: true,
 			})
 			.then((result) => {
 				if (result.isConfirmed) {
-					swalWithBootstrapButtons.fire(
+					Swal.fire(
 						"Deleted!",
 						"Your file has been deleted.",
 						"success"
@@ -66,9 +68,9 @@ export default function ItemSearchResultsContainer(props) {
 					/* Read more about handling dismissals below */
 					result.dismiss === Swal.DismissReason.cancel
 				) {
-					swalWithBootstrapButtons.fire(
+					Swal.fire(
 						"Cancelled",
-						"Your file is safe",
+						"",
 						"error"
 					);
 				}
@@ -87,6 +89,7 @@ export default function ItemSearchResultsContainer(props) {
 					vehicleType,
 					driverStatus,
 				} = singleItem;
+			
 
 				if (driver.length > 0) {
 					return (
@@ -106,13 +109,13 @@ export default function ItemSearchResultsContainer(props) {
 							<span className="item-field-manage-driver">
 								{vehicleType}
 							</span>
-							<span className="item-field-manage-driver">
-								{driverStatus}
+							<span className={`${driverStatus === 'Available' ? 'item-field-manage-driver available-driver-state' : 'item-field-manage-driver unavailable-driver-state'}`}>
+								{driverStatus} 
 							</span>
 							<span className="item-field-manage-driver">
-								<button className="action-btns-manage-driver">
+								{/* <button className="action-btns-manage-driver">
 									<AiOutlineEye />
-								</button>
+								</button> */}
 								<button 
 									className="action-btns-manage-driver"
 									onClick={() => updateItem(_id)}>

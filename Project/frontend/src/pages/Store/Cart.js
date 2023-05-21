@@ -10,7 +10,9 @@ import { CartContext } from "../../contexts/CartContext";
 import { publicRequest, userRequest } from '../../requestMethods';
 import EmptyCart from '../../components/store/EmptyCart';
 import StoreSearch from '../../components/store/StoreSearch';
-import Header from '../../components/store/Header/Header'
+import Header from '../../components/store/Header/Header';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 const Container = styled.div``;
 
@@ -212,6 +214,8 @@ const Checkout = styled.button`
 `;
 
 const Cart = () => {
+
+  const {user, setUser} = useContext(UserContext)
   
   const { cart, addToCart, removeFromCart, removeProduct, clearCart } = useContext(CartContext);
 
@@ -223,20 +227,25 @@ const Cart = () => {
     // Recalculate summary variables whenever cart is updated
     setSubTotal(cart.total);
     // setTaxes(cart.total * 0.01);
-    setShippingDiscount(cart.total > 2000 ? 600 : 0);
+    // setShippingDiscount(cart.total > 2000 ? 600 : 0);
   }, [cart]);
 
 
   const handleCheckout = async () => {
     try{
-      // const res = await publicRequest.post("/checkout/create-checkout-session", {
-      //   cartItems: cart.items,
-      //   amount: cart.total
-      // })
-      const res = await userRequest.post("/checkout/create-checkout-session-logged-in", {
-        cartItems: cart.items,
-        amount: cart.total
-      })
+      let res = ''
+      if(user === null) {
+        res = await publicRequest.post("/checkout/create-checkout-session", {
+          cartItems: cart.items,
+          amount: cart.total
+        })
+      }
+      else {
+        res = await userRequest.post("/checkout/create-checkout-session-logged-in", {
+          cartItems: cart.items,
+          amount: cart.total
+        })
+      }
       window.location.href = res.data.url;
     } catch (err) {
       console.log(err)
